@@ -9,12 +9,12 @@ package com.spm.timetablemanagement.form.working_hours;
  *
  * @author Tiran Harsha
  */
-public class InsertWorkingHours extends javax.swing.JPanel {
+public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
     /**
      * Creates new form InsertWorkingHours
      */
-    public InsertWorkingHours() {
+    public InsertWorkingHoursWD() {
         initComponents();
     }
 
