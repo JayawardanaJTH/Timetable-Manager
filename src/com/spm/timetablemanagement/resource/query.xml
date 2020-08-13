@@ -2,16 +2,29 @@
 <!DOCTYPE XML>
 
 <Querys>
+    <query id="create_database">
+        <![CDATA[
+            CREATE DATABASE timetablemanagement
+        ]]>
+    </query>
     <query id="create_workingdays_and_hours_table">
         <![CDATA[
-            create table work_day_hour(
+            CREATE TABLE work_day_hour(
                 id int AUTO_INCREMENT,
                 days_no int,
-                time Time,
+                days int,
+                hour int,
+                mins int
                 slot_type int,
                 
                 Constraint pk1 PRIMARY KEY (id)
             )
+        ]]>
+    </query>
+    
+    <query id="Insert_workingdays_and_hours">
+        <![CDATA[
+            INSERT INTO work_day_hour (days_no, days, hour, mins, slot_type)VALUES (?, ?, ?, ?, ?)
         ]]>
     </query>
 </Querys>

@@ -9,8 +9,8 @@ import com.spm.timetablemanagement.form.working_hours.EditWorkingDayHours;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
-import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWD;
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWE;
+import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWD;
 import com.spm.timetablemanagement.form.working_hours.ViewWorkingDayHours;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                panelBody.removeAll();
-               panelBody.add(new InsertWorkingHoursWD());
+               panelBody.add(new InsertWorkingHoursWE());
                panelBody.repaint();
                panelBody.revalidate();
             }
@@ -68,7 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelBody.removeAll();
-                panelBody.add(new InsertWorkingHoursWE());
+                panelBody.add(new InsertWorkingHoursWD());
                 panelBody.repaint();
                 panelBody.revalidate();
             }
