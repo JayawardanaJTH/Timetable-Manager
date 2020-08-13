@@ -8,6 +8,10 @@ package com.spm.timetablemanagement.main;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
+import com.spm.timetablemanagement.working_hours.InsertWorkingHours;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Tiran Harsha
@@ -35,73 +39,80 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
         //ID generates sub items
-        MenuItem s1IDGenerate = new MenuItem(iconSubmenu, "Group ID");
-        MenuItem s2IDGenerate = new MenuItem(iconSubmenu, "Sub-Group ID");
+        MenuItem s1IDGenerate = new MenuItem(iconSubmenu, "Group ID", null);
+        MenuItem s2IDGenerate = new MenuItem(iconSubmenu, "Sub-Group ID", null);
         
         //Lecturer submenu items
-        MenuItem s1Lecturer = new MenuItem(iconSubmenu, "Add Lecturer Details");
-        MenuItem s2Lecturer = new MenuItem(iconSubmenu, "View Lecturer Details");
+        MenuItem s1Lecturer = new MenuItem(iconSubmenu, "Add Lecturer Details", null);
+        MenuItem s2Lecturer = new MenuItem(iconSubmenu, "View Lecturer Details", null);
         
         //Student submenu items
-        MenuItem s1Student = new MenuItem(iconSubmenu, "Add Student Details");
-        MenuItem s2Student = new MenuItem(iconSubmenu, "ID Generates", s1IDGenerate, s2IDGenerate);
-        MenuItem s3Student = new MenuItem(iconSubmenu, "View Student Details");
+        MenuItem s1Student = new MenuItem(iconSubmenu, "Add Student Details", null);
+        MenuItem s2Student = new MenuItem(iconSubmenu, "ID Generates", null, s1IDGenerate, s2IDGenerate);
+        MenuItem s3Student = new MenuItem(iconSubmenu, "View Student Details", null);
         
         //WorkingDay submenu items
-        MenuItem s1WorkingDay = new MenuItem(iconSubmenu, "Weekday Details");
-        MenuItem s2WorkingDay = new MenuItem(iconSubmenu, "Weekend Details");
-        MenuItem s3WorkingDay = new MenuItem(iconSubmenu, "View Details");
-        MenuItem s4WorkingDay = new MenuItem(iconSubmenu, "Edit Details");
+        MenuItem s1WorkingDay = new MenuItem(iconSubmenu, "Weekday Details",new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.add(new InsertWorkingHours());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
+        MenuItem s2WorkingDay = new MenuItem(iconSubmenu, "Weekend Details", null);
+        MenuItem s3WorkingDay = new MenuItem(iconSubmenu, "View Details", null);
+        MenuItem s4WorkingDay = new MenuItem(iconSubmenu, "Edit Details", null);
         
         //Subject submenu items
-        MenuItem s1Subject = new MenuItem(iconSubmenu, "Add Subject Details");
-        MenuItem s2Subject = new MenuItem(iconSubmenu, "View Subject Details");
+        MenuItem s1Subject = new MenuItem(iconSubmenu, "Add Subject Details", null);
+        MenuItem s2Subject = new MenuItem(iconSubmenu, "View Subject Details", null);
         
         //Location submenu items
-        MenuItem s1Location = new MenuItem(iconSubmenu, "Add Location Details");
-        MenuItem s2Location = new MenuItem(iconSubmenu, "View Location Details");
+        MenuItem s1Location = new MenuItem(iconSubmenu, "Add Location Details", null);
+        MenuItem s2Location = new MenuItem(iconSubmenu, "View Location Details", null);
         
         //Tag submenu items Statistics
-        MenuItem s1Tag = new MenuItem(iconSubmenu, "Add Tag Details");
-        MenuItem s2Tag = new MenuItem(iconSubmenu, "View Tag Details");
+        MenuItem s1Tag = new MenuItem(iconSubmenu, "Add Tag Details", null);
+        MenuItem s2Tag = new MenuItem(iconSubmenu, "View Tag Details", null);
         
         //Statistics submenu items Allocate Room
-        MenuItem s1Statistics = new MenuItem(iconSubmenu, "View Statistics Details");
+        MenuItem s1Statistics = new MenuItem(iconSubmenu, "View Statistics Details", null);
         
         //Allocate Room submenu items Allocate Room
-        MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms");
+        MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms", null);
         
         //Handle Session submenu items
-        MenuItem s1HandleSession = new MenuItem(iconSubmenu, "Create Sessions");
-        MenuItem s2HandleSession = new MenuItem(iconSubmenu, "View Sessions");
-        MenuItem s3HandleSession = new MenuItem(iconSubmenu, "Search Sessions");
+        MenuItem s1HandleSession = new MenuItem(iconSubmenu, "Create Sessions", null);
+        MenuItem s2HandleSession = new MenuItem(iconSubmenu, "View Sessions", null);
+        MenuItem s3HandleSession = new MenuItem(iconSubmenu, "Search Sessions", null);
         
         //Allocate Time Session submenu items
-        MenuItem s1AllocateTime = new MenuItem(iconSubmenu, "Allocate Not Available Time");
-        MenuItem s2AllocateTime = new MenuItem(iconSubmenu, "Consective Sessions");
-        MenuItem s3AllocateTime = new MenuItem(iconSubmenu, "Parallel Sessions");
+        MenuItem s1AllocateTime = new MenuItem(iconSubmenu, "Allocate Not Available Time", null);
+        MenuItem s2AllocateTime = new MenuItem(iconSubmenu, "Consective Sessions", null);
+        MenuItem s3AllocateTime = new MenuItem(iconSubmenu, "Parallel Sessions", null);
         
         //Generate Timetable submenu items
-        MenuItem s1GenerateTimeTable = new MenuItem(iconSubmenu, "Generate");
-        MenuItem s2GenerateTimeTable = new MenuItem(iconSubmenu, "View Time Table");
+        MenuItem s1GenerateTimeTable = new MenuItem(iconSubmenu, "Generate", null);
+        MenuItem s2GenerateTimeTable = new MenuItem(iconSubmenu, "View Time Table", null);
         
         //main menu items
-        MenuItem menuHome = new MenuItem(iconSubmenu, "Home");
-        MenuItem menuLecturer = new MenuItem(iconWorkingDay, "Lecturer", s1Lecturer, s2Lecturer);
-        MenuItem menuStudent = new MenuItem(iconWorkingDay, "Student", s1Student, s2Student, s3Student);
-        MenuItem menuWorkingDay = new MenuItem(iconWorkingDay, "Working Day and Hours",s1WorkingDay,
+        MenuItem menuHome = new MenuItem(iconSubmenu, "Home", null);
+        MenuItem menuLecturer = new MenuItem(iconWorkingDay, "Lecturer", null, s1Lecturer, s2Lecturer);
+        MenuItem menuStudent = new MenuItem(iconWorkingDay, "Student", null, s1Student, s2Student, s3Student);
+        MenuItem menuWorkingDay = new MenuItem(iconWorkingDay, "Working Day and Hours", null,s1WorkingDay,
                 s2WorkingDay, s3WorkingDay, s4WorkingDay);
-        MenuItem menuSubject = new MenuItem(iconSubmenu, "Subject", s1Subject, s2Subject);
-        MenuItem menuLocation = new MenuItem(iconSubmenu, "Location", s1Location, s2Location);
-        MenuItem menuTag = new MenuItem(iconSubmenu, "Tag", s1Tag, s2Tag);
-        MenuItem menuStatistics = new MenuItem(iconSubmenu, "Statistics", s1Statistics);
-        MenuItem menuAllocateRoom = new MenuItem(iconSubmenu, "Allocate Room", s1AllocateRoom);
-        MenuItem menuCreateSession = new MenuItem(iconSubmenu, "Handle Session", s1HandleSession, 
+        MenuItem menuSubject = new MenuItem(iconSubmenu, "Subject", null, s1Subject, s2Subject);
+        MenuItem menuLocation = new MenuItem(iconSubmenu, "Location", null, s1Location, s2Location);
+        MenuItem menuTag = new MenuItem(iconSubmenu, "Tag", null, s1Tag, s2Tag);
+        MenuItem menuStatistics = new MenuItem(iconSubmenu, "Statistics", null, s1Statistics);
+        MenuItem menuAllocateRoom = new MenuItem(iconSubmenu, "Allocate Room", null, s1AllocateRoom);
+        MenuItem menuCreateSession = new MenuItem(iconSubmenu, "Handle Session", null, s1HandleSession, 
                 s2HandleSession, s3HandleSession);
-        MenuItem menuAllTime = new MenuItem(iconSubmenu, "Allocate Time and Modify Sessions", s1AllocateTime,
+        MenuItem menuAllTime = new MenuItem(iconSubmenu, "Allocate Time and Modify Sessions", null, s1AllocateTime,
                 s2AllocateTime, s3AllocateTime);
-        MenuItem menuView = new MenuItem(iconSubmenu, "View Details");
-        MenuItem menuGenerateTimetable = new MenuItem(iconSubmenu, "Generate Timetable", s1GenerateTimeTable, 
+        MenuItem menuView = new MenuItem(iconSubmenu, "View Details", null);
+        MenuItem menuGenerateTimetable = new MenuItem(iconSubmenu, "Generate Timetable", null, s1GenerateTimeTable, 
                 s2GenerateTimeTable);
         
         
@@ -204,18 +215,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
-        panelBody.setLayout(panelBodyLayout);
-        panelBodyLayout.setHorizontalGroup(
-            panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 554, Short.MAX_VALUE)
-        );
-        panelBodyLayout.setVerticalGroup(
-            panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
-        );
-
+        panelBody.setLayout(new java.awt.BorderLayout());
         getContentPane().add(panelBody, java.awt.BorderLayout.CENTER);
 
         setBounds(0, 0, 820, 550);
