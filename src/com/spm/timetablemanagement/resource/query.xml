@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE XML>
+
+<Querys>
+    <query id="create_workingdays_and_hours_table">
+        <![CDATA[
+            create table work_day_hour(
+                id int AUTO_INCREMENT,
+                days_no int,
+                time Time,
+                slot_type int,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+</Querys>
