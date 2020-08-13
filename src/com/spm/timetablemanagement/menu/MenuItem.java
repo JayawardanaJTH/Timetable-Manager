@@ -7,6 +7,7 @@ package com.spm.timetablemanagement.menu;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,8 +31,9 @@ public class MenuItem extends javax.swing.JPanel {
     private static int opened_menu_count = 0;
     private static ArrayList<MenuItem> submenu_tracker = new ArrayList();
     private static ArrayList<MenuItem> mainmenu_tracker = new ArrayList();
+    private ActionListener action = null;
     
-    public MenuItem(Icon icon, String menuName, MenuItem... subMenu) {
+    public MenuItem(Icon icon, String menuName, ActionListener act, MenuItem... subMenu) {
         initComponents();
         
         lbl_icon.setIcon(icon);
@@ -41,9 +43,15 @@ public class MenuItem extends javax.swing.JPanel {
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE,45));
         this.setMinimumSize(new Dimension(Integer.MAX_VALUE,45));
         
+        if(act != null){
+                this.action = act;
+            }
+        
         for(int i = 0;i < subMenu.length;i++){
             
             subMenu[i].setVisible(false);
+            
+            
             subMenu[i].setBackground(Color.WHITE);
             this.subMenu.add(subMenu[i]);
         }
@@ -101,6 +109,9 @@ public class MenuItem extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
 
+        if(action != null){
+            action.actionPerformed(null);
+        }
         if(getSubMenu().isEmpty()){
             subItem = (MenuItem) evt.getSource();
             opened_menu_count ++;

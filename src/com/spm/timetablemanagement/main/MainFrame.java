@@ -8,7 +8,7 @@ package com.spm.timetablemanagement.main;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
-import com.spm.timetablemanagement.working_hours.InsertWorkingHours;
+import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
