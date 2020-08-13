@@ -62,7 +62,12 @@ public class MenuItem extends javax.swing.JPanel {
         lbl_icon = new javax.swing.JLabel();
         lbl_name = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
@@ -138,9 +143,6 @@ public class MenuItem extends javax.swing.JPanel {
         }
     }                                 
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {                                  
-        
-    }                                 
 
     private void showMenu(){
         new Thread(new Runnable() {
@@ -153,6 +155,10 @@ public class MenuItem extends javax.swing.JPanel {
             }
         }).start();
     }//GEN-LAST:event_formMousePressed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
 
     private void hideMenu(){
         

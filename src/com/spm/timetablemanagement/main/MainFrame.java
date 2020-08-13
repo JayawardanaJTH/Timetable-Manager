@@ -139,7 +139,7 @@ public class MainFrame extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelMenu = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menus = new javax.swing.JPanel();
         panelBody = new javax.swing.JPanel();
@@ -182,27 +182,26 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBackground(new java.awt.Color(149, 149, 242));
-        jPanel2.setPreferredSize(new java.awt.Dimension(250, 413));
-        jPanel2.setRequestFocusEnabled(false);
+        panelMenu.setPreferredSize(new java.awt.Dimension(250, 413));
+        panelMenu.setRequestFocusEnabled(false);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         menus.setLayout(new javax.swing.BoxLayout(menus, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(menus);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
+        panelMenu.setLayout(panelMenuLayout);
+        panelMenuLayout.setHorizontalGroup(
+            panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelMenuLayout.setVerticalGroup(
+            panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
+        getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -260,10 +259,10 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel menus;
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
+    private javax.swing.JPanel panelMenu;
     // End of variables declaration//GEN-END:variables
 }
