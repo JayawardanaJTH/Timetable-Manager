@@ -5,31 +5,29 @@
  */
 package com.spm.timetablemanagement.form.working_hours;
 
-import java.awt.Label;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Tiran Harsha
  */
 public class Validator {
-    public static boolean validateLenght(String type, int hcount, int mcount){
+    public static void validateLenght(String type, JTextField hcount, JTextField mcount){
         
         if(type.contains("hour")){
-            
-            if(hcount > 1)
-                return true;
+            if(hcount.getText().length() > 1)
+                hcount.setText("");
         }else{
            
-            if(mcount > 2){
-                
-                return true;
+            if(mcount.getText().length() > 1){
+                 mcount.setText("");
             }
         }
-        return false;
+       
     }
-    public static boolean filterInt(KeyEvent evt, String type, JLabel error){
+    public static void filterInt(KeyEvent evt, String type, JLabel error, JTextField txt_hour, JTextField txt_min){
         
         int key = evt.getKeyCode();
         
@@ -39,11 +37,11 @@ public class Validator {
                  error.setText("Input only numbers");
                  if(type.contains("hour")){
                      evt.setKeyCode(1);
-                      return true;
+                      txt_hour.setText("");
                  }
                  else{
                      evt.setKeyCode(1);
-                     return true;
+                     txt_min.setText("");
                  }
             }
             else
@@ -51,6 +49,5 @@ public class Validator {
         }else{
             error.setText("");
         }
-        return false;
     }
 }

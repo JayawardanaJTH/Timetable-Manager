@@ -59,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                panelBody.removeAll();
-               panelBody.add(new InsertWorkingHoursWE());
+               panelBody.add(new InsertWorkingHoursWD());
                panelBody.repaint();
                panelBody.revalidate();
             }
@@ -68,7 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelBody.removeAll();
-                panelBody.add(new InsertWorkingHoursWD());
+                panelBody.add(new InsertWorkingHoursWE());
                 panelBody.repaint();
                 panelBody.revalidate();
             }
