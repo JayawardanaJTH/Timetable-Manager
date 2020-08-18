@@ -34,4 +34,10 @@
             WHERE id = ?
         ]]>
     </query>
+    <query id="Get_workingdays_and_hours">
+        <![CDATA[
+            SELECT *
+            FROM work_day_hour
+          ]]>
+    </query>
 </Querys>
