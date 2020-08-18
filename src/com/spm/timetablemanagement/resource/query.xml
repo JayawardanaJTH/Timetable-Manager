@@ -10,21 +10,28 @@
     <query id="create_workingdays_and_hours_table">
         <![CDATA[
             CREATE TABLE work_day_hour(
-                id int AUTO_INCREMENT,
+                id int,
                 days_no int,
                 days int,
                 hour int,
-                mins int
+                mins int,
                 slot_type int,
                 
-                Constraint pk1 PRIMARY KEY (id)
+                CONSTRAINT pk1 PRIMARY KEY (id)
             )
         ]]>
     </query>
     
     <query id="Insert_workingdays_and_hours">
         <![CDATA[
-            INSERT INTO work_day_hour (days_no, days, hour, mins, slot_type)VALUES (?, ?, ?, ?, ?)
+            INSERT INTO work_day_hour (id, days_no, days, hour, mins, slot_type)VALUES (?, ?, ?, ?, ?, ?)
+        ]]>
+    </query>
+    
+    <query id="Remove_workingdays_and_hours">
+        <![CDATA[
+            DELETE FROM work_day_hour
+            WHERE id = ?
         ]]>
     </query>
 </Querys>

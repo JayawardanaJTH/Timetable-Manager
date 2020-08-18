@@ -14,6 +14,7 @@ public class Constant {
     public static final String CREATE_DATABASE = "create_database";
     public static final String CREATE_WORKING_HOUR_TABLE = "create_workingdays_and_hours_table";
     public static final String INSERT_WORKING_HOUR_TABLE = "Insert_workingdays_and_hours";
+    public static final String REMOVE_WORKING_HOUR_TABLE = "Remove_workingdays_and_hours";
     
     public static final String QUERY = "query";
     public static final String QUERY_ID = "id";
