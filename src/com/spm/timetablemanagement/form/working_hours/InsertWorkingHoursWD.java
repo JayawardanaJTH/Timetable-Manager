@@ -424,26 +424,35 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                 Connection connection = DBconnection.getConnection();
 
                 PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WORKING_HOUR_TABLE));
+                PreparedStatement statement2 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_TABLE));
 
-                String dayList = "";
+                statement2.setInt(1, 1);
                 
-                      for (Integer day : days) {
-                          dayList = dayList.concat(day.toString()+",");
-                      }
-                statement.setInt(1, numOfdays);
-                statement.setString(2, dayList);
-                statement.setInt(3, Integer.parseInt(txt_hour.getText()));
-                statement.setInt(4, Integer.parseInt(txt_min.getText()));
-                
-                if(rdb_1hour.isSelected()){
-                    statement.setInt(5, 1);
+                if(!statement2.execute()){
                     
-                }else{
-                    statement.setInt(5, 2);
-                }
+                    String dayList = "";
+                    days.sort(null);
+                    
+                    for (Integer day : days) {
+                        dayList = dayList.concat(day.toString()+",");
+                    }
+                    
+                    statement.setInt(1, 1);
+                    statement.setInt(2, numOfdays);
+                    statement.setString(3, dayList);
+                    statement.setInt(4, Integer.parseInt(txt_hour.getText()));
+                    statement.setInt(5, Integer.parseInt(txt_min.getText()));
 
-                if(!statement.execute()){
-                     btn_resetMousePressed(null);
+                    if(rdb_1hour.isSelected()){
+                        statement.setInt(6, 1);
+
+                    }else{
+                        statement.setInt(6, 2);
+                    }
+
+                    if(!statement.execute()){
+                         btn_resetMousePressed(null);
+                    }
                 }
                 } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
                     Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);

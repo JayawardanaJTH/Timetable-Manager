@@ -38,7 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
          iconWorkingDay = new ImageIcon(MainFrame.class.getResource("workingTime.png"));
          iconSubmenu = new ImageIcon(getClass().getResource("/com/spm/timetablemanagement/resource/images/next.png"));
         }catch(Exception e){
-            System.out.println(e.getMessage());
+           
         }
         
         //ID generates sub items
@@ -289,7 +289,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel menus;
-    private javax.swing.JPanel panelBody;
+    public javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelMenu;
     // End of variables declaration//GEN-END:variables
