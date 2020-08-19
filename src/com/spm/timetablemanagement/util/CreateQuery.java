@@ -30,7 +30,7 @@ public class CreateQuery {
         //read source xml file
         //get the query by it's tag name
         nodeList = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                .parse(new File(root + "\\com\\spm\\timetablemanagement\\resource\\query.xml"))
+                .parse(new File("C:\\Users\\hvdil\\Documents\\NetBeansProjects\\Timetable-Manager\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
                 .getElementsByTagName(Constant.QUERY);
         
         for(int i = 0; i < nodeList.getLength(); i++){
