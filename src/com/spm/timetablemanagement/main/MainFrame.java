@@ -24,7 +24,7 @@ import com.spm.timetablemanagement.menu.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import tags_details.enterTag;
+import com.spm.timetablemanagement.form.tag_details.enterTag;
 /**
  *
  * @author Tiran Harsha

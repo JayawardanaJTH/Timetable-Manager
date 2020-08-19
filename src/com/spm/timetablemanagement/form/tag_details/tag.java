@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tags_details;
+package com.spm.timetablemanagement.form.tag_details;
 
 /**
  *

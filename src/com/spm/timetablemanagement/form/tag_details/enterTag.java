@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tags_details;
+package com.spm.timetablemanagement.form.tag_details;
 
 import com.spm.timetablemanagement.form.student_details.SubGroupNo;
 import com.spm.timetablemanagement.util.Constant;
@@ -25,6 +25,7 @@ import javax.swing.table.TableModel;
 public class enterTag extends javax.swing.JPanel {
 
     Connection connection;
+    PreparedStatement statement;
     /**
      * Creates new form enterTag
      */
@@ -179,7 +180,7 @@ public class enterTag extends javax.swing.JPanel {
             
             connection = DBconnection.getConnection();
 
-            PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_TAG_TABLE));
+            statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_TAG_TABLE));
 
             statement.setString(1, txt_tag.getText());
 
