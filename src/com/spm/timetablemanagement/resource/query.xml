@@ -12,7 +12,7 @@
             CREATE TABLE work_day_hour(
                 id int,
                 days_no int,
-                days int,
+                days VARCHAR(100),
                 hour int,
                 mins int,
                 slot_type int,
