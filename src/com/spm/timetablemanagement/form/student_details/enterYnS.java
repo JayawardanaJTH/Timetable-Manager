@@ -30,7 +30,6 @@ public class enterYnS extends javax.swing.JPanel {
         
         initComponents();
         txt_id.setVisible(false);
-        //setYnSTableData();
         showYnSList();
         
     }
@@ -49,10 +48,12 @@ public class enterYnS extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_YnS = new javax.swing.JTextField();
+        txt_id = new javax.swing.JTextField();
+        txt_error = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         btn_addYnS = new javax.swing.JButton();
         btn_deleteYnS = new javax.swing.JButton();
         btn_updateYnS = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_yNs = new javax.swing.JTable();
 
@@ -60,32 +61,52 @@ public class enterYnS extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Enter Academic Year & Semester");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(188, 188, 188))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
+        txt_YnS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_YnS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_YnS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_YnSActionPerformed(evt);
             }
         });
+
+        txt_id.setText("ID");
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
+            }
+        });
+
+        txt_error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0, 15, 0));
 
         btn_addYnS.setBackground(new java.awt.Color(255, 255, 255));
         btn_addYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -96,6 +117,7 @@ public class enterYnS extends javax.swing.JPanel {
                 btn_addYnSActionPerformed(evt);
             }
         });
+        jPanel3.add(btn_addYnS);
 
         btn_deleteYnS.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -106,6 +128,7 @@ public class enterYnS extends javax.swing.JPanel {
                 btn_deleteYnSActionPerformed(evt);
             }
         });
+        jPanel3.add(btn_deleteYnS);
 
         btn_updateYnS.setBackground(new java.awt.Color(255, 255, 255));
         btn_updateYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -115,47 +138,51 @@ public class enterYnS extends javax.swing.JPanel {
                 btn_updateYnSActionPerformed(evt);
             }
         });
-
-        txt_id.setText("ID");
+        jPanel3.add(btn_updateYnS);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_YnS, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_addYnS)
-                .addGap(38, 38, 38)
-                .addComponent(btn_updateYnS)
-                .addGap(28, 28, 28)
-                .addComponent(btn_deleteYnS)
-                .addGap(159, 159, 159))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 19, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(154, 154, 154))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(txt_YnS, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_YnS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_deleteYnS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_addYnS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_updateYnS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(txt_YnS, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
 
+        tbl_yNs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tbl_yNs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -184,29 +211,29 @@ public class enterYnS extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(133, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addGap(120, 120, 120))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addContainerGap(32, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(33, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(207, Short.MAX_VALUE)
+                .addContainerGap(251, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147))
+                .addGap(51, 51, 51))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 508, Short.MAX_VALUE)))
+                    .addContainerGap(410, Short.MAX_VALUE)))
         );
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 650));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_YnSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_YnSActionPerformed
@@ -218,16 +245,22 @@ public class enterYnS extends javax.swing.JPanel {
         
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
+            connection = DBconnection.getConnection(); 
             
-            connection = DBconnection.getConnection();   
+            if(txt_YnS.getText().equals("")){
+                txt_error.setText("Enter Academic Year & Semester*");
+            }
+            else{
+                txt_error.setText("");
+              
             PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_YEAR_AND_SEMESTER_TABLE));
-            statement.setString(1, txt_YnS.getText());
+            statement.setString(1, txt_YnS.getText().toUpperCase());
             statement.executeUpdate();
             model.setRowCount(0);
             showYnSList();
             txt_YnS.setText("");
             JOptionPane.showMessageDialog(null, "inserting successful");
-            
+            }
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e);
@@ -251,12 +284,20 @@ public class enterYnS extends javax.swing.JPanel {
         {
             DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
             Statement smt = connection.createStatement();
+            
+            if(txt_YnS.getText().equals("")){
+                txt_error.setText("Select Academic Year & Semester*");
+            }
+            else{
+                txt_error.setText("");
+//            DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
+//            Statement smt = connection.createStatement();
             smt.execute("DELETE FROM academic_year_and_semester WHERE id = "+id); 
             model.setRowCount(0);
             showYnSList();
             txt_YnS.setText("");
             JOptionPane.showMessageDialog(this, "Deleted");
-            
+            }
         }
         catch(Exception e)
         {
@@ -272,12 +313,19 @@ public class enterYnS extends javax.swing.JPanel {
         {
             DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
             Statement smt = connection.createStatement();
-            smt.execute("UPDATE academic_year_and_semester SET yNs = '"+txt_YnS.getText()+"' WHERE id = "+id); 
+            
+            if(txt_YnS.getText().equals("")){
+                txt_error.setText("Select Academic Year & Semester*");
+            }
+            else{
+                txt_error.setText("");
+            
+            smt.execute("UPDATE academic_year_and_semester SET yNs = '"+txt_YnS.getText().toUpperCase()+"' WHERE id = "+id); 
             model.setRowCount(0);
             showYnSList();
             txt_YnS.setText("");
             JOptionPane.showMessageDialog(this, "Updated");
-            
+            }
         }
         catch(Exception e)
         {
@@ -285,6 +333,10 @@ public class enterYnS extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btn_updateYnSActionPerformed
+
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
 
     
     public ArrayList<YnS> getYnSList()
@@ -351,10 +403,12 @@ public class enterYnS extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_yNs;
     private javax.swing.JTextField txt_YnS;
+    private javax.swing.JLabel txt_error;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 

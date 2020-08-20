@@ -46,29 +46,34 @@ public class enterDp extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_dp = new javax.swing.JTextField();
-        btn_addDp = new javax.swing.JButton();
-        btn_editDp = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         btn_deleteDp = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
+        btn_editDp = new javax.swing.JButton();
+        btn_addDp = new javax.swing.JButton();
+        txt_error = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Dp = new javax.swing.JTable();
+        txt_id = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Enter Degree Program");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(163, 163, 163))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,11 +83,36 @@ public class enterDp extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txt_dp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_dp.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_dp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_dpActionPerformed(evt);
             }
         });
+
+        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0, 15, 0));
+
+        btn_deleteDp.setBackground(new java.awt.Color(255, 255, 255));
+        btn_deleteDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_deleteDp.setText("Delete");
+        btn_deleteDp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteDpActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_deleteDp);
+
+        btn_editDp.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_editDp.setText("Update");
+        btn_editDp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editDpActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_editDp);
 
         btn_addDp.setBackground(new java.awt.Color(255, 255, 255));
         btn_addDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -94,63 +124,46 @@ public class enterDp extends javax.swing.JPanel {
                 btn_addDpActionPerformed(evt);
             }
         });
+        jPanel4.add(btn_addDp);
 
-        btn_editDp.setBackground(new java.awt.Color(255, 255, 255));
-        btn_editDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_editDp.setText("Update");
-        btn_editDp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editDpActionPerformed(evt);
-            }
-        });
-
-        btn_deleteDp.setBackground(new java.awt.Color(255, 255, 255));
-        btn_deleteDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_deleteDp.setText("Delete");
-        btn_deleteDp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_deleteDpActionPerformed(evt);
-            }
-        });
-
-        txt_id.setText("ID");
+        txt_error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 47, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txt_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_addDp)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_editDp, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_deleteDp, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(54, 54, 54))
+                .addGap(185, 185, 185)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                    .addComponent(txt_error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(btn_editDp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_addDp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_deleteDp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                .addGap(23, 23, 23)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        tbl_Dp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tbl_Dp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -159,12 +172,15 @@ public class enterDp extends javax.swing.JPanel {
                 "ID", "Degree Program"
             }
         ));
+        tbl_Dp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbl_Dp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_DpMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_Dp);
+
+        txt_id.setText("ID");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -173,23 +189,30 @@ public class enterDp extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(121, 121, 121)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(69, 69, 69))
+                        .addGap(69, 69, 69)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(431, 431, 431))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 710, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 890, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_dpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dpActionPerformed
@@ -200,19 +223,24 @@ public class enterDp extends javax.swing.JPanel {
         // TODO add your handling code here:
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_Dp.getModel();
-            
             Connection connection = DBconnection.getConnection();
+            
+            if(txt_dp.getText().equals("")){
+                txt_error.setText("Enter Degree Program*");
+            }
+            else{
+                txt_error.setText("");
 
             PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_DEGREE_PROGRAM_TABLE));
 
-            statement.setString(1, txt_dp.getText());
+            statement.setString(1, txt_dp.getText().toUpperCase());
 
             statement.executeUpdate();
             model.setRowCount(0);
             showDPList();
             txt_dp.setText("");
             JOptionPane.showMessageDialog(null, "inserting successful");
-
+            }
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e);
@@ -235,12 +263,19 @@ public class enterDp extends javax.swing.JPanel {
         {
             DefaultTableModel model = (DefaultTableModel)tbl_Dp.getModel();
             Statement smt = connection.createStatement();
-            smt.execute("UPDATE degree_program SET dp = '"+txt_dp.getText()+"' WHERE id = "+id); 
+            
+            if(txt_dp.getText().equals("")){
+                txt_error.setText("Select Degree Program*");
+            }
+            else{
+                txt_error.setText("");
+                
+            smt.execute("UPDATE degree_program SET dp = '"+txt_dp.getText().toUpperCase()+"' WHERE id = "+id); 
             model.setRowCount(0);
             showDPList();
             txt_dp.setText("");
             JOptionPane.showMessageDialog(this, "Updated");
-            
+            }
         }
         catch(Exception e)
         {
@@ -256,12 +291,19 @@ public class enterDp extends javax.swing.JPanel {
         {
             DefaultTableModel model = (DefaultTableModel)tbl_Dp.getModel();
             Statement smt = connection.createStatement();
+            
+            if(txt_dp.getText().equals("")){
+                txt_error.setText("Select Degree Program*");
+            }
+            else{
+                txt_error.setText("");
+                
             smt.execute("DELETE FROM degree_program WHERE id = "+id); 
             model.setRowCount(0);
             showDPList();
             txt_dp.setText("");
             JOptionPane.showMessageDialog(this, "Deleted");
-            
+            }
         }
         catch(Exception e)
         {
@@ -317,9 +359,11 @@ public class enterDp extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_Dp;
     private javax.swing.JTextField txt_dp;
+    private javax.swing.JLabel txt_error;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,40 +41,44 @@ public class enterGNo extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_gNo = new javax.swing.JTextField();
+        txt_error = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         btn_addGno = new javax.swing.JButton();
         btn_editGn = new javax.swing.JButton();
         btn_deleteGn = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Gn = new javax.swing.JTable();
+        txt_id = new javax.swing.JTextField();
 
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setAlignmentY(0.0F);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Enter Group Number");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(197, 197, 197))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,11 +88,20 @@ public class enterGNo extends javax.swing.JPanel {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
+        txt_gNo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_gNo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_gNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_gNoActionPerformed(evt);
             }
         });
+
+        txt_error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0, 15, 0));
 
         btn_addGno.setBackground(new java.awt.Color(255, 255, 255));
         btn_addGno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -100,6 +113,7 @@ public class enterGNo extends javax.swing.JPanel {
                 btn_addGnoActionPerformed(evt);
             }
         });
+        jPanel4.add(btn_addGno);
 
         btn_editGn.setBackground(new java.awt.Color(255, 255, 255));
         btn_editGn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -109,6 +123,7 @@ public class enterGNo extends javax.swing.JPanel {
                 btn_editGnActionPerformed(evt);
             }
         });
+        jPanel4.add(btn_editGn);
 
         btn_deleteGn.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteGn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -118,46 +133,47 @@ public class enterGNo extends javax.swing.JPanel {
                 btn_deleteGnActionPerformed(evt);
             }
         });
-
-        txt_id.setText("ID");
+        jPanel4.add(btn_deleteGn);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txt_gNo, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_addGno)
-                        .addGap(145, 145, 145)
-                        .addComponent(btn_deleteGn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_editGn))
-                .addGap(54, 54, 54))
+                        .addGap(121, 121, 121)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_gNo, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                                    .addComponent(txt_error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(32, 32, 32)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_gNo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btn_addGno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_deleteGn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_editGn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(txt_gNo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, 190));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 720, 250));
 
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        tbl_Gn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tbl_Gn.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -173,44 +189,13 @@ public class enterGNo extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_Gn);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 480, 411));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 480, 411));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 62;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(73, 58, 141, 148);
-        add(jPanel1, gridBagConstraints);
+        txt_id.setText("ID");
+        jPanel1.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 26, 33));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 820, 780));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_gNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_gNoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txt_gNoActionPerformed
-
-    private void btn_addGnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addGnoActionPerformed
-        // TODO add your handling code here:
-        try{
-            DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
-            
-            connection = DBconnection.getConnection();
-            
-            PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_GROUP_NUMBER_TABLE));
-            
-            statement.setString(1, txt_gNo.getText());
-            
-            statement.executeUpdate();
-            model.setRowCount(0);
-            showGNList();
-            txt_gNo.setText("");
-            JOptionPane.showMessageDialog(null, "inserting successful");
-            
-        }catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_btn_addGnoActionPerformed
 
     private void tbl_GnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_GnMouseClicked
         // TODO add your handling code here:
@@ -228,12 +213,19 @@ public class enterGNo extends javax.swing.JPanel {
         {
             DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
             Statement smt = connection.createStatement();
-            smt.execute("DELETE FROM group_number WHERE id = "+id); 
-            model.setRowCount(0);
-            showGNList();
-            txt_gNo.setText("");
-            JOptionPane.showMessageDialog(this, "Deleted");
-            
+
+            if(txt_gNo.getText().equals("")){
+                txt_error.setText("Select Group Number*");
+            }
+            else{
+                txt_error.setText("");
+
+                smt.execute("DELETE FROM group_number WHERE id = "+id);
+                model.setRowCount(0);
+                showGNList();
+                txt_gNo.setText("");
+                JOptionPane.showMessageDialog(this, "Deleted");
+            }
         }
         catch(Exception e)
         {
@@ -249,18 +241,58 @@ public class enterGNo extends javax.swing.JPanel {
         {
             DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
             Statement smt = connection.createStatement();
-            smt.execute("UPDATE group_number SET gNo = '"+txt_gNo.getText()+"' WHERE id = "+id); 
-            model.setRowCount(0);
-            showGNList();
-            txt_gNo.setText("");
-            JOptionPane.showMessageDialog(this, "Updated");
-            
+
+            if(txt_gNo.getText().equals("")){
+                txt_error.setText("Select Group Number*");
+            }
+            else{
+                txt_error.setText("");
+
+                smt.execute("UPDATE group_number SET gNo = '"+txt_gNo.getText()+"' WHERE id = "+id);
+                model.setRowCount(0);
+                showGNList();
+                txt_gNo.setText("");
+                JOptionPane.showMessageDialog(this, "Updated");
+            }
         }
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btn_editGnActionPerformed
+
+    private void btn_addGnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addGnoActionPerformed
+        // TODO add your handling code here:
+        try{
+            DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
+            connection = DBconnection.getConnection();
+
+            if(txt_gNo.getText().equals("")){
+                txt_error.setText("Enter Group Number*");
+            }
+            else{
+                txt_error.setText("");
+
+                PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_GROUP_NUMBER_TABLE));
+
+                statement.setString(1, txt_gNo.getText());
+
+                statement.executeUpdate();
+                model.setRowCount(0);
+                showGNList();
+                txt_gNo.setText("");
+                JOptionPane.showMessageDialog(null, "inserting successful");
+            }
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_addGnoActionPerformed
+
+    private void txt_gNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_gNoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txt_gNoActionPerformed
 
     public ArrayList<GroupNo> getGNList()
     {
@@ -311,8 +343,10 @@ public class enterGNo extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_Gn;
+    private javax.swing.JLabel txt_error;
     private javax.swing.JTextField txt_gNo;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables

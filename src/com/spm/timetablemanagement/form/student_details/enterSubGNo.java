@@ -47,43 +47,61 @@ public class enterSubGNo extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_sGno = new javax.swing.JTextField();
+        txt_error = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         btn_addSgNo = new javax.swing.JButton();
         btn_editSgn = new javax.swing.JButton();
         btn_deleteSgn = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Sgn = new javax.swing.JTable();
+        txt_id = new javax.swing.JTextField();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setAlignmentY(0.0F);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(614, 37));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Enter Sub-Group Number");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(166, 166, 166))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
+        txt_sGno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_sGno.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_sGno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_sGnoActionPerformed(evt);
             }
         });
+
+        txt_error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel4.setPreferredSize(new java.awt.Dimension(319, 100));
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0, 15, 0));
 
         btn_addSgNo.setBackground(new java.awt.Color(255, 255, 255));
         btn_addSgNo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -95,26 +113,29 @@ public class enterSubGNo extends javax.swing.JPanel {
                 btn_addSgNoActionPerformed(evt);
             }
         });
+        jPanel4.add(btn_addSgNo);
 
         btn_editSgn.setBackground(new java.awt.Color(255, 255, 255));
         btn_editSgn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_editSgn.setText("Update");
+        btn_editSgn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_editSgn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editSgnActionPerformed(evt);
             }
         });
+        jPanel4.add(btn_editSgn);
 
         btn_deleteSgn.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteSgn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_deleteSgn.setText("Delete");
+        btn_deleteSgn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_deleteSgn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_deleteSgnActionPerformed(evt);
             }
         });
-
-        txt_id.setText("ID");
+        jPanel4.add(btn_deleteSgn);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,39 +144,34 @@ public class enterSubGNo extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(txt_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(66, 66, 66)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(124, 124, 124)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(btn_addSgNo)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_editSgn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_deleteSgn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addGap(134, 134, 134)
+                        .addComponent(txt_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(txt_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_addSgNo, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(btn_editSgn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_deleteSgn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_error, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 11, -1, 160));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 730, 240));
 
         tbl_Sgn.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,6 +181,7 @@ public class enterSubGNo extends javax.swing.JPanel {
                 "ID", "Sub-Group"
             }
         ));
+        tbl_Sgn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbl_Sgn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_SgnMouseClicked(evt);
@@ -172,27 +189,26 @@ public class enterSubGNo extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_Sgn);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 191, 470, 380));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 470, 350));
+
+        txt_id.setText("ID");
+        jPanel1.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 27, 33));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -205,9 +221,14 @@ public class enterSubGNo extends javax.swing.JPanel {
         // TODO add your handling code here:
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
-
             connection = DBconnection.getConnection();
             
+            if(txt_sGno.getText().equals("")){
+                txt_error.setText("Enter Sub-Group Number*");
+            }
+            else{
+                txt_error.setText("");
+                
             PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SUB_GROUP_NUMBER_TABLE));
             
             statement.setString(1, txt_sGno.getText());
@@ -217,7 +238,7 @@ public class enterSubGNo extends javax.swing.JPanel {
             showGNList();
             txt_sGno.setText("");
             JOptionPane.showMessageDialog(null, "inserting successful");
-            
+            }
             
         }catch(Exception e)
         {
@@ -241,12 +262,19 @@ public class enterSubGNo extends javax.swing.JPanel {
         {
             DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
             Statement smt = connection.createStatement();
+            
+            if(txt_sGno.getText().equals("")){
+                txt_error.setText("Select Sub-Group Number*");
+            }
+            else{
+                txt_error.setText("");
+                
             smt.execute("DELETE FROM sub_group_number WHERE id = "+id); 
             model.setRowCount(0);
             showGNList();
             txt_sGno.setText("");
             JOptionPane.showMessageDialog(this, "Deleted");
-            
+            }
         }
         catch(Exception e)
         {
@@ -262,12 +290,18 @@ public class enterSubGNo extends javax.swing.JPanel {
         {
             DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
             Statement smt = connection.createStatement();
+            
+            if(txt_sGno.getText().equals("")){
+                txt_error.setText("Select Sub-Group Number*");
+            }
+            else{
+
             smt.execute("UPDATE sub_group_number SET sGno = '"+txt_sGno.getText()+"' WHERE id = "+id); 
             model.setRowCount(0);
             showGNList();
             txt_sGno.setText("");
             JOptionPane.showMessageDialog(this, "Updated");
-            
+            }
         }
         catch(Exception e)
         {
@@ -323,8 +357,10 @@ public class enterSubGNo extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_Sgn;
+    private javax.swing.JLabel txt_error;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_sGno;
     // End of variables declaration//GEN-END:variables
