@@ -40,4 +40,12 @@
             FROM work_day_hour
           ]]>
     </query>
+    
+    <query id="Get_workingdays_and_hours_by_type">
+        <![CDATA[
+            SELECT *
+            FROM work_day_hour
+            WHERE id = ?
+        ]]>
+    </query>
 </Querys>
