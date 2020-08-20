@@ -125,7 +125,11 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
                 delete_weekday.setVisible(true);
                 
                 lbl_numOfDays_wd.setText(model.getNumOfDays());
-                lbl_timeSlot_wd.setText(model.getTimeSlot());
+                
+                if(Integer.parseInt(model.getTimeSlot()) == 1){
+                    lbl_timeSlot_wd.setText("1 hour");
+                }else
+                    lbl_timeSlot_wd.setText("30 minutes");
 
                 String days = model.getDays();
 
@@ -142,8 +146,12 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
                 delete_weekend.setVisible(true);
                 
                 lbl_numOfDays_we.setText(model.getNumOfDays());
-                lbl_timeSlot_we.setText(model.getTimeSlot());
-
+                
+                if(Integer.parseInt(model.getTimeSlot()) == 1){
+                    lbl_timeSlot_we.setText("1 hour");
+                }else
+                    lbl_timeSlot_we.setText("30 minutes");
+                
                 String days = model.getDays();
 
                 lbl_workDays_we.setText(days);

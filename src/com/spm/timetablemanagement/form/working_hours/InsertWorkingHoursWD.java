@@ -486,7 +486,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                     }
 
                     if(!statement.execute()){
-                         btn_resetMousePressed(null);
+//                         btn_resetMousePressed(null);
                     }
                 }
                 } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
