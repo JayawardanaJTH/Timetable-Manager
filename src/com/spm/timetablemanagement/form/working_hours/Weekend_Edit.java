@@ -57,7 +57,8 @@ public class Weekend_Edit extends javax.swing.JPanel {
         try {
             ResultSet rs = model.getData(2);
             
-            if(!rs.wasNull()){
+            if(rs.next()){
+                rs = model.getData(2);
                 while(rs.next()){
                     cmb_num_of_days.setSelectedIndex(rs.getInt(2));
                     

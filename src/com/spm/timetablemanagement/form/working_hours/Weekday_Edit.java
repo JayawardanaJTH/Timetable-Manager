@@ -53,7 +53,8 @@ public class Weekday_Edit extends javax.swing.JPanel {
         try {
             ResultSet rs = model.getData(1);
             
-            if(!rs.wasNull()){
+            if(rs.next()){
+                rs = model.getData(1);
                 while(rs.next()){
                     cmb_num_of_days.setSelectedIndex(rs.getInt(2));
                     chk_days = rs.getInt(2);

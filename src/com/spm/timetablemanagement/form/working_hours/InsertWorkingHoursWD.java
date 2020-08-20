@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -411,14 +412,16 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     }
     
     private boolean checkTime(){
-        if(Integer.parseInt(txt_min.getText()) > 59)
+        if(Integer.parseInt(txt_min.getText()) > 59 ||txt_hour.getText().contains(" "))
             return true;
-        if(Integer.parseInt(txt_hour.getText()) > 12 || Integer.parseInt(txt_hour.getText()) == 0)
+        if(Integer.parseInt(txt_hour.getText()) > 12 || Integer.parseInt(txt_hour.getText()) == 0 ||txt_hour.getText().contains(" ") )
             return true;
         
         return false;
     }
     private void btn_saveMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_saveMousePressed
+       
+        int temp = 0;
         
              if(numOfdays == 0){
                   error = true;
@@ -438,13 +441,6 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
              }else
                  error = false;
              
-             if(rdGroup.getSelection()== null){
-                 error = true;
-                    JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Select time slot", 
-                            "Data missing",JOptionPane.ERROR_MESSAGE);
-             }else
-                 error = false;
-             
              if(checkTime()){
                  error = true;
                      JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Invalide time", 
@@ -452,6 +448,14 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
              }else
                  error = false;
              
+             if(rdGroup.getSelection()== null){
+                 error = true;
+                    JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Select time slot", 
+                            "Data missing",JOptionPane.ERROR_MESSAGE);
+             }else
+                 error = false;
+             
+             System.out.println(error);
              if(!error){
                   try {
                 Connection connection = DBconnection.getConnection();
@@ -500,15 +504,20 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                     }else{
                         statement.setInt(6, 2);
                     }
-
-                    if(!statement.execute()){
-//                         btn_resetMousePressed(null);
-                            JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Data input succes");
-                    }
+                    
+                    btn_resetMousePressed(null);    
+                    statement.execute();
+                    
                 }
                 } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
                     Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
+                    temp = 1;
+                    JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Data input Unsucces","Error", JOptionPane.ERROR_MESSAGE);
                 }
+                  if(temp == 0){
+                      btn_resetMousePressed(null);
+                      JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Data input succes");
+                  }
              }
     }//GEN-LAST:event_btn_saveMousePressed
 

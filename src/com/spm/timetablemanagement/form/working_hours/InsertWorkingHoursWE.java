@@ -370,6 +370,8 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     }
     private void btn_saveMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_saveMousePressed
 
+        int temp = 0;
+        
         if(numOfdays == 0){
             JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Select number of working days!",
                 "Data missing",JOptionPane.ERROR_MESSAGE);
@@ -440,17 +442,23 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                         statement1.setInt(6, 2);
                     }
 
-                    if(!statement1.execute()){
-//                        btn_resetMousePressed(null);
-                          JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Data insert success");
-                    }
+                    statement1.execute();
+                        btn_resetMousePressed(null);
+                          
+                    
                 }
             } catch (SQLException | IOException | ParserConfigurationException | SAXException ex) {
                 Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
+                temp = 1;
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsertWorkingHoursWE.class.getName()).log(Level.SEVERE, null, ex);
+                temp = 1;
             }
             
+            if(temp == 0){
+                btn_resetMousePressed(null);
+                JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Data insert success");
+            }
         }
             
     }//GEN-LAST:event_btn_saveMousePressed
