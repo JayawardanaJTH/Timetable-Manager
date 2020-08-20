@@ -14,8 +14,8 @@ public class GeneratedSubId {
     private int id;
     private String sGid;
     
-    public GeneratedSubId(int ID, String sGid){
-        this.id = ID;
+    public GeneratedSubId(int id, String sGid){
+        this.id = id;
         this.sGid = sGid;
     } 
     

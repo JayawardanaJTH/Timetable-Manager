@@ -32,6 +32,7 @@ public class enterTag extends javax.swing.JPanel {
     public enterTag() {
         initComponents();
         showTagList();
+        txt_id.setVisible(false);
     }
 
     /**
@@ -51,6 +52,7 @@ public class enterTag extends javax.swing.JPanel {
         btn_addTag = new javax.swing.JButton();
         btn_editTag = new javax.swing.JButton();
         btn_deleteTag = new javax.swing.JButton();
+        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_tag = new javax.swing.JTable();
 
@@ -103,10 +105,22 @@ public class enterTag extends javax.swing.JPanel {
         btn_editTag.setBackground(new java.awt.Color(255, 255, 255));
         btn_editTag.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_editTag.setText("Update");
+        btn_editTag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editTagActionPerformed(evt);
+            }
+        });
 
         btn_deleteTag.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteTag.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_deleteTag.setText("Delete");
+        btn_deleteTag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteTagActionPerformed(evt);
+            }
+        });
+
+        txt_id.setText("ID");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,7 +136,9 @@ public class enterTag extends javax.swing.JPanel {
                                 .addComponent(txt_tag, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
+                        .addGap(22, 22, 22)
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(219, 219, 219)
                         .addComponent(btn_addTag, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btn_editTag, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,7 +155,9 @@ public class enterTag extends javax.swing.JPanel {
                 .addComponent(txt_tag, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_addTag, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_addTag, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_editTag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_deleteTag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(23, 23, 23))
@@ -154,7 +172,7 @@ public class enterTag extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tag"
+                "ID", "Tag"
             }
         ));
         tbl_tag.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -176,7 +194,6 @@ public class enterTag extends javax.swing.JPanel {
         // TODO add your handling code here:
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_tag.getModel();
-            model.addRow(new Object[]{txt_tag.getText()});
             
             connection = DBconnection.getConnection();
 
@@ -185,8 +202,10 @@ public class enterTag extends javax.swing.JPanel {
             statement.setString(1, txt_tag.getText());
 
             statement.executeUpdate();
+            model.setRowCount(0);
+            showTagList();
+            txt_tag.setText("");
             JOptionPane.showMessageDialog(null, "inserting successful");
-            connection.close();
 
         }catch(Exception e)
         {
@@ -198,8 +217,51 @@ public class enterTag extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = tbl_tag.getSelectedRow();
         TableModel model = tbl_tag.getModel();
-        txt_tag.setText(model.getValueAt(i, 0).toString());
+        txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_tag.setText(model.getValueAt(i, 1).toString());
     }//GEN-LAST:event_tbl_tagMouseClicked
+
+    private void btn_editTagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editTagActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_tag.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("UPDATE tag SET tag = '"+txt_tag.getText()+"' WHERE id = "+id); 
+            model.setRowCount(0);
+            showTagList();
+            txt_tag.setText("");
+            JOptionPane.showMessageDialog(this, "Updated");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_editTagActionPerformed
+
+    private void btn_deleteTagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteTagActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_tag.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("DELETE FROM tag WHERE id = "+id); 
+            model.setRowCount(0);
+            showTagList();
+            txt_tag.setText("");
+            JOptionPane.showMessageDialog(this, "Deleted");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_deleteTagActionPerformed
 
     public ArrayList<tag> getTagList()
     {
@@ -231,10 +293,11 @@ public class enterTag extends javax.swing.JPanel {
     {
         ArrayList<tag> list = getTagList();
         DefaultTableModel model = (DefaultTableModel)tbl_tag.getModel();
-        Object[] row = new Object[1];
+        Object[] row = new Object[2];
         for(int i = 0; i < list.size(); i++)
         {
-            row[0] = list.get(i).getTag();
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getTag();
             
             model.addRow(row);
         }
@@ -250,6 +313,7 @@ public class enterTag extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_tag;
+    private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_tag;
     // End of variables declaration//GEN-END:variables
 }

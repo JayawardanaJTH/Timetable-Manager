@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -32,7 +33,9 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
         initComponents();
         gIdSelection();
         sGnoSelection();
-        showGeneratedIdList();
+        showGeneratedSubIdList();
+        txt_id.setVisible(false);
+        sgid.setVisible(false);
     }
 
     /**
@@ -55,8 +58,10 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
         select_sGno = new javax.swing.JComboBox<>();
         btn_edit_sGid = new javax.swing.JButton();
         btn_delete_sGid = new javax.swing.JButton();
+        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_sGid = new javax.swing.JTable();
+        sgid = new javax.swing.JTextField();
 
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -138,10 +143,22 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
         btn_edit_sGid.setBackground(new java.awt.Color(255, 255, 255));
         btn_edit_sGid.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_edit_sGid.setText("Update");
+        btn_edit_sGid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_edit_sGidActionPerformed(evt);
+            }
+        });
 
         btn_delete_sGid.setBackground(new java.awt.Color(255, 255, 255));
         btn_delete_sGid.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_delete_sGid.setText("Delete");
+        btn_delete_sGid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_delete_sGidActionPerformed(evt);
+            }
+        });
+
+        txt_id.setText("ID");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -159,7 +176,9 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
                             .addComponent(select_gId, 0, 83, Short.MAX_VALUE)
                             .addComponent(select_sGno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
+                        .addContainerGap()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)
                         .addComponent(btn_generate_sGid)
                         .addGap(32, 32, 32)
                         .addComponent(btn_edit_sGid, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,12 +197,18 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(select_sGno)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_generate_sGid, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(btn_edit_sGid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_delete_sGid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_generate_sGid, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_edit_sGid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_delete_sGid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))))
         );
 
         jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 11, -1, 200));
@@ -193,18 +218,32 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sub-Group ID"
+                "ID", "Sub-Group ID"
             }
         ));
+        tbl_sGid.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_sGidMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_sGid);
 
         jPanel9.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 440, 340));
+
+        sgid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sgidActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(sgid, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(652, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -213,7 +252,10 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(183, 183, 183)
+                .addComponent(sgid, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(381, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -229,21 +271,21 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             model.addRow(new Object[]{select_gId.getSelectedItem().toString()+"."+select_sGno.getSelectedItem().toString()});
             
             Connection connection = DBconnection.getConnection();
-            
-            //Statement smt = connection.createStatement();
-                
+
             PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SUB_GROUP_ID_TABLE));
             
-            //smt.execute("UPDATE all_details SET sGid = '"+select_sGno.getSelectedItem().toString()+"' WHERE gId = "+select_gId.getSelectedItem().toString());
-            //^^need to update sub id for all details table^^//
-            
             String generateSID = (select_gId.getSelectedItem().toString()+"."+select_sGno.getSelectedItem().toString());
-            
             statement.setString(1, generateSID);
-            
             statement.executeUpdate();
+            model.setRowCount(0);
+            statement.close();
+
+            String selectedGid = select_gId.getSelectedItem().toString();
+            Statement smt = connection.createStatement();
+            smt.execute("UPDATE all_details SET sGid = '"+generateSID+"' WHERE gId = '"+selectedGid+"'");
+
+            showGeneratedSubIdList();
             JOptionPane.showMessageDialog(null, "inserting successful");
-            connection.close();
             
         }catch(Exception e)
         {
@@ -258,6 +300,68 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
     private void select_sGnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select_sGnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_select_sGnoActionPerformed
+
+    private void tbl_sGidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sGidMouseClicked
+        // TODO add your handling code here:
+        int i = tbl_sGid.getSelectedRow();
+        TableModel model = tbl_sGid.getModel();
+        txt_id.setText(model.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_tbl_sGidMouseClicked
+
+    private void btn_delete_sGidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete_sGidActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            int i = tbl_sGid.getSelectedRow();
+            TableModel mt = tbl_sGid.getModel();
+            sgid.setText(mt.getValueAt(i, 1).toString());
+            
+            DefaultTableModel model = (DefaultTableModel)tbl_sGid.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("DELETE FROM generated_sub_group_id WHERE id = "+id);
+            smt.execute("DELETE FROM all_details WHERE sGid = "+sgid.getText().toString());
+            model.setRowCount(0);
+            showGeneratedSubIdList();
+            JOptionPane.showMessageDialog(this, "Deleted");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_delete_sGidActionPerformed
+
+    private void btn_edit_sGidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_edit_sGidActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+        String newGenerateID = (select_gId.getSelectedItem().toString()+"."+select_sGno.getSelectedItem().toString());
+
+        try
+        {
+            int i = tbl_sGid.getSelectedRow();
+            TableModel mt = tbl_sGid.getModel();
+            sgid.setText(mt.getValueAt(i, 1).toString());
+            
+            DefaultTableModel model = (DefaultTableModel)tbl_sGid.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("UPDATE generated_sub_group_id SET sGid = '"+newGenerateID+"' WHERE id = "+id); 
+            smt.execute("UPDATE all_details SET sGid = '"+newGenerateID+"' WHERE sGid = '"+sgid.getText().toString()+"'");
+            model.setRowCount(0);
+            showGeneratedSubIdList();
+            JOptionPane.showMessageDialog(this, "Updated");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_edit_sGidActionPerformed
+
+    private void sgidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sgidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sgidActionPerformed
 
     public  void gIdSelection(){
         try{  
@@ -323,14 +427,15 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
         return list;
     }
     
-    public void showGeneratedIdList()
+    public void showGeneratedSubIdList()
     {
         ArrayList<GeneratedSubId> list = GetGeneratedSubIdList();
         DefaultTableModel model = (DefaultTableModel)tbl_sGid.getModel();
-        Object[] row = new Object[1];
+        Object[] row = new Object[2];
         for(int i = 0; i < list.size(); i++)
         {
-            row[0] = list.get(i).getSgId();
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getSgId();
             
             model.addRow(row);
         }
@@ -349,6 +454,8 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> select_gId;
     private javax.swing.JComboBox<String> select_sGno;
+    private javax.swing.JTextField sgid;
     private javax.swing.JTable tbl_sGid;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 }

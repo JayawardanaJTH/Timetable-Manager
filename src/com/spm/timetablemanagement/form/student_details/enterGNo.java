@@ -30,6 +30,7 @@ public class enterGNo extends javax.swing.JPanel {
     public enterGNo() {
         initComponents();
         showGNList();
+        txt_id.setVisible(false);
     }
 
     /**
@@ -50,6 +51,7 @@ public class enterGNo extends javax.swing.JPanel {
         btn_addGno = new javax.swing.JButton();
         btn_editGn = new javax.swing.JButton();
         btn_deleteGn = new javax.swing.JButton();
+        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Gn = new javax.swing.JTable();
 
@@ -102,17 +104,31 @@ public class enterGNo extends javax.swing.JPanel {
         btn_editGn.setBackground(new java.awt.Color(255, 255, 255));
         btn_editGn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_editGn.setText("Update");
+        btn_editGn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editGnActionPerformed(evt);
+            }
+        });
 
         btn_deleteGn.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteGn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_deleteGn.setText("Delete");
+        btn_deleteGn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteGnActionPerformed(evt);
+            }
+        });
+
+        txt_id.setText("ID");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap()
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txt_gNo, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,7 +145,9 @@ public class enterGNo extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txt_gNo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_gNo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btn_addGno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,7 +163,7 @@ public class enterGNo extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Group Number"
+                "ID", "Group Number"
             }
         ));
         tbl_Gn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -175,17 +193,18 @@ public class enterGNo extends javax.swing.JPanel {
         // TODO add your handling code here:
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
-            model.addRow(new Object[]{txt_gNo.getText()});
             
             connection = DBconnection.getConnection();
             
             PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_GROUP_NUMBER_TABLE));
             
-            statement.setInt(1, Integer.parseInt(txt_gNo.getText()));
+            statement.setString(1, txt_gNo.getText());
             
             statement.executeUpdate();
+            model.setRowCount(0);
+            showGNList();
+            txt_gNo.setText("");
             JOptionPane.showMessageDialog(null, "inserting successful");
-            connection.close();
             
         }catch(Exception e)
         {
@@ -197,8 +216,51 @@ public class enterGNo extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = tbl_Gn.getSelectedRow();
         TableModel model = tbl_Gn.getModel();
-        txt_gNo.setText(model.getValueAt(i, 0).toString());
+        txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_gNo.setText(model.getValueAt(i, 1).toString());
     }//GEN-LAST:event_tbl_GnMouseClicked
+
+    private void btn_deleteGnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteGnActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("DELETE FROM group_number WHERE id = "+id); 
+            model.setRowCount(0);
+            showGNList();
+            txt_gNo.setText("");
+            JOptionPane.showMessageDialog(this, "Deleted");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_deleteGnActionPerformed
+
+    private void btn_editGnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editGnActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("UPDATE group_number SET gNo = '"+txt_gNo.getText()+"' WHERE id = "+id); 
+            model.setRowCount(0);
+            showGNList();
+            txt_gNo.setText("");
+            JOptionPane.showMessageDialog(this, "Updated");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_editGnActionPerformed
 
     public ArrayList<GroupNo> getGNList()
     {
@@ -230,10 +292,11 @@ public class enterGNo extends javax.swing.JPanel {
     {
         ArrayList<GroupNo> list = getGNList();
         DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
-        Object[] row = new Object[1];
+        Object[] row = new Object[2];
         for(int i = 0; i < list.size(); i++)
         {
-            row[0] = list.get(i).getGn();
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getGn();
             
             model.addRow(row);
         }
@@ -251,5 +314,6 @@ public class enterGNo extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_Gn;
     private javax.swing.JTextField txt_gNo;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 }

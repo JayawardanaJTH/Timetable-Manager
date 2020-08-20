@@ -29,6 +29,7 @@ public class enterYnS extends javax.swing.JPanel {
     public enterYnS() {
         
         initComponents();
+        txt_id.setVisible(false);
         //setYnSTableData();
         showYnSList();
         
@@ -51,6 +52,7 @@ public class enterYnS extends javax.swing.JPanel {
         btn_addYnS = new javax.swing.JButton();
         btn_deleteYnS = new javax.swing.JButton();
         btn_updateYnS = new javax.swing.JButton();
+        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_yNs = new javax.swing.JTable();
 
@@ -87,7 +89,6 @@ public class enterYnS extends javax.swing.JPanel {
 
         btn_addYnS.setBackground(new java.awt.Color(255, 255, 255));
         btn_addYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_addYnS.setForeground(new java.awt.Color(51, 51, 51));
         btn_addYnS.setText("Insert");
         btn_addYnS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_addYnS.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +99,6 @@ public class enterYnS extends javax.swing.JPanel {
 
         btn_deleteYnS.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_deleteYnS.setForeground(new java.awt.Color(51, 51, 51));
         btn_deleteYnS.setText("Delete");
         btn_deleteYnS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_deleteYnS.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +107,7 @@ public class enterYnS extends javax.swing.JPanel {
             }
         });
 
+        btn_updateYnS.setBackground(new java.awt.Color(255, 255, 255));
         btn_updateYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_updateYnS.setText("Update");
         btn_updateYnS.addActionListener(new java.awt.event.ActionListener() {
@@ -115,15 +116,19 @@ public class enterYnS extends javax.swing.JPanel {
             }
         });
 
+        txt_id.setText("ID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txt_YnS, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_YnS, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,7 +145,9 @@ public class enterYnS extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_YnS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_YnS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_deleteYnS, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,11 +161,11 @@ public class enterYnS extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Academic Year & Semester"
+                "Id", "Academic Year & Semester"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class
+                java.lang.Object.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -211,14 +218,15 @@ public class enterYnS extends javax.swing.JPanel {
         
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
-            model.addRow(new Object[]{txt_YnS.getText()});
             
             connection = DBconnection.getConnection();   
             PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_YEAR_AND_SEMESTER_TABLE));
             statement.setString(1, txt_YnS.getText());
             statement.executeUpdate();
+            model.setRowCount(0);
+            showYnSList();
+            txt_YnS.setText("");
             JOptionPane.showMessageDialog(null, "inserting successful");
-            connection.close();
             
         }catch(Exception e)
         {
@@ -231,21 +239,43 @@ public class enterYnS extends javax.swing.JPanel {
 
         int i = tbl_yNs.getSelectedRow();
         TableModel model = tbl_yNs.getModel();
-        txt_YnS.setText(model.getValueAt(i, 0).toString());
+        txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_YnS.setText(model.getValueAt(i, 1).toString());
     }//GEN-LAST:event_tbl_yNsMouseClicked
 
     private void btn_deleteYnSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteYnSActionPerformed
         // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("DELETE FROM academic_year_and_semester WHERE id = "+id); 
+            model.setRowCount(0);
+            showYnSList();
+            txt_YnS.setText("");
+            JOptionPane.showMessageDialog(this, "Deleted");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_btn_deleteYnSActionPerformed
 
     private void btn_updateYnSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateYnSActionPerformed
         // TODO add your handling code here:
-        int id = 7;
+        String id = txt_id.getText();
 
         try
         {
+            DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
             Statement smt = connection.createStatement();
             smt.execute("UPDATE academic_year_and_semester SET yNs = '"+txt_YnS.getText()+"' WHERE id = "+id); 
+            model.setRowCount(0);
+            showYnSList();
+            txt_YnS.setText("");
             JOptionPane.showMessageDialog(this, "Updated");
             
         }
@@ -287,12 +317,29 @@ public class enterYnS extends javax.swing.JPanel {
     {
         ArrayList<YnS> list = getYnSList();
         DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
-        Object[] row = new Object[1];
+        Object[] row = new Object[2];
         for(int i = 0; i < list.size(); i++)
         {
-            row[0] = list.get(i).getYnS();
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getYnS();
             
             model.addRow(row);
+        }
+    }
+    public void refreshTable()
+    {
+        try{
+            connection = DBconnection.getConnection();
+            String querry = "select * from academic_year_and_semester";
+            Statement st;
+            ResultSet rs;
+            
+            st = connection.createStatement();
+            rs= st.executeQuery(querry);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     
@@ -308,6 +355,7 @@ public class enterYnS extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_yNs;
     private javax.swing.JTextField txt_YnS;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
     private void executeSQlQuery(String query,String message) {

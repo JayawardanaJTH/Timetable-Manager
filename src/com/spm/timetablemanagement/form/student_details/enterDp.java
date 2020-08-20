@@ -29,6 +29,7 @@ public class enterDp extends javax.swing.JPanel {
     public enterDp() {
         initComponents();
         showDPList();
+        txt_id.setVisible(false);
     }
 
     /**
@@ -48,6 +49,7 @@ public class enterDp extends javax.swing.JPanel {
         btn_addDp = new javax.swing.JButton();
         btn_editDp = new javax.swing.JButton();
         btn_deleteDp = new javax.swing.JButton();
+        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Dp = new javax.swing.JTable();
 
@@ -96,17 +98,31 @@ public class enterDp extends javax.swing.JPanel {
         btn_editDp.setBackground(new java.awt.Color(255, 255, 255));
         btn_editDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_editDp.setText("Update");
+        btn_editDp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editDpActionPerformed(evt);
+            }
+        });
 
         btn_deleteDp.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_deleteDp.setText("Delete");
+        btn_deleteDp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteDpActionPerformed(evt);
+            }
+        });
+
+        txt_id.setText("ID");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap()
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txt_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,7 +140,9 @@ public class enterDp extends javax.swing.JPanel {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(btn_editDp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,7 +156,7 @@ public class enterDp extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Degree Program"
+                "ID", "Degree Program"
             }
         ));
         tbl_Dp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -182,7 +200,6 @@ public class enterDp extends javax.swing.JPanel {
         // TODO add your handling code here:
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_Dp.getModel();
-            model.addRow(new Object[]{txt_dp.getText()});
             
             Connection connection = DBconnection.getConnection();
 
@@ -191,8 +208,10 @@ public class enterDp extends javax.swing.JPanel {
             statement.setString(1, txt_dp.getText());
 
             statement.executeUpdate();
+            model.setRowCount(0);
+            showDPList();
+            txt_dp.setText("");
             JOptionPane.showMessageDialog(null, "inserting successful");
-            connection.close();
 
         }catch(Exception e)
         {
@@ -204,8 +223,51 @@ public class enterDp extends javax.swing.JPanel {
         // TODO add your handling code here:
          int i = tbl_Dp.getSelectedRow();
         TableModel model = tbl_Dp.getModel();
-        txt_dp.setText(model.getValueAt(i, 0).toString());
+        txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_dp.setText(model.getValueAt(i, 1).toString());
     }//GEN-LAST:event_tbl_DpMouseClicked
+
+    private void btn_editDpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editDpActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_Dp.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("UPDATE degree_program SET dp = '"+txt_dp.getText()+"' WHERE id = "+id); 
+            model.setRowCount(0);
+            showDPList();
+            txt_dp.setText("");
+            JOptionPane.showMessageDialog(this, "Updated");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_editDpActionPerformed
+
+    private void btn_deleteDpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteDpActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_Dp.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("DELETE FROM degree_program WHERE id = "+id); 
+            model.setRowCount(0);
+            showDPList();
+            txt_dp.setText("");
+            JOptionPane.showMessageDialog(this, "Deleted");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_deleteDpActionPerformed
 
     public ArrayList<degreeProgram> getDPList()
     {
@@ -237,10 +299,11 @@ public class enterDp extends javax.swing.JPanel {
     {
         ArrayList<degreeProgram> list = getDPList();
         DefaultTableModel model = (DefaultTableModel)tbl_Dp.getModel();
-        Object[] row = new Object[1];
+        Object[] row = new Object[2];
         for(int i = 0; i < list.size(); i++)
         {
-            row[0] = list.get(i).getDP();
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDP();
             
             model.addRow(row);
         }
@@ -257,5 +320,6 @@ public class enterDp extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_Dp;
     private javax.swing.JTextField txt_dp;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 }

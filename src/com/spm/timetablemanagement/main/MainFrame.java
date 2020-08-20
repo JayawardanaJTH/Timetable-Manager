@@ -80,7 +80,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                panelBody.removeAll();
-               panelBody.add(new enterDp());
+               panelBody.add(new enterSubGNo());
                panelBody.repaint();
                panelBody.revalidate();
             }
@@ -124,7 +124,6 @@ public class MainFrame extends javax.swing.JFrame {
                panelBody.revalidate();
             }
         });
-        MenuItem s2Tag = new MenuItem(iconSubmenu, "View Tag Details", null);
         
         //Statistics submenu items Allocate Room
         MenuItem s1Statistics = new MenuItem(iconSubmenu, "View Statistics Details", null);
@@ -178,7 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
                 s2WorkingDay, s3WorkingDay, s4WorkingDay);
         MenuItem menuSubject = new MenuItem(iconSubmenu, "Subject", null, s1Subject, s2Subject);
         MenuItem menuLocation = new MenuItem(iconSubmenu, "Location", null, s1Location, s2Location);
-        MenuItem menuTag = new MenuItem(iconSubmenu, "Tag", null, s1Tag, s2Tag);
+        MenuItem menuTag = new MenuItem(iconSubmenu, "Tag", null, s1Tag);
         MenuItem menuStatistics = new MenuItem(iconSubmenu, "Statistics", null, s1Statistics);
         MenuItem menuAllocateRoom = new MenuItem(iconSubmenu, "Allocate Room", null, s1AllocateRoom);
         MenuItem menuCreateSession = new MenuItem(iconSubmenu, "Handle Session", null, s1HandleSession, 

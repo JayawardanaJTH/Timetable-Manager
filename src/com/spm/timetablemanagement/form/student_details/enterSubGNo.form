@@ -64,7 +64,9 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txt_id" min="-2" pref="27" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="2" attributes="0">
                                   <Component id="txt_sGno" alignment="2" min="-2" pref="387" max="-2" attributes="0"/>
                                   <Component id="jPanel3" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -89,7 +91,10 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txt_sGno" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txt_sGno" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txt_id" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btn_addSgNo" pref="33" max="32767" attributes="0"/>
@@ -173,6 +178,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Update"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_editSgnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_deleteSgn">
               <Properties>
@@ -183,6 +191,14 @@
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Delete"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_deleteSgnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_id">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ID"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -202,12 +218,18 @@
             <Component class="javax.swing.JTable" name="tbl_Sgn">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="1" rowCount="0">
+                  <Table columnCount="2" rowCount="0">
+                    <Column editable="true" title="ID" type="java.lang.Object"/>
                     <Column editable="true" title="Sub-Group" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>

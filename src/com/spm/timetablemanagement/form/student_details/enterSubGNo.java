@@ -30,6 +30,7 @@ public class enterSubGNo extends javax.swing.JPanel {
     public enterSubGNo() {
         initComponents();
         showGNList();
+        txt_id.setVisible(false);
     }
 
     /**
@@ -49,6 +50,7 @@ public class enterSubGNo extends javax.swing.JPanel {
         btn_addSgNo = new javax.swing.JButton();
         btn_editSgn = new javax.swing.JButton();
         btn_deleteSgn = new javax.swing.JButton();
+        txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Sgn = new javax.swing.JTable();
 
@@ -97,10 +99,22 @@ public class enterSubGNo extends javax.swing.JPanel {
         btn_editSgn.setBackground(new java.awt.Color(255, 255, 255));
         btn_editSgn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_editSgn.setText("Update");
+        btn_editSgn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editSgnActionPerformed(evt);
+            }
+        });
 
         btn_deleteSgn.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteSgn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_deleteSgn.setText("Delete");
+        btn_deleteSgn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteSgnActionPerformed(evt);
+            }
+        });
+
+        txt_id.setText("ID");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -109,7 +123,9 @@ public class enterSubGNo extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addContainerGap()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(txt_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -128,7 +144,9 @@ public class enterSubGNo extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_addSgNo, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
@@ -144,7 +162,7 @@ public class enterSubGNo extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sub-Group"
+                "ID", "Sub-Group"
             }
         ));
         tbl_Sgn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,8 +205,7 @@ public class enterSubGNo extends javax.swing.JPanel {
         // TODO add your handling code here:
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
-            model.addRow(new Object[]{txt_sGno.getText()});
-            
+
             connection = DBconnection.getConnection();
             
             PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SUB_GROUP_NUMBER_TABLE));
@@ -196,8 +213,11 @@ public class enterSubGNo extends javax.swing.JPanel {
             statement.setString(1, txt_sGno.getText());
             
             statement.executeUpdate();
+            model.setRowCount(0);
+            showGNList();
+            txt_sGno.setText("");
             JOptionPane.showMessageDialog(null, "inserting successful");
-            connection.close();
+            
             
         }catch(Exception e)
         {
@@ -209,8 +229,51 @@ public class enterSubGNo extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = tbl_Sgn.getSelectedRow();
         TableModel model = tbl_Sgn.getModel();
-        txt_sGno.setText(model.getValueAt(i, 0).toString());
+        txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_sGno.setText(model.getValueAt(i, 1).toString());
     }//GEN-LAST:event_tbl_SgnMouseClicked
+
+    private void btn_deleteSgnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteSgnActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("DELETE FROM sub_group_number WHERE id = "+id); 
+            model.setRowCount(0);
+            showGNList();
+            txt_sGno.setText("");
+            JOptionPane.showMessageDialog(this, "Deleted");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_deleteSgnActionPerformed
+
+    private void btn_editSgnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editSgnActionPerformed
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+
+        try
+        {
+            DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
+            Statement smt = connection.createStatement();
+            smt.execute("UPDATE sub_group_number SET sGno = '"+txt_sGno.getText()+"' WHERE id = "+id); 
+            model.setRowCount(0);
+            showGNList();
+            txt_sGno.setText("");
+            JOptionPane.showMessageDialog(this, "Updated");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_editSgnActionPerformed
 
     public ArrayList<SubGroupNo> getSGNList()
     {
@@ -242,10 +305,11 @@ public class enterSubGNo extends javax.swing.JPanel {
     {
         ArrayList<SubGroupNo> list = getSGNList();
         DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
-        Object[] row = new Object[1];
+        Object[] row = new Object[2];
         for(int i = 0; i < list.size(); i++)
         {
-            row[0] = list.get(i).getSGno();
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getSGno();
             
             model.addRow(row);
         }
@@ -261,6 +325,7 @@ public class enterSubGNo extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_Sgn;
+    private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_sGno;
     // End of variables declaration//GEN-END:variables
 }
