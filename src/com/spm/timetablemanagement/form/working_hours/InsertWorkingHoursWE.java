@@ -31,7 +31,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
      private int numOfdays = 0; 
      private static int chk_days = 0; 
      private static boolean error = false;
-     private static ArrayList<String> days = new ArrayList();
+     private static ArrayList<Integer> daysNum = new ArrayList();
      
     /**
      * Creates new form InsertWorkingHours
@@ -309,11 +309,11 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     private void chk_satMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_satMousePressed
         if(chk_sat.isSelected()){
             chk_days--;
-            days.remove("Saturday");
+            daysNum.remove(6);
         }
         else{
             chk_days++;
-            days.add("Saturday");
+            daysNum.add(6);
         }
 
         checkDays(chk_days);
@@ -322,11 +322,11 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     private void chk_sunMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_sunMousePressed
         if(chk_sun.isSelected()){
             chk_days--;
-            days.remove("Sunday");
+            daysNum.remove(7);
         }
         else{
             chk_days++;
-            days.add("Sunday");
+            daysNum.add(7);
         }
 
         checkDays(chk_days);
@@ -350,7 +350,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
         rbGroup.clearSelection();
         chk_days = 0;
         txt_days_error.setText("");
-        days.clear();
+        daysNum.clear();
     }//GEN-LAST:event_btn_resetMousePressed
 
     private void checkDays(int value){
@@ -414,10 +414,16 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                 if(!statement2.execute()){
                     
                     String dayList = "";
-                    days.sort(null);
+                    daysNum.sort(null);
           
-                    for (String day : days) {
-                        dayList = dayList.concat(day +",");
+                    for (Integer day : daysNum) {
+                        
+                        if(day == 6){
+                            dayList = dayList.concat("Saturday,");
+                        }
+                        if(day == 7){
+                            dayList = dayList.concat("Sunday,");
+                        }
                     }
                     int lenght = dayList.length();
                     
@@ -436,6 +442,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
 
                     if(!statement1.execute()){
 //                        btn_resetMousePressed(null);
+                          JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Data insert success");
                     }
                 }
             } catch (SQLException | IOException | ParserConfigurationException | SAXException ex) {

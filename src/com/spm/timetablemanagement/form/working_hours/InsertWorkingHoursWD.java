@@ -38,7 +38,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
      private int numOfdays = 0; 
      private static int chk_days = 0; 
      private static boolean error = false;
-     private static ArrayList<String> days = new ArrayList();
+     private static ArrayList<Integer> daysNum = new ArrayList();
      
     /**
      * Creates new form InsertWorkingHoursWE
@@ -357,7 +357,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         rdGroup.clearSelection();
         chk_days = 0;
         txt_days_error.setText("");
-        days.clear();
+        daysNum.clear();
     }//GEN-LAST:event_btn_resetMousePressed
 
     private void txt_hourKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_hourKeyPressed
@@ -379,11 +379,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void chk_monMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_monMousePressed
         if(chk_mon.isSelected()){
             chk_days--;
-            days.remove("Monday");
+            daysNum.remove(1);
         }
         else{
             chk_days++;
-            days.add("Monday");
+            daysNum.add(1);
         }
         
         checkDays(chk_days);
@@ -392,11 +392,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void chk_tueMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_tueMousePressed
         if(chk_tue.isSelected()){
             chk_days--;
-            days.remove("Tuesday");
+            daysNum.remove(2);
         }
         else{
             chk_days++;
-            days.add("Tuesday");
+            daysNum.add(2);
         }
         
         checkDays(chk_days);
@@ -464,11 +464,27 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                 if(!statement2.execute()){
                     
                     String dayList = "";
-                    Collections.sort(days, dateComparator);
+                    
+                    daysNum.sort(null);
                     
                     
-                    for (String day : days) {
-                        dayList = dayList.concat(day + ",");
+                    for (Integer day : daysNum) {
+                        
+                        if(day == 1){
+                            dayList = dayList.concat("Monday,");
+                        }
+                        if(day == 2){
+                            dayList = dayList.concat("Tuesday,");
+                        }
+                        if(day == 3){
+                            dayList = dayList.concat("Wednsday,");
+                        }
+                        if(day == 4){
+                            dayList = dayList.concat("Thursday,");
+                        }
+                        if(day == 5){
+                            dayList = dayList.concat("Friday,");
+                        }   
                     }
                     int lenght = dayList.length();
                     
@@ -487,6 +503,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
                     if(!statement.execute()){
 //                         btn_resetMousePressed(null);
+                            JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Data input succes");
                     }
                 }
                 } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
@@ -499,11 +516,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_wed.isSelected()){
             chk_days--;
-            days.remove("Wednsday");
+            daysNum.remove(3);
         }
         else{
             chk_days++;
-            days.add("Wednsday");
+            daysNum.add(3);
         }
         
         checkDays(chk_days);
@@ -513,11 +530,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_thu.isSelected()){
             chk_days--;
-            days.remove("Thursday");
+            daysNum.remove(4);
         }
         else{
             chk_days++;
-            days.add("Thursday");
+            daysNum.add(4);
         }
         
         checkDays(chk_days);
@@ -527,11 +544,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_fri.isSelected()){
             chk_days--;
-            days.remove("Friday");
+            daysNum.remove(5);
         }
         else{
             chk_days++;
-            days.add("Friday");
+            daysNum.add(5);
         }
         
         checkDays(chk_days);
