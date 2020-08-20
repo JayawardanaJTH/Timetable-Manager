@@ -376,7 +376,7 @@ public class groupId_generate extends javax.swing.JPanel {
             select_dp.setSelectedIndex(0);
             select_gn.setSelectedIndex(0);
             
-            JOptionPane.showMessageDialog(null, "inserting successful");
+            JOptionPane.showMessageDialog(null, "Inserting Successful!");
 
             }
         }catch(Exception e)
@@ -430,7 +430,7 @@ public class groupId_generate extends javax.swing.JPanel {
             smt.execute("DELETE FROM all_details WHERE gId = '"+gid.getText().toString()+"' AND sGid = '-' ");
             model.setRowCount(0);
             showGeneratedIdList();
-            JOptionPane.showMessageDialog(this, "Deleted");
+            JOptionPane.showMessageDialog(this, "Record Deleted!");
             }
         }
         catch(Exception e)
@@ -469,7 +469,7 @@ public class groupId_generate extends javax.swing.JPanel {
             select_dp.setSelectedIndex(0);
             select_gn.setSelectedIndex(0);
             
-            JOptionPane.showMessageDialog(this, "Updated");
+            JOptionPane.showMessageDialog(this, "Record Updated!");
             }
         }
         catch(Exception e)

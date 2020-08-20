@@ -320,7 +320,7 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             select_gId.setSelectedIndex(0);
             select_sGno.setSelectedIndex(0);
             
-            JOptionPane.showMessageDialog(null, "inserting successful");
+            JOptionPane.showMessageDialog(null, "Inserting Successful!");
             }
         }catch(Exception e)
         {
@@ -366,7 +366,7 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             smt.execute("DELETE FROM all_details WHERE sGid = "+sgid.getText().toString());
             model.setRowCount(0);
             showGeneratedSubIdList();
-            JOptionPane.showMessageDialog(this, "Deleted");
+            JOptionPane.showMessageDialog(this, "Record Deleted!");
             }
         }
         catch(Exception e)
@@ -403,7 +403,7 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             select_gId.setSelectedIndex(0);
             select_sGno.setSelectedIndex(0);
             
-            JOptionPane.showMessageDialog(this, "Updated");
+            JOptionPane.showMessageDialog(this, "Record Updated!");
             }
         }
         catch(Exception e)

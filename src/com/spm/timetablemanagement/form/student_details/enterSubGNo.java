@@ -237,7 +237,7 @@ public class enterSubGNo extends javax.swing.JPanel {
             model.setRowCount(0);
             showGNList();
             txt_sGno.setText("");
-            JOptionPane.showMessageDialog(null, "inserting successful");
+            JOptionPane.showMessageDialog(null, "Inserting Successful!");
             }
             
         }catch(Exception e)
@@ -273,7 +273,7 @@ public class enterSubGNo extends javax.swing.JPanel {
             model.setRowCount(0);
             showGNList();
             txt_sGno.setText("");
-            JOptionPane.showMessageDialog(this, "Deleted");
+            JOptionPane.showMessageDialog(this, "Record Deleted!");
             }
         }
         catch(Exception e)
@@ -300,7 +300,7 @@ public class enterSubGNo extends javax.swing.JPanel {
             model.setRowCount(0);
             showGNList();
             txt_sGno.setText("");
-            JOptionPane.showMessageDialog(this, "Updated");
+            JOptionPane.showMessageDialog(this, "Record Updated!");
             }
         }
         catch(Exception e)
