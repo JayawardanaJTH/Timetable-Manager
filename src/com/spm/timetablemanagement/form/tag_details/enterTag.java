@@ -51,9 +51,9 @@ public class enterTag extends javax.swing.JPanel {
         txt_tag = new javax.swing.JTextField();
         txt_error = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        btn_deleteTag = new javax.swing.JButton();
-        btn_editTag = new javax.swing.JButton();
         btn_addTag = new javax.swing.JButton();
+        btn_editTag = new javax.swing.JButton();
+        btn_deleteTag = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_tag = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
@@ -104,26 +104,6 @@ public class enterTag extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel4.setLayout(new java.awt.GridLayout(1, 0, 15, 0));
 
-        btn_deleteTag.setBackground(new java.awt.Color(255, 255, 255));
-        btn_deleteTag.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_deleteTag.setText("Delete");
-        btn_deleteTag.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_deleteTagActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btn_deleteTag);
-
-        btn_editTag.setBackground(new java.awt.Color(255, 255, 255));
-        btn_editTag.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_editTag.setText("Update");
-        btn_editTag.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editTagActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btn_editTag);
-
         btn_addTag.setBackground(new java.awt.Color(255, 255, 255));
         btn_addTag.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_addTag.setForeground(new java.awt.Color(51, 51, 51));
@@ -135,6 +115,26 @@ public class enterTag extends javax.swing.JPanel {
             }
         });
         jPanel4.add(btn_addTag);
+
+        btn_editTag.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editTag.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btn_editTag.setText("Update");
+        btn_editTag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editTagActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_editTag);
+
+        btn_deleteTag.setBackground(new java.awt.Color(255, 255, 255));
+        btn_deleteTag.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btn_deleteTag.setText("Delete");
+        btn_deleteTag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteTagActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_deleteTag);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

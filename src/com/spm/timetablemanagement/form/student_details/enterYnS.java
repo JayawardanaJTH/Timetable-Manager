@@ -51,8 +51,8 @@ public class enterYnS extends javax.swing.JPanel {
         txt_error = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btn_addYnS = new javax.swing.JButton();
-        btn_deleteYnS = new javax.swing.JButton();
         btn_updateYnS = new javax.swing.JButton();
+        btn_deleteYnS = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_yNs = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
@@ -111,6 +111,16 @@ public class enterYnS extends javax.swing.JPanel {
         });
         jPanel3.add(btn_addYnS);
 
+        btn_updateYnS.setBackground(new java.awt.Color(255, 255, 255));
+        btn_updateYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_updateYnS.setText("Update");
+        btn_updateYnS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateYnSActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_updateYnS);
+
         btn_deleteYnS.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_deleteYnS.setText("Delete");
@@ -121,16 +131,6 @@ public class enterYnS extends javax.swing.JPanel {
             }
         });
         jPanel3.add(btn_deleteYnS);
-
-        btn_updateYnS.setBackground(new java.awt.Color(255, 255, 255));
-        btn_updateYnS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_updateYnS.setText("Update");
-        btn_updateYnS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_updateYnSActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_updateYnS);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

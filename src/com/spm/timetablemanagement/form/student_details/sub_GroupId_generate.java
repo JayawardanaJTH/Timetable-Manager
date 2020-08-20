@@ -363,7 +363,7 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             sgid.setText(mt.getValueAt(i, 1).toString());
    
             smt.execute("DELETE FROM generated_sub_group_id WHERE id = "+id);
-            smt.execute("DELETE FROM all_details WHERE sGid = "+sgid.getText().toString());
+            smt.execute("DELETE FROM all_details WHERE sGid = '"+sgid.getText().toString()+"'");
             model.setRowCount(0);
             showGeneratedSubIdList();
             JOptionPane.showMessageDialog(this, "Record Deleted!");

@@ -47,9 +47,9 @@ public class enterDp extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txt_dp = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        btn_deleteDp = new javax.swing.JButton();
-        btn_editDp = new javax.swing.JButton();
         btn_addDp = new javax.swing.JButton();
+        btn_editDp = new javax.swing.JButton();
+        btn_deleteDp = new javax.swing.JButton();
         txt_error = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Dp = new javax.swing.JTable();
@@ -94,26 +94,6 @@ public class enterDp extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel4.setLayout(new java.awt.GridLayout(1, 0, 15, 0));
 
-        btn_deleteDp.setBackground(new java.awt.Color(255, 255, 255));
-        btn_deleteDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_deleteDp.setText("Delete");
-        btn_deleteDp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_deleteDpActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btn_deleteDp);
-
-        btn_editDp.setBackground(new java.awt.Color(255, 255, 255));
-        btn_editDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_editDp.setText("Update");
-        btn_editDp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editDpActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btn_editDp);
-
         btn_addDp.setBackground(new java.awt.Color(255, 255, 255));
         btn_addDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_addDp.setForeground(new java.awt.Color(51, 51, 51));
@@ -125,6 +105,26 @@ public class enterDp extends javax.swing.JPanel {
             }
         });
         jPanel4.add(btn_addDp);
+
+        btn_editDp.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_editDp.setText("Update");
+        btn_editDp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editDpActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_editDp);
+
+        btn_deleteDp.setBackground(new java.awt.Color(255, 255, 255));
+        btn_deleteDp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_deleteDp.setText("Delete");
+        btn_deleteDp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteDpActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_deleteDp);
 
         txt_error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_error.setForeground(new java.awt.Color(255, 51, 51));
