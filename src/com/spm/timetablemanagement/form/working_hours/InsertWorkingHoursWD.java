@@ -12,7 +12,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -32,7 +38,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
      private int numOfdays = 0; 
      private static int chk_days = 0; 
      private static boolean error = false;
-     private static ArrayList<Integer> days = new ArrayList();
+     private static ArrayList<String> days = new ArrayList();
      
     /**
      * Creates new form InsertWorkingHoursWE
@@ -373,11 +379,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void chk_monMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_monMousePressed
         if(chk_mon.isSelected()){
             chk_days--;
-            days.remove(1);
+            days.remove("Monday");
         }
         else{
             chk_days++;
-            days.add(1);
+            days.add("Monday");
         }
         
         checkDays(chk_days);
@@ -386,11 +392,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void chk_tueMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_tueMousePressed
         if(chk_tue.isSelected()){
             chk_days--;
-            days.remove(2);
+            days.remove("Tuesday");
         }
         else{
             chk_days++;
-            days.add(2);
+            days.add("Tuesday");
         }
         
         checkDays(chk_days);
@@ -415,34 +421,34 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void btn_saveMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_saveMousePressed
         
              if(numOfdays == 0){
+                  error = true;
                     JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Select number of working days!", 
                             "Data missing",JOptionPane.ERROR_MESSAGE);
-                    error = true;
              }else
                  error = false;
              
              if(chk_days > numOfdays){
+                 error = true;
                     JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Days cannot exceed number of days : " + numOfdays, 
                             "Data missing",JOptionPane.ERROR_MESSAGE);
-                    error = true;
              }else if(chk_days < numOfdays){
+                 error = true;
                     JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Select " + (numOfdays - chk_days) + " more day(s) according to number of days" , 
                             "Data missing",JOptionPane.ERROR_MESSAGE);
-                    error = true;
              }else
                  error = false;
              
              if(rdGroup.getSelection()== null){
+                 error = true;
                     JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Select time slot", 
                             "Data missing",JOptionPane.ERROR_MESSAGE);
-                    error = true;
              }else
                  error = false;
              
              if(checkTime()){
+                 error = true;
                      JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Invalide time", 
                             "Data missing",JOptionPane.ERROR_MESSAGE);
-                    error = true;
              }else
                  error = false;
              
@@ -458,15 +464,17 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                 if(!statement2.execute()){
                     
                     String dayList = "";
-                    days.sort(null);
+                    Collections.sort(days, dateComparator);
                     
-                    for (Integer day : days) {
-                        dayList = dayList.concat(day.toString()+",");
+                    
+                    for (String day : days) {
+                        dayList = dayList.concat(day + ",");
                     }
+                    int lenght = dayList.length();
                     
                     statement.setInt(1, 1);
                     statement.setInt(2, numOfdays);
-                    statement.setString(3, dayList);
+                    statement.setString(3, dayList.substring(0,lenght-1));
                     statement.setInt(4, Integer.parseInt(txt_hour.getText()));
                     statement.setInt(5, Integer.parseInt(txt_min.getText()));
 
@@ -491,11 +499,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_wed.isSelected()){
             chk_days--;
-            days.remove(3);
+            days.remove("Wednsday");
         }
         else{
             chk_days++;
-            days.add(3);
+            days.add("Wednsday");
         }
         
         checkDays(chk_days);
@@ -505,11 +513,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_thu.isSelected()){
             chk_days--;
-            days.remove(4);
+            days.remove("Thursday");
         }
         else{
             chk_days++;
-            days.add(4);
+            days.add("Thursday");
         }
         
         checkDays(chk_days);
@@ -519,11 +527,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_fri.isSelected()){
             chk_days--;
-            days.remove(5);
+            days.remove("Friday");
         }
         else{
             chk_days++;
-            days.add(5);
+            days.add("Friday");
         }
         
         checkDays(chk_days);
@@ -545,6 +553,35 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         chk_thu.setSelected(false);
         chk_fri.setSelected(false);
     }
+    
+    Comparator<String> dateComparator = new Comparator<String>() {
+         @Override
+         public int compare(String s1, String s2) {
+
+             try {
+                 SimpleDateFormat format = new SimpleDateFormat("EEE");
+                 Date d1 = format.parse(s1);
+                 Date d2 = format.parse(s1);
+                 
+                 if(d1.equals(d2)){
+                     
+                     return s1.compareTo(s2);
+                     
+                 }else{
+                     Calendar cal1 = Calendar.getInstance();
+                     Calendar cal2 = Calendar.getInstance();
+                     cal1.setTime(d1);
+                     cal2.setTime(d2);
+                     
+                     return cal1.get(Calendar.DAY_OF_WEEK) - cal2.get(Calendar.DAY_OF_WEEK);
+                     
+                 }
+             } catch (ParseException ex) {
+                 Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             return 0;
+         }
+     };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_reset;

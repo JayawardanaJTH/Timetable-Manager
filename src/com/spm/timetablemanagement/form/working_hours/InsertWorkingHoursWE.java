@@ -31,7 +31,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
      private int numOfdays = 0; 
      private static int chk_days = 0; 
      private static boolean error = false;
-     private static ArrayList<Integer> days = new ArrayList();
+     private static ArrayList<String> days = new ArrayList();
      
     /**
      * Creates new form InsertWorkingHours
@@ -309,11 +309,11 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     private void chk_satMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_satMousePressed
         if(chk_sat.isSelected()){
             chk_days--;
-            days.remove(6);
+            days.remove("Saturday");
         }
         else{
             chk_days++;
-            days.add(6);
+            days.add("Saturday");
         }
 
         checkDays(chk_days);
@@ -322,11 +322,11 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     private void chk_sunMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_sunMousePressed
         if(chk_sun.isSelected()){
             chk_days--;
-            days.remove(7);
+            days.remove("Sunday");
         }
         else{
             chk_days++;
-            days.add(7);
+            days.add("Sunday");
         }
 
         checkDays(chk_days);
@@ -375,7 +375,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             error = true;
         }else
-        error = false;
+            error = false;
 
         if(chk_days > numOfdays){
             JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Days cannot exceed number of days : " + numOfdays,
@@ -386,21 +386,21 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             error = true;
         }else
-        error = false;
+            error = false;
 
         if(rbGroup.getSelection()== null){
             JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Select time slot",
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             error = true;
         }else
-        error = false;
+            error = false;
 
         if(checkTime()){
             JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Invalide time",
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             error = true;
         }else
-        error = false;
+            error = false;
 
         if(!error){
             try {
@@ -416,13 +416,14 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                     String dayList = "";
                     days.sort(null);
           
-                    for (Integer day : days) {
-                        dayList = dayList.concat(day.toString()+",");
+                    for (String day : days) {
+                        dayList = dayList.concat(day +",");
                     }
+                    int lenght = dayList.length();
                     
                     statement1.setInt(1, 2);
                     statement1.setInt(2, numOfdays);
-                    statement1.setString(3, dayList);
+                    statement1.setString(3, dayList.substring(0, lenght-1));
                     statement1.setInt(4, Integer.parseInt(txt_hour.getText()));
                     statement1.setInt(5, Integer.parseInt(txt_min.getText()));
 
