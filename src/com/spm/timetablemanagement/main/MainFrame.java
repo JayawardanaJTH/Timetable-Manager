@@ -80,7 +80,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                panelBody.removeAll();
-               panelBody.add(new enterDp());
+               panelBody.add(new addDetails_Home());
                panelBody.repaint();
                panelBody.revalidate();
             }
