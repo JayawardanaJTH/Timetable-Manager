@@ -11,6 +11,7 @@ import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,13 +27,24 @@ import org.xml.sax.SAXException;
  */
 public class ViewWorkingDayHours extends javax.swing.JPanel {
 
-    Working_days_hours model;
+    private Working_days_hours model;
+    private static int error = 0;
     /**
      * Creates new form ViewWorkingDayHours
      */
     public ViewWorkingDayHours() {
         initComponents();
         
+        topic_weekday.setVisible(false);
+        details_weekday.setVisible(false);
+        edit_weekday.setVisible(false);
+        delete_weekday.setVisible(false);
+        
+        topic_weekend.setVisible(false);
+        details_weekend.setVisible(false);
+        edit_weekend.setVisible(false);
+        delete_weekend.setVisible(false);
+
         execute();
     }
     
@@ -58,9 +70,20 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
                 model.setMin(resultSet.getString(5));
                 model.setTimeSlot(resultSet.getString(6));
                 
+                error++;
+                
                 if(setValues(model))
                     JOptionPane.showMessageDialog(ViewWorkingDayHours.this, "Cannot load data", "Data error", JOptionPane.ERROR_MESSAGE);
             }
+            
+            if(error == 0){
+                setValues(null);
+                System.out.println("in if"+error);
+            }else
+                error = 0;
+            System.out.println(error);
+            connection.close();
+            
         } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
             Logger.getLogger(ViewWorkingDayHours.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,25 +91,67 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
 
     private boolean setValues(Working_days_hours model){
         
-        if(Integer.parseInt(model.getId())== 1){
+        if(model == null){
+            JOptionPane.showMessageDialog(ViewWorkingDayHours.this, "No Data to show", "Data error", JOptionPane.ERROR_MESSAGE);
+        System.out.println("aa");
+            topic_weekday.setVisible(false);
+            details_weekday.setVisible(false);
+            edit_weekday.setVisible(false);
+            delete_weekday.setVisible(false);
+
+            topic_weekend.setVisible(false);
+            details_weekend.setVisible(false);
+            edit_weekend.setVisible(false);
+            delete_weekend.setVisible(false);
+        }else{
             
-            lbl_numOfDays_wd.setText(model.getNumOfDays());
-            lbl_timeSlot_wd.setText(model.getTimeSlot());
-            lbl_workDays_wd.setText(model.getDays().replace(",", " "));
-            lbl_workHours_wd.setText(model.getHour()+ " H " + model.getMin() + " M ");
-            
-            return false;
+            if((error == 1) && (1 != Integer.parseInt(model.getId()))){
+                topic_weekday.setVisible(false);
+                details_weekday.setVisible(false);
+                edit_weekday.setVisible(false);
+                delete_weekday.setVisible(false);
+            }
+            if((error == 1) && (2 != Integer.parseInt(model.getId()))){
+                topic_weekend.setVisible(false);
+                details_weekend.setVisible(false);
+                edit_weekend.setVisible(false);
+                delete_weekend.setVisible(false);
+            }
+            if(Integer.parseInt(model.getId())== 1){
+
+                topic_weekday.setVisible(true);
+                details_weekday.setVisible(true);
+                edit_weekday.setVisible(true);
+                delete_weekday.setVisible(true);
+                
+                lbl_numOfDays_wd.setText(model.getNumOfDays());
+                lbl_timeSlot_wd.setText(model.getTimeSlot());
+
+                String days = model.getDays();
+
+                lbl_workDays_wd.setText(days);
+                lbl_workHours_wd.setText(model.getHour()+ " H " + model.getMin() + " Min ");
+
+                return false;
+            }
+            if(Integer.parseInt(model.getId())== 2){
+
+                topic_weekend.setVisible(true);
+                details_weekend.setVisible(true);
+                edit_weekend.setVisible(true);
+                delete_weekend.setVisible(true);
+                
+                lbl_numOfDays_we.setText(model.getNumOfDays());
+                lbl_timeSlot_we.setText(model.getTimeSlot());
+
+                String days = model.getDays();
+
+                lbl_workDays_we.setText(days);
+                lbl_workHours_we.setText(model.getHour()+ " H " + model.getMin() + " Min ");
+
+                return false;
+            }
         }
-        if(Integer.parseInt(model.getId())== 2){
-            
-            lbl_numOfDays_we.setText(model.getNumOfDays());
-            lbl_timeSlot_we.setText(model.getTimeSlot());
-            lbl_workDays_we.setText(model.getDays().replace(",", " "));
-            lbl_workHours_we.setText(model.getHour()+ " H " + model.getMin() + " M ");
-            
-            return false;
-        }
-        
         return true;
     }
     /**
@@ -102,11 +167,11 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        topic_weekday = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        topic_weekend = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        details_weekday = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -115,7 +180,7 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
         lbl_workDays_wd = new javax.swing.JLabel();
         lbl_workHours_wd = new javax.swing.JLabel();
         lbl_timeSlot_wd = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        details_weekend = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -124,6 +189,14 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
         lbl_workDays_we = new javax.swing.JLabel();
         lbl_workHours_we = new javax.swing.JLabel();
         lbl_timeSlot_we = new javax.swing.JLabel();
+        edit_weekday = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        delete_weekday = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        edit_weekend = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        delete_weekend = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(835, 560));
 
@@ -139,7 +212,7 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(312, 312, 312)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                 .addGap(337, 337, 337))
         );
         jPanel2Layout.setVerticalGroup(
@@ -150,55 +223,55 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
-        jPanel3.setBackground(new java.awt.Color(51, 0, 51));
+        topic_weekday.setBackground(new java.awt.Color(51, 0, 51));
 
         jLabel2.setBackground(new java.awt.Color(255, 0, 204));
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Weekday");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout topic_weekdayLayout = new javax.swing.GroupLayout(topic_weekday);
+        topic_weekday.setLayout(topic_weekdayLayout);
+        topic_weekdayLayout.setHorizontalGroup(
+            topic_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topic_weekdayLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        topic_weekdayLayout.setVerticalGroup(
+            topic_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topic_weekdayLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(51, 0, 51));
+        topic_weekend.setBackground(new java.awt.Color(51, 0, 51));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Weekend");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout topic_weekendLayout = new javax.swing.GroupLayout(topic_weekend);
+        topic_weekend.setLayout(topic_weekendLayout);
+        topic_weekendLayout.setHorizontalGroup(
+            topic_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topic_weekendLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        topic_weekendLayout.setVerticalGroup(
+            topic_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topic_weekendLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel5.setPreferredSize(new java.awt.Dimension(600, 200));
+        details_weekday.setBackground(new java.awt.Color(153, 153, 153));
+        details_weekday.setPreferredSize(new java.awt.Dimension(600, 200));
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -228,51 +301,54 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
         lbl_timeSlot_wd.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lbl_timeSlot_wd.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout details_weekdayLayout = new javax.swing.GroupLayout(details_weekday);
+        details_weekday.setLayout(details_weekdayLayout);
+        details_weekdayLayout.setHorizontalGroup(
+            details_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, details_weekdayLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(details_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addGap(77, 77, 77)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_numOfDays_wd, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                .addGap(74, 74, 74)
+                .addGroup(details_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_numOfDays_wd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_workDays_wd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_workHours_wd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_timeSlot_wd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(251, 251, 251))
+                .addGap(383, 383, 383))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lbl_numOfDays_wd, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+        details_weekdayLayout.setVerticalGroup(
+            details_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(details_weekdayLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(details_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl_numOfDays_wd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_workDays_wd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(details_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(lbl_workDays_wd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lbl_workHours_wd))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(lbl_timeSlot_wd))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(details_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(details_weekdayLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, details_weekdayLayout.createSequentialGroup()
+                        .addComponent(lbl_workHours_wd)
+                        .addGap(18, 18, 18)))
+                .addGroup(details_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_timeSlot_wd, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_numOfDays_wd, lbl_timeSlot_wd, lbl_workDays_wd, lbl_workHours_wd});
+        details_weekdayLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_numOfDays_wd, lbl_timeSlot_wd, lbl_workDays_wd, lbl_workHours_wd});
 
-        jPanel6.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel6.setPreferredSize(new java.awt.Dimension(600, 200));
+        details_weekend.setBackground(new java.awt.Color(153, 153, 153));
+        details_weekend.setPreferredSize(new java.awt.Dimension(600, 200));
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -302,77 +378,219 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
         lbl_timeSlot_we.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lbl_timeSlot_we.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout details_weekendLayout = new javax.swing.GroupLayout(details_weekend);
+        details_weekend.setLayout(details_weekendLayout);
+        details_weekendLayout.setHorizontalGroup(
+            details_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(details_weekendLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(details_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11))
                 .addGap(77, 77, 77)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(details_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_numOfDays_we, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                     .addComponent(lbl_workDays_we, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_workHours_we, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_timeSlot_we, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(255, 255, 255))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        details_weekendLayout.setVerticalGroup(
+            details_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(details_weekendLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(details_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_numOfDays_we, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(details_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(lbl_workDays_we))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(details_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(lbl_workHours_we, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(details_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(lbl_timeSlot_we))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_numOfDays_we, lbl_timeSlot_we, lbl_workDays_we, lbl_workHours_we});
+        details_weekendLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_numOfDays_we, lbl_timeSlot_we, lbl_workDays_we, lbl_workHours_we});
+
+        edit_weekday.setBackground(new java.awt.Color(26, 182, 89));
+        edit_weekday.setToolTipText("Edit weekday details");
+        edit_weekday.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel12.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Edit");
+
+        javax.swing.GroupLayout edit_weekdayLayout = new javax.swing.GroupLayout(edit_weekday);
+        edit_weekday.setLayout(edit_weekdayLayout);
+        edit_weekdayLayout.setHorizontalGroup(
+            edit_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(edit_weekdayLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel12)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        edit_weekdayLayout.setVerticalGroup(
+            edit_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, edit_weekdayLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addContainerGap())
+        );
+
+        delete_weekday.setBackground(new java.awt.Color(255, 0, 51));
+        delete_weekday.setToolTipText("Delete weekday details");
+        delete_weekday.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete_weekday.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                delete_weekdayMousePressed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Delete");
+
+        javax.swing.GroupLayout delete_weekdayLayout = new javax.swing.GroupLayout(delete_weekday);
+        delete_weekday.setLayout(delete_weekdayLayout);
+        delete_weekdayLayout.setHorizontalGroup(
+            delete_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(delete_weekdayLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel13)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        delete_weekdayLayout.setVerticalGroup(
+            delete_weekdayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delete_weekdayLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addContainerGap())
+        );
+
+        edit_weekend.setBackground(new java.awt.Color(26, 182, 89));
+        edit_weekend.setToolTipText("Edit weekend details");
+
+        jLabel15.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Edit");
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout edit_weekendLayout = new javax.swing.GroupLayout(edit_weekend);
+        edit_weekend.setLayout(edit_weekendLayout);
+        edit_weekendLayout.setHorizontalGroup(
+            edit_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, edit_weekendLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addGap(32, 32, 32))
+        );
+        edit_weekendLayout.setVerticalGroup(
+            edit_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(edit_weekendLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        delete_weekend.setBackground(new java.awt.Color(255, 51, 51));
+        delete_weekend.setToolTipText("Delete weekend details");
+        delete_weekend.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete_weekend.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                delete_weekendMousePressed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Delete");
+
+        javax.swing.GroupLayout delete_weekendLayout = new javax.swing.GroupLayout(delete_weekend);
+        delete_weekend.setLayout(delete_weekendLayout);
+        delete_weekendLayout.setHorizontalGroup(
+            delete_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(delete_weekendLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel16)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        delete_weekendLayout.setVerticalGroup(
+            delete_weekendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(delete_weekendLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(details_weekend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(edit_weekend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(delete_weekend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(topic_weekend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(details_weekday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edit_weekday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(delete_weekday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(topic_weekday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {delete_weekday, edit_weekday});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(topic_weekday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(details_weekday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(edit_weekday, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(delete_weekday, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(topic_weekend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(details_weekend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(edit_weekend, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(delete_weekend, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {delete_weekday, edit_weekday});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {details_weekday, details_weekend});
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -388,11 +606,70 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void delete_weekdayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_weekdayMousePressed
+        int value = JOptionPane.showConfirmDialog(ViewWorkingDayHours.this, "Are you sure to delete this!", "Delete",JOptionPane.OK_CANCEL_OPTION);
+        
+        if(value == 0){
+            if(deleteValue(1)){
+                JOptionPane.showMessageDialog(ViewWorkingDayHours.this, "Delete Success","Delete", JOptionPane.OK_OPTION);
+                execute();
+            }
+            else
+                JOptionPane.showMessageDialog(ViewWorkingDayHours.this, "Delete Unuccess!","Delete", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_delete_weekdayMousePressed
+
+    private void delete_weekendMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_weekendMousePressed
+       int value = JOptionPane.showConfirmDialog(ViewWorkingDayHours.this, "Are you sure to delete this!", "Delete",JOptionPane.WARNING_MESSAGE);
+        
+        if(value == 0){
+            if(deleteValue(2)){
+                JOptionPane.showMessageDialog(ViewWorkingDayHours.this, "Delete Success","Delete", JOptionPane.OK_OPTION);
+                execute();
+            }
+            else
+                JOptionPane.showMessageDialog(ViewWorkingDayHours.this, "Delete Unuccess!","Delete", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_delete_weekendMousePressed
+
+    private boolean deleteValue(int type){
+        
+        try {
+            Connection connection;
+            PreparedStatement statement;
+            
+            connection = DBconnection.getConnection();
+            statement = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_TABLE));
+            
+            if(type == 1)
+                statement.setInt(1, 1);
+            else
+                statement.setInt(1, 2);
+            
+            statement.execute();
+            
+            return true;
+            
+        } catch (IOException | SQLException | ClassNotFoundException | ParserConfigurationException | SAXException ex) {
+            Logger.getLogger(ViewWorkingDayHours.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel delete_weekday;
+    private javax.swing.JPanel delete_weekend;
+    private javax.swing.JPanel details_weekday;
+    private javax.swing.JPanel details_weekend;
+    private javax.swing.JPanel edit_weekday;
+    private javax.swing.JPanel edit_weekend;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -403,10 +680,6 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_numOfDays_wd;
     private javax.swing.JLabel lbl_numOfDays_we;
@@ -416,5 +689,7 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
     private javax.swing.JLabel lbl_workDays_we;
     private javax.swing.JLabel lbl_workHours_wd;
     private javax.swing.JLabel lbl_workHours_we;
+    private javax.swing.JPanel topic_weekday;
+    private javax.swing.JPanel topic_weekend;
     // End of variables declaration//GEN-END:variables
 }
