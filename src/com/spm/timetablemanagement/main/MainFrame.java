@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
+import com.spm.timetablemanagement.form.working_hours.InsertLocation; 
+import com.spm.timetablemanagement.form.working_hours.InsertRoom;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -69,8 +71,22 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s2Subject = new MenuItem(iconSubmenu, "View Subject Details", null);
         
         //Location submenu items
-        MenuItem s1Location = new MenuItem(iconSubmenu, "Add Location Details", null);
-        MenuItem s2Location = new MenuItem(iconSubmenu, "View Location Details", null);
+        MenuItem s1Location = new MenuItem(iconSubmenu, "Add Building Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.add(new InsertLocation());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
+        MenuItem s2Location = new MenuItem(iconSubmenu, "Add Room Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.add(new InsertRoom());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
         
         //Tag submenu items Statistics
         MenuItem s1Tag = new MenuItem(iconSubmenu, "Add Tag Details", null);
