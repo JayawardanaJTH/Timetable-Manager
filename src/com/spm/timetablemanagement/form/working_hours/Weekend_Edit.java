@@ -48,6 +48,8 @@ public class Weekend_Edit extends javax.swing.JPanel {
         
         rbGroup.add(rdb_1hour);
         rbGroup.add(rdb_30min);
+        Arr_days.clear();
+        numOfdays = 0;
         btn_reset.setVisible(false);
         execute();
     }
@@ -61,7 +63,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
                 rs = model.getData(2);
                 while(rs.next()){
                     cmb_num_of_days.setSelectedIndex(rs.getInt(2));
-                    
+                    numOfdays = rs.getInt(2);
                     chk_days = rs.getInt(2);
                     String [] days = rs.getString(3).split(",");
                     
@@ -69,11 +71,11 @@ public class Weekend_Edit extends javax.swing.JPanel {
                         
                         if(days[i].contains("Sunday")){
                             chk_sun.setSelected(true);
-                            Arr_days.add("Sunday");
+                            Arr_days.add("7");
                         }
                         if(days[i].contains("Saturday")){
                             chk_sat.setSelected(true);
-                            Arr_days.add("Saturday");
+                            Arr_days.add("6");
                         }
                     }
                     
@@ -326,11 +328,11 @@ public class Weekend_Edit extends javax.swing.JPanel {
     private void chk_satMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_satMousePressed
         if(chk_sat.isSelected()){
             chk_days--;
-            Arr_days.remove("Saturday");
+            Arr_days.remove("6");
         }
         else{
             chk_days++;
-            Arr_days.add("Saturday");
+            Arr_days.add("6");
         }
 
         checkDays(chk_days);
@@ -339,11 +341,11 @@ public class Weekend_Edit extends javax.swing.JPanel {
     private void chk_sunMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_sunMousePressed
         if(chk_sun.isSelected()){
             chk_days--;
-            Arr_days.remove("Sunday");
+            Arr_days.remove("7");
         }
         else{
             chk_days++;
-            Arr_days.add("Sunday");
+            Arr_days.add("7");
         }
 
         checkDays(chk_days);
@@ -366,6 +368,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
         txt_min.setText("0");
         rbGroup.clearSelection();
         chk_days = 0;
+        numOfdays = 0;
         txt_days_error.setText("");
         Arr_days.clear();
     }//GEN-LAST:event_btn_resetMousePressed
@@ -392,7 +395,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             error = true;
         }else
-        error = false;
+            error = false;
 
         if(chk_days > numOfdays){
             JOptionPane.showMessageDialog(Weekend_Edit.this, "Days cannot exceed number of days : " + numOfdays,
@@ -403,21 +406,21 @@ public class Weekend_Edit extends javax.swing.JPanel {
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             error = true;
         }else
-        error = false;
+            error = false;
 
         if(rbGroup.getSelection()== null){
             JOptionPane.showMessageDialog(Weekend_Edit.this, "Select time slot",
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             error = true;
         }else
-        error = false;
+            error = false;
 
         if(checkTime()){
             JOptionPane.showMessageDialog(Weekend_Edit.this, "Invalide time",
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             error = true;
         }else
-        error = false;
+            error = false;
 
         if(!error){
             try {
@@ -430,14 +433,25 @@ public class Weekend_Edit extends javax.swing.JPanel {
 
                 if(!statement2.execute()){
 
+                    ArrayList<Integer> numbs = new ArrayList<>();
+                    
+                    for(String day : Arr_days){
+                        numbs.add(Integer.parseInt(day));
+                    }
                     String dayList = "";
-                    Arr_days.sort(null);
-
-                    for (String day : Arr_days) {
-                        dayList = dayList.concat(day +",");
+                    numbs.sort(null);
+          
+                    for (Integer day : numbs) {
+                        
+                        if(day == 6){
+                            dayList = dayList.concat("Saturday,");
+                        }
+                        if(day == 7){
+                            dayList = dayList.concat("Sunday,");
+                        }
                     }
                     int lenght = dayList.length();
-
+                    
                     statement1.setInt(1, 2);
                     statement1.setInt(2, numOfdays);
                     statement1.setString(3, dayList.substring(0, lenght-1));
@@ -453,7 +467,8 @@ public class Weekend_Edit extends javax.swing.JPanel {
 
                     if(!statement1.execute()){
                         JOptionPane.showMessageDialog(Weekend_Edit.this, "Update Success");
-                        
+                        btn_resetMousePressed(null);
+                        execute();
                     }
                 }
             } catch (SQLException | IOException | ParserConfigurationException | SAXException ex) {

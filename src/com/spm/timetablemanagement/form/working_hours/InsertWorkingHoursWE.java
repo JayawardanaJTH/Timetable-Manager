@@ -31,7 +31,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
      private int numOfdays = 0; 
      private static int chk_days = 0; 
      private static boolean error = false;
-     private static ArrayList<Integer> daysNum = new ArrayList();
+     private static ArrayList<String> daysNum = new ArrayList();
      
     /**
      * Creates new form InsertWorkingHours
@@ -309,11 +309,11 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     private void chk_satMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_satMousePressed
         if(chk_sat.isSelected()){
             chk_days--;
-            daysNum.remove(6);
+            daysNum.remove("6");
         }
         else{
             chk_days++;
-            daysNum.add(6);
+            daysNum.add("6");
         }
 
         checkDays(chk_days);
@@ -322,11 +322,11 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     private void chk_sunMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_sunMousePressed
         if(chk_sun.isSelected()){
             chk_days--;
-            daysNum.remove(7);
+            daysNum.remove("7");
         }
         else{
             chk_days++;
-            daysNum.add(7);
+            daysNum.add("7");
         }
 
         checkDays(chk_days);
@@ -349,6 +349,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
         txt_min.setText("0");
         rbGroup.clearSelection();
         chk_days = 0;
+        numOfdays = 0;
         txt_days_error.setText("");
         daysNum.clear();
     }//GEN-LAST:event_btn_resetMousePressed
@@ -415,10 +416,16 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                 
                 if(!statement2.execute()){
                     
+                    ArrayList<Integer> numbs = new ArrayList<>();
+                    
+                    for(String day : daysNum){
+                        
+                        numbs.add(Integer.parseInt(day));
+                    }
                     String dayList = "";
-                    daysNum.sort(null);
+                    numbs.sort(null);
           
-                    for (Integer day : daysNum) {
+                    for (Integer day : numbs) {
                         
                         if(day == 6){
                             dayList = dayList.concat("Saturday,");

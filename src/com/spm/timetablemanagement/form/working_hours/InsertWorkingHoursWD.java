@@ -39,7 +39,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
      private int numOfdays = 0; 
      private static int chk_days = 0; 
      private static boolean error = false;
-     private static ArrayList<Integer> daysNum = new ArrayList();
+     private static ArrayList<String> daysNum = new ArrayList();
      
     /**
      * Creates new form InsertWorkingHoursWE
@@ -357,6 +357,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         txt_min.setText("0");
         rdGroup.clearSelection();
         chk_days = 0;
+        numOfdays = 0;
         txt_days_error.setText("");
         daysNum.clear();
     }//GEN-LAST:event_btn_resetMousePressed
@@ -380,11 +381,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void chk_monMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_monMousePressed
         if(chk_mon.isSelected()){
             chk_days--;
-            daysNum.remove(1);
+            daysNum.remove("1");
         }
         else{
             chk_days++;
-            daysNum.add(1);
+            daysNum.add("1");
         }
         
         checkDays(chk_days);
@@ -393,11 +394,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void chk_tueMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_tueMousePressed
         if(chk_tue.isSelected()){
             chk_days--;
-            daysNum.remove(2);
+            daysNum.remove("2");
         }
         else{
             chk_days++;
-            daysNum.add(2);
+            daysNum.add("2");
         }
         
         checkDays(chk_days);
@@ -455,7 +456,6 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
              }else
                  error = false;
              
-             System.out.println(error);
              if(!error){
                   try {
                 Connection connection = DBconnection.getConnection();
@@ -467,12 +467,19 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                 
                 if(!statement2.execute()){
                     
+                    ArrayList<Integer> numbs = new ArrayList<>();
+                    
+                    for(String day : daysNum){
+                        
+                          numbs.add(Integer.parseInt(day));
+                    }
+                    
                     String dayList = "";
                     
-                    daysNum.sort(null);
+                    numbs.sort(null);
                     
                     
-                    for (Integer day : daysNum) {
+                    for (Integer day : numbs) {
                         
                         if(day == 1){
                             dayList = dayList.concat("Monday,");
@@ -525,11 +532,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_wed.isSelected()){
             chk_days--;
-            daysNum.remove(3);
+            daysNum.remove("3");
         }
         else{
             chk_days++;
-            daysNum.add(3);
+            daysNum.add("3");
         }
         
         checkDays(chk_days);
@@ -539,11 +546,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_thu.isSelected()){
             chk_days--;
-            daysNum.remove(4);
+            daysNum.remove("4");
         }
         else{
             chk_days++;
-            daysNum.add(4);
+            daysNum.add("4");
         }
         
         checkDays(chk_days);
@@ -553,11 +560,11 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         if(chk_fri.isSelected()){
             chk_days--;
-            daysNum.remove(5);
+            daysNum.remove("5");
         }
         else{
             chk_days++;
-            daysNum.add(5);
+            daysNum.add("5");
         }
         
         checkDays(chk_days);
@@ -579,35 +586,6 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         chk_thu.setSelected(false);
         chk_fri.setSelected(false);
     }
-    
-    Comparator<String> dateComparator = new Comparator<String>() {
-         @Override
-         public int compare(String s1, String s2) {
-
-             try {
-                 SimpleDateFormat format = new SimpleDateFormat("EEE");
-                 Date d1 = format.parse(s1);
-                 Date d2 = format.parse(s1);
-                 
-                 if(d1.equals(d2)){
-                     
-                     return s1.compareTo(s2);
-                     
-                 }else{
-                     Calendar cal1 = Calendar.getInstance();
-                     Calendar cal2 = Calendar.getInstance();
-                     cal1.setTime(d1);
-                     cal2.setTime(d2);
-                     
-                     return cal1.get(Calendar.DAY_OF_WEEK) - cal2.get(Calendar.DAY_OF_WEEK);
-                     
-                 }
-             } catch (ParseException ex) {
-                 Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
-             }
-             return 0;
-         }
-     };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_reset;

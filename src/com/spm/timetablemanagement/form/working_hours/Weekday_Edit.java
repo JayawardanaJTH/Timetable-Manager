@@ -44,6 +44,8 @@ public class Weekday_Edit extends javax.swing.JPanel {
         
         rdGroup.add(rdb_1hour);
         rdGroup.add(rdb_30min);
+        Arr_days.clear();
+        numOfdays = 0;
         btn_reset.setVisible(false);
         execute();
     }
@@ -58,30 +60,30 @@ public class Weekday_Edit extends javax.swing.JPanel {
                 while(rs.next()){
                     cmb_num_of_days.setSelectedIndex(rs.getInt(2));
                     chk_days = rs.getInt(2);
-                    
+                    numOfdays = rs.getInt(2);
                     String [] days = rs.getString(3).split(",");
                     
                     for(int i =0; i < days.length; i++ ){
                         
                         if(days[i].contains("Monday")){
                             chk_mon.setSelected(true);
-                            Arr_days.add("Monday");
+                            Arr_days.add("1");
                         }
                         if(days[i].contains("Tuesday")){
                             chk_tue.setSelected(true);
-                            Arr_days.add("Tuesday");
+                            Arr_days.add("2");
                         }
                         if(days[i].contains("Wednsday")){
                             chk_wed.setSelected(true);
-                            Arr_days.add("Wednsday");
+                            Arr_days.add("3");
                         }
                         if(days[i].contains("Thursday")){
                             chk_thu.setSelected(true);
-                            Arr_days.add("Thursday");
+                            Arr_days.add("4");
                         }
                         if(days[i].contains("Friday")){
                             chk_fri.setSelected(true);
-                            Arr_days.add("Friday");
+                            Arr_days.add("5");
                         }
                     }
                     
@@ -258,7 +260,7 @@ public class Weekday_Edit extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 822, Short.MAX_VALUE)
+            .addGap(0, 832, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(136, 136, 136)
@@ -305,11 +307,11 @@ public class Weekday_Edit extends javax.swing.JPanel {
                                             .addGap(18, 18, 18)
                                             .addComponent(chk_wed))
                                         .addComponent(chk_fri))))))
-                    .addContainerGap(136, Short.MAX_VALUE)))
+                    .addContainerGap(146, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 562, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(102, 102, 102)
@@ -346,7 +348,7 @@ public class Weekday_Edit extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btn_reset)
                         .addComponent(btn_save))
-                    .addContainerGap(102, Short.MAX_VALUE)))
+                    .addContainerGap(127, Short.MAX_VALUE)))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -372,11 +374,11 @@ public class Weekday_Edit extends javax.swing.JPanel {
     private void chk_monMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_monMousePressed
         if(chk_mon.isSelected()){
             chk_days--;
-            Arr_days.remove("Monday");
+            Arr_days.remove("1");
         }
         else{
             chk_days++;
-            Arr_days.add("Monday");
+            Arr_days.add("1");
         }
 
         checkDays(chk_days);
@@ -385,11 +387,11 @@ public class Weekday_Edit extends javax.swing.JPanel {
     private void chk_tueMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chk_tueMousePressed
         if(chk_tue.isSelected()){
             chk_days--;
-            Arr_days.remove("Tuesday");
+            Arr_days.remove("2");
         }
         else{
             chk_days++;
-            Arr_days.add("Tuesday");
+            Arr_days.add("2");
         }
 
         checkDays(chk_days);
@@ -399,11 +401,11 @@ public class Weekday_Edit extends javax.swing.JPanel {
 
         if(chk_wed.isSelected()){
             chk_days--;
-            Arr_days.remove("Wednsday");
+            Arr_days.remove("3");
         }
         else{
             chk_days++;
-            Arr_days.add("Wednsday");
+            Arr_days.add("3");
         }
 
         checkDays(chk_days);
@@ -413,11 +415,11 @@ public class Weekday_Edit extends javax.swing.JPanel {
 
         if(chk_thu.isSelected()){
             chk_days--;
-            Arr_days.remove("Thursday");
+            Arr_days.remove("4");
         }
         else{
             chk_days++;
-            Arr_days.add("Thursday");
+            Arr_days.add("4");
         }
 
         checkDays(chk_days);
@@ -427,11 +429,11 @@ public class Weekday_Edit extends javax.swing.JPanel {
 
         if(chk_fri.isSelected()){
             chk_days--;
-            Arr_days.remove("Friday");
+            Arr_days.remove("5");
         }
         else{
             chk_days++;
-            Arr_days.add("Friday");
+            Arr_days.add("5");
         }
 
         checkDays(chk_days);
@@ -454,6 +456,7 @@ public class Weekday_Edit extends javax.swing.JPanel {
         txt_min.setText("0");
         rdGroup.clearSelection();
         chk_days = 0;
+        numOfdays = 0;
         txt_days_error.setText("");
         Arr_days.clear();
     }//GEN-LAST:event_btn_resetMousePressed
@@ -518,13 +521,38 @@ public class Weekday_Edit extends javax.swing.JPanel {
 
                 if(!statement2.execute()){
 
+                    ArrayList<Integer> numbs = new ArrayList<>();
+                    
+                    for(String day : Arr_days){
+                        
+                          numbs.add(Integer.parseInt(day));
+                    }
+                    
                     String dayList = "";
-
-                    for (String day : Arr_days) {
-                        dayList = dayList.concat(day + ",");
+                    
+                    numbs.sort(null);
+                    
+                    
+                    for (Integer day : numbs) {
+                        
+                        if(day == 1){
+                            dayList = dayList.concat("Monday,");
+                        }
+                        if(day == 2){
+                            dayList = dayList.concat("Tuesday,");
+                        }
+                        if(day == 3){
+                            dayList = dayList.concat("Wednsday,");
+                        }
+                        if(day == 4){
+                            dayList = dayList.concat("Thursday,");
+                        }
+                        if(day == 5){
+                            dayList = dayList.concat("Friday,");
+                        }   
                     }
                     int lenght = dayList.length();
-
+                    
                     statement.setInt(1, 1);
                     statement.setInt(2, numOfdays);
                     statement.setString(3, dayList.substring(0,lenght-1));
@@ -540,7 +568,8 @@ public class Weekday_Edit extends javax.swing.JPanel {
 
                     if(!statement.execute()){
                         JOptionPane.showMessageDialog(Weekday_Edit.this,"Update Success");
-                        
+                        btn_resetMousePressed(null);
+                        execute();
                     }
                 }
             } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {

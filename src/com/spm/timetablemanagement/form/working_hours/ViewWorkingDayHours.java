@@ -78,10 +78,8 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
             
             if(error == 0){
                 setValues(null);
-                System.out.println("in if"+error);
             }else
                 error = 0;
-            System.out.println(error);
             connection.close();
             
         } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
@@ -93,7 +91,6 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
         
         if(model == null){
             JOptionPane.showMessageDialog(ViewWorkingDayHours.this, "No Data to show", "Data error", JOptionPane.ERROR_MESSAGE);
-        System.out.println("aa");
             topic_weekday.setVisible(false);
             details_weekday.setVisible(false);
             edit_weekday.setVisible(false);
