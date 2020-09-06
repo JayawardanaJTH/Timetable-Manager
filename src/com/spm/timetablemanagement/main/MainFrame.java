@@ -6,6 +6,8 @@
 package com.spm.timetablemanagement.main;
 
 
+import com.spm.timetablemanagement.form.lecturer.AddLecturer;
+
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
 import allocateTime_modifySessions.addGroup;
@@ -19,6 +21,7 @@ import com.spm.timetablemanagement.form.student_details.enterYnS;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
 import com.spm.timetablemanagement.form.student_details.sub_GroupId_generate;
 import com.spm.timetablemanagement.form.student_details.view_All_Details;
+
 import com.spm.timetablemanagement.form.working_hours.EditWorkingDayHours;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -83,7 +86,15 @@ public class MainFrame extends javax.swing.JFrame {
         });
         
         //Lecturer submenu items
-        MenuItem s1Lecturer = new MenuItem(iconSubmenu, "Add Lecturer Details", null);
+        MenuItem s1Lecturer = new MenuItem(iconSubmenu, "Add Lecturer Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new AddLecturer());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         MenuItem s2Lecturer = new MenuItem(iconSubmenu, "View Lecturer Details", null);
         
         //Student submenu items
