@@ -5,6 +5,7 @@
  */
 package com.spm.timetablemanagement.main;
 
+import com.spm.timetablemanagement.form.lecturer.AddLecturer;
 import com.spm.timetablemanagement.form.working_hours.EditWorkingDayHours;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -46,7 +47,15 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s2IDGenerate = new MenuItem(iconSubmenu, "Sub-Group ID", null);
         
         //Lecturer submenu items
-        MenuItem s1Lecturer = new MenuItem(iconSubmenu, "Add Lecturer Details", null);
+        MenuItem s1Lecturer = new MenuItem(iconSubmenu, "Add Lecturer Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new AddLecturer());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         MenuItem s2Lecturer = new MenuItem(iconSubmenu, "View Lecturer Details", null);
         
         //Student submenu items
