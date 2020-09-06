@@ -5,6 +5,20 @@
  */
 package com.spm.timetablemanagement.main;
 
+
+import allocateTime_modifySessions.addConsecutiveSession;
+import allocateTime_modifySessions.addDetails_allocationTime_Home;
+import allocateTime_modifySessions.addGroup;
+import allocateTime_modifySessions.addParallelSessions;
+import com.spm.timetablemanagement.form.student_details.addDetails_Home;
+import com.spm.timetablemanagement.form.student_details.enterDp;
+import com.spm.timetablemanagement.form.student_details.enterDp;
+import com.spm.timetablemanagement.form.student_details.enterGNo;
+import com.spm.timetablemanagement.form.student_details.enterSubGNo;
+import com.spm.timetablemanagement.form.student_details.enterYnS;
+import com.spm.timetablemanagement.form.student_details.groupId_generate;
+import com.spm.timetablemanagement.form.student_details.sub_GroupId_generate;
+import com.spm.timetablemanagement.form.student_details.view_All_Details;
 import com.spm.timetablemanagement.form.working_hours.EditWorkingDayHours;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -15,6 +29,7 @@ import com.spm.timetablemanagement.form.working_hours.ViewWorkingDayHours;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import com.spm.timetablemanagement.form.tag_details.enterTag;
 /**
  *
  * @author Tiran Harsha
@@ -42,28 +57,53 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
         //ID generates sub items
-        MenuItem s1IDGenerate = new MenuItem(iconSubmenu, "Group ID", null);
-        MenuItem s2IDGenerate = new MenuItem(iconSubmenu, "Sub-Group ID", null);
+        MenuItem s1IDGenerate = new MenuItem(iconSubmenu, "Group ID", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
+               panelBody.add(new groupId_generate());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
+        MenuItem s2IDGenerate = new MenuItem(iconSubmenu, "Sub-Group ID", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
+               panelBody.add(new sub_GroupId_generate());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
         
         //Lecturer submenu items
         MenuItem s1Lecturer = new MenuItem(iconSubmenu, "Add Lecturer Details", null);
         MenuItem s2Lecturer = new MenuItem(iconSubmenu, "View Lecturer Details", null);
         
         //Student submenu items
-        MenuItem s1Student = new MenuItem(iconSubmenu, "Add Student Details", null);
-        MenuItem s2Student = new MenuItem(iconSubmenu, "ID Generates", null, s1IDGenerate, s2IDGenerate);
-        MenuItem s3Student = new MenuItem(iconSubmenu, "View Student Details", null);
-        
-        //WorkingDay submenu items
-        MenuItem s1WorkingDay = new MenuItem(iconSubmenu, "Weekday Details",new ActionListener() {
+        MenuItem s1Student = new MenuItem(iconSubmenu, "Add Student Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                panelBody.removeAll();
-               panelBody.add(new InsertWorkingHoursWD());
+               panelBody.add(new addDetails_Home());
                panelBody.repaint();
                panelBody.revalidate();
             }
         });
+        MenuItem s2Student = new MenuItem(iconSubmenu, "ID Generates", null, s1IDGenerate, s2IDGenerate);
+        
+        MenuItem s3Student = new MenuItem(iconSubmenu, "View Student Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
+               panelBody.add(new view_All_Details());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
+            
+        
+        //WorkingDay submenu items
         MenuItem s2WorkingDay = new MenuItem(iconSubmenu, "Weekend Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,8 +141,15 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s2Location = new MenuItem(iconSubmenu, "View Location Details", null);
         
         //Tag submenu items Statistics
-        MenuItem s1Tag = new MenuItem(iconSubmenu, "Add Tag Details", null);
-        MenuItem s2Tag = new MenuItem(iconSubmenu, "View Tag Details", null);
+        MenuItem s1Tag = new MenuItem(iconSubmenu, "Add Tag Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
+               panelBody.add(new enterTag());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
         
         //Statistics submenu items Allocate Room
         MenuItem s1Statistics = new MenuItem(iconSubmenu, "View Statistics Details", null);
@@ -116,9 +163,33 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s3HandleSession = new MenuItem(iconSubmenu, "Search Sessions", null);
         
         //Allocate Time Session submenu items
-        MenuItem s1AllocateTime = new MenuItem(iconSubmenu, "Allocate Not Available Time", null);
-        MenuItem s2AllocateTime = new MenuItem(iconSubmenu, "Consective Sessions", null);
-        MenuItem s3AllocateTime = new MenuItem(iconSubmenu, "Parallel Sessions", null);
+        MenuItem s1AllocateTime = new MenuItem(iconSubmenu, "Allocate Not Available Time", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
+               panelBody.add(new addDetails_allocationTime_Home());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
+        MenuItem s2AllocateTime = new MenuItem(iconSubmenu, "Consective Sessions", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
+               panelBody.add(new addConsecutiveSession());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
+        MenuItem s3AllocateTime = new MenuItem(iconSubmenu, "Parallel Sessions", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
+               panelBody.add(new addParallelSessions());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
         
         //Generate Timetable submenu items
         MenuItem s1GenerateTimeTable = new MenuItem(iconSubmenu, "Generate", null);
@@ -132,7 +203,7 @@ public class MainFrame extends javax.swing.JFrame {
                 s2WorkingDay, s3WorkingDay, s4WorkingDay);
         MenuItem menuSubject = new MenuItem(iconSubmenu, "Subject", null, s1Subject, s2Subject);
         MenuItem menuLocation = new MenuItem(iconSubmenu, "Location", null, s1Location, s2Location);
-        MenuItem menuTag = new MenuItem(iconSubmenu, "Tag", null, s1Tag, s2Tag);
+        MenuItem menuTag = new MenuItem(iconSubmenu, "Tag", null, s1Tag);
         MenuItem menuStatistics = new MenuItem(iconSubmenu, "Statistics", null, s1Statistics);
         MenuItem menuAllocateRoom = new MenuItem(iconSubmenu, "Allocate Room", null, s1AllocateRoom);
         MenuItem menuCreateSession = new MenuItem(iconSubmenu, "Handle Session", null, s1HandleSession, 
