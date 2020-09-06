@@ -104,6 +104,15 @@ public class MainFrame extends javax.swing.JFrame {
             
         
         //WorkingDay submenu items
+        MenuItem s1WorkingDay = new MenuItem(iconSubmenu, "Weekday Details",new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
+               panelBody.add(new InsertWorkingHoursWD());
+               panelBody.repaint();
+               panelBody.revalidate();
+            }
+        });
         MenuItem s2WorkingDay = new MenuItem(iconSubmenu, "Weekend Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
