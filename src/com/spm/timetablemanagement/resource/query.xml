@@ -49,8 +49,20 @@
             create table group_number(
                 id int AUTO_INCREMENT,
                 gNo int,
+        ]]>
+    </query>
+  
+    <query id="create_workingdays_and_hours_table">
+        <![CDATA[
+            CREATE TABLE work_day_hour(
+                id int,
+                days_no int,
+                days VARCHAR(100),
+                hour int,
+                mins int,
+                slot_type int,
                 
-                Constraint pk1 PRIMARY KEY (id)
+                CONSTRAINT pk1 PRIMARY KEY (id)
             )
         ]]>
     </query>
@@ -150,4 +162,31 @@
         ]]>
     </query> 
     
+    <query id="Insert_workingdays_and_hours">
+        <![CDATA[
+            INSERT INTO work_day_hour (id, days_no, days, hour, mins, slot_type)VALUES (?, ?, ?, ?, ?, ?)
+        ]]>
+    </query>
+    
+    <query id="Remove_workingdays_and_hours">
+        <![CDATA[
+            DELETE FROM work_day_hour
+            WHERE id = ?
+        ]]>
+    </query>
+    <query id="Get_workingdays_and_hours">
+        <![CDATA[
+            SELECT *
+            FROM work_day_hour
+          ]]>
+    </query>
+    
+    <query id="Get_workingdays_and_hours_by_type">
+        <![CDATA[
+            SELECT *
+            FROM work_day_hour
+            WHERE id = ?
+        ]]>
+    </query>
+
 </Querys>

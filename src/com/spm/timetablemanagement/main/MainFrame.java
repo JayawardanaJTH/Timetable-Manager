@@ -5,6 +5,7 @@
  */
 package com.spm.timetablemanagement.main;
 
+
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
 import allocateTime_modifySessions.addGroup;
@@ -18,9 +19,13 @@ import com.spm.timetablemanagement.form.student_details.enterYnS;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
 import com.spm.timetablemanagement.form.student_details.sub_GroupId_generate;
 import com.spm.timetablemanagement.form.student_details.view_All_Details;
+import com.spm.timetablemanagement.form.working_hours.EditWorkingDayHours;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
+import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWE;
+import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWD;
+import com.spm.timetablemanagement.form.working_hours.ViewWorkingDayHours;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -48,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
          iconWorkingDay = new ImageIcon(MainFrame.class.getResource("workingTime.png"));
          iconSubmenu = new ImageIcon(getClass().getResource("/com/spm/timetablemanagement/resource/images/next.png"));
         }catch(Exception e){
-            System.out.println(e.getMessage());
+           
         }
         
         //ID generates sub items
@@ -96,15 +101,36 @@ public class MainFrame extends javax.swing.JFrame {
                panelBody.revalidate();
             }
         });
-        
-
-        
+            
         
         //WorkingDay submenu items
-        MenuItem s1WorkingDay = new MenuItem(iconSubmenu, "Weekday Details",null);
-        MenuItem s2WorkingDay = new MenuItem(iconSubmenu, "Weekend Details", null);
-        MenuItem s3WorkingDay = new MenuItem(iconSubmenu, "View Details", null);
-        MenuItem s4WorkingDay = new MenuItem(iconSubmenu, "Edit Details", null);
+        MenuItem s2WorkingDay = new MenuItem(iconSubmenu, "Weekend Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new InsertWorkingHoursWE());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
+        MenuItem s3WorkingDay = new MenuItem(iconSubmenu, "View Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new ViewWorkingDayHours());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
+        MenuItem s4WorkingDay = new MenuItem(iconSubmenu, "Edit Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new EditWorkingDayHours());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         
         //Subject submenu items
         MenuItem s1Subject = new MenuItem(iconSubmenu, "Add Subject Details", null);

@@ -36,6 +36,12 @@ public class Constant {
     
     public static final String CREATE_ALL_DETAILS_TABLE ="create_all_details_table";
     public static final String INSERT_ALL_DETAILS_TABLE = "Insert_all_details";
+
+    public static final String CREATE_WORKING_HOUR_TABLE = "create_workingdays_and_hours_table";
+    public static final String INSERT_WORKING_HOUR_TABLE = "Insert_workingdays_and_hours";
+    public static final String REMOVE_WORKING_HOUR_TABLE = "Remove_workingdays_and_hours";
+    public static final String GET_WORKING_HOUR_TABLE = "Get_workingdays_and_hours";
+    public static final String GET_WORKING_HOUR_TABLE_BY_TYPE = "Get_workingdays_and_hours_by_type";
     
     public static final String QUERY = "query";
     public static final String QUERY_ID = "id";
