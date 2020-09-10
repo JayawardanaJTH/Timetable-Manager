@@ -23,7 +23,7 @@
         <Property name="observable" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.spm.timetablemanagement.form.working_hours.Room&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.spm.timetablemanagement.models.Room&gt;"/>
       </AuxValues>
     </Component>
   </NonVisualComponents>

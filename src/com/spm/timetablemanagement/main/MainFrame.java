@@ -22,8 +22,8 @@ import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
 
 //import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
-import com.spm.timetablemanagement.form.working_hours.InsertLocation; 
-import com.spm.timetablemanagement.form.working_hours.InsertRoom;
+import com.spm.timetablemanagement.location.InsertLocation; 
+import com.spm.timetablemanagement.form.room.InsertRoom;
 
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWE;
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWD;

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.spm.timetablemanagement.form.working_hours;
+package com.spm.timetablemanagement.form.room;
 
+import com.spm.timetablemanagement.models.Room;
 import javax.swing.JComboBox;
 
 /**
@@ -190,7 +191,7 @@ public class InsertRoom extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private java.util.List<com.spm.timetablemanagement.form.working_hours.Room> roomList;
+    private java.util.List<com.spm.timetablemanagement.models.Room> roomList;
     private javax.persistence.Query roomQuery;
     private javax.swing.JTable tblData;
     private javax.swing.JTextField type;

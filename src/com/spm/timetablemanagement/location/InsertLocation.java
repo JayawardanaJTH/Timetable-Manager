@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.spm.timetablemanagement.form.working_hours;
+package com.spm.timetablemanagement.location;
 
+import com.spm.timetablemanagement.models.Building;
 import javax.swing.JComboBox;
 
 /**
@@ -207,7 +208,7 @@ public class InsertLocation extends javax.swing.JPanel {
     private javax.swing.JTextField bID;
     private javax.swing.JTextField bName;
     private javax.swing.JTable bTable;
-    private java.util.List<com.spm.timetablemanagement.form.working_hours.Building> buildingList;
+    private java.util.List<com.spm.timetablemanagement.models.Building> buildingList;
     private javax.persistence.Query buildingQuery;
     private javax.persistence.EntityManager ent;
     private javax.persistence.EntityManager ent1;
@@ -215,7 +216,7 @@ public class InsertLocation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.util.List<com.spm.timetablemanagement.form.working_hours.Room> roomList;
+    private java.util.List<com.spm.timetablemanagement.models.Room> roomList;
     private javax.persistence.Query roomQuery;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
