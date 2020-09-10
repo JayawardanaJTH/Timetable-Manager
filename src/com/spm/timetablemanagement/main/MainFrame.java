@@ -10,14 +10,8 @@ import com.spm.timetablemanagement.form.lecturer.AddLecturer;
 
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
-import allocateTime_modifySessions.addGroup;
 import allocateTime_modifySessions.addParallelSessions;
 import com.spm.timetablemanagement.form.student_details.addDetails_Home;
-import com.spm.timetablemanagement.form.student_details.enterDp;
-import com.spm.timetablemanagement.form.student_details.enterDp;
-import com.spm.timetablemanagement.form.student_details.enterGNo;
-import com.spm.timetablemanagement.form.student_details.enterSubGNo;
-import com.spm.timetablemanagement.form.student_details.enterYnS;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
 import com.spm.timetablemanagement.form.student_details.sub_GroupId_generate;
 import com.spm.timetablemanagement.form.student_details.view_All_Details;
@@ -27,7 +21,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
 
-import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
+//import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
 import com.spm.timetablemanagement.form.working_hours.InsertLocation; 
 import com.spm.timetablemanagement.form.working_hours.InsertRoom;
 
@@ -37,7 +31,6 @@ import com.spm.timetablemanagement.form.working_hours.ViewWorkingDayHours;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 import com.spm.timetablemanagement.form.tag_details.enterTag;
 /**
  *

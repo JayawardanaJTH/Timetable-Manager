@@ -2,16 +2,191 @@
 <!DOCTYPE XML>
 
 <Querys>
-    <query id="create_workingdays_and_hours_table">
+    <query id="create_database">
         <![CDATA[
-            create table work_day_hour(
+            CREATE DATABASE timetablemanagement
+        ]]>
+    </query>
+    
+            
+    <query id="create_year_and_semester_table">
+        <![CDATA[
+            create table academic_year_and_semester(
                 id int AUTO_INCREMENT,
-                days_no int,
-                time Time,
-                slot_type int,
+                yNs String,
                 
                 Constraint pk1 PRIMARY KEY (id)
             )
         ]]>
     </query>
+    
+    <query id="Insert_year_and_semester">
+        <![CDATA[
+            INSERT INTO academic_year_and_semester (yNs) VALUES (?)
+        ]]>
+    </query> 
+    
+    <query id="create_degree_program_table">
+        <![CDATA[
+            create table degree_program(
+                id int AUTO_INCREMENT,
+                dp String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_degree_program">
+        <![CDATA[
+            INSERT INTO degree_program (dp) VALUES (?)
+        ]]>
+    </query>
+
+    
+    <query id="create_group_number_table">
+        <![CDATA[
+            create table group_number(
+                id int AUTO_INCREMENT,
+                gNo int,
+        ]]>
+    </query>
+  
+    <query id="create_workingdays_and_hours_table">
+        <![CDATA[
+            CREATE TABLE work_day_hour(
+                id int,
+                days_no int,
+                days VARCHAR(100),
+                hour int,
+                mins int,
+                slot_type int,
+                
+                CONSTRAINT pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_group_number">
+        <![CDATA[
+            INSERT INTO group_number (gNo) VALUES (?)
+        ]]>
+    </query>
+    
+    <query id="generated_group_id_table">
+        <![CDATA[
+            create table generated_group_id(
+                id int AUTO_INCREMENT,
+                gId String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_generated_group_id">
+        <![CDATA[
+            INSERT INTO generated_group_id (gId) VALUES (?)
+        ]]>
+    </query>
+    
+            
+    <query id="create_sub_group_number_table">
+        <![CDATA[
+            create table sub_group_number(
+                id int AUTO_INCREMENT,
+                sGno String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_sub_group_number">
+        <![CDATA[
+            INSERT INTO sub_group_number (sGno) VALUES (?)
+        ]]>
+    </query>
+    
+    <query id="generated_sub_group_id_table">
+        <![CDATA[
+            create generated_sub_group_id(
+                id int AUTO_INCREMENT,
+                sGid String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_generated_sub_group_id">
+        <![CDATA[
+            INSERT INTO generated_sub_group_id (sGid) VALUES (?)
+        ]]>
+    </query>
+    
+        <query id="create_tag_table">
+        <![CDATA[
+            create table tag(
+                id int AUTO_INCREMENT,
+                tag String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_tag">
+        <![CDATA[
+            INSERT INTO tag (tag) VALUES (?)
+        ]]>
+    </query>
+    
+    <query id="create_all_details_table">
+        <![CDATA[
+            create table all_details(
+                id int AUTO_INCREMENT,
+                yNs String,
+                dp String,
+                gId String,
+                sGid String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_all_details">
+        <![CDATA[
+            INSERT INTO all_details (yNs,dp,gId,sGid) VALUES (?,?,?,?)
+        ]]>
+    </query> 
+    
+    <query id="Insert_workingdays_and_hours">
+        <![CDATA[
+            INSERT INTO work_day_hour (id, days_no, days, hour, mins, slot_type)VALUES (?, ?, ?, ?, ?, ?)
+        ]]>
+    </query>
+    
+    <query id="Remove_workingdays_and_hours">
+        <![CDATA[
+            DELETE FROM work_day_hour
+            WHERE id = ?
+        ]]>
+    </query>
+    <query id="Get_workingdays_and_hours">
+        <![CDATA[
+            SELECT *
+            FROM work_day_hour
+          ]]>
+    </query>
+    
+    <query id="Get_workingdays_and_hours_by_type">
+        <![CDATA[
+            SELECT *
+            FROM work_day_hour
+            WHERE id = ?
+        ]]>
+    </query>
+
 </Querys>
