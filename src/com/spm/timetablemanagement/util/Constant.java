@@ -43,6 +43,13 @@ public class Constant {
     public static final String GET_WORKING_HOUR_TABLE = "Get_workingdays_and_hours";
     public static final String GET_WORKING_HOUR_TABLE_BY_TYPE = "Get_workingdays_and_hours_by_type";
     
+    public static final String GET_BUILDINGS = "get_buildings";
+    public static final String GET_FACULTY = "get_faculty";
+    public static final String GET_DEPARTMENT = "get_department";
+    public static final String GET_LEVEL = "get_level";
+    public static final String GET_CENTER = "get_center";
+    
+    
     public static final String QUERY = "query";
     public static final String QUERY_ID = "id";
     public static final String PROPERTIES = "timetablemanagement.properties";

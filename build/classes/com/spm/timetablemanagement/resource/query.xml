@@ -188,5 +188,37 @@
             WHERE id = ?
         ]]>
     </query>
+    
+    <query id="get_buildings">
+        <![CDATA[
+            SELECT * FROM building
+        ]]>
+    </query>
+    
+    <query id="get_faculty">
+        <![CDATA[
+            SELECT name FROM faculty
+        ]]>
+    </query>
+    
+    <query id="get_level">
+        <![CDATA[
+            SELECT name FROM level
+        ]]>
+    </query>
+    
+    <query id="get_department">
+        <![CDATA[
+            SELECT name 
+            FROM department 
+            WHERE faculty =?
+        ]]>
+    </query>
+    
+    <query id="get_center">
+        <![CDATA[
+            SELECT name FROM center
+        ]]>
+    </query>
 
 </Querys>
