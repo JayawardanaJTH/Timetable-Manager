@@ -6,6 +6,7 @@
 package com.spm.timetablemanagement.form.lecturer;
 
 import com.spm.timetablemanagement.models.Building;
+import com.spm.timetablemanagement.models.Lecturer;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
@@ -169,7 +171,7 @@ public class AddLecturer extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(312, 312, 312)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addGap(337, 337, 337))
         );
         jPanel4Layout.setVerticalGroup(
@@ -232,7 +234,7 @@ public class AddLecturer extends javax.swing.JPanel {
 
         txt_lec_name.setMinimumSize(new java.awt.Dimension(60, 20));
         txt_lec_name.setName(""); // NOI18N
-        txt_lec_name.setPreferredSize(new java.awt.Dimension(100, 30));
+        txt_lec_name.setPreferredSize(new java.awt.Dimension(140, 30));
 
         txt_lec_id.setMinimumSize(new java.awt.Dimension(60, 20));
         txt_lec_id.setName(""); // NOI18N
@@ -257,14 +259,23 @@ public class AddLecturer extends javax.swing.JPanel {
         cmb_lec_building.setMinimumSize(new java.awt.Dimension(100, 20));
         cmb_lec_building.setPreferredSize(new java.awt.Dimension(140, 30));
 
-        cmb_lec_level.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmb_lec_level.setMinimumSize(new java.awt.Dimension(100, 20));
         cmb_lec_level.setPreferredSize(new java.awt.Dimension(100, 30));
 
         btn_reset.setText("Reset");
+        btn_reset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_resetMousePressed(evt);
+            }
+        });
 
         btn_save.setText("Save");
         btn_save.setPreferredSize(new java.awt.Dimension(60, 30));
+        btn_save.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_saveMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -292,12 +303,13 @@ public class AddLecturer extends javax.swing.JPanel {
                     .addComponent(cmb_lec_level, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmb_lec_center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmb_lec_dept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_lec_faculty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_lec_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_lec_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_lec_rank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_lec_building, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmb_lec_building, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txt_lec_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmb_lec_faculty, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(461, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_reset, btn_save});
@@ -362,8 +374,12 @@ public class AddLecturer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-        
-        txt_lec_rank.setText(cmb_lec_level.getSelectedItem().toString() + "." + txt_lec_id.getText());
+        if(txt_lec_id.getText().contentEquals("")){
+            JOptionPane.showMessageDialog(AddLecturer.this, "Lecture id cannot be empty!", "Data missing", JOptionPane.ERROR_MESSAGE);
+        }else{
+            
+            txt_lec_rank.setText(cmb_lec_level.getSelectedItem().toString() + "." + txt_lec_id.getText());
+        }
     }//GEN-LAST:event_jButton1MousePressed
 
     private void cmb_lec_facultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_lec_facultyActionPerformed
@@ -392,7 +408,72 @@ public class AddLecturer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cmb_lec_facultyActionPerformed
 
-    
+    private void btn_resetMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_resetMousePressed
+        resetAll();
+    }//GEN-LAST:event_btn_resetMousePressed
+
+    private void btn_saveMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_saveMousePressed
+        boolean error = false;
+        
+        if(txt_lec_rank.getText().contentEquals("")){
+            JOptionPane.showMessageDialog(AddLecturer.this, "Rank cannot be empty!", "Data missing", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+        if(txt_lec_name.getText().contentEquals("")){
+            JOptionPane.showMessageDialog(AddLecturer.this, "Name cannot be empty!", "Data missing", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+        if(cmb_lec_faculty.getSelectedIndex()== 0){
+            JOptionPane.showMessageDialog(AddLecturer.this, "Select faculty", "Data missing", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+        
+        if(!error){
+            Lecturer lec = new Lecturer();
+            
+            lec.setName(txt_lec_name.getText());
+            lec.setLec_id(txt_lec_id.getText());
+            lec.setFaculty(cmb_lec_faculty.getSelectedItem().toString());
+            lec.setDepartment(cmb_lec_dept.getSelectedItem().toString());
+            lec.setCenter(cmb_lec_center.getSelectedItem().toString());
+            lec.setBuilding(cmb_lec_building.getSelectedItem().toString());
+            lec.setLevel(cmb_lec_level.getSelectedItem().toString());
+            lec.setRank(txt_lec_rank.getText());
+            
+            try { 
+                Connection connection = DBconnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_LECTURER));
+                
+                statement.setString(1, lec.getName());
+                statement.setString(2, lec.getLec_id());
+                statement.setString(3, lec.getFaculty());
+                statement.setString(4, lec.getDepartment());
+                statement.setString(5, lec.getCenter());
+                statement.setString(6, lec.getBuilding());
+                statement.setString(7, lec.getLevel());
+                statement.setString(8, lec.getRank());
+                
+                statement.execute();
+                
+                JOptionPane.showMessageDialog(AddLecturer.this, "Lecturer Added", "Lecturer Added", JOptionPane.DEFAULT_OPTION);
+                resetAll();
+            } catch (SQLException | ClassNotFoundException | IOException | 
+                    ParserConfigurationException | SAXException ex) {
+                Logger.getLogger(AddLecturer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btn_saveMousePressed
+
+    private void resetAll(){
+        txt_lec_name.setText("");
+        txt_lec_id.setText("");
+        txt_lec_rank.setText("");
+        cmb_lec_building.setSelectedIndex(0);
+        cmb_lec_center.setSelectedIndex(0);
+        cmb_lec_dept.setSelectedIndex(0);
+        cmb_lec_faculty.setSelectedIndex(0);
+        cmb_lec_level.setSelectedIndex(0);
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_reset;
@@ -419,6 +500,7 @@ public class AddLecturer extends javax.swing.JPanel {
     private javax.swing.JTextField txt_lec_rank;
     // End of variables declaration//GEN-END:variables
 }
+
 class ChkCount extends PlainDocument{
     
     int limit;

@@ -220,5 +220,11 @@
             SELECT name FROM center
         ]]>
     </query>
+    
+    <query id="insert_lecturer">
+        <![CDATA[
+            INSERT INTO lecturer (name,emp_id,faculty,department,center,building,level,rank)VALUES(?,?,?,?,?,?,?,?)
+        ]]>
+    </query>
 
 </Querys>

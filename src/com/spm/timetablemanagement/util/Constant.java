@@ -49,6 +49,7 @@ public class Constant {
     public static final String GET_LEVEL = "get_level";
     public static final String GET_CENTER = "get_center";
     
+    public static final String INSERT_LECTURER = "insert_lecturer";
     
     public static final String QUERY = "query";
     public static final String QUERY_ID = "id";
