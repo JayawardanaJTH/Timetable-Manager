@@ -23,6 +23,9 @@ import javax.swing.table.TableModel;
 public class enterDp extends javax.swing.JPanel {
 
     private Connection connection;
+    private int dpId;
+    PreparedStatement pstDp;
+    ResultSet rs;
     /**
      * Creates new form enterDp
      */
@@ -246,6 +249,7 @@ public class enterDp extends javax.swing.JPanel {
         {
             JOptionPane.showMessageDialog(null, e);
         }
+
     }//GEN-LAST:event_btn_addDpActionPerformed
 
     private void tbl_DpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DpMouseClicked
@@ -286,7 +290,9 @@ public class enterDp extends javax.swing.JPanel {
 
     private void btn_deleteDpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteDpActionPerformed
         // TODO add your handling code here:
+        
         String id = txt_id.getText();
+        int whileWorking = 0;
 
         try
         {
@@ -298,12 +304,47 @@ public class enterDp extends javax.swing.JPanel {
             }
             else{
                 txt_error.setText("");
+             
+            
+            String getDpQuery = "select gId from generated_group_id WHERE dpId = '"+id+"'";
+            pstDp = connection.prepareStatement(getDpQuery);
+            rs = pstDp.executeQuery();
+            while(rs.next())
+            {    
+
+                    int x = JOptionPane.showConfirmDialog(this,"You have this related data,is it ok?", "Confirm", JOptionPane.YES_NO_OPTION);
+                    if (x == 0){
+                        ResultSet rs = smt.executeQuery("select id from generated_group_id where dpId = "+id);
+                        String id_G="";
+                        while(rs.next()){
+                            id_G = rs.getString(1);
+                            System.out.println(id_G);
+                        }
+                        smt.execute("DELETE FROM generated_sub_group_id WHERE gId = '"+id_G+"'");
+                        smt.execute("DELETE FROM generated_group_id WHERE dpId = "+id); 
+                        smt.execute("DELETE FROM degree_program WHERE id = "+id);
+                        smt.execute("DELETE FROM all_details WHERE dp = '"+txt_dp.getText().toString()+"'");
+                        
+                        JOptionPane.showMessageDialog(this, "Record Deleted!");
+
+                        
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Delete Canceled!");
+                        
+                    }
+                    whileWorking++;
                 
-            smt.execute("DELETE FROM degree_program WHERE id = "+id); 
+            }
+            if(whileWorking == 0){
+                smt.execute("DELETE FROM degree_program WHERE id = "+id);
+                JOptionPane.showMessageDialog(this, "Record Deleted!");
+
+            }
             model.setRowCount(0);
             showDPList();
             txt_dp.setText("");
-            JOptionPane.showMessageDialog(this, "Record Deleted!");
+
             }
         }
         catch(Exception e)

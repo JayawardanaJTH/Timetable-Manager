@@ -432,8 +432,9 @@ public class groupId_generate extends javax.swing.JPanel {
             
             pst2.setString(1, select_yNs.getSelectedItem().toString());
             pst2.setString(2, select_dp.getSelectedItem().toString());
-            pst2.setString(3, generateID);
-            pst2.setString(4, "-");
+            pst2.setString(3, select_gn.getSelectedItem().toString());
+            pst2.setString(4, generateID);
+            pst2.setString(5, "-");
             
             pst.executeUpdate();
             pst2.executeUpdate();

@@ -307,7 +307,7 @@ public class enterYnS extends javax.swing.JPanel {
                             id_G = rs.getString(1);
                             System.out.println(id_G);
                         }
-                        smt.execute("DELETE FROM generated_sub_group_id WHERE gId ="+Integer.parseInt(id_G));
+                        smt.execute("DELETE FROM generated_sub_group_id WHERE gId = '"+id_G+"'");
                         smt.execute("DELETE FROM generated_group_id WHERE yNsId = "+id); 
                         smt.execute("DELETE FROM academic_year_and_semester WHERE id = "+id);
                         smt.execute("DELETE FROM all_details WHERE yNs = '"+txt_YnS.getText().toString()+"'");

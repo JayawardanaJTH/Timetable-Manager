@@ -329,7 +329,8 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             
             String generateSID = (select_gId.getSelectedItem().toString()+"."+select_sGno.getSelectedItem().toString());
             statement.setString(1, generateSID);
-            statement.setString(2, gId_id.getText());
+            statement.setString(2, select_sGno.getSelectedItem().toString());
+            statement.setString(3, gId_id.getText());
             statement.executeUpdate();
             model.setRowCount(0);
             statement.close();
@@ -373,28 +374,28 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
                 ResultSet rs4  = smt.executeQuery(q4);
                 while (rs4.next()){
                     dp = rs4.getString("dp");
+                }  
+                
+                String q5 = "select gnoId from generated_group_id where gId='"+selectedGid+"'";
+                String rs_q5="";
+                
+                ResultSet rs5  = smt.executeQuery(q5);
+                while (rs5.next()){
+                    rs_q5 = rs5.getString("gnoId");
                 }
-                
-//                String q5 = "select gnoId from generated_group_id where gId='"+selectedGid+"'";
-//                String rs_q5="";
-//                
-//                ResultSet rs5  = smt.executeQuery(q5);
-//                while (rs5.next()){
-//                    rs_q5 = rs5.getString("gnoId");
-//                }
-//                String q6 = "select gNo from group_number where id ='"+rs_q5+"'";
-//                String gId="";
-//                ResultSet rs6  = smt.executeQuery(q6);
-//                while (rs6.next()){
-//                    gId = rs6.getString("gNo");
-//                }
-                
+                String q6 = "select gNo from group_number where id ='"+rs_q5+"'";
+                String gNo="";
+                ResultSet rs6  = smt.executeQuery(q6);
+                while (rs6.next()){
+                    gNo = rs6.getString("gNo");
+                }
                 
             statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_ALL_DETAILS_TABLE));
             statement.setString(1, yNs);
             statement.setString(2, dp);
-            statement.setString(3, selectedGid);
-            statement.setString(4, generateSID);
+            statement.setString(3, gNo);
+            statement.setString(4, selectedGid);
+            statement.setString(5, generateSID);
             statement.executeUpdate();
             model.setRowCount(0);
             statement.close();

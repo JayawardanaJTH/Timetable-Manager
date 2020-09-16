@@ -10,6 +10,7 @@ import com.spm.timetablemanagement.form.lecturer.AddLecturer;
 
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
+import allocateTime_modifySessions.addGroup;
 import allocateTime_modifySessions.addParallelSessions;
 import com.spm.timetablemanagement.form.student_details.addDetails_Home;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
@@ -200,7 +201,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                panelBody.removeAll();
-               panelBody.add(new addDetails_allocationTime_Home());
+               panelBody.add(new addGroup());
                panelBody.repaint();
                panelBody.revalidate();
             }

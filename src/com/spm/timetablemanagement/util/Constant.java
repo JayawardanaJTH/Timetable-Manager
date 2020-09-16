@@ -36,6 +36,9 @@ public class Constant {
     
     public static final String CREATE_ALL_DETAILS_TABLE ="create_all_details_table";
     public static final String INSERT_ALL_DETAILS_TABLE = "Insert_all_details";
+    
+    public static final String CREATE_SP2_GROUP_WISE_TABLE ="create_sp2_group_wise_table";
+    public static final String INSERT_SP2_GROUP_WISE_TABLE = "Insert_sp2_group_wise";
 
     public static final String CREATE_WORKING_HOUR_TABLE = "create_workingdays_and_hours_table";
     public static final String INSERT_WORKING_HOUR_TABLE = "Insert_workingdays_and_hours";

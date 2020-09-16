@@ -24,6 +24,9 @@ import javax.swing.table.TableModel;
 public class enterSubGNo extends javax.swing.JPanel {
 
     Connection connection;
+    private int sGnoId;
+    PreparedStatement pstSgno;
+    ResultSet rs;
     /**
      * Creates new form enterSubGNo
      */
@@ -258,6 +261,31 @@ public class enterSubGNo extends javax.swing.JPanel {
         // TODO add your handling code here:
         String id = txt_id.getText();
 
+//        try
+//        {
+//            DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
+//            Statement smt = connection.createStatement();
+//            
+//            if(txt_sGno.getText().equals("")){
+//                txt_error.setText("Select Sub-Group Number*");
+//            }
+//            else{
+//                txt_error.setText("");
+//                
+//            smt.execute("DELETE FROM sub_group_number WHERE id = "+id); 
+//            model.setRowCount(0);
+//            showGNList();
+//            txt_sGno.setText("");
+//            JOptionPane.showMessageDialog(this, "Record Deleted!");
+//            }
+//        }
+//        catch(Exception e)
+//        {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+
+        int whileWorking = 0;
+
         try
         {
             DefaultTableModel model = (DefaultTableModel)tbl_Sgn.getModel();
@@ -268,12 +296,54 @@ public class enterSubGNo extends javax.swing.JPanel {
             }
             else{
                 txt_error.setText("");
+             
+            
+            String getDpQuery = "select gId from generated_sub_group_id WHERE sGno = '"+id+"'";
+            pstSgno = connection.prepareStatement(getDpQuery);
+            rs = pstSgno.executeQuery();
+            while(rs.next())
+            {    
+
+                    int x = JOptionPane.showConfirmDialog(this,"You have this related data,is it ok?", "Confirm", JOptionPane.YES_NO_OPTION);
+                    if (x == 0){
+                        ResultSet rs = smt.executeQuery("select id from generated_sub_group_id where sGno = "+id);
+                        String id_G="";
+                        while(rs.next()){
+                            id_G = rs.getString(1);
+                            System.out.println(id_G);
+                        }
+                        smt.execute("DELETE FROM generated_sub_group_id WHERE id = '"+id_G+"'");
+//                        smt.execute("DELETE FROM generated_group_id WHERE dpId = "+id); 
+                        smt.execute("DELETE FROM sub_group_number WHERE sGno = "+id);
+
+                        ResultSet rs2 = smt.executeQuery("select sGid from generated_sub_group_id where sGno = "+id);
+                        String id_SG="";
+                        while(rs2.next()){
+                            id_SG = rs2.getString("sGid");
+                            System.out.println(id_SG);
+                        }
+                        smt.execute("DELETE FROM all_details WHERE sGid = '"+id_SG+"'");
+                        
+                        JOptionPane.showMessageDialog(this, "Record Deleted!");
+
+                        
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Delete Canceled!");
+                        
+                    }
+                    whileWorking++;
                 
-            smt.execute("DELETE FROM sub_group_number WHERE id = "+id); 
+            }
+            if(whileWorking == 0){
+                smt.execute("DELETE FROM sub_group_number WHERE id = "+id);
+                JOptionPane.showMessageDialog(this, "Record Deleted!");
+
+            }
             model.setRowCount(0);
             showGNList();
             txt_sGno.setText("");
-            JOptionPane.showMessageDialog(this, "Record Deleted!");
+
             }
         }
         catch(Exception e)

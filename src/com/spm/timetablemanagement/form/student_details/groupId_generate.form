@@ -146,7 +146,6 @@
                                   <Component id="select_dp" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                   <Component id="dp_id" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
