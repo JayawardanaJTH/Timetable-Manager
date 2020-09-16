@@ -33,7 +33,7 @@ public class view_All_Details extends javax.swing.JPanel {
         ArrayList<AllDetails> list = new ArrayList<AllDetails>();
         try{
         connection = DBconnection.getConnection();
-        String querry = "select * from all_details";
+        String querry = "select * from all_details group by yNs, sGid";
         Statement st;
         ResultSet rs;
         

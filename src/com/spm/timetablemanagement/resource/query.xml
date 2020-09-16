@@ -9,7 +9,7 @@
     </query>
     
             
-    <query id="create_year_and_semester_table">
+     <query id="create_year_and_semester_table">
         <![CDATA[
             create table academic_year_and_semester(
                 id int AUTO_INCREMENT,
@@ -49,20 +49,8 @@
             create table group_number(
                 id int AUTO_INCREMENT,
                 gNo int,
-        ]]>
-    </query>
-  
-    <query id="create_workingdays_and_hours_table">
-        <![CDATA[
-            CREATE TABLE work_day_hour(
-                id int,
-                days_no int,
-                days VARCHAR(100),
-                hour int,
-                mins int,
-                slot_type int,
                 
-                CONSTRAINT pk1 PRIMARY KEY (id)
+                Constraint pk1 PRIMARY KEY (id)
             )
         ]]>
     </query>
@@ -86,7 +74,7 @@
     
     <query id="Insert_generated_group_id">
         <![CDATA[
-            INSERT INTO generated_group_id (gId) VALUES (?)
+            INSERT INTO generated_group_id (gId,yNsId, dpId, gnoId) VALUES (?,?,?,?)
         ]]>
     </query>
     
@@ -121,7 +109,7 @@
     
     <query id="Insert_generated_sub_group_id">
         <![CDATA[
-            INSERT INTO generated_sub_group_id (sGid) VALUES (?)
+            INSERT INTO generated_sub_group_id (sGid, gId) VALUES (?,?)
         ]]>
     </query>
     

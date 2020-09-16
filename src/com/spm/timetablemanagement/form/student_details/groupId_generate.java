@@ -24,7 +24,7 @@ import javax.swing.table.TableModel;
 public class groupId_generate extends javax.swing.JPanel {
     
     Connection connection;
-    PreparedStatement pst, pst2;
+    PreparedStatement pstYns, pstDp, pstGno, pst, pst2;
     ResultSet rs;
     /**
      * Creates new form groupId_generate
@@ -37,6 +37,9 @@ public class groupId_generate extends javax.swing.JPanel {
         showGeneratedIdList();
         txt_id.setVisible(false);
         gid.setVisible(false);
+        yns_id.setVisible(false);
+        dp_id.setVisible(false);
+        gno_id.setVisible(false);
     }
 
     /**
@@ -66,6 +69,9 @@ public class groupId_generate extends javax.swing.JPanel {
         gid = new javax.swing.JTextField();
         txt_error = new javax.swing.JLabel();
         select_gn = new javax.swing.JComboBox<>();
+        yns_id = new javax.swing.JTextField();
+        dp_id = new javax.swing.JTextField();
+        gno_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_gId = new javax.swing.JTable();
 
@@ -229,6 +235,24 @@ public class groupId_generate extends javax.swing.JPanel {
             }
         });
 
+        yns_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yns_idActionPerformed(evt);
+            }
+        });
+
+        dp_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dp_idActionPerformed(evt);
+            }
+        });
+
+        gno_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gno_idActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -241,10 +265,19 @@ public class groupId_generate extends javax.swing.JPanel {
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(select_gn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(select_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(select_yNs, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(select_gn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(gno_id, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(select_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dp_id, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(select_yNs, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(yns_id, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,22 +298,29 @@ public class groupId_generate extends javax.swing.JPanel {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(select_yNs, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(select_yNs, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(yns_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(select_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(select_dp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dp_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(select_gn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(select_gn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gno_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -343,9 +383,9 @@ public class groupId_generate extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         try{
-            
             DefaultTableModel model = (DefaultTableModel)tbl_gId.getModel();
             connection = DBconnection.getConnection();
+            
 
             if(select_yNs.getSelectedItem().equals("Select")&&select_dp.getSelectedItem().equals("Select")&&select_gn.getSelectedItem().equals("Select")){
                 txt_error.setText("Select Items*");
@@ -354,6 +394,31 @@ public class groupId_generate extends javax.swing.JPanel {
                 txt_error.setText("");
                 
             model.addRow(new Object[]{select_yNs.getSelectedItem().toString()+"."+select_dp.getSelectedItem().toString()+"."+select_gn.getSelectedItem().toString()});
+            
+            String getYnsQuery = "select id from academic_year_and_semester where yNs = '"+select_yNs.getSelectedItem().toString()+"'";
+            String getDpQuery = "select id from degree_program where dp = '"+select_dp.getSelectedItem().toString()+"'";
+            String getGnoQuery = "select id from group_number where gNo = '"+select_gn.getSelectedItem().toString()+"'";
+            
+            pstYns = connection.prepareStatement(getYnsQuery);
+            rs = pstYns.executeQuery();
+            while(rs.next())
+            {        
+                yns_id.setText(rs.getString("id"));
+            }
+            
+            pstDp = connection.prepareStatement(getDpQuery);
+            rs = pstDp.executeQuery();
+            while(rs.next())
+            {        
+                dp_id.setText(rs.getString("id"));
+            }
+            pstGno = connection.prepareStatement(getGnoQuery);
+            rs = pstGno.executeQuery();
+            while(rs.next())
+            {        
+                gno_id.setText(rs.getString("id"));
+            }
+            
             pst = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_GROUP_ID_TABLE));
             
             pst2 = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_ALL_DETAILS_TABLE));
@@ -361,6 +426,9 @@ public class groupId_generate extends javax.swing.JPanel {
             String generateID = (select_yNs.getSelectedItem().toString()+"."+select_dp.getSelectedItem().toString()+"."+select_gn.getSelectedItem().toString());
             
             pst.setString(1, generateID);
+            pst.setString(2, yns_id.getText());
+            pst.setString(3, dp_id.getText());
+            pst.setString(4, gno_id.getText());
             
             pst2.setString(1, select_yNs.getSelectedItem().toString());
             pst2.setString(2, select_dp.getSelectedItem().toString());
@@ -486,6 +554,18 @@ public class groupId_generate extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_gidActionPerformed
 
+    private void yns_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yns_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yns_idActionPerformed
+
+    private void dp_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dp_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dp_idActionPerformed
+
+    private void gno_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gno_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gno_idActionPerformed
+
     public  void yNsSelection(){
         try{  
         connection = DBconnection.getConnection();
@@ -587,7 +667,9 @@ public class groupId_generate extends javax.swing.JPanel {
     private javax.swing.JButton btn_deleteGid;
     private javax.swing.JButton btn_editGid;
     private javax.swing.JButton btn_generate_gId;
+    private javax.swing.JTextField dp_id;
     private javax.swing.JTextField gid;
+    private javax.swing.JTextField gno_id;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -604,5 +686,6 @@ public class groupId_generate extends javax.swing.JPanel {
     private javax.swing.JTable tbl_gId;
     private javax.swing.JLabel txt_error;
     private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField yns_id;
     // End of variables declaration//GEN-END:variables
 }
