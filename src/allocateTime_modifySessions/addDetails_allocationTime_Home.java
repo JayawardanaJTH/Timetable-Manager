@@ -5,16 +5,24 @@
  */
 package allocateTime_modifySessions;
 
-import com.spm.timetablemanagement.form.student_details.enterSubGNo;
+import com.spm.timetablemanagement.form.student_details.*;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import com.spm.timetablemanagement.main.MainFrame;
+import com.spm.timetablemanagement.menu.MenuItem;
+
+
 
 /**
  *
  * @author hvdil
  */
 public class addDetails_allocationTime_Home extends javax.swing.JPanel {
-
+     
+    
     /**
-     * Creates new form addDetails_allocationTime
+     * Creates new form addDetails_Home
      */
     public addDetails_allocationTime_Home() {
         initComponents();
@@ -29,6 +37,7 @@ public class addDetails_allocationTime_Home extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btn_home_lw = new javax.swing.JButton();
@@ -46,7 +55,6 @@ public class addDetails_allocationTime_Home extends javax.swing.JPanel {
         btn_home_lw.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_home_lw.setForeground(new java.awt.Color(51, 51, 51));
         btn_home_lw.setText("Lecturer Wise");
-        btn_home_lw.setActionCommand("Lecturer Wise");
         btn_home_lw.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_home_lw.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -114,9 +122,9 @@ public class addDetails_allocationTime_Home extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btn_home_lw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_home_lw, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                     .addComponent(btn_home_gw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_home_sgw, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addComponent(btn_home_sgw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home_sw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(92, 92, 92))
         );
@@ -128,87 +136,92 @@ public class addDetails_allocationTime_Home extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_home_gw, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_home_sgw, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(btn_home_sgw, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_home_sw, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                .addComponent(btn_home_sw, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                 .addGap(68, 68, 68))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void btn_home_lwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_home_lwActionPerformed
+        // TODO add your handling code here:
+               
+    }//GEN-LAST:event_btn_home_lwActionPerformed
+        
+    private void btn_home_gwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_home_gwActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btn_home_gwActionPerformed
+
+    private void btn_home_swActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_home_swActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_home_swActionPerformed
 
     private void btn_home_lwMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_home_lwMousePressed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         jPanel3.removeAll();
         jPanel2.add(new lecturers_time());
         jPanel2.repaint();
         jPanel2.revalidate();
     }//GEN-LAST:event_btn_home_lwMousePressed
 
-    private void btn_home_lwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_home_lwActionPerformed
+    private void btn_home_sgwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_home_sgwActionPerformed
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_btn_home_lwActionPerformed
+    }//GEN-LAST:event_btn_home_sgwActionPerformed
 
     private void btn_home_gwMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_home_gwMousePressed
         // TODO add your handling code here:
-        jPanel3.removeAll();
+        jPanel3.removeAll();      
         jPanel2.add(new addGroup());
         jPanel2.repaint();
         jPanel2.revalidate();
     }//GEN-LAST:event_btn_home_gwMousePressed
 
-    private void btn_home_gwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_home_gwActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btn_home_gwActionPerformed
-
     private void btn_home_sgwMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_home_sgwMousePressed
         // TODO add your handling code here:
-        jPanel3.removeAll();
+        jPanel3.removeAll();      
         jPanel2.add(new addSubGroup());
         jPanel2.repaint();
         jPanel2.revalidate();
     }//GEN-LAST:event_btn_home_sgwMousePressed
 
-    private void btn_home_sgwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_home_sgwActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_home_sgwActionPerformed
-
     private void btn_home_swMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_home_swMousePressed
         // TODO add your handling code here:
-        jPanel3.removeAll();
+        jPanel3.removeAll();      
         jPanel2.add(new setSessions());
         jPanel2.repaint();
         jPanel2.revalidate();
     }//GEN-LAST:event_btn_home_swMousePressed
-
-    private void btn_home_swActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_home_swActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_home_swActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -216,7 +229,9 @@ public class addDetails_allocationTime_Home extends javax.swing.JPanel {
     private javax.swing.JButton btn_home_lw;
     private javax.swing.JButton btn_home_sgw;
     private javax.swing.JButton btn_home_sw;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
+
