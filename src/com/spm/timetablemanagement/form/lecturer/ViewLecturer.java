@@ -9,7 +9,6 @@ import com.spm.timetablemanagement.models.Lecturer;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,10 +18,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.xml.parsers.ParserConfigurationException;
@@ -329,7 +326,6 @@ public class ViewLecturer extends javax.swing.JPanel {
                 data[6] = resultSet.getString("rank");
                 data[7] = "Edit";
                 data[8] = "Delete"; 
-           
                
                 mod.addRow(data);
             }
@@ -348,6 +344,4 @@ public class ViewLecturer extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     protected javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-    private javax.swing.JButton delete;
-    private javax.swing.JButton edit;
 }
