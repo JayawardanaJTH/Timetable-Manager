@@ -188,5 +188,40 @@
             WHERE id = ?
         ]]>
     </query>
+    
+    <query id="create_room_table">
+        <![CDATA[
+            create table room(
+                id int ,
+                type String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_room">
+        <![CDATA[
+            INSERT INTO room VALUES (?,?)
+        ]]>
+    </query>
+    
+    
+    <query id="create_building_table">
+        <![CDATA[
+            create table building(
+                id int ,
+                name String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_building">
+        <![CDATA[
+            INSERT INTO building VALUES (?,?)
+        ]]>
+    </query>
 
 </Querys>

@@ -22,7 +22,7 @@ import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
 
 //import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
-import com.spm.timetablemanagement.location.InsertLocation; 
+import com.spm.timetablemanagement.location.InsertBuilding; 
 import com.spm.timetablemanagement.form.room.InsertRoom;
 
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWE;
@@ -159,7 +159,8 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s1Location = new MenuItem(iconSubmenu, "Add Building Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               panelBody.add(new InsertLocation());
+               panelBody.removeAll();
+               panelBody.add(new InsertBuilding());
                panelBody.repaint();
                panelBody.revalidate();
             }
@@ -167,6 +168,7 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s2Location = new MenuItem(iconSubmenu, "Add Room Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
                panelBody.add(new InsertRoom());
                panelBody.repaint();
                panelBody.revalidate();

@@ -34,6 +34,12 @@ public class Constant {
     public static final String CREATE_TAG_TABLE ="create_tag_table";
     public static final String INSERT_TAG_TABLE = "Insert_tag";
     
+    public static final String CREATE_ROOM_TABLE ="create_room_table";
+    public static final String INSERT_ROOM_TABLE = "Insert_room";
+    
+    public static final String CREATE_BUILDING_TABLE ="create_building_table";
+    public static final String INSERT_BUILDING_TABLE = "Insert_building";
+    
     public static final String CREATE_ALL_DETAILS_TABLE ="create_all_details_table";
     public static final String INSERT_ALL_DETAILS_TABLE = "Insert_all_details";
 
