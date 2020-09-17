@@ -50,6 +50,9 @@ public class Constant {
     public static final String GET_CENTER = "get_center";
     
     public static final String INSERT_LECTURER = "insert_lecturer";
+    public static final String GET_LECTURER = "get_lecturer";
+    public static final String DELETE_LECTURER = "delete_lecturer";
+    public static final String UPDATE_LECTURER = "update_lecturer";
     
     public static final String QUERY = "query";
     public static final String QUERY_ID = "id";

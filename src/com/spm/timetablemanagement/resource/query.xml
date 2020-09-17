@@ -226,5 +226,34 @@
             INSERT INTO lecturer (name,emp_id,faculty,department,center,building,level,rank)VALUES(?,?,?,?,?,?,?,?)
         ]]>
     </query>
+    
+    <query id="get_lecturer">
+        <![CDATA[
+            SELECT * FROM lecturer
+        ]]>
+    </query>
+    
+    <query id="delete_lecturer">
+        <![CDATA[
+            DELETE FROM lecturer
+            WHERE id = ?
+        ]]>
+    </query>
+    
+    <query id="update_lecturer">
+        <![CDATA[
+            UPDATE lecturer as l
+                set l.name = ?,
+                l.emp_id = ?,
+                l.faculty = ?,
+                l.department = ?,
+                l.center = ?,
+                l.building = ?,
+                l.level = ?,
+                l.rank = ?
+            
+            where l.id = ?
+       ]]>
+    </query>
 
 </Querys>
