@@ -11,6 +11,7 @@ import com.spm.timetablemanagement.models.Room;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -60,6 +61,7 @@ public class stats extends javax.swing.JPanel {
         while (rs.next()) {
             int result1 = rs.getInt(1);
             String res = Integer.toString(result1);
+            
             lect.setText(res);
         }
         
@@ -70,6 +72,7 @@ public class stats extends javax.swing.JPanel {
         while (rs1.next()) {
             int result2 = rs1.getInt(1);
             String res1 = Integer.toString(result2);
+           
             stu.setText(res1);
         }
         
@@ -80,6 +83,7 @@ public class stats extends javax.swing.JPanel {
         while (rs2.next()) {
             int result3 = rs2.getInt(1);
             String res2 = Integer.toString(result3);
+            
             sub.setText(res2);
         }
         
@@ -105,20 +109,24 @@ public class stats extends javax.swing.JPanel {
         stu = new javax.swing.JLabel();
         sub = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Lecturers");
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel4.setText("Students");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel5.setText("Subjects");
 
-        lect.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lect.setFont(new java.awt.Font("Courier New", 1, 48)); // NOI18N
+        lect.setForeground(new java.awt.Color(58, 149, 167));
 
-        stu.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        stu.setFont(new java.awt.Font("Courier New", 1, 48)); // NOI18N
+        stu.setForeground(new java.awt.Color(58, 149, 167));
 
-        sub.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        sub.setBackground(new java.awt.Color(58, 149, 167));
+        sub.setFont(new java.awt.Font("Courier New", 1, 48)); // NOI18N
+        sub.setForeground(new java.awt.Color(58, 149, 167));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,18 +134,18 @@ public class stats extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(lect, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(227, 227, 227)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(stu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(stu, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(229, 229, 229)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +160,7 @@ public class stats extends javax.swing.JPanel {
                     .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lect, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stu, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(573, Short.MAX_VALUE))
+                .addContainerGap(550, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

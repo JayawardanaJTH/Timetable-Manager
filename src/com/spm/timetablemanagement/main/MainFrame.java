@@ -11,6 +11,7 @@ import com.spm.timetablemanagement.form.lecturer.AddLecturer;
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
 import allocateTime_modifySessions.addParallelSessions;
+import com.spm.timetablemanagement.allocateroom.allocateRoom;
 import com.spm.timetablemanagement.form.student_details.addDetails_Home;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
 import com.spm.timetablemanagement.form.student_details.sub_GroupId_generate;
@@ -207,7 +208,19 @@ public class MainFrame extends javax.swing.JFrame {
         });
         
         //Allocate Room submenu items Allocate Room
-        MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms", null);
+        MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    panelBody.removeAll();
+                    panelBody.add(new allocateRoom());
+                    panelBody.repaint();
+                    panelBody.revalidate();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         //Handle Session submenu items
         MenuItem s1HandleSession = new MenuItem(iconSubmenu, "Create Sessions", null);
