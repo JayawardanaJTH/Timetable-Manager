@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/com/spm/timetablemanagement/form/student_details/groupId_generate.java</file>
-            <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/com/spm/timetablemanagement/form/student_details/enterDp.java</file>
-            <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/com/spm/timetablemanagement/form/student_details/enterSubGNo.java</file>
-            <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/com/spm/timetablemanagement/main/MainFrame.java</file>
+            <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/addSubGroup.java</file>
+            <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/com/spm/timetablemanagement/form/student_details/addDetails_Home.java</file>
+            <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/lecturers_time.java</file>
+            <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/addDetails_allocationTime_Home.java</file>
             <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/com/spm/timetablemanagement/resource/query.xml</file>
+            <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/setSessions.java</file>
             <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/addGroup.java</file>
         </group>
     </open-files>
