@@ -32,6 +32,11 @@ import com.spm.timetablemanagement.form.working_hours.ViewWorkingDayHours;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.spm.timetablemanagement.form.tag_details.enterTag;
+import com.spm.timetablemanagement.statistics.stats;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Tiran Harsha
@@ -187,7 +192,19 @@ public class MainFrame extends javax.swing.JFrame {
         });
         
         //Statistics submenu items Allocate Room
-        MenuItem s1Statistics = new MenuItem(iconSubmenu, "View Statistics Details", null);
+        MenuItem s1Statistics = new MenuItem(iconSubmenu, "View Statistics Details",  new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    panelBody.removeAll();
+                    panelBody.add(new stats());
+                    panelBody.repaint();
+                    panelBody.revalidate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         //Allocate Room submenu items Allocate Room
         MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms", null);
