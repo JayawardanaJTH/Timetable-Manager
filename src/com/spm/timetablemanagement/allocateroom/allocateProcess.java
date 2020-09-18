@@ -35,10 +35,36 @@ public void addRoom (String id, String type) throws SQLException{
         }
         
     }
-    public void deleteRoom (String id) throws SQLException{
-        String sql = "DELETE FROM roomsForATag WHERE tag = '"+id+"'";
+    public void deleteRoom (String id,String type) throws SQLException{
+        String sql = "DELETE FROM roomsForATag WHERE tag = '"+id+"' AND room = '"+type+"'" ;
         st.executeUpdate(sql);
     }
-   
+    
+//-------------------------------------------------------------------------------------------------------------    
+    
+    
+   public void addsubRoom (String id, String type,String sub) throws SQLException{
+        String sql = "INSERT INTO roomssubtags VALUES('"+id+"','"+type+"','"+sub+"')";
+        st.executeUpdate(sql);
+    }
+    
+    public void getsubRoom(DefaultTableModel dtm) throws SQLException{
+        String sql = "SELECT * FROM roomssubtags";
+        
+        rs = st.executeQuery(sql);
+        Object[] data = new Object[3];
+        
+        while (rs.next()){
+            data[0] = rs.getString("tag");
+            data[1] = rs.getString("room");
+            data[2] = rs.getString("subject");
+            dtm.addRow(data);
+        }
+        
+    }
+    public void deletesubRoom (String id,String type,String sub) throws SQLException{
+        String sql = "DELETE FROM roomssubtags WHERE tag = '"+id+"' AND room = '"+type+"' AND subject = '"+sub+"'" ;
+        st.executeUpdate(sql);
+    }
     
 }

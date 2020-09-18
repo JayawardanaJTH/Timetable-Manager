@@ -32,6 +32,7 @@ public class allocateRoom extends javax.swing.JPanel {
 
     private String ID;
     private String Type;
+    private String Sub;
     allocateProcess rp;
     private DefaultTableModel dtm;
     
@@ -43,6 +44,7 @@ public class allocateRoom extends javax.swing.JPanel {
         initComponents();
         rp = new allocateProcess();
         getRoom();
+        getsubRoom();
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -54,7 +56,7 @@ public class allocateRoom extends javax.swing.JPanel {
             while(rs.next())
             {
                 tag.addItem(rs.getString("Tag"));
-                
+                t1.addItem(rs.getString("Tag"));
             }
                     
         
@@ -74,6 +76,28 @@ public class allocateRoom extends javax.swing.JPanel {
             while(rs.next())
             {
                 room.addItem(rs.getString("id"));
+                r1.addItem(rs.getString("id"));
+                
+            }
+                    
+        
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+//-------------------------------------------------------------------------------------------------------
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
+            Connection con = DriverManager.getConnection(databaseURL, "root", "0713025880");
+            Statement stat2 = con.createStatement();    
+            String selectQuery="select name from subject";
+            ResultSet rs=stat2.executeQuery(selectQuery);
+            while(rs.next())
+            {
+                sub1.addItem(rs.getString("name"));
+               
                 
             }
                     
@@ -105,7 +129,20 @@ public class allocateRoom extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         tag = new javax.swing.JComboBox<>();
         room = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        r1 = new javax.swing.JComboBox<>();
+        t1 = new javax.swing.JComboBox<>();
+        sub1 = new javax.swing.JComboBox<>();
+        add1 = new javax.swing.JButton();
+        delete1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Allocate Rooms for Tags");
 
         jLabel2.setText("Tag");
@@ -145,88 +182,195 @@ public class allocateRoom extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setText("Add Rooms for Subjects and Tags");
+
+        jLabel5.setText("Tag");
+
+        jLabel6.setText("Room");
+
+        jLabel7.setText("Subject");
+
+        add1.setText("Allocate");
+        add1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add1ActionPerformed(evt);
+            }
+        });
+
+        delete1.setText("Delete");
+        delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete1ActionPerformed(evt);
+            }
+        });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tag", "Room", "Subject"
+            }
+        ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(sub1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(r1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(add1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(delete1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(add))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(add)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(delete))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(delete)))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                                    .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(42, 42, 42)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel3))
                             .addComponent(room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(add)
-                            .addComponent(delete))))
-                .addContainerGap(425, Short.MAX_VALUE))
+                            .addComponent(delete))
+                        .addGap(50, 50, 50)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(r1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(sub1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(add1)
+                            .addComponent(delete1)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-addRoom();
+        addRoom();
         getRoom();
        
     }//GEN-LAST:event_addActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-deleteRoom();
+        deleteRoom();
         getRoom();
          
     }//GEN-LAST:event_deleteActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-  
+        tableClicked();
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
+        addsubRoom();
+        getsubRoom();
+    }//GEN-LAST:event_add1ActionPerformed
+
+    private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
+        deletesubRoom();
+        getsubRoom();
+    }//GEN-LAST:event_delete1ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        tableClicked1();
+    }//GEN-LAST:event_jTable2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
+    private javax.swing.JButton add1;
     private javax.swing.JButton delete;
+    private javax.swing.JButton delete1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JComboBox<String> r1;
     private javax.swing.JComboBox<String> room;
+    private javax.swing.JComboBox<String> sub1;
+    private javax.swing.JComboBox<String> t1;
     private javax.swing.JComboBox<String> tag;
     private javax.swing.JLabel txt_error;
     // End of variables declaration//GEN-END:variables
@@ -245,7 +389,7 @@ deleteRoom();
                 rp.addRoom(ID, Type);
                 JOptionPane.showMessageDialog(this, "Successfully Added");
             } catch (SQLException ex) {
-                Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(allocateRoom.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Error");
             }
         }
@@ -255,17 +399,20 @@ deleteRoom();
     public void deleteRoom(){
         String STag = tag.getSelectedItem().toString();
         String SRoom = room.getSelectedItem().toString();
+        
         if(STag.isEmpty()){
             JOptionPane.showMessageDialog(this, "Error!");
         }else{
                 
             try {
                 ID = STag;
-                rp.deleteRoom(ID);
+                Type = SRoom;
+                
+                rp.deleteRoom(ID,Type);
                 JOptionPane.showMessageDialog(this, "Deleted!");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Failed!");
-                Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(allocateRoom.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -278,17 +425,82 @@ deleteRoom();
             rp.getRoom(dtm);
             jTable1.setModel(dtm);
         } catch (SQLException ex) {
-            Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(allocateRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void tableClicked(){
         
-        String STag = tag.getSelectedItem().toString();
-        String SRoom = room.getSelectedItem().toString();
         
-        //id.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-       // type.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
         
+       tag.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+       room.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
     }
+    
+//--------------------------------------------------------------------------------------
+       public void addsubRoom(){
+        String STag = t1.getSelectedItem().toString();
+        String SRoom = r1.getSelectedItem().toString();
+        String SSub = sub1.getSelectedItem().toString();
+        
+        if (STag.isEmpty() || SRoom.isEmpty() || SSub.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Select details");
+        }else{
+            try {
+                ID = STag;
+                Type = SRoom;
+                Sub = SSub;
+                rp.addsubRoom(ID, Type, Sub);
+                JOptionPane.showMessageDialog(this, "Successfully Added");
+            } catch (SQLException ex) {
+                Logger.getLogger(allocateRoom.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Error");
+            }
+        }
+    }
+
+    
+    public void deletesubRoom(){
+        String STag = t1.getSelectedItem().toString();
+        String SRoom = r1.getSelectedItem().toString();
+        String SSub = sub1.getSelectedItem().toString();
+        
+        if(STag.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Error!");
+        }else{
+                
+            try {
+                ID = STag;
+                Type = SRoom;
+                Sub = SSub;
+                
+                rp.deletesubRoom(ID,Type,Sub);
+                JOptionPane.showMessageDialog(this, "Deleted!");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Failed!");
+                Logger.getLogger(allocateRoom.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    
+    public void getsubRoom(){
+        try {
+            dtm = (DefaultTableModel)jTable2.getModel();
+            dtm.setRowCount(0);
+            rp.getsubRoom(dtm);
+            jTable2.setModel(dtm);
+        } catch (SQLException ex) {
+            Logger.getLogger(allocateRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void tableClicked1(){
+
+       t1.setSelectedItem(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
+       r1.setSelectedItem(jTable2.getValueAt(jTable2.getSelectedRow(), 1).toString());
+       sub1.setSelectedItem(jTable2.getValueAt(jTable2.getSelectedRow(), 2).toString());
+       
+    }
+    
 }
