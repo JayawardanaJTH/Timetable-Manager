@@ -72,6 +72,7 @@ public class ViewLecturer extends javax.swing.JPanel {
         } catch (SQLException | ClassNotFoundException | IOException | 
                 ParserConfigurationException | SAXException ex) {
             Logger.getLogger(ViewLecturer.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error on data Load", "Data error", JOptionPane.ERROR_MESSAGE);
         }
     }
     /**

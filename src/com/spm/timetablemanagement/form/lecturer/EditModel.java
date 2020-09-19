@@ -52,6 +52,7 @@ public class EditModel extends javax.swing.JFrame {
         initComponents();
         
         txt_lec_id.setDocument(new CharecterSizeFilter(6));
+        txt_id.setVisible(false);
         execute();
     }
 
