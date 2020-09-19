@@ -337,13 +337,27 @@ public class setSessions extends javax.swing.JPanel {
             new String [] {
                 "ID", "Session", "Day", "Time Period"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_session.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_sessionMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_session);
+        if (tbl_session.getColumnModel().getColumnCount() > 0) {
+            tbl_session.getColumnModel().getColumn(0).setResizable(false);
+            tbl_session.getColumnModel().getColumn(1).setResizable(false);
+            tbl_session.getColumnModel().getColumn(2).setResizable(false);
+            tbl_session.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

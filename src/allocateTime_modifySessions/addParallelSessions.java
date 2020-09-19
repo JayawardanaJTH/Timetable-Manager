@@ -37,6 +37,7 @@ public class addParallelSessions extends javax.swing.JPanel {
         txt_psSelectionId.setVisible(false);
         txt_psSelectedId.setVisible(false);
         txt_id.setVisible(false);
+        showParallelSessionNList();
     }
 
     /**
@@ -55,6 +56,7 @@ public class addParallelSessions extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
         btn_deleteps = new javax.swing.JButton();
+        txt_error_cs = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -71,6 +73,7 @@ public class addParallelSessions extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         selection_y = new javax.swing.JComboBox<>();
         txt_psSelectedId = new javax.swing.JTextField();
+        txt_error_selection = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -114,15 +117,15 @@ public class addParallelSessions extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
 
         btn_deleteps.setBackground(new java.awt.Color(255, 255, 255));
@@ -136,48 +139,52 @@ public class addParallelSessions extends javax.swing.JPanel {
             }
         });
 
+        txt_error_cs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error_cs.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error_cs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(236, 236, 236)
-                        .addComponent(btn_deleteps, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(266, 266, 266)
+                                .addComponent(btn_deleteps, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(131, 131, 131)
+                                .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_deleteps, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 20, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 462, Short.MAX_VALUE)))
+                        .addGap(59, 59, 59))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_deleteps, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 690, 530));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 710, 560));
 
         jPanel12.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -203,8 +210,8 @@ public class addParallelSessions extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         tbl_psSelected.setModel(new javax.swing.table.DefaultTableModel(
@@ -324,22 +331,31 @@ public class addParallelSessions extends javax.swing.JPanel {
             }
         });
 
+        txt_error_selection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error_selection.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error_selection.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(selection_y, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selection_y, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(271, 271, 271)
+                        .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,17 +369,17 @@ public class addParallelSessions extends javax.swing.JPanel {
                             .addComponent(txt_psSelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(25, 25, 25))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(41, 41, 41))))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -383,12 +399,14 @@ public class addParallelSessions extends javax.swing.JPanel {
                         .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addComponent(btn_set, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addContainerGap())
         );
 
-        add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 860, 530));
+        add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 860, 560));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_psMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_psMouseClicked
@@ -408,18 +426,19 @@ public class addParallelSessions extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel)tbl_ps.getModel();
             Statement smt = connection.createStatement();
 
-            //            if(txt_tag.getText().equals("")){
-                //                txt_error.setText("Select Tag*");
-                //            }
-            //            else{
-                //                txt_error.setText("");
+            if (txt_id.getText().equals("")){
+
+                    txt_error_cs.setText("Select First*");
+                }
+                else{
+                    txt_error_cs.setText("");
 
                 smt.execute("DELETE FROM sp2_parallel_session WHERE id = "+id);
                 model.setRowCount(0);
                 showParallelSessionNList();
                 txt_id.setText("");
                 JOptionPane.showMessageDialog(this, "Deleted");
-                //            }
+            }
         }
         catch(Exception e)
         {
@@ -438,9 +457,15 @@ public class addParallelSessions extends javax.swing.JPanel {
 
     private void btn_selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selectActionPerformed
         // TODO add your handling code here:
+        if (txt_psSelectionId.getText().equals("")){
 
-        String selected_id = txt_psSelectionId.getText();
-        showSelectedSessionNList(selected_id);
+                txt_error_selection.setText("Select First*");
+            }
+            else{
+            txt_error_selection.setText("");
+            String selected_id = txt_psSelectionId.getText();
+            showSelectedSessionNList(selected_id);
+        }
     }//GEN-LAST:event_btn_selectActionPerformed
 
     private void tbl_psSelectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_psSelectionMouseClicked
@@ -452,8 +477,15 @@ public class addParallelSessions extends javax.swing.JPanel {
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
         // TODO add your handling code here:
+        if (txt_psSelectedId.getText().equals("")){
+                
+                txt_error_selection.setText("Select First*");
+            }
+            else{
+                txt_error_selection.setText("");
         DefaultTableModel model = (DefaultTableModel)tbl_psSelected.getModel();
         model.removeRow(Integer.parseInt(txt_psSelectedId.getText())-1);
+        }
     }//GEN-LAST:event_btn_removeActionPerformed
 
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
@@ -464,21 +496,13 @@ public class addParallelSessions extends javax.swing.JPanel {
             DefaultTableModel model2 = (DefaultTableModel)tbl_ps.getModel();
             connection = DBconnection.getConnection();
 
-            //                        if(txt_gNo.getText().equals("")){
-                //                                txt_error.setText("Enter Group Number*");
-                //                            }
-            //                        else{
-                //                                txt_error.setText("");
+            if (tbl_psSelected.getRowCount() == 0){
 
-                //                                String gettagsQuery = "select tag from group_number where gNo = '"+select_gn.getSelectedItem().toString()+"'";
-                //
-                //                                pstYns = connection.prepareStatement(getYnsQuery);
-                //                                rs = pstYns.executeQuery();
-                //                                while(rs.next())
-                //                                {
-                    //                                    yns_id.setText(rs.getString("id"));
-                    //                                }
-                //
+                txt_error_selection.setText("Select Sessions First*");
+            }
+            else{
+                txt_error_selection.setText("");
+
                 TagCreator();
 
                 PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_PARALLEL_SESSION_TABLE));
@@ -492,7 +516,7 @@ public class addParallelSessions extends javax.swing.JPanel {
                 showParallelSessionNList();
                 txt_id.setText("");
                 JOptionPane.showMessageDialog(null, "Inserting Successful!");
-                //                            }
+                }
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e);
@@ -738,6 +762,8 @@ public class addParallelSessions extends javax.swing.JPanel {
     private javax.swing.JTable tbl_ps;
     private javax.swing.JTable tbl_psSelected;
     private javax.swing.JTable tbl_psSelection;
+    private javax.swing.JLabel txt_error_cs;
+    private javax.swing.JLabel txt_error_selection;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_psSelectedId;
     private javax.swing.JTextField txt_psSelectionId;

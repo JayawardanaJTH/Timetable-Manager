@@ -332,13 +332,27 @@ public class addSubGroup extends javax.swing.JPanel {
             new String [] {
                 "ID", "Sub-Group ID", "Day", "Time Period"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_SgId.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_SgIdMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_SgId);
+        if (tbl_SgId.getColumnModel().getColumnCount() > 0) {
+            tbl_SgId.getColumnModel().getColumn(0).setResizable(false);
+            tbl_SgId.getColumnModel().getColumn(1).setResizable(false);
+            tbl_SgId.getColumnModel().getColumn(2).setResizable(false);
+            tbl_SgId.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

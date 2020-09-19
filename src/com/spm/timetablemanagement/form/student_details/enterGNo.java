@@ -184,13 +184,25 @@ public class enterGNo extends javax.swing.JPanel {
             new String [] {
                 "ID", "Group Number"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_Gn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_GnMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_Gn);
+        if (tbl_Gn.getColumnModel().getColumnCount() > 0) {
+            tbl_Gn.getColumnModel().getColumn(0).setResizable(false);
+            tbl_Gn.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 480, 411));
 

@@ -68,6 +68,8 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         selection_sId = new javax.swing.JComboBox<>();
         txt_csSelectedId = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txt_error_selection = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tbl_cs = new javax.swing.JTable();
@@ -75,6 +77,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
         btn_deletecs = new javax.swing.JButton();
+        txt_error_cs = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -102,7 +105,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -228,22 +231,34 @@ public class addConsecutiveSession extends javax.swing.JPanel {
             }
         });
 
+        txt_error_selection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error_selection.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error_selection.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(selection_sId, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selection_sId, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(392, 392, 392)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,17 +272,17 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                             .addComponent(txt_csSelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(25, 25, 25))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(47, 47, 47))))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -287,12 +302,16 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                         .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_set, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addContainerGap())
         );
 
-        add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 860, 530));
+        add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 860, 560));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -342,15 +361,15 @@ public class addConsecutiveSession extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         btn_deletecs.setBackground(new java.awt.Color(255, 255, 255));
@@ -364,57 +383,71 @@ public class addConsecutiveSession extends javax.swing.JPanel {
             }
         });
 
+        txt_error_cs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error_cs.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error_cs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(236, 236, 236)
-                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(260, 260, 260)
+                                .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(127, 127, 127)
+                                .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(180, 180, 180)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 20, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 462, Short.MAX_VALUE)))
+                        .addGap(59, 59, 59))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 690, 530));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 690, 560));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selectActionPerformed
         // TODO add your handling code here:
 
-            
+            if (txt_csSelectionId.getText().equals("")){
+                
+                txt_error_selection.setText("Select First*");
+            }
+            else{
+                txt_error_selection.setText("");
             String selected_id = txt_csSelectionId.getText();
             showSelectedSessionNList(selected_id);
-            
+            }
     }//GEN-LAST:event_btn_selectActionPerformed
 
     private void tbl_csSelectedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csSelectedMouseClicked
@@ -429,8 +462,15 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
         // TODO add your handling code here:
+        if (txt_csSelectedId.getText().equals("")){
+                
+                txt_error_selection.setText("Select First*");
+            }
+            else{
+                txt_error_selection.setText("");
         DefaultTableModel model = (DefaultTableModel)tbl_csSelected.getModel();
         model.removeRow(Integer.parseInt(txt_csSelectedId.getText())-1);
+        }
     }//GEN-LAST:event_btn_removeActionPerformed
 
     private void tbl_csSelectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csSelectionMouseClicked
@@ -443,45 +483,36 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
         // TODO add your handling code here:
         
-                        try{
-                        DefaultTableModel model = (DefaultTableModel)tbl_csSelected.getModel();
-                        DefaultTableModel model2 = (DefaultTableModel)tbl_cs.getModel();
-                        connection = DBconnection.getConnection();
-            
-//                        if(txt_gNo.getText().equals("")){
-//                                txt_error.setText("Enter Group Number*");
-//                            }
-//                        else{
-//                                txt_error.setText("");
+        try{
+        DefaultTableModel model = (DefaultTableModel)tbl_csSelected.getModel();
+        DefaultTableModel model2 = (DefaultTableModel)tbl_cs.getModel();
+        connection = DBconnection.getConnection();
+        if (tbl_csSelected.getRowCount() == 0){
 
-//                                String gettagsQuery = "select tag from group_number where gNo = '"+select_gn.getSelectedItem().toString()+"'";
-//            
-//                                pstYns = connection.prepareStatement(getYnsQuery);
-//                                rs = pstYns.executeQuery();
-//                                while(rs.next())
-//                                {        
-//                                    yns_id.setText(rs.getString("id"));
-//                                }
-//                
-                                TagCreator();
-                                   
-                                PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_CONSECUTIVE_SESSION_TABLE));
-                
-                                statement.setString(1, selection_sId.getSelectedItem().toString());
-                                statement.setString(2, finalTags);
-                                
-                                           
-                                statement.executeUpdate();
-                                model.setRowCount(0);
-                                model2.setRowCount(0);
-                                showConsecutiveSessionNList();
-                                txt_id.setText("");
-                                JOptionPane.showMessageDialog(null, "Inserting Successful!");
-//                            }
-                    }catch(Exception e)
-                {
-                        JOptionPane.showMessageDialog(null, e);
-                    }
+                txt_error_selection.setText("Select Sessions First*");
+            }
+            else{
+                txt_error_selection.setText("");
+
+                TagCreator();
+
+                PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_CONSECUTIVE_SESSION_TABLE));
+
+                statement.setString(1, selection_sId.getSelectedItem().toString());
+                statement.setString(2, finalTags);
+
+
+                statement.executeUpdate();
+                model.setRowCount(0);
+                model2.setRowCount(0);
+                showConsecutiveSessionNList();
+                txt_id.setText("");
+                JOptionPane.showMessageDialog(null, "Inserting Successful!");
+            }
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
         
     }//GEN-LAST:event_btn_setActionPerformed
 
@@ -508,31 +539,34 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
     private void btn_deletecsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletecsActionPerformed
         // TODO add your handling code here:
-        
-        String id = txt_id.getText();
-
-        try
-        {
-            DefaultTableModel model = (DefaultTableModel)tbl_cs.getModel();
-            Statement smt = connection.createStatement();
-            
-//            if(txt_tag.getText().equals("")){
-//                txt_error.setText("Select Tag*");
-//            }
-//            else{
-//                txt_error.setText("");
+       
+            try
+            {
+                DefaultTableModel model = (DefaultTableModel)tbl_cs.getModel();
+                Statement smt = connection.createStatement();
                 
-            smt.execute("DELETE FROM sp2_consecutive_session WHERE id = "+id); 
-            model.setRowCount(0);
-            showConsecutiveSessionNList();
-            txt_id.setText("");
-            JOptionPane.showMessageDialog(this, "Deleted");
-//            }
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
+                if (txt_id.getText().equals("")){
+
+                    txt_error_cs.setText("Select First*");
+                }
+                else{
+                    txt_error_cs.setText("");
+
+                    String id = txt_id.getText();
+
+                    smt.execute("DELETE FROM sp2_consecutive_session WHERE id = "+id); 
+                    model.setRowCount(0);
+                    showConsecutiveSessionNList();
+                    txt_id.setText("");
+                    JOptionPane.showMessageDialog(this, "Deleted");
+
+                }
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        
     }//GEN-LAST:event_btn_deletecsActionPerformed
 
     public ArrayList<sessionDetails> getSessionNList(String sGid)
@@ -703,6 +737,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     private javax.swing.JButton btn_set;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
@@ -719,6 +754,8 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     private javax.swing.JTable tbl_csSelection;
     private javax.swing.JTextField txt_csSelectedId;
     private javax.swing.JTextField txt_csSelectionId;
+    private javax.swing.JLabel txt_error_cs;
+    private javax.swing.JLabel txt_error_selection;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 }

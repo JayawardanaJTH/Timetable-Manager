@@ -265,7 +265,15 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             new String [] {
                 "ID", "Sub-Group ID"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_sGid.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbl_sGid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -273,6 +281,10 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tbl_sGid);
+        if (tbl_sGid.getColumnModel().getColumnCount() > 0) {
+            tbl_sGid.getColumnModel().getColumn(0).setResizable(false);
+            tbl_sGid.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);

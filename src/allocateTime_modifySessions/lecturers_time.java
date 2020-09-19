@@ -725,13 +725,28 @@ public class lecturers_time extends javax.swing.JPanel {
             new String [] {
                 "ID", "Lectures ID", "Lectures Name", "Day", "Time Period"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_LecTime.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_LecTimeMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tbl_LecTime);
+        if (tbl_LecTime.getColumnModel().getColumnCount() > 0) {
+            tbl_LecTime.getColumnModel().getColumn(0).setResizable(false);
+            tbl_LecTime.getColumnModel().getColumn(1).setResizable(false);
+            tbl_LecTime.getColumnModel().getColumn(2).setResizable(false);
+            tbl_LecTime.getColumnModel().getColumn(3).setResizable(false);
+            tbl_LecTime.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

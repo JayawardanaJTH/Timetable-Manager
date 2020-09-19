@@ -183,7 +183,15 @@ public class enterSubGNo extends javax.swing.JPanel {
             new String [] {
                 "ID", "Sub-Group"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_Sgn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbl_Sgn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -191,6 +199,10 @@ public class enterSubGNo extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tbl_Sgn);
+        if (tbl_Sgn.getColumnModel().getColumnCount() > 0) {
+            tbl_Sgn.getColumnModel().getColumn(0).setResizable(false);
+            tbl_Sgn.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 470, 350));
 

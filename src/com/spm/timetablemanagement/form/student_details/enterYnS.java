@@ -179,9 +179,16 @@ public class enterYnS extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tbl_yNs.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,6 +197,10 @@ public class enterYnS extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tbl_yNs);
+        if (tbl_yNs.getColumnModel().getColumnCount() > 0) {
+            tbl_yNs.getColumnModel().getColumn(0).setResizable(false);
+            tbl_yNs.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         txt_id.setText("ID");
         txt_id.addActionListener(new java.awt.event.ActionListener() {

@@ -175,7 +175,15 @@ public class enterDp extends javax.swing.JPanel {
             new String [] {
                 "ID", "Degree Program"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_Dp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbl_Dp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -183,6 +191,10 @@ public class enterDp extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tbl_Dp);
+        if (tbl_Dp.getColumnModel().getColumnCount() > 0) {
+            tbl_Dp.getColumnModel().getColumn(0).setResizable(false);
+            tbl_Dp.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         txt_id.setText("ID");
 
