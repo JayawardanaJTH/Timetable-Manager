@@ -32,6 +32,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
      private static int chk_days = 0; 
      private static boolean error = false;
      private static ArrayList<String> daysNum = new ArrayList();
+     private static ArrayList<String> days = new ArrayList();
      
     /**
      * Creates new form InsertWorkingHours
@@ -352,6 +353,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
         numOfdays = 0;
         txt_days_error.setText("");
         daysNum.clear();
+        days.clear();
     }//GEN-LAST:event_btn_resetMousePressed
 
     private void checkDays(int value){
@@ -411,9 +413,13 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
 
                 PreparedStatement statement1 = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WORKING_HOUR_TABLE));
                 PreparedStatement statement2 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_TABLE));
+                PreparedStatement statement3 = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WE_WORKING_HOUR_DAYS_TABLE));
+                PreparedStatement statement4 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_DAYS_TABLE));
 
                 statement2.setInt(1, 2);
+                statement4.setInt(1, 2);
                 
+                statement4.execute();
                 if(!statement2.execute()){
                     
                     ArrayList<Integer> numbs = new ArrayList<>();
@@ -429,9 +435,11 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                         
                         if(day == 6){
                             dayList = dayList.concat("Saturday,");
+                            days.add("Saturday");
                         }
                         if(day == 7){
                             dayList = dayList.concat("Sunday,");
+                            days.add("Sunday");
                         }
                     }
                     int lenght = dayList.length();
@@ -442,24 +450,33 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                     statement1.setInt(4, Integer.parseInt(txt_hour.getText()));
                     statement1.setInt(5, Integer.parseInt(txt_min.getText()));
 
+                    
                     if(rdb_1hour.isSelected()){
                         statement1.setInt(6, 1);
 
                     }else{
                         statement1.setInt(6, 2);
                     }
-
+                       
                     statement1.execute();
-                        btn_resetMousePressed(null);
-                          
                     
+                    for(int x = 0; x < days.size(); x++){
+                        statement3.setInt(1, x+1);
+                        statement3.setString(2, days.get(x));
+                        
+                        statement3.execute();
+                    }
                 }
             } catch (SQLException | IOException | ParserConfigurationException | SAXException ex) {
                 Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
                 temp = 1;
+                JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Error on data input",
+                "Data missing",JOptionPane.ERROR_MESSAGE);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsertWorkingHoursWE.class.getName()).log(Level.SEVERE, null, ex);
                 temp = 1;
+                JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Error on data input",
+                "Data missing",JOptionPane.ERROR_MESSAGE);
             }
             
             if(temp == 0){

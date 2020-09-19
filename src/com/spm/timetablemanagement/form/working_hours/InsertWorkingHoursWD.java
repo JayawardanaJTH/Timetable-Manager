@@ -12,14 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -40,6 +33,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
      private static int chk_days = 0; 
      private static boolean error = false;
      private static ArrayList<String> daysNum = new ArrayList();
+     private static ArrayList<String> days = new ArrayList();
      
     /**
      * Creates new form InsertWorkingHoursWE
@@ -360,6 +354,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         numOfdays = 0;
         txt_days_error.setText("");
         daysNum.clear();
+        days.clear();
     }//GEN-LAST:event_btn_resetMousePressed
 
     private void txt_hourKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_hourKeyPressed
@@ -462,8 +457,13 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
                 PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WORKING_HOUR_TABLE));
                 PreparedStatement statement2 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_TABLE));
+                PreparedStatement statement3 = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WD_WORKING_HOUR_DAYS_TABLE));
+                PreparedStatement statement4 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_DAYS_TABLE));
 
                 statement2.setInt(1, 1);
+                statement4.setInt(1, 1);
+                
+                statement4.execute();
                 
                 if(!statement2.execute()){
                     
@@ -483,18 +483,23 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                         
                         if(day == 1){
                             dayList = dayList.concat("Monday,");
+                            days.add("Monday");
                         }
                         if(day == 2){
                             dayList = dayList.concat("Tuesday,");
+                            days.add("Tuesday");
                         }
                         if(day == 3){
                             dayList = dayList.concat("Wednsday,");
+                            days.add("Wednsday");
                         }
                         if(day == 4){
                             dayList = dayList.concat("Thursday,");
+                            days.add("Thursday");
                         }
                         if(day == 5){
                             dayList = dayList.concat("Friday,");
+                            days.add("Friday");
                         }   
                     }
                     int lenght = dayList.length();
@@ -512,9 +517,17 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                         statement.setInt(6, 2);
                     }
                     
-                    btn_resetMousePressed(null);    
+                      
                     statement.execute();
                     
+                    for(int x = 0; x < days.size(); x++){
+                        statement3.setInt(1, x+1);
+                        statement3.setString(2, days.get(x));
+                        
+                        statement3.execute();
+                    }
+                    
+                     btn_resetMousePressed(null); 
                 }
                 } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
                     Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
