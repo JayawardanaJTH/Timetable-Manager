@@ -5,7 +5,7 @@
  */
 package com.spm.timetablemanagement.form.tag_details;
 
-import com.spm.timetablemanagement.form.student_details.SubGroupNo;
+import com.spm.timetablemanagement.models.SubGroupNo;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
