@@ -253,12 +253,9 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                                     .addGap(21, 21, 21)
                                     .addComponent(txt_csSelectionId, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(25, 25, 25)))
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_remove)
-                                    .addComponent(txt_csSelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btn_remove)
+                            .addComponent(txt_csSelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
@@ -323,8 +320,11 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         jScrollPane6.setViewportView(tbl_cs);
         if (tbl_cs.getColumnModel().getColumnCount() > 0) {
             tbl_cs.getColumnModel().getColumn(0).setResizable(false);
+            tbl_cs.getColumnModel().getColumn(0).setPreferredWidth(10);
             tbl_cs.getColumnModel().getColumn(1).setResizable(false);
+            tbl_cs.getColumnModel().getColumn(1).setPreferredWidth(50);
             tbl_cs.getColumnModel().getColumn(2).setResizable(false);
+            tbl_cs.getColumnModel().getColumn(2).setPreferredWidth(250);
         }
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -373,12 +373,12 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(236, 236, 236)
+                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -388,15 +388,16 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(391, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(0, 20, Short.MAX_VALUE)
@@ -548,7 +549,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         sessionDetails sDetails;
         while(rs.next())
         {
-            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("sName"), rs.getString("tag"));
+            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("sName"), rs.getString("tag"), rs.getString("sGid"));
             list.add(sDetails);
         }
         
@@ -589,7 +590,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         sessionDetails sDetails;
         while(rs.next())
         {
-            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("sName"), rs.getString("tag"));
+            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("sName"), rs.getString("tag"), rs.getString("sGid"));
             list.add(sDetails);
         }
         
@@ -683,12 +684,12 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         String[] newtags = new String[x];
         
                                 
-        newtags[0] = model.getValueAt(0, 2).toString();
+        newtags[0] = model.getValueAt(0, 2).toString()+','+model.getValueAt(0, 1).toString();
         int i = 1;
         while (x!=i){
 
-            tags[i] = model.getValueAt(i, 2).toString();
-            newtags[i] = newtags[i-1]+','+tags[i];
+            tags[i] = model.getValueAt(i, 2).toString()+','+model.getValueAt(i, 1).toString();
+            newtags[i] = '('+newtags[i-1]+')'+','+'('+tags[i]+')';
             finalTags = newtags[i];
             i++;
         }
@@ -702,16 +703,12 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     private javax.swing.JButton btn_set;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

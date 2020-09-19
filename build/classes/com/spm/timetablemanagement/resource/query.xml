@@ -258,6 +258,25 @@
         ]]>
     </query> 
     
+    
+    <query id="create_sp2_parallel_session_table">
+        <![CDATA[
+            create table sp2_parallel_session(
+                id int AUTO_INCREMENT,
+                yNs String,
+                session String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_sp2_parallel_session_table">
+        <![CDATA[
+            INSERT INTO sp2_parallel_session(yNs,session) VALUES (?,?)
+        ]]>
+    </query> 
+    
     <query id="Insert_workingdays_and_hours">
         <![CDATA[
             INSERT INTO work_day_hour (id, days_no, days, hour, mins, slot_type)VALUES (?, ?, ?, ?, ?, ?)

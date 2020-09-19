@@ -16,10 +16,11 @@ public class sessionDetails {
     private String tag;
     private String sGid;
     
-    public sessionDetails(int ID, String sName, String tag){
+    public sessionDetails(int ID, String sName, String tag, String sGid){
         this.id = ID;
         this.sName = sName;
         this.tag = tag;
+        this.sGid = sGid;
     } 
     
     public int getId()

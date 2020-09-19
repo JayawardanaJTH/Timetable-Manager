@@ -51,7 +51,10 @@ public class Constant {
       
     public static final String CREATE_SP2_CONSECUTIVE_SESSION_TABLE ="create_sp2_consecutive_session_table";
     public static final String INSERT_SP2_CONSECUTIVE_SESSION_TABLE = "Insert_sp2_consecutive_session_table";
-
+    
+    public static final String CREATE_SP2_PARALLEL_SESSION_TABLE ="create_sp2_parallel_session_table";
+    public static final String INSERT_SP2_PARALLEL_SESSION_TABLE = "Insert_sp2_parallel_session_table";
+    
     public static final String CREATE_WORKING_HOUR_TABLE = "create_workingdays_and_hours_table";
     public static final String INSERT_WORKING_HOUR_TABLE = "Insert_workingdays_and_hours";
     public static final String REMOVE_WORKING_HOUR_TABLE = "Remove_workingdays_and_hours";
