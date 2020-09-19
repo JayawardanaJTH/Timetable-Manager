@@ -26,6 +26,12 @@
         ]]>
     </query> 
     
+    <query id="get_year_and_semester">
+        <![CDATA[
+            SELECT * FROM academic_year_and_semester
+        ]]>
+    </query> 
+    
     <query id="create_degree_program_table">
         <![CDATA[
             create table degree_program(
@@ -168,12 +174,32 @@
         ]]>
     </query>
     
+    <query id="Insert_WE_workingdays_and_hours_days">
+        <![CDATA[
+            INSERT INTO work_day_hour_days (id, parentID, day)VALUES (?, (select id from work_day_hour where id = 2), ?)
+        ]]>
+    </query>
+    
+    <query id="Insert_WD_workingdays_and_hours_days">
+        <![CDATA[
+            INSERT INTO work_day_hour_days (id, parentID, day)VALUES (?, (select id from work_day_hour where id = 1), ?)
+        ]]>
+    </query>
+    
     <query id="Remove_workingdays_and_hours">
         <![CDATA[
             DELETE FROM work_day_hour
             WHERE id = ?
         ]]>
     </query>
+    
+    <query id="Remove_workingdays_and_hours_days">
+        <![CDATA[
+            DELETE FROM work_day_hour_days
+            WHERE parentID = ?
+        ]]>
+    </query>
+    
     <query id="Get_workingdays_and_hours">
         <![CDATA[
             SELECT *
@@ -255,5 +281,41 @@
             where l.id = ?
        ]]>
     </query>
+    
+    <query id="insert_subject">
+        <![CDATA[
+            INSERT INTO 
+                subject (offered_year, offered_semester, subject_name, subject_code, lec_hr, tute_hr, lab_hr, eva_hr)
+                values(?,?,?,?,?,?,?,?)
+        ]]>
+    </query>
 
+    <query id="get_subjects">
+        <![CDATA[
+            SELECT * FROM subject
+        ]]>
+    </query>
+    
+    <query id="delete_subject">
+        <![CDATA[
+            DELETE FROM subject
+            WHERE id = ?
+        ]]>
+    </query>
+    
+    <query id="update_subject">
+        <![CDATA[
+            UPDATE subject as s
+                set s.offered_year = ?,
+                s.offered_semester = ?,
+                s.subject_name = ?,
+                s.subject_code = ?,
+                s.lec_hr = ?,
+                s.tute_hr = ?,
+                s.lab_hr = ?,
+                s.eva_hr = ?
+            
+            where s.id = ?
+       ]]>
+    </query>
 </Querys>
