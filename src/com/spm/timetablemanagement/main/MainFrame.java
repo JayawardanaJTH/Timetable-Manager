@@ -25,6 +25,8 @@ import com.spm.timetablemanagement.menu.MenuItem;
 //import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
 import com.spm.timetablemanagement.location.InsertLocation; 
 import com.spm.timetablemanagement.form.room.InsertRoom;
+import com.spm.timetablemanagement.form.subject.AddSubject;
+import com.spm.timetablemanagement.form.subject.ViewSubject;
 
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWE;
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWD;
@@ -161,13 +163,29 @@ public class MainFrame extends javax.swing.JFrame {
         });
         
         //Subject submenu items
-        MenuItem s1Subject = new MenuItem(iconSubmenu, "Add Subject Details", null);
-        MenuItem s2Subject = new MenuItem(iconSubmenu, "View Subject Details", null);
-        
+        MenuItem s1Subject = new MenuItem(iconSubmenu, "Add Subject Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new AddSubject());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
+        MenuItem s2Subject = new MenuItem(iconSubmenu, "View Subject Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new ViewSubject());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         //Location submenu items
         MenuItem s1Location = new MenuItem(iconSubmenu, "Add Building Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
                panelBody.add(new InsertLocation());
                panelBody.repaint();
                panelBody.revalidate();
@@ -176,6 +194,7 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s2Location = new MenuItem(iconSubmenu, "Add Room Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
                panelBody.add(new InsertRoom());
                panelBody.repaint();
                panelBody.revalidate();
