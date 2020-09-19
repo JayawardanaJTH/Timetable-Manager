@@ -15,6 +15,7 @@ public class Constant {
     
     public static final String CREATE_YEAR_AND_SEMESTER_TABLE ="create_year_and_semester_table";
     public static final String INSERT_YEAR_AND_SEMESTER_TABLE = "Insert_year_and_semester";
+    public static final String GET_YEAR_AND_SEMESTER_TABLE = "get_year_and_semester";
     
     public static final String CREATE_DEGREE_PROGRAM_TABLE ="create_degree_program_table";
     public static final String INSERT_DEGREE_PROGRAM_TABLE = "Insert_degree_program";
@@ -39,7 +40,10 @@ public class Constant {
 
     public static final String CREATE_WORKING_HOUR_TABLE = "create_workingdays_and_hours_table";
     public static final String INSERT_WORKING_HOUR_TABLE = "Insert_workingdays_and_hours";
+    public static final String INSERT_WE_WORKING_HOUR_DAYS_TABLE = "Insert_WE_workingdays_and_hours_days";
+    public static final String INSERT_WD_WORKING_HOUR_DAYS_TABLE = "Insert_WD_workingdays_and_hours_days";
     public static final String REMOVE_WORKING_HOUR_TABLE = "Remove_workingdays_and_hours";
+    public static final String REMOVE_WORKING_HOUR_DAYS_TABLE = "Remove_workingdays_and_hours_days";
     public static final String GET_WORKING_HOUR_TABLE = "Get_workingdays_and_hours";
     public static final String GET_WORKING_HOUR_TABLE_BY_TYPE = "Get_workingdays_and_hours_by_type";
     
@@ -53,6 +57,11 @@ public class Constant {
     public static final String GET_LECTURER = "get_lecturer";
     public static final String DELETE_LECTURER = "delete_lecturer";
     public static final String UPDATE_LECTURER = "update_lecturer";
+    
+    public static final String INSERT_SUBJECT = "insert_subject";
+    public static final String GET_SUBJECT = "get_subjects";
+    public static final String DELETE_SUBJECT = "delete_subject";
+    public static final String UPDATE_SUBJECT = "update_subject";
     
     public static final String QUERY = "query";
     public static final String QUERY_ID = "id";
