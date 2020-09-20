@@ -25,6 +25,8 @@ import com.spm.timetablemanagement.menu.MenuItem;
 //import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
 import com.spm.timetablemanagement.location.InsertLocation; 
 import com.spm.timetablemanagement.form.room.InsertRoom;
+import com.spm.timetablemanagement.form.session.AddSession;
+import com.spm.timetablemanagement.form.session.ViewSession;
 import com.spm.timetablemanagement.form.subject.AddSubject;
 import com.spm.timetablemanagement.form.subject.ViewSubject;
 
@@ -219,8 +221,24 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms", null);
         
         //Handle Session submenu items
-        MenuItem s1HandleSession = new MenuItem(iconSubmenu, "Create Sessions", null);
-        MenuItem s2HandleSession = new MenuItem(iconSubmenu, "View Sessions", null);
+        MenuItem s1HandleSession = new MenuItem(iconSubmenu, "Create Sessions", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new AddSession());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
+        MenuItem s2HandleSession = new MenuItem(iconSubmenu, "View Sessions",new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new ViewSession());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         MenuItem s3HandleSession = new MenuItem(iconSubmenu, "Search Sessions", null);
         
         //Allocate Time Session submenu items
