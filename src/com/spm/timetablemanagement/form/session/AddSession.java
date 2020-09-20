@@ -5,6 +5,8 @@
  */
 package com.spm.timetablemanagement.form.session;
 
+import com.spm.timetablemanagement.models.GeneratedId;
+import com.spm.timetablemanagement.models.GeneratedSubId;
 import com.spm.timetablemanagement.models.Lecturer;
 import com.spm.timetablemanagement.models.Subject;
 import com.spm.timetablemanagement.models.tag;
@@ -40,8 +42,8 @@ public class AddSession extends javax.swing.JPanel {
     
     Dictionary<Integer, Lecturer> lectruerList;
     Dictionary<Integer, Subject> subjectList;
-    Dictionary<Integer, String> groupIDList;
-    Dictionary<Integer, String> subgroupIDList;
+    Dictionary<Integer, GeneratedId> groupIDList;
+    Dictionary<Integer, GeneratedSubId> subgroupIDList;
     ArrayList<tag> tagList;
     
     String [] lecture;
@@ -103,7 +105,6 @@ public class AddSession extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         lbl_ID = new javax.swing.JLabel();
         txt_subc = new javax.swing.JTextField();
-        txt_tag = new javax.swing.JTextField();
         txt_durat = new javax.swing.JTextField();
         txt_stu_coun = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -111,6 +112,7 @@ public class AddSession extends javax.swing.JPanel {
         cmb_lec = new javax.swing.JComboBox<>();
         cmb_subj = new javax.swing.JComboBox<>();
         cmb_ID = new javax.swing.JComboBox<>();
+        cmb_tag = new javax.swing.JComboBox<>();
 
         jPanel4.setBackground(new java.awt.Color(90, 30, 172));
 
@@ -165,8 +167,6 @@ public class AddSession extends javax.swing.JPanel {
 
         txt_subc.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        txt_tag.setPreferredSize(new java.awt.Dimension(60, 30));
-
         txt_durat.setPreferredSize(new java.awt.Dimension(60, 30));
 
         txt_stu_coun.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -180,6 +180,8 @@ public class AddSession extends javax.swing.JPanel {
         cmb_subj.setPreferredSize(new java.awt.Dimension(150, 30));
 
         cmb_ID.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_tag.setPreferredSize(new java.awt.Dimension(150, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,7 +209,7 @@ public class AddSession extends javax.swing.JPanel {
                             .addComponent(cmb_lec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmb_subj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_subc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_durat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_stu_coun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmb_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -236,7 +238,7 @@ public class AddSession extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb_tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,20 +351,108 @@ public class AddSession extends javax.swing.JPanel {
     }
     
     private void loadTags(){
-        
+        i = 0;
+        try {
+            statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_TAG));
+            resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+               tag t = new tag();
+                
+                t.setId(resultSet.getInt("id"));
+                t.setTag(resultSet.getString("tag"));
+                
+                tagList.add(t);
+            }
+            
+            tags = new String[tagList.size()];
+            
+            for(i =0;i < tagList.size();i++){
+                
+                tags[i] = tagList.get(i).getTag();
+            }
+            
+            cmb_tag.setModel(new DefaultComboBoxModel<>(tags));
+            
+            statement.close();
+            resultSet.close();
+        } catch (ParserConfigurationException | SAXException | IOException | SQLException ex) {
+            Logger.getLogger(AddSession.class.getName()).log(Level.SEVERE, null, ex);
+            
+            JOptionPane.showMessageDialog(this, "Error on load tag data", "Data load error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private void loadGroupIDs(){
-        
+        i = 0;
+        try {
+            statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_GROUP_ID_TABLE));
+            resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+                GeneratedId gID = new GeneratedId();
+                
+                gID.setId(resultSet.getInt("id"));
+                gID.setgId(resultSet.getString("gId"));
+                
+                groupIDList.put(i, gID);
+                
+                i++;
+            }
+            
+            groupID = new String[groupIDList.size()];
+            
+            for(i =0;i < groupIDList.size();i++){
+                
+                groupID[i] = groupIDList.get(i).getGid();
+            }
+            
+            statement.close();
+            resultSet.close();
+        } catch (ParserConfigurationException | SAXException | IOException | SQLException ex) {
+            Logger.getLogger(AddSession.class.getName()).log(Level.SEVERE, null, ex);
+            
+            JOptionPane.showMessageDialog(this, "Error on load Group data", "Data load error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private void loadSubGroupIDs(){
-        
+        i = 0;
+        try {
+            statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SUB_GROUP_ID_TABLE));
+            resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+                GeneratedSubId sgID = new GeneratedSubId();
+                
+                sgID.setId(resultSet.getInt("id"));
+                sgID.setsGid(resultSet.getString("sGid"));
+                
+                subgroupIDList.put(i, sgID);
+                
+                i++;
+            }
+            
+            subGroupID = new String[subgroupIDList.size()];
+            
+            for(i =0;i < subgroupIDList.size();i++){
+                
+                subGroupID[i] = subgroupIDList.get(i).getsGid();
+            }
+            
+            statement.close();
+            resultSet.close();
+        } catch (ParserConfigurationException | SAXException | IOException | SQLException ex) {
+            Logger.getLogger(AddSession.class.getName()).log(Level.SEVERE, null, ex);
+            
+            JOptionPane.showMessageDialog(this, "Error on load Sub Group data", "Data load error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmb_ID;
     private javax.swing.JComboBox<String> cmb_lec;
     private javax.swing.JComboBox<String> cmb_subj;
+    private javax.swing.JComboBox<String> cmb_tag;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -379,6 +469,5 @@ public class AddSession extends javax.swing.JPanel {
     private javax.swing.JTextField txt_durat;
     private javax.swing.JTextField txt_stu_coun;
     private javax.swing.JTextField txt_subc;
-    private javax.swing.JTextField txt_tag;
     // End of variables declaration//GEN-END:variables
 }
