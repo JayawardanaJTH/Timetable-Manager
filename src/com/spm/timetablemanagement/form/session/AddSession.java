@@ -53,6 +53,8 @@ public class AddSession extends javax.swing.JPanel {
     String [] tags;
     
     int i = 0;
+    int index_tag = 0;
+    int index_sub = 0;
     /**
      * Creates new form AddSession
      */
@@ -82,8 +84,7 @@ public class AddSession extends javax.swing.JPanel {
         loadTags();
         loadGroupIDs();
         loadSubGroupIDs();
-        
-    }
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,23 +166,40 @@ public class AddSession extends javax.swing.JPanel {
         lbl_ID.setText("Group ID");
         lbl_ID.setPreferredSize(new java.awt.Dimension(100, 30));
 
+        txt_subc.setEditable(false);
         txt_subc.setPreferredSize(new java.awt.Dimension(60, 30));
 
+        txt_durat.setEditable(false);
         txt_durat.setPreferredSize(new java.awt.Dimension(60, 30));
 
         txt_stu_coun.setPreferredSize(new java.awt.Dimension(60, 30));
 
         jButton1.setText("Reset");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Save");
 
         cmb_lec.setPreferredSize(new java.awt.Dimension(150, 30));
 
         cmb_subj.setPreferredSize(new java.awt.Dimension(150, 30));
+        cmb_subj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_subjActionPerformed(evt);
+            }
+        });
 
         cmb_ID.setPreferredSize(new java.awt.Dimension(150, 30));
 
         cmb_tag.setPreferredSize(new java.awt.Dimension(150, 30));
+        cmb_tag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_tagActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -272,9 +290,107 @@ public class AddSession extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmb_subjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_subjActionPerformed
+        index_sub = cmb_subj.getSelectedIndex();
+//       System.out.println(index_sub);
+        getSubCode();
+        getDuration();
+    }//GEN-LAST:event_cmb_subjActionPerformed
 
+    private void cmb_tagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tagActionPerformed
+        index_tag = cmb_tag.getSelectedIndex();
+//        System.out.println(index_tag);
+        getDuration();
+    }//GEN-LAST:event_cmb_tagActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        resetAll();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void resetAll(){
+        cmb_lec.setSelectedIndex(0);
+        cmb_subj.setSelectedIndex(0);
+        cmb_tag.setSelectedIndex(0);
+        cmb_ID.setSelectedIndex(0);
+        
+        txt_durat.setText("");
+        txt_stu_coun.setText("");
+        txt_subc.setText("");
+    }
+    private void getSubCode(){
+        txt_subc.setText(subjectList.get(index_sub).getSub_code());
+    }
+    private void getDuration(){
+        
+        if((index_sub != 0)&& (index_tag != 0)){
+            
+            if(cmb_tag.getSelectedItem().toString().contentEquals("Lecture")){
+
+                txt_durat.setText(subjectList.get(index_sub).getSub_lec_hr());
+            }
+            else if(cmb_tag.getSelectedItem().toString().contentEquals("Tutorial")){
+
+                txt_durat.setText(subjectList.get(index_sub).getSub_tute_hr());
+            }
+            else if(cmb_tag.getSelectedItem().toString().contentEquals("Practical")){
+
+                txt_durat.setText(subjectList.get(index_sub).getSub_lab_hr());
+            }
+            else if(cmb_tag.getSelectedItem().toString().contentEquals("Evaluation")){
+
+                txt_durat.setText(subjectList.get(index_sub).getSub_eva_hr());
+            }
+        }
+        
+        if(index_tag != 0){
+            
+            if(cmb_tag.getSelectedItem().toString().contentEquals("Lecture")){
+
+                lbl_ID.setText("Group ID");
+                lbl_ID.setVisible(true);
+                cmb_ID.setVisible(true);
+                getGroupIDs();
+            }
+            else if(cmb_tag.getSelectedItem().toString().contentEquals("Tutorial")){
+
+                lbl_ID.setText("Group ID");
+                lbl_ID.setVisible(true);
+                cmb_ID.setVisible(true);
+                getGroupIDs();
+            }
+            else if(cmb_tag.getSelectedItem().toString().contentEquals("Practical")){
+
+                lbl_ID.setText("Sub group ID");
+                lbl_ID.setVisible(true);
+                cmb_ID.setVisible(true);
+                getSubGroupIDs();
+            }
+            else if(cmb_tag.getSelectedItem().toString().contentEquals("Evaluation")){
+
+            }
+        }
+        
+         if(index_tag == 0){
+            lbl_ID.setVisible(false);
+            cmb_ID.setVisible(false);
+            
+            txt_durat.setText("");
+        }
+        
+    }
+    
+    private void getGroupIDs(){
+        
+        cmb_ID.setModel(new DefaultComboBoxModel<>(groupID));
+    }
+    
+    private void getSubGroupIDs(){
+        
+        cmb_ID.setModel(new DefaultComboBoxModel<>(subGroupID));
+    }
+    
     private void loadLecturers(){
-        i = 0;
+        i = 1;
         try {
             statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_LECTURER));
             resultSet = statement.executeQuery();
@@ -290,9 +406,17 @@ public class AddSession extends javax.swing.JPanel {
                 i++;
             }
             
-            lecture = new String[lectruerList.size()];
+            if(lectruerList.size()>0){
+                lecture = new String[lectruerList.size()+1];
+                lecture[0] = "Select";
+            }
+            else{
+                lecture = new String[1];
+                lecture[0] = "No Items";
+            }
             
-            for(i =0;i < lectruerList.size();i++){
+            
+            for(i =1;i <= lectruerList.size();i++){
                 
                 lecture[i] = lectruerList.get(i).getName();
             }
@@ -309,7 +433,7 @@ public class AddSession extends javax.swing.JPanel {
     }
     
     private void loadSubjects(){
-        i = 0;
+        i = 1;
         try {
             statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SUBJECT));
             resultSet = statement.executeQuery();
@@ -332,9 +456,16 @@ public class AddSession extends javax.swing.JPanel {
                 i++;
             }
             
-            subject = new String[subjectList.size()];
+            if(subjectList.size()>0){
+                subject = new String[subjectList.size()+1];
+                subject[0] = "Select";
+            }
+            else{
+                subject = new String[1];
+                subject[0] = "No Items";
+            }
             
-            for(i =0;i < subjectList.size();i++){
+            for(i =1;i <= subjectList.size();i++){
                 
                 subject[i] = subjectList.get(i).getSub_name();
             }
@@ -351,7 +482,7 @@ public class AddSession extends javax.swing.JPanel {
     }
     
     private void loadTags(){
-        i = 0;
+        i = 1;
         try {
             statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_TAG));
             resultSet = statement.executeQuery();
@@ -365,11 +496,19 @@ public class AddSession extends javax.swing.JPanel {
                 tagList.add(t);
             }
             
-            tags = new String[tagList.size()];
-            
-            for(i =0;i < tagList.size();i++){
+            if(tagList.size()>0){
+                tags = new String[tagList.size()+1];
+                tags[0] = "Select";
                 
-                tags[i] = tagList.get(i).getTag();
+            }
+            else{
+                tags = new String[1];
+                tags[0] = "No Items";
+            }
+            
+            for(i =1;i <= tagList.size();i++){
+                
+                tags[i] = tagList.get(i-1).getTag();
             }
             
             cmb_tag.setModel(new DefaultComboBoxModel<>(tags));
@@ -384,7 +523,7 @@ public class AddSession extends javax.swing.JPanel {
     }
     
     private void loadGroupIDs(){
-        i = 0;
+        i = 1;
         try {
             statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_GROUP_ID_TABLE));
             resultSet = statement.executeQuery();
@@ -400,12 +539,21 @@ public class AddSession extends javax.swing.JPanel {
                 i++;
             }
             
-            groupID = new String[groupIDList.size()];
+            if(groupIDList.size() > 0){
+                
+                groupID = new String[groupIDList.size()+1];
+                groupID[0] = "Select";
+            }
+            else{
+                groupID = new String[1];
+                groupID[0] = "No Items";
+            }
             
-            for(i =0;i < groupIDList.size();i++){
+            for(i =1;i <= groupIDList.size();i++){
                 
                 groupID[i] = groupIDList.get(i).getGid();
             }
+            
             
             statement.close();
             resultSet.close();
@@ -417,7 +565,7 @@ public class AddSession extends javax.swing.JPanel {
     }
     
     private void loadSubGroupIDs(){
-        i = 0;
+        i = 1;
         try {
             statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SUB_GROUP_ID_TABLE));
             resultSet = statement.executeQuery();
@@ -433,9 +581,17 @@ public class AddSession extends javax.swing.JPanel {
                 i++;
             }
             
-            subGroupID = new String[subgroupIDList.size()];
+            if(subgroupIDList.size()>0){
+                
+                subGroupID = new String[subgroupIDList.size()+1];
+                subGroupID[0] = "Select";
+            }
+            else{
+                subGroupID = new String[1];
+                subGroupID[0] = "No Items";
+            }
             
-            for(i =0;i < subgroupIDList.size();i++){
+            for(i =1;i <= subgroupIDList.size();i++){
                 
                 subGroupID[i] = subgroupIDList.get(i).getsGid();
             }
