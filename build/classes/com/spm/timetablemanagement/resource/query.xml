@@ -96,6 +96,12 @@
         ]]>
     </query>
     
+    <query id="Get_generated_group_id">
+        <![CDATA[
+            SELECT * FROM generated_group_id
+        ]]>
+    </query>
+    
             
     <query id="create_sub_group_number_table">
         <![CDATA[
@@ -131,7 +137,13 @@
         ]]>
     </query>
     
-        <query id="create_tag_table">
+    <query id="Get_generated_sub_group_id">
+        <![CDATA[
+            SELECT * FROM generated_sub_group_id
+        ]]>
+    </query>
+    
+    <query id="create_tag_table">
         <![CDATA[
             create table tag(
                 id int AUTO_INCREMENT,
@@ -145,6 +157,12 @@
     <query id="Insert_tag">
         <![CDATA[
             INSERT INTO tag (tag) VALUES (?)
+        ]]>
+    </query>
+    
+    <query id="get_tag">
+        <![CDATA[
+            SELECT * FROM tag
         ]]>
     </query>
     

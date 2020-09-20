@@ -13,6 +13,9 @@ public class GeneratedSubId {
     
     private int id;
     private String sGid;
+
+    public GeneratedSubId() {
+    }
     
     public GeneratedSubId(int id, String sGid){
         this.id = id;
@@ -27,5 +30,26 @@ public class GeneratedSubId {
     public String getSgId()
     {
         return sGid;
+    }
+
+    /**
+     * @return the sGid
+     */
+    public String getsGid() {
+        return sGid;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @param sGid the sGid to set
+     */
+    public void setsGid(String sGid) {
+        this.sGid = sGid;
     }
 }

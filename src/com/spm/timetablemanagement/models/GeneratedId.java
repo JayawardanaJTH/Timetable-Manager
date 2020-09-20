@@ -13,6 +13,9 @@ public class GeneratedId {
     
     private int id;
     private String gId;
+
+    public GeneratedId() {
+    }
     
     public GeneratedId(int ID, String gId){
         this.id = ID;
@@ -27,6 +30,27 @@ public class GeneratedId {
     public String getGid()
     {
         return gId;
+    }
+
+    /**
+     * @return the gId
+     */
+    public String getgId() {
+        return gId;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @param gId the gId to set
+     */
+    public void setgId(String gId) {
+        this.gId = gId;
     }
     
 }
