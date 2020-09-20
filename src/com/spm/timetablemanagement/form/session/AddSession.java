@@ -26,6 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
@@ -55,6 +56,7 @@ public class AddSession extends javax.swing.JPanel {
     int i = 0;
     int index_tag = 0;
     int index_sub = 0;
+    int lec_count = 0;
     /**
      * Creates new form AddSession
      */
@@ -75,6 +77,16 @@ public class AddSession extends javax.swing.JPanel {
         
         lbl_ID.setVisible(false);
         cmb_ID.setVisible(false);
+        cmb_lec2.setVisible(false);
+        cmb_lec3.setVisible(false);
+        cmb_lec4.setVisible(false);
+        cmb_lec5.setVisible(false);
+        cmb_lec6.setVisible(false);
+        cmb_lec7.setVisible(false);
+        cmb_lec8.setVisible(false);
+        cmb_lec9.setVisible(false);
+        cmb_lec10.setVisible(false);
+        
         execute();
     }
 
@@ -110,10 +122,20 @@ public class AddSession extends javax.swing.JPanel {
         txt_stu_coun = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        cmb_lec = new javax.swing.JComboBox<>();
+        cmb_lec1 = new javax.swing.JComboBox<>();
         cmb_subj = new javax.swing.JComboBox<>();
         cmb_ID = new javax.swing.JComboBox<>();
         cmb_tag = new javax.swing.JComboBox<>();
+        btn_addLec = new javax.swing.JButton();
+        cmb_lec2 = new javax.swing.JComboBox<>();
+        cmb_lec3 = new javax.swing.JComboBox<>();
+        cmb_lec4 = new javax.swing.JComboBox<>();
+        cmb_lec5 = new javax.swing.JComboBox<>();
+        cmb_lec6 = new javax.swing.JComboBox<>();
+        cmb_lec7 = new javax.swing.JComboBox<>();
+        cmb_lec8 = new javax.swing.JComboBox<>();
+        cmb_lec9 = new javax.swing.JComboBox<>();
+        cmb_lec10 = new javax.swing.JComboBox<>();
 
         jPanel4.setBackground(new java.awt.Color(90, 30, 172));
 
@@ -183,7 +205,7 @@ public class AddSession extends javax.swing.JPanel {
 
         jButton2.setText("Save");
 
-        cmb_lec.setPreferredSize(new java.awt.Dimension(150, 30));
+        cmb_lec1.setPreferredSize(new java.awt.Dimension(150, 30));
 
         cmb_subj.setPreferredSize(new java.awt.Dimension(150, 30));
         cmb_subj.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +223,31 @@ public class AddSession extends javax.swing.JPanel {
             }
         });
 
+        btn_addLec.setText("Add lecturer");
+        btn_addLec.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_addLecMouseClicked(evt);
+            }
+        });
+
+        cmb_lec2.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_lec3.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_lec4.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_lec5.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_lec6.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_lec7.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_lec8.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_lec9.setPreferredSize(new java.awt.Dimension(150, 30));
+
+        cmb_lec10.setPreferredSize(new java.awt.Dimension(150, 30));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -210,9 +257,22 @@ public class AddSession extends javax.swing.JPanel {
                 .addGap(96, 96, 96)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmb_lec6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_lec5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_lec4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_lec3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_lec2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmb_lec1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_addLec))
+                            .addComponent(cmb_lec7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_lec8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_lec9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_lec10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbl_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,18 +280,21 @@ public class AddSession extends javax.swing.JPanel {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmb_lec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmb_subj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_subc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmb_tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_durat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_stu_coun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmb_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(62, 62, 62)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton2))
+                                .addComponent(cmb_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(109, 109, 109)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -244,7 +307,26 @@ public class AddSession extends javax.swing.JPanel {
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_lec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb_lec1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_addLec))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmb_lec10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,7 +355,7 @@ public class AddSession extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(0, 266, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -307,8 +389,42 @@ public class AddSession extends javax.swing.JPanel {
         resetAll();
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void btn_addLecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addLecMouseClicked
+       if(i < 10)
+            ++lec_count;
+       
+       if(lec_count ==1){
+           cmb_lec2.setVisible(true);
+       }
+       else if(lec_count ==2){
+           cmb_lec3.setVisible(true);
+       }
+       else if(lec_count ==3){
+           cmb_lec4.setVisible(true);
+       }
+       else if(lec_count ==4){
+           cmb_lec5.setVisible(true);
+       }
+       else if(lec_count ==5){
+           cmb_lec6.setVisible(true);
+       }
+       else if(lec_count ==6){
+           cmb_lec7.setVisible(true);
+       }
+       else if(lec_count ==7){
+           cmb_lec8.setVisible(true);
+       }
+       else if(lec_count ==8){
+           cmb_lec9.setVisible(true);
+       }
+       else if(lec_count ==9){
+           cmb_lec10.setVisible(true);
+       }
+         
+    }//GEN-LAST:event_btn_addLecMouseClicked
+
     private void resetAll(){
-        cmb_lec.setSelectedIndex(0);
+        cmb_lec1.setSelectedIndex(0);
         cmb_subj.setSelectedIndex(0);
         cmb_tag.setSelectedIndex(0);
         cmb_ID.setSelectedIndex(0);
@@ -421,7 +537,16 @@ public class AddSession extends javax.swing.JPanel {
                 lecture[i] = lectruerList.get(i).getName();
             }
             
-            cmb_lec.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec1.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec2.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec3.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec4.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec5.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec6.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec7.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec8.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec9.setModel(new DefaultComboBoxModel<>(lecture));
+            cmb_lec10.setModel(new DefaultComboBoxModel<>(lecture));
             
             statement.close();
             resultSet.close();
@@ -605,8 +730,18 @@ public class AddSession extends javax.swing.JPanel {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_addLec;
     private javax.swing.JComboBox<String> cmb_ID;
-    private javax.swing.JComboBox<String> cmb_lec;
+    private javax.swing.JComboBox<String> cmb_lec1;
+    private javax.swing.JComboBox<String> cmb_lec10;
+    private javax.swing.JComboBox<String> cmb_lec2;
+    private javax.swing.JComboBox<String> cmb_lec3;
+    private javax.swing.JComboBox<String> cmb_lec4;
+    private javax.swing.JComboBox<String> cmb_lec5;
+    private javax.swing.JComboBox<String> cmb_lec6;
+    private javax.swing.JComboBox<String> cmb_lec7;
+    private javax.swing.JComboBox<String> cmb_lec8;
+    private javax.swing.JComboBox<String> cmb_lec9;
     private javax.swing.JComboBox<String> cmb_subj;
     private javax.swing.JComboBox<String> cmb_tag;
     private javax.swing.JButton jButton1;
