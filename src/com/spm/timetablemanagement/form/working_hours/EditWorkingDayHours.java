@@ -75,6 +75,7 @@ public class EditWorkingDayHours extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         btn_weekday = new javax.swing.JButton();
         btn_weekend = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -139,21 +140,32 @@ public class EditWorkingDayHours extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setLabelFor(body);
+        jLabel1.setText("Click on the weekday or weekend button to show details");
+        jLabel1.setToolTipText("");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addComponent(btn_weekday)
-                .addGap(129, 129, 129)
-                .addComponent(btn_weekend)
-                .addContainerGap(411, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(btn_weekday)
+                        .addGap(129, 129, 129)
+                        .addComponent(btn_weekend))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel1)))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_weekday)
                     .addComponent(btn_weekend))
@@ -208,6 +220,7 @@ public class EditWorkingDayHours extends javax.swing.JPanel {
     private javax.swing.JButton btn_weekday;
     private javax.swing.JButton btn_weekend;
     private javax.swing.JPanel edit_body;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
