@@ -336,4 +336,30 @@
             where s.id = ?
        ]]>
     </query>
+    
+    <query id="insert_session">
+        <![CDATA[
+            INSERT INTO session (subject, sub_code, tag, tag_duration, group_id, subgroup_id, stu_count)
+            VALUES (?,?,?,?,?,?,?)
+        ]]>
+    </query>
+    
+    <query id="get_session">
+        <![CDATA[
+            SELECT * FROM session
+        ]]>
+    </query>
+    
+    <query id="insert_session_lec">
+        <![CDATA[
+            INSERT INTO session_lec (session_id,lec_id)
+            VALUES (?,?)
+        ]]>
+    </query>
+    
+    <query id="get_session_lec">
+        <![CDATA[
+            SELECT * FROM session_lec
+        ]]>
+    </query>
 </Querys>

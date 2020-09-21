@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
  */
 public class AddSession extends javax.swing.JPanel {
 
-    PreparedStatement statement;
+    PreparedStatement statement, statement1, statement2;
     Connection connection;
     ResultSet resultSet;
     
@@ -45,6 +45,7 @@ public class AddSession extends javax.swing.JPanel {
     Dictionary<Integer, Subject> subjectList;
     Dictionary<Integer, GeneratedId> groupIDList;
     Dictionary<Integer, GeneratedSubId> subgroupIDList;
+    Dictionary<Integer, JComboBox<String>> lecList;
     ArrayList<tag> tagList;
     
     String [] lecture;
@@ -57,6 +58,7 @@ public class AddSession extends javax.swing.JPanel {
     int index_tag = 0;
     int index_sub = 0;
     int lec_count = 0;
+    boolean lock = false;
     /**
      * Creates new form AddSession
      */
@@ -65,6 +67,7 @@ public class AddSession extends javax.swing.JPanel {
         this.subjectList = new  Hashtable<>();
         this.groupIDList = new  Hashtable<>();
         this.subgroupIDList = new  Hashtable<>();
+        this.lecList = new  Hashtable<>();
         this.tagList = new ArrayList<>();
         
         initComponents();
@@ -73,10 +76,23 @@ public class AddSession extends javax.swing.JPanel {
             connection = DBconnection.getConnection();
         } catch (SQLException | ClassNotFoundException | IOException ex) {
             Logger.getLogger(AddSession.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error on create Connection"+ex.getMessage(), "Data load error", JOptionPane.ERROR_MESSAGE);
         }
         
         lbl_ID.setVisible(false);
         cmb_ID.setVisible(false);
+        
+        lecList.put(0, cmb_lec1);
+        lecList.put(1, cmb_lec2);
+        lecList.put(2, cmb_lec3);
+        lecList.put(3, cmb_lec4);
+        lecList.put(4, cmb_lec5);
+        lecList.put(5, cmb_lec6);
+        lecList.put(6, cmb_lec7);
+        lecList.put(7, cmb_lec8);
+        lecList.put(8, cmb_lec9);
+        lecList.put(9, cmb_lec10);
+        
         cmb_lec2.setVisible(false);
         cmb_lec3.setVisible(false);
         cmb_lec4.setVisible(false);
@@ -120,8 +136,8 @@ public class AddSession extends javax.swing.JPanel {
         txt_subc = new javax.swing.JTextField();
         txt_durat = new javax.swing.JTextField();
         txt_stu_coun = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_reset = new javax.swing.JButton();
+        btn_save = new javax.swing.JButton();
         cmb_lec1 = new javax.swing.JComboBox<>();
         cmb_subj = new javax.swing.JComboBox<>();
         cmb_ID = new javax.swing.JComboBox<>();
@@ -196,14 +212,19 @@ public class AddSession extends javax.swing.JPanel {
 
         txt_stu_coun.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        jButton1.setText("Reset");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_reset.setText("Reset");
+        btn_reset.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btn_resetMouseClicked(evt);
             }
         });
 
-        jButton2.setText("Save");
+        btn_save.setText("Save");
+        btn_save.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_saveMouseClicked(evt);
+            }
+        });
 
         cmb_lec1.setPreferredSize(new java.awt.Dimension(150, 30));
 
@@ -290,15 +311,15 @@ public class AddSession extends javax.swing.JPanel {
                             .addComponent(txt_stu_coun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton1)
+                                    .addComponent(btn_reset)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jButton2))
+                                    .addComponent(btn_save))
                                 .addComponent(cmb_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(109, 109, 109)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_reset, btn_save});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,9 +374,9 @@ public class AddSession extends javax.swing.JPanel {
                     .addComponent(cmb_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(btn_reset)
+                    .addComponent(btn_save))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -368,70 +389,152 @@ public class AddSession extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmb_subjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_subjActionPerformed
         index_sub = cmb_subj.getSelectedIndex();
 //       System.out.println(index_sub);
-        getSubCode();
-        getDuration();
+        if(index_sub != 0){
+            getSubCode();
+            getDuration();
+        }
     }//GEN-LAST:event_cmb_subjActionPerformed
 
     private void cmb_tagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tagActionPerformed
         index_tag = cmb_tag.getSelectedIndex();
 //        System.out.println(index_tag);
-        getDuration();
+        if(index_sub != 0){
+            getDuration();
+        }
     }//GEN-LAST:event_cmb_tagActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btn_resetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_resetMouseClicked
         resetAll();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btn_resetMouseClicked
 
     private void btn_addLecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addLecMouseClicked
-       if(i < 10)
+       if(lec_count < 9)
             ++lec_count;
-       
-       if(lec_count ==1){
-           cmb_lec2.setVisible(true);
-       }
-       else if(lec_count ==2){
-           cmb_lec3.setVisible(true);
-       }
-       else if(lec_count ==3){
-           cmb_lec4.setVisible(true);
-       }
-       else if(lec_count ==4){
-           cmb_lec5.setVisible(true);
-       }
-       else if(lec_count ==5){
-           cmb_lec6.setVisible(true);
-       }
-       else if(lec_count ==6){
-           cmb_lec7.setVisible(true);
-       }
-       else if(lec_count ==7){
-           cmb_lec8.setVisible(true);
-       }
-       else if(lec_count ==8){
-           cmb_lec9.setVisible(true);
-       }
-       else if(lec_count ==9){
-           cmb_lec10.setVisible(true);
-       }
-         
+       lecList.get(lec_count).setModel(new DefaultComboBoxModel<>(lecture));
+       lecList.get(lec_count).setVisible(true);
     }//GEN-LAST:event_btn_addLecMouseClicked
 
-    private void resetAll(){
-        cmb_lec1.setSelectedIndex(0);
-        cmb_subj.setSelectedIndex(0);
-        cmb_tag.setSelectedIndex(0);
-        cmb_ID.setSelectedIndex(0);
+    private void btn_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_saveMouseClicked
+       lock = false;
+        if(cmb_tag.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Please select tag", "Data missing", JOptionPane.ERROR_MESSAGE);
+            lock=true;
+        }
+        if(cmb_subj.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Please select subject", "Data missing", JOptionPane.ERROR_MESSAGE);
+            lock=true;
+        }
+        if(txt_stu_coun.getText().contentEquals("")){
+            JOptionPane.showMessageDialog(this, "Please enter student count", "Data missing", JOptionPane.ERROR_MESSAGE);
+            lock=true;
+        }
+        if(cmb_lec1.getSelectedIndex()==0){
+                JOptionPane.showMessageDialog(this, "Please select lecturer", "Data missing", JOptionPane.ERROR_MESSAGE);
+                lock=true;
+        }
+        if(lec_count > 0){
+            
+            for(int j = 1;j <= lec_count;j++){
+                if(lecList.get(j).getSelectedIndex()==0){
+                    JOptionPane.showMessageDialog(this, "Please select lecturer", "Data missing", JOptionPane.ERROR_MESSAGE);
+                    lock=true;
+                }
+            }
+        }
+        if(cmb_tag.getSelectedIndex()>0){
+            if(cmb_ID.getSelectedIndex()==0){
+                JOptionPane.showMessageDialog(this, "Please select group ID", "Data missing", JOptionPane.ERROR_MESSAGE);
+                lock=true;
+            }
+        }
         
-        txt_durat.setText("");
-        txt_stu_coun.setText("");
-        txt_subc.setText("");
+        if(!lock){
+           try {
+               statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SESSION));
+               
+               statement.setString(1, cmb_subj.getSelectedItem().toString());
+               statement.setString(2, txt_subc.getText());
+               statement.setString(3, cmb_tag.getSelectedItem().toString());
+               statement.setString(4, txt_durat.getText());
+               
+               if(cmb_tag.getSelectedItem().toString().contentEquals("Lecture") || cmb_tag.getSelectedItem().toString().contentEquals("Tutorial")){
+                   
+                    statement.setString(5, cmb_ID.getSelectedItem().toString());
+                    statement.setString(6, null);
+               }
+               else{
+                   statement.setString(5, null);
+                   statement.setString(6, cmb_ID.getSelectedItem().toString());
+               }
+               statement.setString(7, txt_stu_coun.getText());
+               
+               statement.execute();
+               statement.close();
+               resultSet.close();
+               
+               statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SESSION));
+               statement1  = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SESSION_LECT));
+               
+               resultSet = statement.executeQuery();
+               
+               int count = 0;
+               
+               while(resultSet.next()){
+                   ++count;
+               }
+               statement.close();
+               resultSet.close();
+               
+               for(int j =0; j <= lec_count;j++){
+                    statement1.setInt(1,count);
+                    statement1.setInt(2,lectruerList.get(lecList.get(j).getSelectedIndex()).getId());
+                    
+                    statement1.execute();
+               }
+               
+               
+           } catch (ParserConfigurationException | SAXException | IOException | SQLException ex) {
+               Logger.getLogger(AddSession.class.getName()).log(Level.SEVERE, null, ex);
+               JOptionPane.showMessageDialog(this, "Error on data insert", "Data save error", JOptionPane.ERROR_MESSAGE);
+               lock = true;
+           }
+           
+           if(!lock){
+               JOptionPane.showMessageDialog(this, "Session Inserted", "Data save ", JOptionPane.DEFAULT_OPTION);
+           }
+        }
+        
+    }//GEN-LAST:event_btn_saveMouseClicked
+
+    private void resetAll(){
+        try{
+            cmb_lec1.setSelectedIndex(0);
+            cmb_subj.setSelectedIndex(0);
+            if(cmb_tag.getSelectedIndex()> 0){
+
+                cmb_ID.setSelectedIndex(0);
+            }
+            cmb_tag.setSelectedIndex(0);
+            cmb_ID.setVisible(false);
+            lbl_ID.setVisible(false);
+
+            for(int j =1; j<= lec_count;j++){
+                lecList.get(j).setSelectedIndex(0);
+                lecList.get(j).setVisible(false);
+            }
+            txt_durat.setText("");
+            txt_stu_coun.setText("");
+            txt_subc.setText("");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Error on reset"+ex.getMessage(), "error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     private void getSubCode(){
         txt_subc.setText(subjectList.get(index_sub).getSub_code());
@@ -536,17 +639,7 @@ public class AddSession extends javax.swing.JPanel {
                 
                 lecture[i] = lectruerList.get(i).getName();
             }
-            
             cmb_lec1.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec2.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec3.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec4.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec5.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec6.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec7.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec8.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec9.setModel(new DefaultComboBoxModel<>(lecture));
-            cmb_lec10.setModel(new DefaultComboBoxModel<>(lecture));
             
             statement.close();
             resultSet.close();
@@ -731,6 +824,8 @@ public class AddSession extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addLec;
+    private javax.swing.JButton btn_reset;
+    private javax.swing.JButton btn_save;
     private javax.swing.JComboBox<String> cmb_ID;
     private javax.swing.JComboBox<String> cmb_lec1;
     private javax.swing.JComboBox<String> cmb_lec10;
@@ -744,8 +839,6 @@ public class AddSession extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmb_lec9;
     private javax.swing.JComboBox<String> cmb_subj;
     private javax.swing.JComboBox<String> cmb_tag;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

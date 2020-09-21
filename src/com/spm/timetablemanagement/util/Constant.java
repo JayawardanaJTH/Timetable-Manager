@@ -66,6 +66,12 @@ public class Constant {
     public static final String DELETE_SUBJECT = "delete_subject";
     public static final String UPDATE_SUBJECT = "update_subject";
     
+    public static final String INSERT_SESSION = "insert_session";
+    public static final String GET_SESSION = "get_session";
+
+    public static final String INSERT_SESSION_LECT = "insert_session_lec";
+    public static final String GET_SESSION_LECT = "get_session_lec";
+    
     public static final String QUERY = "query";
     public static final String QUERY_ID = "id";
     public static final String PROPERTIES = "timetablemanagement.properties";
