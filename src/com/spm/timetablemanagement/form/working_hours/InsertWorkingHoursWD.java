@@ -532,7 +532,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                 } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
                     Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
                     temp = 1;
-                    JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Data input Unsucces","Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(InsertWorkingHoursWD.this, "Data input Unsucces"+ex.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
                 }
                   if(temp == 0){
                       btn_resetMousePressed(null);

@@ -92,6 +92,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(Weekend_Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
         }
     
     }
@@ -490,8 +491,10 @@ public class Weekend_Edit extends javax.swing.JPanel {
                 }
             } catch (SQLException | IOException | ParserConfigurationException | SAXException ex) {
                 Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsertWorkingHoursWE.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
             }
 
         }

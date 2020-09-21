@@ -470,12 +470,12 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
             } catch (SQLException | IOException | ParserConfigurationException | SAXException ex) {
                 Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
                 temp = 1;
-                JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Error on data input",
+                JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Error on data input"+ex.getMessage(),
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsertWorkingHoursWE.class.getName()).log(Level.SEVERE, null, ex);
                 temp = 1;
-                JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Error on data input",
+                JOptionPane.showMessageDialog(InsertWorkingHoursWE.this, "Error on data input"+ex.getMessage(),
                 "Data missing",JOptionPane.ERROR_MESSAGE);
             }
             

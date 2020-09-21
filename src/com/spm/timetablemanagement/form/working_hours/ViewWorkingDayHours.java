@@ -84,6 +84,7 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
             
         } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
             Logger.getLogger(ViewWorkingDayHours.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(ViewWorkingDayHours.this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

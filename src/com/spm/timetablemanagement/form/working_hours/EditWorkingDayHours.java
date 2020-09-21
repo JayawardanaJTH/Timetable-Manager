@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -51,7 +52,7 @@ public class EditWorkingDayHours extends javax.swing.JPanel {
             return rs;
         } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
             Logger.getLogger(EditWorkingDayHours.class.getName()).log(Level.SEVERE, null, ex);
-        
+            JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }
