@@ -42,6 +42,7 @@ public class ViewSession extends javax.swing.JPanel {
     Dictionary<Integer, Integer> session_lecList;
     
     String[] lecture;
+    Object [] data = new Object[8];
     int i = 0;
     /**
      * Creates new form ViewSession
@@ -50,6 +51,8 @@ public class ViewSession extends javax.swing.JPanel {
         this.lecturerList = new Hashtable<>();
         this.sessionList = new Hashtable<>();
         this.session_lecList = new Hashtable<>();
+        dtm = (DefaultTableModel) jTable1.getModel();
+        tableModel = jTable1.getModel();
         
         initComponents();
         
@@ -94,7 +97,18 @@ public class ViewSession extends javax.swing.JPanel {
                 session_lecList.put(resultSet.getInt("session_id"),resultSet.getInt("lec_id"));
             }
             
-            
+            for(i = 0;i < sessionList.size(); i++){
+                session = sessionList.get(i);
+                
+                for(int j =0;j < session_lecList.size(); j++){
+                    
+                    for(int t=0;t < lecturerList.size();t++){
+                        if(session_lecList.get(session.getId())== lecturerList.get(j).getId()){
+                            
+                        }
+                    }
+                }
+            }
             
         } catch (SQLException | ParserConfigurationException | SAXException | IOException ex) {
             Logger.getLogger(ViewSession.class.getName()).log(Level.SEVERE, null, ex);
