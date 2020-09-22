@@ -15,11 +15,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -37,24 +40,27 @@ public class ViewSession extends javax.swing.JPanel {
     TableModel tableModel;
     DefaultTableModel dtm;
     
-    Dictionary<Integer, Lecturer> lecturerList;
-    Dictionary<Integer, Session> sessionList;
-    Dictionary<Integer, Integer> session_lecList;
-    
+    Map<Integer, Lecturer> lecturerList;
+    Map<Integer, Session> sessionList;
+    Map<Integer, Integer> session_lecList;
+    List<String> lecList ;
     String[] lecture;
-    Object [] data = new Object[8];
+    Object [] data ;
     int i = 0;
+    int a = 0;
     /**
      * Creates new form ViewSession
      */
     public ViewSession() {
+        initComponents();
+        
         this.lecturerList = new Hashtable<>();
         this.sessionList = new Hashtable<>();
         this.session_lecList = new Hashtable<>();
+        this.lecList = new ArrayList<>();
         dtm = (DefaultTableModel) jTable1.getModel();
         tableModel = jTable1.getModel();
         
-        initComponents();
         
         try {
             connection = DBconnection.getConnection();
@@ -63,21 +69,44 @@ public class ViewSession extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error on connection create"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
         }
         loadData();
+        createTable();
     }
 
+    private void createTable(){
+        dtm = (DefaultTableModel) jTable1.getModel();
+        
+        for(Session s : sessionList.values()){
+            data = new Object[9];
+            
+            data[0] = s.getId();
+            data[1] = Arrays.toString(s.getLec());
+            data[2] = s.getSub();
+            data[3] = s.getTag();
+            data[4] = s.getDuration();
+            data[5] = s.getGroupID();
+            data[6] = s.getSubgroupID();
+            data[7] = s.getStu_count();
+            data[8] = "Delete";
+            
+            dtm.addRow(data);
+        }
+    }
+    
     private void loadData(){
         i = 0;
         loadLecturers();
         
-        Session session = new Session();
+        Session session ;
         
         try {
             statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SESSION));
-            statement1 = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SESSION_LECT));
+            statement1 = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SESSION_LECT_BY_ID));
             
             resultSet = statement.executeQuery();
             
             while(resultSet.next()){
+                session = new Session();
+                
                 session.setId(resultSet.getInt("id"));
                 session.setSub(resultSet.getString("subject"));
                 session.setSubc(resultSet.getString("subject"));
@@ -87,30 +116,39 @@ public class ViewSession extends javax.swing.JPanel {
                 session.setSubgroupID(resultSet.getString("subgroup_id"));
                 session.setStu_count(resultSet.getInt("stu_count"));
                 
-                sessionList.put(i, session);
+                sessionList.put(session.getId(), session);
+                i++;
             }
             resultSet.close();
             
-            resultSet = statement1.executeQuery();
-            
-            while(resultSet.next()){
-                session_lecList.put(resultSet.getInt("session_id"),resultSet.getInt("lec_id"));
-            }
-            
-            for(i = 0;i < sessionList.size(); i++){
-                session = sessionList.get(i);
+            for(Session s : sessionList.values()){
+                i =0;
+                lecture = new String[10];
+                statement1.setInt(1, s.getId());
+                resultSet = statement1.executeQuery();
+                lecList.clear();
                 
-                for(int j =0;j < session_lecList.size(); j++){
-                    
-                    for(int t=0;t < lecturerList.size();t++){
-                        if(session_lecList.get(session.getId())== lecturerList.get(j).getId()){
-                            
+                while(resultSet.next()){
+                
+                    lecture[i] = resultSet.getString("lec_id");
+                    i++;
+                }
+                for(String lec : lecture){
+                    if(lec != null){
+                        
+                        if(lecturerList.containsKey(Integer.parseInt(lec))){
+                             lecList.add(lecturerList.get(Integer.parseInt(lec)).getName());
                         }
                     }
                 }
+                lecture = lecList.toArray(new String[lecList.size()]);
+                s.setLec(lecture);
             }
             
-        } catch (SQLException | ParserConfigurationException | SAXException | IOException ex) {
+            resultSet.close();
+            statement1.close();
+            statement.close();
+        } catch (SQLException | ParserConfigurationException | SAXException | IOException | NumberFormatException | NullPointerException | ClassCastException ex) {
             Logger.getLogger(ViewSession.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Error on data Load"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
         }
@@ -131,25 +169,12 @@ public class ViewSession extends javax.swing.JPanel {
                 lecturerList.put(l.getId(), l);
             }
             
-//            if(lecturerList.size()>0){
-//                lecture = new String[lecturerList.size()+1];
-//                lecture[0] = "Select";
-//            }
-//            else{
-//                lecture = new String[1];
-//                lecture[0] = "No Items";
-//            }
-//            
-//            for(i =1;i <= lecturerList.size();i++){
-//                
-//                lecture[i] = lecturerList.get(i).getName();
-//            }
             statement.close();
             resultSet.close();
         } catch (ParserConfigurationException | SAXException | IOException | SQLException ex) {
             Logger.getLogger(AddSession.class.getName()).log(Level.SEVERE, null, ex);
             
-            JOptionPane.showMessageDialog(this, "Error on load lecturers data", "Data load error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error on load lecturers data", "Data load error"+ex.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
     }
     /**
@@ -201,14 +226,14 @@ public class ViewSession extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Lecturer(s)", "Subject", "Tag", "Duration", "GroupID", "SubgroupID", "Student Count"
+                "ID", "Lecturer(s)", "Subject", "Tag", "Duration", "GroupID", "SubgroupID", "Student Count", "Action"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -219,16 +244,21 @@ public class ViewSession extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(6).setResizable(false);
             jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(8).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -266,6 +296,19 @@ public class ViewSession extends javax.swing.JPanel {
         add(jScrollPane2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.getSelectedRow();
+        int col = jTable1.getSelectedColumn();
+        
+        if(col ==8){
+            int result = JOptionPane.showConfirmDialog(this, "Are you sure to delete", "Delete session", JOptionPane.YES_NO_OPTION);
+            
+            if(result==0){
+                deleteSession(row,col);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel7;
@@ -276,4 +319,34 @@ public class ViewSession extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void deleteSession(int row, int col) {
+        boolean lock = false;
+        try {
+            tableModel = jTable1.getModel();
+            
+            int sessionID =  (int) tableModel.getValueAt(row, 0);
+            
+            statement = connection.prepareStatement(CreateQuery.getQuery(Constant.DELETE_SESSION));
+            statement1 = connection.prepareStatement(CreateQuery.getQuery(Constant.DELETE_SESSION_LECT));
+            
+            statement.setInt(1, sessionID);
+            statement1.setInt(1, sessionID);
+            
+            statement.execute();
+            statement1.execute();
+            
+            sessionList.remove(sessionID);
+            
+        } catch (SQLException | ParserConfigurationException | SAXException | IOException ex) {
+            Logger.getLogger(ViewSession.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error on delete session"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            lock = true;
+        }
+        if(!lock){
+            dtm.removeRow(row);
+            dtm.setRowCount(0);
+            createTable();
+        }
+    }
 }
