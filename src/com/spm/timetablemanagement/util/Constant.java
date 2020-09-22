@@ -68,9 +68,13 @@ public class Constant {
     
     public static final String INSERT_SESSION = "insert_session";
     public static final String GET_SESSION = "get_session";
+    public static final String GET_SESSION_ID = "get_session_ID";
+    public static final String DELETE_SESSION = "delete_session";
 
     public static final String INSERT_SESSION_LECT = "insert_session_lec";
     public static final String GET_SESSION_LECT = "get_session_lec";
+    public static final String GET_SESSION_LECT_BY_ID = "get_session_lec_by_id";
+    public static final String DELETE_SESSION_LECT = "delete_session_lec";
     
     public static final String QUERY = "query";
     public static final String QUERY_ID = "id";
