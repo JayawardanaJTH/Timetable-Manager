@@ -37,7 +37,7 @@ public class CreateQuery {
 
 //                 .parse(new File("C:\\Users\\hvdil\\Documents\\NetBeansProjects\\Timetable-Manager\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
 
-                .parse(new File("C:\\Users\\IT18216974\\Downloads\\Timetable-Manager\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
+                .parse(new File("C:\\Users\\Tiran Harsha\\Documents\\NetBeansProjects\\Timetable-Manager\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
 
                 .getElementsByTagName(Constant.QUERY);
         
