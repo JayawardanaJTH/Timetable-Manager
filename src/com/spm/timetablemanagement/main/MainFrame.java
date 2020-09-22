@@ -11,6 +11,7 @@ import com.spm.timetablemanagement.form.lecturer.AddLecturer;
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
 import allocateTime_modifySessions.addParallelSessions;
+import com.spm.timetablemanagement.form.lecturer.ViewLecturer;
 import com.spm.timetablemanagement.form.student_details.addDetails_Home;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
 import com.spm.timetablemanagement.form.student_details.sub_GroupId_generate;
@@ -24,6 +25,10 @@ import com.spm.timetablemanagement.menu.MenuItem;
 //import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
 import com.spm.timetablemanagement.location.InsertLocation; 
 import com.spm.timetablemanagement.form.room.InsertRoom;
+import com.spm.timetablemanagement.form.session.AddSession;
+import com.spm.timetablemanagement.form.session.ViewSession;
+import com.spm.timetablemanagement.form.subject.AddSubject;
+import com.spm.timetablemanagement.form.subject.ViewSubject;
 
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWE;
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWD;
@@ -88,7 +93,15 @@ public class MainFrame extends javax.swing.JFrame {
                 panelBody.revalidate();
             }
         });
-        MenuItem s2Lecturer = new MenuItem(iconSubmenu, "View Lecturer Details", null);
+        MenuItem s2Lecturer = new MenuItem(iconSubmenu, "View Lecturer Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new ViewLecturer());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         
         //Student submenu items
         MenuItem s1Student = new MenuItem(iconSubmenu, "Add Student Details", new ActionListener() {
@@ -152,13 +165,29 @@ public class MainFrame extends javax.swing.JFrame {
         });
         
         //Subject submenu items
-        MenuItem s1Subject = new MenuItem(iconSubmenu, "Add Subject Details", null);
-        MenuItem s2Subject = new MenuItem(iconSubmenu, "View Subject Details", null);
-        
+        MenuItem s1Subject = new MenuItem(iconSubmenu, "Add Subject Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new AddSubject());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
+        MenuItem s2Subject = new MenuItem(iconSubmenu, "View Subject Details", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new ViewSubject());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         //Location submenu items
         MenuItem s1Location = new MenuItem(iconSubmenu, "Add Building Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
                panelBody.add(new InsertLocation());
                panelBody.repaint();
                panelBody.revalidate();
@@ -167,6 +196,7 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s2Location = new MenuItem(iconSubmenu, "Add Room Details", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               panelBody.removeAll();
                panelBody.add(new InsertRoom());
                panelBody.repaint();
                panelBody.revalidate();
@@ -191,8 +221,24 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms", null);
         
         //Handle Session submenu items
-        MenuItem s1HandleSession = new MenuItem(iconSubmenu, "Create Sessions", null);
-        MenuItem s2HandleSession = new MenuItem(iconSubmenu, "View Sessions", null);
+        MenuItem s1HandleSession = new MenuItem(iconSubmenu, "Create Sessions", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new AddSession());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
+        MenuItem s2HandleSession = new MenuItem(iconSubmenu, "View Sessions",new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new ViewSession());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         MenuItem s3HandleSession = new MenuItem(iconSubmenu, "Search Sessions", null);
         
         //Allocate Time Session submenu items

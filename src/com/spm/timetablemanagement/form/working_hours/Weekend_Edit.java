@@ -33,6 +33,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
     private static int chk_days = 0; 
     private static boolean error = false;
     private static ArrayList<String> Arr_days = new ArrayList();
+    private static ArrayList<String> days = new ArrayList();
     private EditWorkingDayHours model = new EditWorkingDayHours();
             
     
@@ -91,6 +92,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(Weekend_Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
         }
     
     }
@@ -369,6 +371,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
         numOfdays = 0;
         txt_days_error.setText("");
         Arr_days.clear();
+        days.clear();
     }//GEN-LAST:event_btn_resetMousePressed
 
     private void checkDays(int value){
@@ -426,8 +429,13 @@ public class Weekend_Edit extends javax.swing.JPanel {
 
                 PreparedStatement statement1 = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WORKING_HOUR_TABLE));
                 PreparedStatement statement2 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_TABLE));
+                PreparedStatement statement3 = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WE_WORKING_HOUR_DAYS_TABLE));
+                PreparedStatement statement4 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_DAYS_TABLE));
 
                 statement2.setInt(1, 2);
+                statement4.setInt(1, 2);
+                
+                statement4.execute();
 
                 if(!statement2.execute()){
 
@@ -443,9 +451,11 @@ public class Weekend_Edit extends javax.swing.JPanel {
                         
                         if(day == 6){
                             dayList = dayList.concat("Saturday,");
+                            days.add("Saturday");
                         }
                         if(day == 7){
                             dayList = dayList.concat("Sunday,");
+                            days.add("Sunday");
                         }
                     }
                     int lenght = dayList.length();
@@ -465,14 +475,26 @@ public class Weekend_Edit extends javax.swing.JPanel {
 
                     if(!statement1.execute()){
                         JOptionPane.showMessageDialog(Weekend_Edit.this, "Update Success");
-                        btn_resetMousePressed(null);
-                        execute();
+                        
+                        
                     }
+                    
+                    for(int x = 0; x < days.size(); x++){
+                        statement3.setInt(1, x+1);
+                        statement3.setString(2, days.get(x));
+                        
+                        statement3.execute();
+                    }
+                    
+                    btn_resetMousePressed(null);
+                    execute();
                 }
             } catch (SQLException | IOException | ParserConfigurationException | SAXException ex) {
                 Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsertWorkingHoursWE.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
             }
 
         }

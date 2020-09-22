@@ -33,6 +33,7 @@ public class Weekday_Edit extends javax.swing.JPanel {
     private static int chk_days = 0; 
     private static boolean error = false;
     private static ArrayList<String> Arr_days = new ArrayList();
+    private static ArrayList<String> days = new ArrayList();
     private EditWorkingDayHours model = new EditWorkingDayHours();
     /**
      * Creates new form Weekday_Edit
@@ -101,6 +102,7 @@ public class Weekday_Edit extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(Weekend_Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
         }
     
     }
@@ -459,6 +461,7 @@ public class Weekday_Edit extends javax.swing.JPanel {
         numOfdays = 0;
         txt_days_error.setText("");
         Arr_days.clear();
+        days.clear();
     }//GEN-LAST:event_btn_resetMousePressed
 
     private void checkDays(int value){
@@ -516,8 +519,13 @@ public class Weekday_Edit extends javax.swing.JPanel {
 
                 PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WORKING_HOUR_TABLE));
                 PreparedStatement statement2 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_TABLE));
+                PreparedStatement statement3 = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_WD_WORKING_HOUR_DAYS_TABLE));
+                PreparedStatement statement4 = connection.prepareStatement(CreateQuery.getQuery(Constant.REMOVE_WORKING_HOUR_DAYS_TABLE));
 
                 statement2.setInt(1, 1);
+                statement4.setInt(1, 1);
+                
+                statement4.execute();
 
                 if(!statement2.execute()){
 
@@ -537,18 +545,23 @@ public class Weekday_Edit extends javax.swing.JPanel {
                         
                         if(day == 1){
                             dayList = dayList.concat("Monday,");
+                            days.add("Monday");
                         }
                         if(day == 2){
                             dayList = dayList.concat("Tuesday,");
+                            days.add("Tuesday");
                         }
                         if(day == 3){
                             dayList = dayList.concat("Wednsday,");
+                            days.add("Wednsday");
                         }
                         if(day == 4){
                             dayList = dayList.concat("Thursday,");
+                            days.add("Thursday");
                         }
                         if(day == 5){
                             dayList = dayList.concat("Friday,");
+                            days.add("Friday");
                         }   
                     }
                     int lenght = dayList.length();
@@ -568,12 +581,22 @@ public class Weekday_Edit extends javax.swing.JPanel {
 
                     if(!statement.execute()){
                         JOptionPane.showMessageDialog(Weekday_Edit.this,"Update Success");
-                        btn_resetMousePressed(null);
-                        execute();
+                        
                     }
+                    
+                    for(int x = 0; x < days.size(); x++){
+                        statement3.setInt(1, x+1);
+                        statement3.setString(2, days.get(x));
+                        
+                        statement3.execute();
+                    }
+                    
+                    btn_resetMousePressed(null);
+                    execute();
                 }
             } catch (SQLException | ClassNotFoundException | IOException | ParserConfigurationException | SAXException ex) {
                 Logger.getLogger(InsertWorkingHoursWD.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Cannot load data"+ex.getMessage(), "Data error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btn_saveMousePressed

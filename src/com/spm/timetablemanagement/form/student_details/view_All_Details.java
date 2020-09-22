@@ -5,6 +5,7 @@
  */
 package com.spm.timetablemanagement.form.student_details;
 
+import com.spm.timetablemanagement.models.AllDetails;
 import com.spm.timetablemanagement.util.DBconnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
