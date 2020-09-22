@@ -350,6 +350,41 @@
         ]]>
     </query>
     
+     <query id="get_session_by_sessionID">
+        <![CDATA[
+            SELECT * FROM session
+            WHERE id = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_by_groupID">
+        <![CDATA[
+            SELECT * FROM session
+            WHERE group_id = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_by_subgroupID">
+        <![CDATA[
+            SELECT * FROM session
+            WHERE subgroup_id = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_by_subjectcode">
+        <![CDATA[
+            SELECT * FROM session
+            WHERE sub_code = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_by_lecture">
+        <![CDATA[
+            SELECT session_id FROM session_lec
+            WHERE lec_id = ?
+        ]]>
+    </query>
+    
     <query id="get_session_ID">
         <![CDATA[
             SELECT MAX(s.id)'max'

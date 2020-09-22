@@ -70,6 +70,11 @@ public class Constant {
     public static final String GET_SESSION = "get_session";
     public static final String GET_SESSION_ID = "get_session_ID";
     public static final String DELETE_SESSION = "delete_session";
+    public static final String GET_SESSION_BY_GROUP_ID  = "get_session_by_groupID";
+    public static final String GET_SESSION_BY_SUBGROUP_ID  = "get_session_by_subgroupID";
+    public static final String GET_SESSION_BY_SUBJECT_CODE  = "get_session_by_subjectcode";
+    public static final String GET_SESSION_BY_LECTURE  = "get_session_by_lecture";
+    public static final String GET_SESSION_BY_SESSION_ID  = "get_session_by_sessionID";
 
     public static final String INSERT_SESSION_LECT = "insert_session_lec";
     public static final String GET_SESSION_LECT = "get_session_lec";

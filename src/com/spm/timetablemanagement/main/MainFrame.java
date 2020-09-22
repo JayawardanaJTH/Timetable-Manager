@@ -239,7 +239,7 @@ public class MainFrame extends javax.swing.JFrame {
                 panelBody.revalidate();
             }
         });
-        MenuItem s3HandleSession = new MenuItem(iconSubmenu, "Search Sessions", null);
+//        MenuItem s3HandleSession = new MenuItem(iconSubmenu, "Search Sessions", null);
         
         //Allocate Time Session submenu items
         MenuItem s1AllocateTime = new MenuItem(iconSubmenu, "Allocate Not Available Time", new ActionListener() {
@@ -286,7 +286,7 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem menuStatistics = new MenuItem(iconSubmenu, "Statistics", null, s1Statistics);
         MenuItem menuAllocateRoom = new MenuItem(iconSubmenu, "Allocate Room", null, s1AllocateRoom);
         MenuItem menuCreateSession = new MenuItem(iconSubmenu, "Handle Session", null, s1HandleSession, 
-                s2HandleSession, s3HandleSession);
+                s2HandleSession);
         MenuItem menuAllTime = new MenuItem(iconSubmenu, "Allocate Time and Modify Sessions", null, s1AllocateTime,
                 s2AllocateTime, s3AllocateTime);
         MenuItem menuView = new MenuItem(iconSubmenu, "View Details", null);
