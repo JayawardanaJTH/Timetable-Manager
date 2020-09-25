@@ -46,25 +46,7 @@ public class Constant {
     
     public static final String CREATE_ALL_DETAILS_TABLE ="create_all_details_table";
     public static final String INSERT_ALL_DETAILS_TABLE = "Insert_all_details";
-    
-    public static final String CREATE_SP2_GROUP_WISE_TABLE ="create_sp2_group_wise_table";
-    public static final String INSERT_SP2_GROUP_WISE_TABLE = "Insert_sp2_group_wise";
-    
-    public static final String CREATE_SP2_SUB_GROUP_WISE_TABLE ="create_sp2_sub_group_wise_table";
-    public static final String INSERT_SP2_SUB_GROUP_WISE_TABLE = "Insert_sp2_sub_group_wise_table";
-        
-    public static final String CREATE_SP2_LECTURERS_WISE_TABLE ="create_sp2_lecturers_wise_table";
-    public static final String INSERT_SP2_LECTURERS_WISE_TABLE = "Insert_sp2_lecturers_wise_table";
-            
-    public static final String CREATE_SP2_SESSION_WISE_TABLE ="create_sp2_session_wise_table";
-    public static final String INSERT_SP2_SESSION_WISE_TABLE = "Insert_sp2_session_wise_table";
-      
-    public static final String CREATE_SP2_CONSECUTIVE_SESSION_TABLE ="create_sp2_consecutive_session_table";
-    public static final String INSERT_SP2_CONSECUTIVE_SESSION_TABLE = "Insert_sp2_consecutive_session_table";
-    
-    public static final String CREATE_SP2_PARALLEL_SESSION_TABLE ="create_sp2_parallel_session_table";
-    public static final String INSERT_SP2_PARALLEL_SESSION_TABLE = "Insert_sp2_parallel_session_table";
-    
+
     public static final String CREATE_WORKING_HOUR_TABLE = "create_workingdays_and_hours_table";
     public static final String INSERT_WORKING_HOUR_TABLE = "Insert_workingdays_and_hours";
     public static final String INSERT_WE_WORKING_HOUR_DAYS_TABLE = "Insert_WE_workingdays_and_hours_days";

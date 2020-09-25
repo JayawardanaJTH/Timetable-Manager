@@ -23,8 +23,7 @@ public class enterYnS extends javax.swing.JPanel {
 
     private Connection connection;
     private int yNsId;
-    PreparedStatement pstYns;
-    ResultSet rs;
+    
     /**
      * Creates new form enterYnS
      */
@@ -180,16 +179,9 @@ public class enterYnS extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         tbl_yNs.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -198,10 +190,6 @@ public class enterYnS extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tbl_yNs);
-        if (tbl_yNs.getColumnModel().getColumnCount() > 0) {
-            tbl_yNs.getColumnModel().getColumn(0).setResizable(false);
-            tbl_yNs.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         txt_id.setText("ID");
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -281,7 +269,7 @@ public class enterYnS extends javax.swing.JPanel {
     private void tbl_yNsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_yNsMouseClicked
         // TODO add your handling code here:
 
-       int i = tbl_yNs.getSelectedRow();
+        int i = tbl_yNs.getSelectedRow();
         TableModel model = tbl_yNs.getModel();
         txt_id.setText(model.getValueAt(i, 0).toString());
         txt_YnS.setText(model.getValueAt(i, 1).toString());
@@ -290,8 +278,6 @@ public class enterYnS extends javax.swing.JPanel {
     private void btn_deleteYnSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteYnSActionPerformed
         // TODO add your handling code here:
         String id = txt_id.getText();
-        int whileWorking = 0;
-               
 
         try
         {
@@ -303,47 +289,13 @@ public class enterYnS extends javax.swing.JPanel {
             }
             else{
                 txt_error.setText("");
-             
-            
-            String getYnsQuery = "select yNsId from generated_group_id WHERE yNsId = '"+id+"'";
-            pstYns = connection.prepareStatement(getYnsQuery);
-            rs = pstYns.executeQuery();
-            while(rs.next())
-            {    
-
-                    int x = JOptionPane.showConfirmDialog(this,"You have this related data,is it ok?", "Confirm", JOptionPane.YES_NO_OPTION);
-                    if (x == 0){
-                        ResultSet rs = smt.executeQuery("select id from generated_group_id where yNsId = "+id);
-                        String id_G="";
-                        while(rs.next()){
-                            id_G = rs.getString(1);
-                            System.out.println(id_G);
-                        }
-                        smt.execute("DELETE FROM generated_sub_group_id WHERE gId = '"+id_G+"'");
-                        smt.execute("DELETE FROM generated_group_id WHERE yNsId = "+id); 
-                        smt.execute("DELETE FROM academic_year_and_semester WHERE id = "+id);
-                        smt.execute("DELETE FROM all_details WHERE yNs = '"+txt_YnS.getText().toString()+"'");
-                        
-                        JOptionPane.showMessageDialog(this, "Record Deleted!");
-
-                        
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Delete Canceled!");
-                        
-                    }
-                    whileWorking++;
-                
-            }
-            if(whileWorking == 0){
-                smt.execute("DELETE FROM academic_year_and_semester WHERE id = "+id);
-                JOptionPane.showMessageDialog(this, "Record Deleted!");
-
-            }
+//            DefaultTableModel model = (DefaultTableModel)tbl_yNs.getModel();
+//            Statement smt = connection.createStatement();
+            smt.execute("DELETE FROM academic_year_and_semester WHERE id = "+id); 
             model.setRowCount(0);
             showYnSList();
             txt_YnS.setText("");
-
+            JOptionPane.showMessageDialog(this, "Record Deleted!");
             }
         }
         catch(Exception e)
