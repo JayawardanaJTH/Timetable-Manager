@@ -25,6 +25,9 @@ import javax.swing.table.TableModel;
 public class enterGNo extends javax.swing.JPanel {
 
     Connection connection;
+    private int gnId;
+    PreparedStatement pstGn;
+    ResultSet rs;
     /**
      * Creates new form enterGNo
      */
@@ -182,13 +185,25 @@ public class enterGNo extends javax.swing.JPanel {
             new String [] {
                 "ID", "Group Number"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_Gn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_GnMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_Gn);
+        if (tbl_Gn.getColumnModel().getColumnCount() > 0) {
+            tbl_Gn.getColumnModel().getColumn(0).setResizable(false);
+            tbl_Gn.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 480, 411));
 
@@ -209,23 +224,59 @@ public class enterGNo extends javax.swing.JPanel {
     private void btn_deleteGnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteGnActionPerformed
         // TODO add your handling code here:
         String id = txt_id.getText();
+        int whileWorking = 0;
 
         try
         {
             DefaultTableModel model = (DefaultTableModel)tbl_Gn.getModel();
             Statement smt = connection.createStatement();
-
+            
             if(txt_gNo.getText().equals("")){
-                txt_error.setText("Select Group Number*");
+                txt_error.setText("Select Group Number**");
             }
             else{
                 txt_error.setText("");
+             
+            
+            String getGnQuery = "select gId from generated_group_id WHERE gnoId = '"+id+"'";
+            pstGn = connection.prepareStatement(getGnQuery);
+            rs = pstGn.executeQuery();
+            while(rs.next())
+            {    
 
+                    int x = JOptionPane.showConfirmDialog(this,"You have this related data,is it ok?", "Confirm", JOptionPane.YES_NO_OPTION);
+                    if (x == 0){
+                        ResultSet rs = smt.executeQuery("select id from generated_group_id where gnoId = "+id);
+                        String id_G="";
+                        while(rs.next()){
+                            id_G = rs.getString(1);
+                            System.out.println(id_G);
+                        }
+                        smt.execute("DELETE FROM generated_sub_group_id WHERE gId = '"+id_G+"'");
+                        smt.execute("DELETE FROM generated_group_id WHERE gnoId = "+id); 
+                        smt.execute("DELETE FROM group_number WHERE id = "+id);
+                        smt.execute("DELETE FROM all_details WHERE gNo = '"+txt_gNo.getText().toString()+"'");
+                        
+                        JOptionPane.showMessageDialog(this, "Record Deleted!");
+
+                        
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Delete Canceled!");
+                        
+                    }
+                    whileWorking++;
+                
+            }
+            if(whileWorking == 0){
                 smt.execute("DELETE FROM group_number WHERE id = "+id);
-                model.setRowCount(0);
-                showGNList();
-                txt_gNo.setText("");
                 JOptionPane.showMessageDialog(this, "Record Deleted!");
+
+            }
+            model.setRowCount(0);
+            showGNList();
+            txt_gNo.setText("");
+
             }
         }
         catch(Exception e)
