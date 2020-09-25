@@ -49,9 +49,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.spm.timetablemanagement.form.tag_details.enterTag;
 import com.spm.timetablemanagement.statistics.stats;
+import com.spm.timetablemanagement.util.CreateTable;
+import com.spm.timetablemanagement.util.DBconnection;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -472,6 +476,14 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
+        
+        try {
+            DBconnection.getConnection();
+            
+        } catch (SQLException | ClassNotFoundException | IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null , "Cannot configure database", "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

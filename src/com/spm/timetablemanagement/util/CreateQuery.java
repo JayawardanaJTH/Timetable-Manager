@@ -19,7 +19,7 @@ import org.xml.sax.SAXException;
  */
 public class CreateQuery {
     public static String getQuery(String ID) throws ParserConfigurationException, SAXException, IOException{
-        
+        String path = new File("").getAbsolutePath();
         NodeList nodeList;
         Element element = null;
         
@@ -35,7 +35,7 @@ public class CreateQuery {
 //        
         nodeList = DocumentBuilderFactory.newInstance().newDocumentBuilder()
 
-                 .parse(new File("C:\\Users\\Tiran Harsha\\Downloads\\Compressed\\Timetable-Manager-master\\Timetable-Manager-master\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
+                 .parse(new File(path+"\\query.xml"))
 
                 .getElementsByTagName(Constant.QUERY);
         
