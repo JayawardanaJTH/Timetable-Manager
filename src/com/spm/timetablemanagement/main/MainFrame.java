@@ -10,11 +10,18 @@ import com.spm.timetablemanagement.form.lecturer.AddLecturer;
 
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
+import allocateTime_modifySessions.addGroup;
 import allocateTime_modifySessions.addParallelSessions;
+
 
 import com.spm.timetablemanagement.form.lecturer.ViewLecturer;
 
 import com.spm.timetablemanagement.allocateroom.allocateRoom;
+
+
+import allocateTime_modifySessions.addSubGroup;
+import allocateTime_modifySessions.lecturers_time;
+import allocateTime_modifySessions.setSessions;
 
 import com.spm.timetablemanagement.form.student_details.addDetails_Home;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;

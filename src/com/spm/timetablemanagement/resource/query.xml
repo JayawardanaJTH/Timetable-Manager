@@ -9,7 +9,7 @@
     </query>
     
             
-    <query id="create_year_and_semester_table">
+     <query id="create_year_and_semester_table">
         <![CDATA[
             create table academic_year_and_semester(
                 id int AUTO_INCREMENT,
@@ -55,20 +55,8 @@
             create table group_number(
                 id int AUTO_INCREMENT,
                 gNo int,
-        ]]>
-    </query>
-  
-    <query id="create_workingdays_and_hours_table">
-        <![CDATA[
-            CREATE TABLE work_day_hour(
-                id int,
-                days_no int,
-                days VARCHAR(100),
-                hour int,
-                mins int,
-                slot_type int,
                 
-                CONSTRAINT pk1 PRIMARY KEY (id)
+                Constraint pk1 PRIMARY KEY (id)
             )
         ]]>
     </query>
@@ -92,7 +80,7 @@
     
     <query id="Insert_generated_group_id">
         <![CDATA[
-            INSERT INTO generated_group_id (gId) VALUES (?)
+            INSERT INTO generated_group_id (gId,yNsId, dpId, gnoId) VALUES (?,?,?,?)
         ]]>
     </query>
     
@@ -125,6 +113,8 @@
             create generated_sub_group_id(
                 id int AUTO_INCREMENT,
                 sGid String,
+                sGno String,
+                gId String,
                 
                 Constraint pk1 PRIMARY KEY (id)
             )
@@ -133,7 +123,7 @@
     
     <query id="Insert_generated_sub_group_id">
         <![CDATA[
-            INSERT INTO generated_sub_group_id (sGid) VALUES (?)
+            INSERT INTO generated_sub_group_id (sGid,sGno, gId) VALUES (?,?,?)
         ]]>
     </query>
     
@@ -172,6 +162,7 @@
                 id int AUTO_INCREMENT,
                 yNs String,
                 dp String,
+                gNo String,
                 gId String,
                 sGid String,
                 
@@ -182,7 +173,131 @@
     
     <query id="Insert_all_details">
         <![CDATA[
-            INSERT INTO all_details (yNs,dp,gId,sGid) VALUES (?,?,?,?)
+            INSERT INTO all_details (yNs,dp,gNo,gId,sGid) VALUES (?,?,?,?,?)
+        ]]>
+    </query> 
+    
+    <!---allocation Time & session modify-->
+    
+    <query id="create_sp2_group_wise_table">
+        <![CDATA[
+            create table sp2_group_wise(
+                id int AUTO_INCREMENT,
+                gId String,
+                day String,
+                time_from String,
+                time_to String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_sp2_group_wise">
+        <![CDATA[
+            INSERT INTO sp2_group_wise (gId,day,time_from,time_to) VALUES (?,?,?,?)
+        ]]>
+    </query> 
+    
+    
+    
+    <query id="create_sp2_sub_group_wise_table">
+        <![CDATA[
+            create table sp2_sub_group_wise(
+                id int AUTO_INCREMENT,
+                sGid String,
+                day String,
+                time_from String,
+                time_to String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_sp2_sub_group_wise_table">
+        <![CDATA[
+            INSERT INTO sp2_sub_group_wise (sGid,day,time_from,time_to) VALUES (?,?,?,?)
+        ]]>
+    </query> 
+    
+    
+    
+    <query id="create_sp2_lecturers_wise_table">
+        <![CDATA[
+            create table sp2_lecturers_wise(
+                id int AUTO_INCREMENT,
+                lecName String,
+                lecId int,
+                day String,
+                time_from String,
+                time_to String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_sp2_lecturers_wise_table">
+        <![CDATA[
+            INSERT INTO sp2_lecturers_wise(lecName,lecId,day,time_from,time_to) VALUES (?,?,?,?,?)
+        ]]>
+    </query> 
+    
+    <query id="create_sp2_session_wise_table">
+        <![CDATA[
+            create table sp2_session_wise(
+                id int AUTO_INCREMENT,
+                session String,
+                day String,
+                time_from String,
+                time_to String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_sp2_session_wise_table">
+        <![CDATA[
+            INSERT INTO sp2_session_wise(session,day,time_from,time_to) VALUES (?,?,?,?)
+        ]]>
+    </query> 
+    
+    <query id="create_sp2_consecutive_session_table">
+        <![CDATA[
+            create table sp2_consecutive_session(
+                id int AUTO_INCREMENT,
+                sGid String,
+                cSession String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_sp2_consecutive_session_table">
+        <![CDATA[
+            INSERT INTO sp2_consecutive_session(sGid,cSession) VALUES (?,?)
+        ]]>
+    </query> 
+    
+    
+    <query id="create_sp2_parallel_session_table">
+        <![CDATA[
+            create table sp2_parallel_session(
+                id int AUTO_INCREMENT,
+                yNs String,
+                session String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_sp2_parallel_session_table">
+        <![CDATA[
+            INSERT INTO sp2_parallel_session(yNs,session) VALUES (?,?)
         ]]>
     </query> 
     

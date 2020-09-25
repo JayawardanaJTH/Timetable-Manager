@@ -34,7 +34,7 @@ public class view_All_Details extends javax.swing.JPanel {
         ArrayList<AllDetails> list = new ArrayList<AllDetails>();
         try{
         connection = DBconnection.getConnection();
-        String querry = "select * from all_details";
+        String querry = "select * from all_details group by yNs, sGid";
         Statement st;
         ResultSet rs;
         
@@ -96,8 +96,22 @@ public class view_All_Details extends javax.swing.JPanel {
             new String [] {
                 "Academic Year & Semester", "Degree Program", "Group ID", "Sub-Group ID"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbl_viewAll);
+        if (tbl_viewAll.getColumnModel().getColumnCount() > 0) {
+            tbl_viewAll.getColumnModel().getColumn(0).setResizable(false);
+            tbl_viewAll.getColumnModel().getColumn(1).setResizable(false);
+            tbl_viewAll.getColumnModel().getColumn(2).setResizable(false);
+            tbl_viewAll.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 950, 720));
 

@@ -5,17 +5,42 @@
  */
 package allocateTime_modifySessions;
 
+import com.spm.timetablemanagement.form.student_details.GroupNo;
+import com.spm.timetablemanagement.util.Constant;
+import com.spm.timetablemanagement.util.CreateQuery;
+import com.spm.timetablemanagement.util.DBconnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import static java.time.Clock.system;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author hvdil
  */
 public class addConsecutiveSession extends javax.swing.JPanel {
 
+    Connection connection;
+    PreparedStatement pst;
+    ResultSet rs;
+    String finalTags = null;
     /**
      * Creates new form addConsecutiveSession
      */
     public addConsecutiveSession() {
         initComponents();
+        
+        txt_id.setVisible(false);
+        SubGroupSelection();
+        txt_csSelectionId.setVisible(false);
+        txt_csSelectedId.setVisible(false);
+        showConsecutiveSessionNList();
+        
     }
 
     /**
@@ -28,165 +53,709 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel12 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_csSelected = new javax.swing.JTable();
+        btn_select = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbl_csSelection = new javax.swing.JTable();
+        btn_remove = new javax.swing.JButton();
+        txt_csSelectionId = new javax.swing.JTextField();
+        btn_set = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        selection_sId = new javax.swing.JComboBox<>();
+        txt_csSelectedId = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txt_error_selection = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tbl_cs = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
+        btn_deletecs = new javax.swing.JButton();
+        txt_error_cs = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel12.setBackground(new java.awt.Color(153, 153, 153));
 
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setToolTipText("");
+        jPanel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Module Code");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Set Consecutive Session");
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(13, 13, 13))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        tbl_csSelected.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Session", "Tag"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_csSelected.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_csSelectedMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbl_csSelected);
+
+        btn_select.setBackground(new java.awt.Color(255, 255, 255));
+        btn_select.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_select.setForeground(new java.awt.Color(51, 51, 51));
+        btn_select.setText("Select >");
+        btn_select.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_select.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_selectActionPerformed(evt);
+            }
+        });
+
+        tbl_csSelection.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Session", "Tag"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_csSelection.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_csSelectionMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tbl_csSelection);
+        if (tbl_csSelection.getColumnModel().getColumnCount() > 0) {
+            tbl_csSelection.getColumnModel().getColumn(0).setResizable(false);
+            tbl_csSelection.getColumnModel().getColumn(1).setResizable(false);
+            tbl_csSelection.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        btn_remove.setBackground(new java.awt.Color(255, 255, 255));
+        btn_remove.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_remove.setForeground(new java.awt.Color(51, 51, 51));
+        btn_remove.setText("<Remove>");
+        btn_remove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_removeActionPerformed(evt);
+            }
+        });
+
+        btn_set.setBackground(new java.awt.Color(255, 255, 255));
+        btn_set.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_set.setForeground(new java.awt.Color(51, 51, 51));
+        btn_set.setText("Set");
+        btn_set.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_set.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_setActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Sub-Group ID");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Find");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Add");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        selection_sId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                selection_sIdActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 51, 51));
-        jButton3.setText("Find");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        txt_error_selection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error_selection.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error_selection.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selection_sId, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(392, 392, 392)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(133, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(120, 120, 120))
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btn_set, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                                    .addGap(21, 21, 21)
+                                    .addComponent(txt_csSelectionId, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(25, 25, 25)))
+                            .addComponent(btn_remove)
+                            .addComponent(txt_csSelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(304, 304, 304))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(47, 47, 47))))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(23, 23, 23)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selection_sId)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(txt_csSelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_csSelectionId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_set, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jButton4.setBackground(new java.awt.Color(51, 51, 51));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Show Consecutive Session Details");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 860, 560));
+
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+
+        tbl_cs.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Sub-Group ID", "Consecutive Session"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_cs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_csMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tbl_cs);
+        if (tbl_cs.getColumnModel().getColumnCount() > 0) {
+            tbl_cs.getColumnModel().getColumn(0).setResizable(false);
+            tbl_cs.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tbl_cs.getColumnModel().getColumn(1).setResizable(false);
+            tbl_cs.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tbl_cs.getColumnModel().getColumn(2).setResizable(false);
+            tbl_cs.getColumnModel().getColumn(2).setPreferredWidth(250);
+        }
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setToolTipText("");
+        jPanel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Consecutive Session List");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        btn_deletecs.setBackground(new java.awt.Color(255, 255, 255));
+        btn_deletecs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_deletecs.setForeground(new java.awt.Color(51, 51, 51));
+        btn_deletecs.setText("Delete");
+        btn_deletecs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_deletecs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_deletecsActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        txt_error_cs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_error_cs.setForeground(new java.awt.Color(255, 51, 51));
+        txt_error_cs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(260, 260, 260)
+                                .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(127, 127, 127)
+                                .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(180, 180, 180)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))))
+        );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 690, 560));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void btn_selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selectActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+            if (txt_csSelectionId.getText().equals("")){
+                
+                txt_error_selection.setText("Select First*");
+            }
+            else{
+                txt_error_selection.setText("");
+            String selected_id = txt_csSelectionId.getText();
+            showSelectedSessionNList(selected_id);
+            }
+    }//GEN-LAST:event_btn_selectActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void tbl_csSelectedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csSelectedMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+        int i = tbl_csSelected.getSelectedRow();
+        TableModel model = tbl_csSelection.getModel();
+        txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_csSelectedId.setText(model.getValueAt(i, 0).toString());
+        
+    }//GEN-LAST:event_tbl_csSelectedMouseClicked
+
+    private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
+        // TODO add your handling code here:
+        if (txt_csSelectedId.getText().equals("")){
+                
+                txt_error_selection.setText("Select First*");
+            }
+            else{
+                txt_error_selection.setText("");
+        DefaultTableModel model = (DefaultTableModel)tbl_csSelected.getModel();
+        model.removeRow(Integer.parseInt(txt_csSelectedId.getText())-1);
+        }
+    }//GEN-LAST:event_btn_removeActionPerformed
+
+    private void tbl_csSelectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csSelectionMouseClicked
+        // TODO add your handling code here:
+        int i = tbl_csSelection.getSelectedRow();
+        TableModel model = tbl_csSelection.getModel();
+        txt_csSelectionId.setText(model.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_tbl_csSelectionMouseClicked
+
+    private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+        DefaultTableModel model = (DefaultTableModel)tbl_csSelected.getModel();
+        DefaultTableModel model2 = (DefaultTableModel)tbl_cs.getModel();
+        connection = DBconnection.getConnection();
+        if (tbl_csSelected.getRowCount() == 0){
+
+                txt_error_selection.setText("Select Sessions First*");
+            }
+            else{
+                txt_error_selection.setText("");
+
+                TagCreator();
+
+                PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_CONSECUTIVE_SESSION_TABLE));
+
+                statement.setString(1, selection_sId.getSelectedItem().toString());
+                statement.setString(2, finalTags);
+
+
+                statement.executeUpdate();
+                model.setRowCount(0);
+                model2.setRowCount(0);
+                showConsecutiveSessionNList();
+                txt_id.setText("");
+                JOptionPane.showMessageDialog(null, "Inserting Successful!");
+            }
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }//GEN-LAST:event_btn_setActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         DefaultTableModel model = (DefaultTableModel)tbl_csSelection.getModel();
+        model.setRowCount(0);
+        String sGid = selection_sId.getSelectedItem().toString();
+        showSessionNList(sGid);
+
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void selection_sIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selection_sIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selection_sIdActionPerformed
+
+    private void tbl_csMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csMouseClicked
+        // TODO add your handling code here:
+        int i = tbl_cs.getSelectedRow();
+        TableModel model = tbl_cs.getModel();
+        txt_id.setText(model.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_tbl_csMouseClicked
+
+    private void btn_deletecsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletecsActionPerformed
+        // TODO add your handling code here:
+       
+            try
+            {
+                DefaultTableModel model = (DefaultTableModel)tbl_cs.getModel();
+                Statement smt = connection.createStatement();
+                
+                if (txt_id.getText().equals("")){
+
+                    txt_error_cs.setText("Select First*");
+                }
+                else{
+                    txt_error_cs.setText("");
+
+                    String id = txt_id.getText();
+
+                    smt.execute("DELETE FROM sp2_consecutive_session WHERE id = "+id); 
+                    model.setRowCount(0);
+                    showConsecutiveSessionNList();
+                    txt_id.setText("");
+                    JOptionPane.showMessageDialog(this, "Deleted");
+
+                }
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        
+    }//GEN-LAST:event_btn_deletecsActionPerformed
+
+    public ArrayList<sessionDetails> getSessionNList(String sGid)
+    {
+        ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
+        try{
+        connection = DBconnection.getConnection();
+        String querry = "select * from session_details where sGid = '"+sGid+"'";
+        Statement st;
+        ResultSet rs;
+        
+        st = connection.createStatement();
+        rs= st.executeQuery(querry);
+        sessionDetails sDetails;
+        while(rs.next())
+        {
+            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("sName"), rs.getString("tag"), rs.getString("sGid"));
+            list.add(sDetails);
+        }
+        
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
+    public void showSessionNList(String sGid)
+    {
+        ArrayList<sessionDetails> list = getSessionNList(sGid);
+        DefaultTableModel model = (DefaultTableModel)tbl_csSelection.getModel();
+        Object[] row = new Object[3];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getSession();
+            row[2] = list.get(i).gettag();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public ArrayList<sessionDetails> getselectedSessionNList(String id)
+    {
+        ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
+        try{
+        connection = DBconnection.getConnection();
+        String querry = "select * from session_details where id = '"+id+"'";
+        Statement st;
+        ResultSet rs;
+        
+        st = connection.createStatement();
+        rs= st.executeQuery(querry);
+        sessionDetails sDetails;
+        while(rs.next())
+        {
+            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("sName"), rs.getString("tag"), rs.getString("sGid"));
+            list.add(sDetails);
+        }
+        
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
+    public void showSelectedSessionNList(String id)
+    {
+        ArrayList<sessionDetails> list = getselectedSessionNList(id);
+        DefaultTableModel model = (DefaultTableModel)tbl_csSelected.getModel();
+        Object[] row = new Object[3];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getSession();
+            row[2] = list.get(i).gettag();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public ArrayList<ConsecutiveSession> getConsecutiveSessionNList()
+    {
+        ArrayList<ConsecutiveSession> list = new ArrayList<ConsecutiveSession>();
+        try{
+        connection = DBconnection.getConnection();
+        String querry = "select * from sp2_consecutive_session";
+        Statement st;
+        ResultSet rs;
+        
+        st = connection.createStatement();
+        rs= st.executeQuery(querry);
+        ConsecutiveSession ConsecutiveSession;
+        while(rs.next())
+        {
+            ConsecutiveSession = new ConsecutiveSession(rs.getInt("id"), rs.getString("sGid"), rs.getString("cSession"));
+            list.add(ConsecutiveSession);
+        }
+        
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
+    public void showConsecutiveSessionNList()
+    {
+        ArrayList<ConsecutiveSession> list = getConsecutiveSessionNList();
+        DefaultTableModel model = (DefaultTableModel)tbl_cs.getModel();
+        Object[] row = new Object[3];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getSgid();
+            row[2] = list.get(i).gettag();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public  void SubGroupSelection(){
+        try{  
+        connection = DBconnection.getConnection();
+        String query = "select * from session_details group by sGid";
+        pst = connection.prepareStatement(query);
+        rs = pst.executeQuery();
+        
+        while(rs.next())
+        {
+            String sGid = rs.getString("sGid");
+            selection_sId.addItem(sGid);
+        }
+        }
+        catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, e);
+        } 
+    }
+    
+    public void TagCreator(){
+        DefaultTableModel model = (DefaultTableModel)tbl_csSelected.getModel();
+        int x = tbl_csSelected.getRowCount();
+        String[] tags = new String[x];
+        String[] newtags = new String[x];
+        
+                                
+        newtags[0] = model.getValueAt(0, 2).toString()+','+model.getValueAt(0, 1).toString();
+        int i = 1;
+        while (x!=i){
+
+            tags[i] = model.getValueAt(i, 2).toString()+','+model.getValueAt(i, 1).toString();
+            newtags[i] = '('+newtags[i-1]+')'+','+'('+tags[i]+')';
+            finalTags = newtags[i];
+            i++;
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JButton btn_deletecs;
+    private javax.swing.JButton btn_remove;
+    private javax.swing.JButton btn_select;
+    private javax.swing.JButton btn_set;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JComboBox<String> selection_sId;
+    private javax.swing.JTable tbl_cs;
+    private javax.swing.JTable tbl_csSelected;
+    private javax.swing.JTable tbl_csSelection;
+    private javax.swing.JTextField txt_csSelectedId;
+    private javax.swing.JTextField txt_csSelectionId;
+    private javax.swing.JLabel txt_error_cs;
+    private javax.swing.JLabel txt_error_selection;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 }

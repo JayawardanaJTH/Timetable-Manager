@@ -25,7 +25,7 @@ import javax.swing.table.TableModel;
 public class sub_GroupId_generate extends javax.swing.JPanel {
 
     Connection connection;
-    PreparedStatement pst;
+    PreparedStatement pst, pstg;
     ResultSet rs;
     /**
      * Creates new form sub_GroupId_generate
@@ -37,6 +37,7 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
         showGeneratedSubIdList();
         txt_id.setVisible(false);
         sgid.setVisible(false);
+        gId_id.setVisible(false);
     }
 
     /**
@@ -63,6 +64,7 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txt_error = new javax.swing.JLabel();
         sgid = new javax.swing.JTextField();
+        gId_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_sGid = new javax.swing.JTable();
 
@@ -214,10 +216,15 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
                                     .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(38, 38, 38)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(select_gId, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(select_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(select_gId, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(select_sGno, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(gId_id, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(58, 58, 58))
         );
         jPanel10Layout.setVerticalGroup(
@@ -239,8 +246,13 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
                         .addComponent(sgid, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(gId_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(61, 61, 61))
@@ -254,7 +266,15 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             new String [] {
                 "ID", "Sub-Group ID"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_sGid.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbl_sGid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -262,6 +282,10 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tbl_sGid);
+        if (tbl_sGid.getColumnModel().getColumnCount() > 0) {
+            tbl_sGid.getColumnModel().getColumn(0).setResizable(false);
+            tbl_sGid.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -301,6 +325,16 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             }
             else{
                 txt_error.setText("");
+                String selectedGid = select_gId.getSelectedItem().toString();
+                
+                String getGIdQuery = "select id from generated_group_id where gId =  '"+selectedGid+"'";
+                pstg = connection.prepareStatement(getGIdQuery);
+                rs = pstg.executeQuery();
+                while(rs.next())
+                {        
+                  gId_id.setText(rs.getString("id"));
+                }
+            
             
             model.addRow(new Object[]{select_gId.getSelectedItem().toString()+"."+select_sGno.getSelectedItem().toString()});
             
@@ -308,14 +342,79 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
             
             String generateSID = (select_gId.getSelectedItem().toString()+"."+select_sGno.getSelectedItem().toString());
             statement.setString(1, generateSID);
+            statement.setString(2, select_sGno.getSelectedItem().toString());
+            statement.setString(3, gId_id.getText());
             statement.executeUpdate();
             model.setRowCount(0);
             statement.close();
-
-            String selectedGid = select_gId.getSelectedItem().toString();
+            
             Statement smt = connection.createStatement();
+            ResultSet rs = smt.executeQuery("select sGid from all_details where gId = '"+select_gId.getSelectedItem().toString()+"'");
+            String ck_sGid="";
+            while(rs.next()){
+                            ck_sGid = rs.getString("sGid");
+                            
+                        }
+            if (ck_sGid.equals("-")){
+           
             smt.execute("UPDATE all_details SET sGid = '"+generateSID+"' WHERE gId = '"+selectedGid+"'");
-
+            
+            } else{
+                String q1 = "select yNsId from generated_group_id where gId='"+selectedGid+"'";
+                String rs_q1="";
+                
+                ResultSet rs1  = smt.executeQuery(q1);
+                while (rs1.next()){
+                    rs_q1 = rs1.getString("yNsId");
+                }
+                String q2 = "select yNs from academic_year_and_semester where id ='"+rs_q1+"'";
+                String yNs="";
+                ResultSet rs2  = smt.executeQuery(q2);
+                while (rs2.next()){
+                    yNs = rs2.getString("yNs");
+                           
+                }
+                
+                String q3 = "select dpId from generated_group_id where gId='"+selectedGid+"'";
+                String rs_q3="";
+                
+                ResultSet rs3  = smt.executeQuery(q3);
+                while (rs3.next()){
+                    rs_q3 = rs3.getString("dpId");
+                }
+                String q4 = "select dp from degree_program where id ='"+rs_q3+"'";
+                String dp="";
+                ResultSet rs4  = smt.executeQuery(q4);
+                while (rs4.next()){
+                    dp = rs4.getString("dp");
+                }  
+                
+                String q5 = "select gnoId from generated_group_id where gId='"+selectedGid+"'";
+                String rs_q5="";
+                
+                ResultSet rs5  = smt.executeQuery(q5);
+                while (rs5.next()){
+                    rs_q5 = rs5.getString("gnoId");
+                }
+                String q6 = "select gNo from group_number where id ='"+rs_q5+"'";
+                String gNo="";
+                ResultSet rs6  = smt.executeQuery(q6);
+                while (rs6.next()){
+                    gNo = rs6.getString("gNo");
+                }
+                
+            statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_ALL_DETAILS_TABLE));
+            statement.setString(1, yNs);
+            statement.setString(2, dp);
+            statement.setString(3, gNo);
+            statement.setString(4, selectedGid);
+            statement.setString(5, generateSID);
+            statement.executeUpdate();
+            model.setRowCount(0);
+            statement.close();
+            }
+            
+            
             showGeneratedSubIdList();
             
             select_gId.setSelectedIndex(0);
@@ -499,6 +598,7 @@ public class sub_GroupId_generate extends javax.swing.JPanel {
     private javax.swing.JButton btn_delete_sGid;
     private javax.swing.JButton btn_edit_sGid;
     private javax.swing.JButton btn_generate_sGid;
+    private javax.swing.JTextField gId_id;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

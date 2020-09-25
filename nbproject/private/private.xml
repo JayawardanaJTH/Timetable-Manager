@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -5,3 +6,19 @@
         <group/>
     </open-files>
 </project-private>
+<!-- ======= -->
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<!-- <project-private xmlns="http://www.netbeans.org/ns/project-private/1"> -->
+    <!-- <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/> -->
+    <!-- <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2"> -->
+        <!-- <group> -->
+            <!-- <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/addConsecutiveSession.java</file> -->
+            <!-- <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/addParallelSessions.java</file> -->
+            <!-- <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/com/spm/timetablemanagement/form/student_details/addDetails_Home.java</file> -->
+            <!-- <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/sessionDetails.java</file> -->
+            <!-- <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/com/spm/timetablemanagement/resource/query.xml</file> -->
+            <!-- <file>file:/C:/Users/hvdil/Documents/NetBeansProjects/Timetable-Manager-new/src/allocateTime_modifySessions/ParallelSession.java</file> -->
+        <!-- </group> -->
+    <!-- </open-files> -->
+<!-- </project-private> -->
+<!-- >>>>>>> IT18217100 -->
