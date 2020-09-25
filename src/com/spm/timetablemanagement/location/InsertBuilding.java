@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.spm.timetablemanagement.form.room;
+package com.spm.timetablemanagement.location;
 
+import com.spm.timetablemanagement.form.room.*;
 import com.spm.timetablemanagement.form.tag_details.tag;
 import com.spm.timetablemanagement.models.Room;
 import com.spm.timetablemanagement.util.Constant;
@@ -27,21 +28,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Tiran Harsha
  */
-public class InsertRoom extends javax.swing.JPanel {
+public class InsertBuilding extends javax.swing.JPanel {
 
     private String ID;
-    private String Type;
-    roomProcess rp;
+    private String Name;
+    buildingProcess rp;
     private DefaultTableModel dtm;
     
     
     /**
      * Creates new form InsertWorkingHours
      */
-    public InsertRoom() {
+    public InsertBuilding() {
         initComponents();
-        rp = new roomProcess();
-        getRoom();
+        rp = new buildingProcess();
+        getBuilding();
     }
 
     /**
@@ -52,7 +53,6 @@ public class InsertRoom extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -67,13 +67,13 @@ public class InsertRoom extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jLabel1.setText("Room");
+        jLabel1.setText("Building");
 
         jLabel2.setText("ID");
 
-        jLabel3.setText("Type");
+        jLabel3.setText("Name");
 
-        add.setText("Add Room");
+        add.setText("Add Building");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addActionPerformed(evt);
@@ -93,12 +93,6 @@ public class InsertRoom extends javax.swing.JPanel {
                 deleteActionPerformed(evt);
             }
         });
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, new javax.swing.JTable(), org.jdesktop.beansbinding.ELProperty.create("${selectedElement.id}"), id, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, new javax.swing.JTable(), org.jdesktop.beansbinding.ELProperty.create("${selectedElement.type}"), type, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
 
         txt_error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_error.setForeground(new java.awt.Color(255, 51, 51));
@@ -133,35 +127,33 @@ public class InsertRoom extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(97, 97, 97)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(add)
+                                    .addComponent(update)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(delete)
                                         .addGap(18, 18, 18)
-                                        .addComponent(reset))
-                                    .addComponent(add)
-                                    .addComponent(update)
-                                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                        .addComponent(reset))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))))
+                        .addGap(0, 30, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -184,24 +176,22 @@ public class InsertRoom extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(183, 183, 183))
         );
-
-        bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
 
-        addRoom();
-        getRoom();
+        addBuilding();
+        getBuilding();
     }//GEN-LAST:event_addActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        updateRoom();
-        getRoom();
+        updateBuilding();
+        getBuilding();
     }//GEN-LAST:event_updateActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        deleteRoom();
-        getRoom();
+        deleteBuilding();
+        getBuilding();
          
     }//GEN-LAST:event_deleteActionPerformed
 
@@ -228,22 +218,21 @@ public class InsertRoom extends javax.swing.JPanel {
     private javax.swing.JLabel txt_error;
     private javax.swing.JTextField type;
     private javax.swing.JButton update;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
     
-    public void addRoom(){
+    public void addBuilding(){
         
         if (id.getText().isEmpty() || type.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Please enter details");
         }else{
             try {
                 ID = id.getText();
-                Type = type.getText();
-                rp.addRoom(ID, Type);
+                Name = type.getText();
+                rp.addBuilding(ID, Name);
                 JOptionPane.showMessageDialog(this, "Successfully Added");
             } catch (SQLException ex) {
-                Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InsertBuilding.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Error");
             }
         }
@@ -256,7 +245,7 @@ public class InsertRoom extends javax.swing.JPanel {
     
 
     
-    public void deleteRoom(){
+    public void deleteBuilding(){
         
         if(id.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Error!");
@@ -264,43 +253,43 @@ public class InsertRoom extends javax.swing.JPanel {
                 
             try {
                 ID = id.getText();
-                rp.deleteRoom(ID);
+                rp.deleteBuilding(ID);
                 JOptionPane.showMessageDialog(this, "Deleted!");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Failed!");
-                Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InsertBuilding.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
     
-    public void updateRoom(){
+    public void updateBuilding(){
         if(id.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Error!");
         }else{
             try {
                 ID = id.getText();
-                Type = type.getText();
+                Name = type.getText();
                 
-                rp.updateRoom(ID, Type);
+                rp.updateBuilding(ID, Name);
                 JOptionPane.showMessageDialog(this, "Success!");
                 
                 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Failed!");
-                Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InsertBuilding.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
     
-    public void getRoom(){
+    public void getBuilding(){
         try {
             dtm = (DefaultTableModel)jTable1.getModel();
             dtm.setRowCount(0);
-            rp.getRoom(dtm);
+            rp.getBuilding(dtm);
             jTable1.setModel(dtm);
         } catch (SQLException ex) {
-            Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InsertBuilding.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
