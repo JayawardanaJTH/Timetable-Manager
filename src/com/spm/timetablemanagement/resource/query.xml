@@ -233,6 +233,7 @@
         ]]>
     </query>
     
+
     <query id="get_buildings">
         <![CDATA[
             SELECT * FROM building
@@ -305,6 +306,41 @@
             INSERT INTO 
                 subject (offered_year, offered_semester, subject_name, subject_code, lec_hr, tute_hr, lab_hr, eva_hr)
                 values(?,?,?,?,?,?,?,?)
+		]]>
+    </query>
+	
+    <query id="create_room_table">
+        <![CDATA[
+            create table room(
+                id int ,
+                type String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_room">
+        <![CDATA[
+            INSERT INTO room VALUES (?,?)
+        ]]>
+    </query>
+    
+    
+    <query id="create_building_table">
+        <![CDATA[
+            create table building(
+                id int ,
+                name String,
+                
+                Constraint pk1 PRIMARY KEY (id)
+            )
+        ]]>
+    </query>
+    
+    <query id="Insert_building">
+        <![CDATA[
+            INSERT INTO building VALUES (?,?)
         ]]>
     </query>
 
