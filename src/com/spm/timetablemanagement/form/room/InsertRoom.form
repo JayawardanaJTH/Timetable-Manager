@@ -128,18 +128,8 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="id">
-      <BindingProperties>
-        <BindingProperty name="text" source="tblData" sourcePath="${selectedElement.id}" target="id" targetPath="text" updateStrategy="0" immediately="false">
-          <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
-        </BindingProperty>
-      </BindingProperties>
     </Component>
     <Component class="javax.swing.JTextField" name="type">
-      <BindingProperties>
-        <BindingProperty name="text" source="tblData" sourcePath="${selectedElement.type}" target="type" targetPath="text" updateStrategy="0" immediately="false">
-          <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
-        </BindingProperty>
-      </BindingProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="txt_error">
       <Properties>
