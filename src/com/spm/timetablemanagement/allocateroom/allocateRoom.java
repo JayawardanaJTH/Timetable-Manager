@@ -6,7 +6,7 @@
 package com.spm.timetablemanagement.allocateroom;
 
 import com.spm.timetablemanagement.form.room.*;
-import com.spm.timetablemanagement.form.tag_details.tag;
+import com.spm.timetablemanagement.models.tag;
 import com.spm.timetablemanagement.models.Room;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
@@ -54,7 +54,7 @@ public class allocateRoom extends javax.swing.JPanel {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "0713025880");
+            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
             Statement stat = con.createStatement();    
             String selectQuery="select Tag from tag";
             ResultSet rs=stat.executeQuery(selectQuery);
@@ -74,7 +74,7 @@ public class allocateRoom extends javax.swing.JPanel {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "0713025880");
+            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
             Statement stat2 = con.createStatement();    
             String selectQuery="select id from room";
             ResultSet rs=stat2.executeQuery(selectQuery);
@@ -100,13 +100,13 @@ public class allocateRoom extends javax.swing.JPanel {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "0713025880");
+            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
             Statement stat2 = con.createStatement();    
-            String selectQuery="select name from subject";
+            String selectQuery="select subject_name from subject";
             ResultSet rs=stat2.executeQuery(selectQuery);
             while(rs.next())
             {
-                sub1.addItem(rs.getString("name"));
+                sub1.addItem(rs.getString("subject_name"));
                
                 
             }
@@ -121,9 +121,9 @@ public class allocateRoom extends javax.swing.JPanel {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "0713025880");
+            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
             Statement stat2 = con.createStatement();    
-            String selectQuery="select name from lecturers";
+            String selectQuery="select name from lecturer";
             ResultSet rs=stat2.executeQuery(selectQuery);
             while(rs.next())
             {
@@ -143,13 +143,13 @@ public class allocateRoom extends javax.swing.JPanel {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "0713025880");
+            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
             Statement stat2 = con.createStatement();    
-            String selectQuery="select name from groups";
+            String selectQuery="select gId from generated_group_id";
             ResultSet rs=stat2.executeQuery(selectQuery);
             while(rs.next())
             {
-                rfg_group.addItem(rs.getString("name"));
+                rfg_group.addItem(rs.getString("gId"));
                
                 
             }
@@ -165,13 +165,13 @@ public class allocateRoom extends javax.swing.JPanel {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "0713025880");
+            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
             Statement stat2 = con.createStatement();    
-            String selectQuery="select name from session";
+            String selectQuery="select id from session";
             ResultSet rs=stat2.executeQuery(selectQuery);
             while(rs.next())
             {
-                rfg_group1.addItem(rs.getString("name"));
+                rfg_group1.addItem(rs.getString("id"));
                
                 
             }
@@ -188,13 +188,13 @@ public class allocateRoom extends javax.swing.JPanel {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "0713025880");
+            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
             Statement stat2 = con.createStatement();    
-            String selectQuery="select name from conssession";
+            String selectQuery="select id from sp2_consecutive_session";
             ResultSet rs=stat2.executeQuery(selectQuery);
             while(rs.next())
             {
-                rfg_group2.addItem(rs.getString("name"));
+                rfg_group2.addItem(rs.getString("id"));
                
                 
             }
@@ -219,6 +219,8 @@ public class allocateRoom extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
         RoomsForTags = new javax.swing.JPanel();
         tag = new javax.swing.JComboBox<>();
         room = new javax.swing.JComboBox<>();
@@ -295,6 +297,13 @@ public class allocateRoom extends javax.swing.JPanel {
         stime = new javax.swing.JTextField();
         etime = new javax.swing.JTextField();
 
+        setPreferredSize(new java.awt.Dimension(1000, 689));
+
+        jScrollPane8.setPreferredSize(new java.awt.Dimension(1400, 1400));
+
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1400, 910));
+
         RoomsForTags.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -365,7 +374,7 @@ public class allocateRoom extends javax.swing.JPanel {
         );
         RoomsForTagsLayout.setVerticalGroup(
             RoomsForTagsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 221, Short.MAX_VALUE)
             .addGroup(RoomsForTagsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(RoomsForTagsLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -388,7 +397,7 @@ public class allocateRoom extends javax.swing.JPanel {
                                 .addComponent(add)
                                 .addComponent(delete)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(31, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         RoomsForSubNTags.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -438,7 +447,7 @@ public class allocateRoom extends javax.swing.JPanel {
         RoomsForSubNTags.setLayout(RoomsForSubNTagsLayout);
         RoomsForSubNTagsLayout.setHorizontalGroup(
             RoomsForSubNTagsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGap(0, 615, Short.MAX_VALUE)
             .addGroup(RoomsForSubNTagsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(RoomsForSubNTagsLayout.createSequentialGroup()
                     .addContainerGap()
@@ -459,12 +468,12 @@ public class allocateRoom extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(delete1)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(15, Short.MAX_VALUE)))
         );
         RoomsForSubNTagsLayout.setVerticalGroup(
             RoomsForSubNTagsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 225, Short.MAX_VALUE)
             .addGroup(RoomsForSubNTagsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(RoomsForSubNTagsLayout.createSequentialGroup()
                     .addGap(4, 4, 4)
@@ -488,7 +497,7 @@ public class allocateRoom extends javax.swing.JPanel {
                                 .addComponent(add1)
                                 .addComponent(delete1)))
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(27, Short.MAX_VALUE)))
         );
 
         RoomsForLecturers.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -533,7 +542,10 @@ public class allocateRoom extends javax.swing.JPanel {
         RoomsForLecturers.setLayout(RoomsForLecturersLayout);
         RoomsForLecturersLayout.setHorizontalGroup(
             RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RoomsForLecturersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
             .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(RoomsForLecturersLayout.createSequentialGroup()
                     .addContainerGap()
@@ -552,33 +564,31 @@ public class allocateRoom extends javax.swing.JPanel {
                                 .addComponent(add2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(delete2))))
-                    .addGap(118, 118, 118)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(425, Short.MAX_VALUE)))
         );
         RoomsForLecturersLayout.setVerticalGroup(
             RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RoomsForLecturersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(RoomsForLecturersLayout.createSequentialGroup()
                     .addGap(23, 23, 23)
-                    .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(RoomsForLecturersLayout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(18, 18, 18)
-                            .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel9)
-                                .addComponent(rfl_room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(10, 10, 10)
-                            .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel10)
-                                .addComponent(rfl_lect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(add2)
-                                .addComponent(delete2)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(25, Short.MAX_VALUE)))
+                    .addComponent(jLabel8)
+                    .addGap(18, 18, 18)
+                    .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(rfl_room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(10, 10, 10)
+                    .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(rfl_lect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(RoomsForLecturersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(add2)
+                        .addComponent(delete2))
+                    .addContainerGap(47, Short.MAX_VALUE)))
         );
 
         RoomsForGroups.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -641,7 +651,7 @@ public class allocateRoom extends javax.swing.JPanel {
                             .addComponent(rfg_room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RoomsForGroupsLayout.setVerticalGroup(
             RoomsForGroupsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -663,10 +673,11 @@ public class allocateRoom extends javax.swing.JPanel {
                         .addGroup(RoomsForGroupsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(add3)
                             .addComponent(delete3))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         RoomsForSession.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        RoomsForSession.setPreferredSize(new java.awt.Dimension(200, 222));
 
         add4.setText("Allocate");
         add4.addActionListener(new java.awt.event.ActionListener() {
@@ -748,10 +759,11 @@ public class allocateRoom extends javax.swing.JPanel {
                         .addGroup(RoomsForSessionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(add4)
                             .addComponent(delete4))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         RoomsForConsSession.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        RoomsForConsSession.setPreferredSize(new java.awt.Dimension(300, 209));
 
         add5.setText("Allocate");
         add5.addActionListener(new java.awt.event.ActionListener() {
@@ -915,7 +927,7 @@ public class allocateRoom extends javax.swing.JPanel {
                         .addComponent(rroom, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(223, 223, 223)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(496, Short.MAX_VALUE))
         );
         ReserveRoomsLayout.setVerticalGroup(
             ReserveRoomsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -935,7 +947,7 @@ public class allocateRoom extends javax.swing.JPanel {
                         .addGroup(ReserveRoomsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
                             .addComponent(stime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(ReserveRoomsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(etime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -946,46 +958,62 @@ public class allocateRoom extends javax.swing.JPanel {
                 .addGap(12, 12, 12))
         );
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(RoomsForTags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(RoomsForGroups, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(ReserveRooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(RoomsForLecturers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(RoomsForSubNTags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(RoomsForSession, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                                .addComponent(RoomsForConsSession, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
+                            .addGap(20, 20, 20)))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RoomsForTags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RoomsForGroups, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(RoomsForSession, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(RoomsForSubNTags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(RoomsForLecturers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RoomsForConsSession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ReserveRooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+
+        jScrollPane8.setViewportView(jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(RoomsForLecturers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RoomsForConsSession, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(RoomsForTags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RoomsForGroups, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(RoomsForSubNTags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RoomsForSession, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(ReserveRooms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(147, Short.MAX_VALUE))
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RoomsForGroups, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RoomsForTags, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RoomsForSession, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RoomsForSubNTags, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RoomsForLecturers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RoomsForConsSession, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ReserveRooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1144,6 +1172,7 @@ public class allocateRoom extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1151,6 +1180,7 @@ public class allocateRoom extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
