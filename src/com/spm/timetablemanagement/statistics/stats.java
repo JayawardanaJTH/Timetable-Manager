@@ -6,7 +6,7 @@
 package com.spm.timetablemanagement.statistics;
 
 import com.spm.timetablemanagement.form.room.*;
-import com.spm.timetablemanagement.form.tag_details.tag;
+import com.spm.timetablemanagement.models.tag;
 import com.spm.timetablemanagement.models.Room;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
@@ -46,7 +46,7 @@ public class stats extends javax.swing.JPanel {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/timetablemanagement","root","0713025880");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/timetablemanagement","root","Chcoohho");
             st = c.createStatement();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,7 +54,7 @@ public class stats extends javax.swing.JPanel {
             Logger.getLogger(InsertRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String sql = "SELECT COUNT(id) FROM lecturers";
+        String sql = "SELECT COUNT(id) FROM lecturer";
         
         rs = st.executeQuery(sql);
         
@@ -65,7 +65,7 @@ public class stats extends javax.swing.JPanel {
             lect.setText(res);
         }
         
-        String sql2 = "SELECT COUNT(id) FROM students";
+        String sql2 = "SELECT COUNT(id) FROM generated_group_id";
         
         rs1 = st.executeQuery(sql2);
         
