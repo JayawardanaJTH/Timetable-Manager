@@ -228,7 +228,7 @@
             create table sp2_lecturers_wise(
                 id int AUTO_INCREMENT,
                 lecName String,
-                lecId int,
+                lecId String,
                 day String,
                 time_from String,
                 time_to String,

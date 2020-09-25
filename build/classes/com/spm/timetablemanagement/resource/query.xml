@@ -228,7 +228,7 @@
             create table sp2_lecturers_wise(
                 id int AUTO_INCREMENT,
                 lecName String,
-                lecId int,
+                lecId String,
                 day String,
                 time_from String,
                 time_to String,
@@ -348,6 +348,7 @@
         ]]>
     </query>
     
+
     <query id="get_buildings">
         <![CDATA[
             SELECT * FROM building
@@ -421,7 +422,7 @@
                 subject (offered_year, offered_semester, subject_name, subject_code, lec_hr, tute_hr, lab_hr, eva_hr)
                 values(?,?,?,?,?,?,?,?)
 		]]>
-	<query>
+    </query>
 	
     <query id="create_room_table">
         <![CDATA[

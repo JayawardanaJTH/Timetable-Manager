@@ -35,13 +35,7 @@ public class CreateQuery {
 //        
         nodeList = DocumentBuilderFactory.newInstance().newDocumentBuilder()
 
-                 .parse(new File("C:\\Users\\hvdil\\Documents\\NetBeansProjects\\Timetable-Manager-new\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
-
-
-                // .parse(new File("C:\\Users\\ysraf\\OneDrive\\Desktop\\Git\\New Folder\\Timetable-Manager\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
-
-//                .parse(new File("C:\\Users\\Tiran Harsha\\Documents\\NetBeansProjects\\Timetable-Manager\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
-
+                 .parse(new File("C:\\Users\\Tiran Harsha\\Downloads\\Compressed\\Timetable-Manager-master\\Timetable-Manager-master\\src\\com\\spm\\timetablemanagement\\resource\\query.xml"))
 
                 .getElementsByTagName(Constant.QUERY);
         
