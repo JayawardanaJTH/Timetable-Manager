@@ -350,6 +350,55 @@
         ]]>
     </query>
     
+     <query id="get_session_by_sessionID">
+        <![CDATA[
+            SELECT * FROM session
+            WHERE id = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_by_groupID">
+        <![CDATA[
+            SELECT * FROM session
+            WHERE group_id = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_by_subgroupID">
+        <![CDATA[
+            SELECT * FROM session
+            WHERE subgroup_id = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_by_subjectcode">
+        <![CDATA[
+            SELECT * FROM session
+            WHERE sub_code = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_by_lecture">
+        <![CDATA[
+            SELECT session_id FROM session_lec
+            WHERE lec_id = ?
+        ]]>
+    </query>
+    
+    <query id="get_session_ID">
+        <![CDATA[
+            SELECT MAX(s.id)'max'
+            FROM session s
+        ]]>
+    </query>
+    
+    <query id="delete_session">
+        <![CDATA[
+            DELETE FROM session
+            WHERE id = ?
+        ]]>
+    </query>
+    
     <query id="insert_session_lec">
         <![CDATA[
             INSERT INTO session_lec (session_id,lec_id)
@@ -360,6 +409,20 @@
     <query id="get_session_lec">
         <![CDATA[
             SELECT * FROM session_lec
+        ]]>
+    </query>
+    
+    <query id="get_session_lec_by_id">
+        <![CDATA[
+            SELECT lec_id FROM session_lec
+            WHERE session_id = ?
+        ]]>
+    </query>
+    
+    <query id="delete_session_lec">
+        <![CDATA[
+            DELETE FROM session_lec
+            WHERE session_id = ?
         ]]>
     </query>
 </Querys>

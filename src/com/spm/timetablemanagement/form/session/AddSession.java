@@ -479,21 +479,21 @@ public class AddSession extends javax.swing.JPanel {
                statement.close();
                resultSet.close();
                
-               statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SESSION));
+               statement = connection.prepareStatement(CreateQuery.getQuery(Constant.GET_SESSION_ID));
                statement1  = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SESSION_LECT));
                
                resultSet = statement.executeQuery();
                
-               int count = 0;
+               int ID = 0;
                
                while(resultSet.next()){
-                   ++count;
+                   ID = resultSet.getInt("max");
                }
                statement.close();
                resultSet.close();
                
                for(int j =0; j <= lec_count;j++){
-                    statement1.setInt(1,count);
+                    statement1.setInt(1,ID);
                     statement1.setInt(2,lectruerList.get(lecList.get(j).getSelectedIndex()).getId());
                     
                     statement1.execute();
@@ -508,6 +508,7 @@ public class AddSession extends javax.swing.JPanel {
            
            if(!lock){
                JOptionPane.showMessageDialog(this, "Session Inserted", "Data save ", JOptionPane.DEFAULT_OPTION);
+               resetAll();
            }
         }
         
@@ -532,6 +533,7 @@ public class AddSession extends javax.swing.JPanel {
             txt_durat.setText("");
             txt_stu_coun.setText("");
             txt_subc.setText("");
+            lec_count=0;
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, "Error on reset"+ex.getMessage(), "error", JOptionPane.ERROR_MESSAGE);
         }
