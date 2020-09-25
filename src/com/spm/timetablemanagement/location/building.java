@@ -31,7 +31,7 @@ public class building {
     public void building() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/timetablemanagement","root","0713025880");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/timetablemanagement","root","Chcoohho");
             st = c.createStatement();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InsertBuilding.class.getName()).log(Level.SEVERE, null, ex);

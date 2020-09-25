@@ -6,7 +6,7 @@
 package com.spm.timetablemanagement.location;
 
 import com.spm.timetablemanagement.form.room.*;
-import com.spm.timetablemanagement.form.tag_details.tag;
+import com.spm.timetablemanagement.models.tag;
 import com.spm.timetablemanagement.models.Room;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
