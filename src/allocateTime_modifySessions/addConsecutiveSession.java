@@ -5,7 +5,7 @@
  */
 package allocateTime_modifySessions;
 
-import com.spm.timetablemanagement.form.student_details.GroupNo;
+import com.spm.timetablemanagement.models.GroupNo;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
@@ -52,6 +52,8 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -70,6 +72,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         txt_csSelectedId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txt_error_selection = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tbl_cs = new javax.swing.JTable();
@@ -80,6 +83,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         txt_error_cs = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 580, -1, -1));
 
         jPanel12.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -256,9 +260,10 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                         .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addGap(0, 8, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,9 +316,12 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 860, 560));
+        jScrollPane5.setViewportView(jPanel12);
+
+        add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setPreferredSize(new java.awt.Dimension(732, 360));
 
         tbl_cs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -369,7 +377,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btn_deletecs.setBackground(new java.awt.Color(255, 255, 255));
@@ -392,27 +400,23 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(260, 260, 260)
-                                .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(127, 127, 127)
-                                .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(180, 180, 180)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(254, 254, 254)
+                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,20 +424,19 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_deletecs, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))))
+                .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(192, 192, 192))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 690, 560));
+        jScrollPane4.setViewportView(jPanel2);
+
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, -1, 370));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selectActionPerformed
@@ -574,7 +577,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
         try{
         connection = DBconnection.getConnection();
-        String querry = "select * from session_details where sGid = '"+sGid+"'";
+        String querry = "select * from session where subgroup_id = '"+sGid+"'";
         Statement st;
         ResultSet rs;
         
@@ -583,7 +586,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         sessionDetails sDetails;
         while(rs.next())
         {
-            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("sName"), rs.getString("tag"), rs.getString("sGid"));
+            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("subject"), rs.getString("tag"), rs.getString("subgroup_id"));
             list.add(sDetails);
         }
         
@@ -615,7 +618,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
         try{
         connection = DBconnection.getConnection();
-        String querry = "select * from session_details where id = '"+id+"'";
+        String querry = "select * from session where id = '"+id+"'";
         Statement st;
         ResultSet rs;
         
@@ -624,7 +627,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         sessionDetails sDetails;
         while(rs.next())
         {
-            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("sName"), rs.getString("tag"), rs.getString("sGid"));
+            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("subject"), rs.getString("tag"), rs.getString("subgroup_id"));
             list.add(sDetails);
         }
         
@@ -695,13 +698,13 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     public  void SubGroupSelection(){
         try{  
         connection = DBconnection.getConnection();
-        String query = "select * from session_details group by sGid";
+        String query = "select * from session group by subgroup_id";
         pst = connection.prepareStatement(query);
         rs = pst.executeQuery();
         
         while(rs.next())
         {
-            String sGid = rs.getString("sGid");
+            String sGid = rs.getString("subgroup_id");
             selection_sId.addItem(sGid);
         }
         }
@@ -747,7 +750,10 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JComboBox<String> selection_sId;
     private javax.swing.JTable tbl_cs;
     private javax.swing.JTable tbl_csSelected;

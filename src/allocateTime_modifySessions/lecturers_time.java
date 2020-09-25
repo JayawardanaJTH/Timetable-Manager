@@ -5,7 +5,7 @@
  */
 package allocateTime_modifySessions;
 
-import com.spm.timetablemanagement.form.student_details.GeneratedId;
+import com.spm.timetablemanagement.models.GeneratedId;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
@@ -944,7 +944,7 @@ public class lecturers_time extends javax.swing.JPanel {
         try{
         connection = DBconnection.getConnection();
         String selectedLec = select_lec_name.getSelectedItem().toString();
-        String GETLec = "select id from lectures_details where lecName = '"+selectedLec+"'";
+        String GETLec = "select id from lecturer where name = '"+selectedLec+"'";
         pst = connection.prepareStatement(GETLec);
         rs = pst.executeQuery();
         while(rs.next())
@@ -982,13 +982,13 @@ public class lecturers_time extends javax.swing.JPanel {
     public  void lecNameSelection(){
         try{  
         connection = DBconnection.getConnection();
-        String query = "select * from lectures_details";
+        String query = "select * from lecturer";
         pstLec = connection.prepareStatement(query);
         rs = pstLec.executeQuery();
         
         while(rs.next())
         {
-            String lecName = rs.getString("lecName");
+            String lecName = rs.getString("name");
             select_lec_name.addItem(lecName);
         }
         }

@@ -553,13 +553,13 @@ public class setSessions extends javax.swing.JPanel {
     public  void sessionSelection(){
         try{  
         connection = DBconnection.getConnection();
-        String query = "select * from session_details";
+        String query = "select * from session";
         pst = connection.prepareStatement(query);
         rs = pst.executeQuery();
         
         while(rs.next())
         {
-            String session = rs.getString("sName");
+            String session = rs.getString("id");
             select_session.addItem(session);
         }
         }
