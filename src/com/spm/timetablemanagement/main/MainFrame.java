@@ -11,11 +11,7 @@ import com.spm.timetablemanagement.form.lecturer.AddLecturer;
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
 import allocateTime_modifySessions.addParallelSessions;
-
 import com.spm.timetablemanagement.form.lecturer.ViewLecturer;
-
-import com.spm.timetablemanagement.allocateroom.allocateRoom;
-
 import com.spm.timetablemanagement.form.student_details.addDetails_Home;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
 import com.spm.timetablemanagement.form.student_details.sub_GroupId_generate;
@@ -27,7 +23,7 @@ import javax.swing.ImageIcon;
 import com.spm.timetablemanagement.menu.MenuItem;
 
 //import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
-import com.spm.timetablemanagement.location.InsertBuilding; 
+import com.spm.timetablemanagement.location.InsertLocation; 
 import com.spm.timetablemanagement.form.room.InsertRoom;
 import com.spm.timetablemanagement.form.session.AddSession;
 import com.spm.timetablemanagement.form.session.ViewSession;
@@ -41,11 +37,6 @@ import com.spm.timetablemanagement.form.working_hours.ViewWorkingDayHours;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.spm.timetablemanagement.form.tag_details.enterTag;
-import com.spm.timetablemanagement.statistics.stats;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Tiran Harsha
@@ -197,7 +188,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                panelBody.removeAll();
-               panelBody.add(new InsertBuilding());
+               panelBody.add(new InsertLocation());
                panelBody.repaint();
                panelBody.revalidate();
             }
@@ -224,34 +215,10 @@ public class MainFrame extends javax.swing.JFrame {
         });
         
         //Statistics submenu items Allocate Room
-        MenuItem s1Statistics = new MenuItem(iconSubmenu, "View Statistics Details",  new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    panelBody.removeAll();
-                    panelBody.add(new stats());
-                    panelBody.repaint();
-                    panelBody.revalidate();
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+        MenuItem s1Statistics = new MenuItem(iconSubmenu, "View Statistics Details", null);
         
         //Allocate Room submenu items Allocate Room
-        MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    panelBody.removeAll();
-                    panelBody.add(new allocateRoom());
-                    panelBody.repaint();
-                    panelBody.revalidate();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+        MenuItem s1AllocateRoom = new MenuItem(iconSubmenu, "Reserve Rooms", null);
         
         //Handle Session submenu items
         MenuItem s1HandleSession = new MenuItem(iconSubmenu, "Create Sessions", new ActionListener() {
