@@ -18,7 +18,7 @@ public class allocateProcess extends allocate{
         allocate();
     }
 public void addRoom (String id, String type) throws SQLException{
-        String sql = "INSERT INTO roomsForATag VALUES('"+id+"','"+type+"')";
+        String sql = "INSERT INTO roomsForATag (tag,room) VALUES('"+id+"','"+type+"')";
         st.executeUpdate(sql);
     }
 
@@ -46,7 +46,7 @@ public void addRoom (String id, String type) throws SQLException{
     
     
    public void addsubRoom (String id, String type,String sub) throws SQLException{
-        String sql = "INSERT INTO roomssubtags VALUES('"+id+"','"+type+"','"+sub+"')";
+        String sql = "INSERT INTO roomssubtags (tag,room,subject) VALUES('"+id+"','"+type+"','"+sub+"')";
         st.executeUpdate(sql);
     }
    
@@ -76,7 +76,7 @@ public void addRoom (String id, String type) throws SQLException{
     
     
    public void addlectRoom (String id, String type) throws SQLException{
-        String sql = "INSERT INTO roomsforlecturer VALUES('"+id+"','"+type+"')";
+        String sql = "INSERT INTO roomsforlecturer (room,lecturer) VALUES('"+id+"','"+type+"')";
         st.executeUpdate(sql);
     }
    
@@ -106,7 +106,7 @@ public void addRoom (String id, String type) throws SQLException{
     
     
    public void addgroupRoom (String id, String type) throws SQLException{
-        String sql = "INSERT INTO roomsforgroup VALUES('"+id+"','"+type+"')";
+        String sql = "INSERT INTO roomsforgroup (room,groups) VALUES('"+id+"','"+type+"')";
         st.executeUpdate(sql);
     }
    
@@ -135,7 +135,7 @@ public void addRoom (String id, String type) throws SQLException{
     
     
    public void addsesRoom (String id, String type) throws SQLException{
-        String sql = "INSERT INTO roomsforsession VALUES('"+id+"','"+type+"')";
+        String sql = "INSERT INTO roomsforsession (room,session) VALUES('"+id+"','"+type+"')";
         st.executeUpdate(sql);
     }
    
@@ -164,7 +164,7 @@ public void addRoom (String id, String type) throws SQLException{
     
     
    public void addcsesRoom (String id, String type) throws SQLException{
-        String sql = "INSERT INTO roomsforconssession VALUES('"+id+"','"+type+"')";
+        String sql = "INSERT INTO roomsforconssession (room,consSession) VALUES('"+id+"','"+type+"')";
         st.executeUpdate(sql);
     }
    
@@ -195,7 +195,7 @@ public void addRoom (String id, String type) throws SQLException{
     
     
    public void addtimeRoom (String id, String type, String end) throws SQLException{
-        String sql = "INSERT INTO reservedrooms VALUES('"+id+"','"+type+"','"+end+"')";
+        String sql = "INSERT INTO reservedrooms (room,stime,etime) VALUES('"+id+"','"+type+"','"+end+"')";
         st.executeUpdate(sql);
     }
    

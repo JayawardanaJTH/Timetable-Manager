@@ -6,6 +6,8 @@
 package com.spm.timetablemanagement.allocateroom;
 
 import com.spm.timetablemanagement.form.room.*;
+import com.spm.timetablemanagement.util.DBconnection;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,13 +33,15 @@ public class allocate {
 
     public void allocate() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/timetablemanagement","root","Chcoohho");
+            
+            c = DBconnection.getConnection();
             st = c.createStatement();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(allocateRoom.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(allocateRoom.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error on create Connection"+ex.getMessage(), "Data load error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(allocate.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error on create Connection"+ex.getMessage(), "Data load error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

@@ -5,22 +5,13 @@
  */
 package com.spm.timetablemanagement.allocateroom;
 
-import com.spm.timetablemanagement.form.room.*;
-import com.spm.timetablemanagement.models.tag;
-import com.spm.timetablemanagement.models.Room;
-import com.spm.timetablemanagement.util.Constant;
-import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -52,9 +43,7 @@ public class allocateRoom extends javax.swing.JPanel {
         gettimeRoom();
         
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
+            Connection con = DBconnection.getConnection();
             Statement stat = con.createStatement();    
             String selectQuery="select Tag from tag";
             ResultSet rs=stat.executeQuery(selectQuery);
@@ -72,9 +61,8 @@ public class allocateRoom extends javax.swing.JPanel {
         }
 //-------------------------------------------------------------------------------------------------------
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
+            
+            Connection con = DBconnection.getConnection();
             Statement stat2 = con.createStatement();    
             String selectQuery="select id from room";
             ResultSet rs=stat2.executeQuery(selectQuery);
@@ -98,9 +86,7 @@ public class allocateRoom extends javax.swing.JPanel {
         }
 //-------------------------------------------------------------------------------------------------------
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
+            Connection con = DBconnection.getConnection();
             Statement stat2 = con.createStatement();    
             String selectQuery="select subject_name from subject";
             ResultSet rs=stat2.executeQuery(selectQuery);
@@ -119,9 +105,7 @@ public class allocateRoom extends javax.swing.JPanel {
         }
  //-------------------------------------------------------------------------------------------------------
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
+            Connection con = DBconnection.getConnection();
             Statement stat2 = con.createStatement();    
             String selectQuery="select name from lecturer";
             ResultSet rs=stat2.executeQuery(selectQuery);
@@ -141,9 +125,7 @@ public class allocateRoom extends javax.swing.JPanel {
         
 //-------------------------------------------------------------------------------------------------------
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
+            Connection con = DBconnection.getConnection();
             Statement stat2 = con.createStatement();    
             String selectQuery="select gId from generated_group_id";
             ResultSet rs=stat2.executeQuery(selectQuery);
@@ -163,9 +145,7 @@ public class allocateRoom extends javax.swing.JPanel {
 
 //-------------------------------------------------------------------------------------------------------
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
+           Connection con = DBconnection.getConnection();
             Statement stat2 = con.createStatement();    
             String selectQuery="select id from session";
             ResultSet rs=stat2.executeQuery(selectQuery);
@@ -186,9 +166,7 @@ public class allocateRoom extends javax.swing.JPanel {
         
 //-------------------------------------------------------------------------------------------------------
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String databaseURL = "jdbc:mysql://localhost:3306/timetablemanagement";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "Chcoohho");
+            Connection con = DBconnection.getConnection();
             Statement stat2 = con.createStatement();    
             String selectQuery="select id from sp2_consecutive_session";
             ResultSet rs=stat2.executeQuery(selectQuery);

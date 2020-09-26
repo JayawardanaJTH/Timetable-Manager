@@ -60,7 +60,7 @@ public class CreateTable {
                     for(int i = 0; i < data.length;i++){
                         if(!data[i].trim().equals("")){
                             
-                            System.out.println(data[i]);
+//                            System.out.println(data[i]);
                             statement.executeUpdate(data[i]);
                             counter ++;
                             

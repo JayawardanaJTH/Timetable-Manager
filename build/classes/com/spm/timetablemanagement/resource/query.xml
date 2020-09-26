@@ -402,17 +402,17 @@
     
     <query id="update_lecturer">
         <![CDATA[
-            UPDATE lecturer as l
-                set l.name = ?,
-                l.emp_id = ?,
-                l.faculty = ?,
-                l.department = ?,
-                l.center = ?,
-                l.building = ?,
-                l.level = ?,
-                l.rank = ?
+            UPDATE lecturer
+                set name = ?,
+                emp_id = ?,
+                faculty = ?,
+                department = ?,
+                center = ?,
+                building = ?,
+                level = ?,
+                rank = ?
             
-            where l.id = ?
+            where id = ?
        ]]>
     </query>
     

@@ -14,6 +14,7 @@ CREATE TABLE `all_details` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `yNs` varchar(45) DEFAULT NULL,
   `dp` varchar(45) DEFAULT NULL,
+  `gNo` varchar(10) DEFAULT NULL,
   `gId` varchar(45) DEFAULT NULL,
   `sGid` varchar(45) DEFAULT NULL
 ) ;
@@ -93,7 +94,10 @@ DROP TABLE IF EXISTS `generated_group_id`;
 
 CREATE TABLE `generated_group_id` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `gId` varchar(45) DEFAULT NULL
+  `gId` varchar(45) DEFAULT NULL,
+  `yNsId` varchar(10) DEFAULT NULL,
+  `dpId` varchar(10) DEFAULT NULL,
+  `gnoId` varchar(10) DEFAULT NULL
 ) ;
 
 
@@ -101,7 +105,9 @@ DROP TABLE IF EXISTS `generated_sub_group_id`;
 
 CREATE TABLE `generated_sub_group_id` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `sGid` varchar(20) DEFAULT NULL
+  `sGno` varchar(10) DEFAULT NULL,
+  `sGid` varchar(50) DEFAULT NULL,
+  `gId` varchar(10) DEFAULT NULL
 ) ;
 
 
@@ -153,8 +159,8 @@ DROP TABLE IF EXISTS `reservedrooms`;
 CREATE TABLE `reservedrooms` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `room` varchar(10) DEFAULT NULL,
-  `stime` varchar(10) DEFAULT NULL,
-  `etime` varchar(10) DEFAULT NULL
+  `stime` time DEFAULT NULL,
+  `etime` time DEFAULT NULL
 ) ;
 
 
@@ -172,7 +178,7 @@ DROP TABLE IF EXISTS `roomsforatag`;
 CREATE TABLE `roomsforatag` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `tag` varchar(10) DEFAULT NULL,
-  `type` varchar(10) DEFAULT NULL
+  `room` varchar(10) DEFAULT NULL
 ) ;
 
 
@@ -182,7 +188,7 @@ DROP TABLE IF EXISTS `roomsforconssession`;
 CREATE TABLE `roomsforconssession` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `room` varchar(10) DEFAULT NULL,
-  `conssession` varchar(10) DEFAULT NULL
+  `consSession` varchar(10) DEFAULT NULL
 ) ;
 
 
@@ -267,8 +273,8 @@ CREATE TABLE `sp2_group_wise` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `gId` varchar(10) DEFAULT NULL,
   `day` varchar(20) DEFAULT NULL,
-  `time_from` varchar(10) DEFAULT NULL,
-  `time_to` varchar(10) DEFAULT NULL
+  `time_from` char(5) DEFAULT NULL,
+  `time_to` char(5) DEFAULT NULL
 ) ;
 
 
@@ -280,8 +286,8 @@ CREATE TABLE `sp2_lecturers_wise` (
   `lecName` varchar(50) DEFAULT NULL,
   `lecId` varchar(10) DEFAULT NULL,
   `day` varchar(10) DEFAULT NULL,
-  `time_from` varchar(10) DEFAULT NULL,
-  `time_to` varchar(10) DEFAULT NULL
+  `time_from` char(5) DEFAULT NULL,
+  `time_to` char(5) DEFAULT NULL
 ) ;
 
 
@@ -301,8 +307,8 @@ CREATE TABLE `sp2_session_wise` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `session` varchar(10) DEFAULT NULL,
   `day` varchar(10) DEFAULT NULL,
-  `time_from` varchar(10) DEFAULT NULL,
-  `time_to` varchar(10) DEFAULT NULL
+  `time_from` char(5) DEFAULT NULL,
+  `time_to` char(5) DEFAULT NULL
 ) ;
 
 
@@ -312,8 +318,8 @@ CREATE TABLE `sp2_sub_group_wise` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `sGid` varchar(10) DEFAULT NULL,
   `day` varchar(10) DEFAULT NULL,
-  `time_from` varchar(10) DEFAULT NULL,
-  `time_to` varchar(10) DEFAULT NULL
+  `time_from` char(5) DEFAULT NULL,
+  `time_to` char(5) DEFAULT NULL
 ) ;
 
 
@@ -321,7 +327,7 @@ DROP TABLE IF EXISTS `sub_group_number`;
 
 CREATE TABLE `sub_group_number` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `sGno` varchar(45) DEFAULT NULL
+  `sGno` INTEGER DEFAULT NULL
 ) ;
 
 

@@ -574,7 +574,7 @@ public class addParallelSessions extends javax.swing.JPanel {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return list;
     }

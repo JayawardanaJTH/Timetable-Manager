@@ -402,17 +402,17 @@
     
     <query id="update_lecturer">
         <![CDATA[
-            UPDATE lecturer as l
-                set l.name = ?,
-                l.emp_id = ?,
-                l.faculty = ?,
-                l.department = ?,
-                l.center = ?,
-                l.building = ?,
-                l.level = ?,
-                l.rank = ?
+            UPDATE lecturer
+                set name = ?,
+                emp_id = ?,
+                faculty = ?,
+                department = ?,
+                center = ?,
+                building = ?,
+                level = ?,
+                rank = ?
             
-            where l.id = ?
+            where id = ?
        ]]>
     </query>
     
@@ -474,17 +474,17 @@
     
     <query id="update_subject">
         <![CDATA[
-            UPDATE subject as s
-                set s.offered_year = ?,
-                s.offered_semester = ?,
-                s.subject_name = ?,
-                s.subject_code = ?,
-                s.lec_hr = ?,
-                s.tute_hr = ?,
-                s.lab_hr = ?,
-                s.eva_hr = ?
+            UPDATE subject
+                set offered_year = ?,
+                offered_semester = ?,
+                subject_name = ?,
+                subject_code = ?,
+                lec_hr = ?,
+                tute_hr = ?,
+                lab_hr = ?,
+                eva_hr = ?
             
-            where s.id = ?
+            where id = ?
        ]]>
     </query>
     

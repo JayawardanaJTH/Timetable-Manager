@@ -92,6 +92,12 @@ public class enterTag extends javax.swing.JPanel {
 
         txt_tag.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_tag.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_tag.setText("Lecture/Practical/Tutorial");
+        txt_tag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_tagMouseClicked(evt);
+            }
+        });
         txt_tag.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_tagActionPerformed(evt);
@@ -201,7 +207,7 @@ public class enterTag extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_tagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tagActionPerformed
-        // TODO add your handling code here:
+        txt_tag.setText("");
 
     }//GEN-LAST:event_txt_tagActionPerformed
 
@@ -296,6 +302,10 @@ public class enterTag extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btn_deleteTagActionPerformed
+
+    private void txt_tagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_tagMouseClicked
+        txt_tag.setText("");
+    }//GEN-LAST:event_txt_tagMouseClicked
 
     public ArrayList<tag> getTagList()
     {

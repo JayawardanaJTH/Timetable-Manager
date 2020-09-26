@@ -28,17 +28,17 @@ public class DBconnection {
     
     public static boolean isDatabaseExist(String dbPath){
         File file = new File(dbPath);
-        System.out.println("isDatabaseExist => "+ file.exists());
+//        System.out.println("isDatabaseExist => "+ file.exists());
         return file.exists();
     }
     public static Connection getConnection() throws SQLException, ClassNotFoundException, IOException {
         path = new File("").getAbsolutePath();
         DBpath = path.concat("\\timetable.db");
         
-        System.out.println(DBpath);
+//        System.out.println(DBpath);
         if(isDatabaseExist(DBpath)){
             if(connection == null || connection.isClosed()){
-                System.out.println("connection == null || connection.isClosed() => ");
+//                System.out.println("connection == null || connection.isClosed() => ");
                 //get property file to acces data
                 PROPERTIES.load(Constant.class.getResourceAsStream(Constant.PROPERTIES) );
                 
@@ -53,7 +53,7 @@ public class DBconnection {
                 
             }
         }else{
-            System.out.println("else => ");
+//            System.out.println("else => ");
             CreateTable.createDatabase(DBpath);
             
             if(connection == null || connection.isClosed()){

@@ -444,6 +444,7 @@ public class EditModel extends javax.swing.JFrame {
             } catch (SQLException | ClassNotFoundException | IOException |
                 ParserConfigurationException | SAXException ex) {
                 Logger.getLogger(AddLecturer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(EditModel.this, "Lecturer Updating Error"+ex.getMessage(), "Lecturer Update Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btn_saveMousePressed
