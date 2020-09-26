@@ -297,7 +297,7 @@
     
     <query id="Insert_sp2_parallel_session_table">
         <![CDATA[
-            INSERT INTO sp2_parallel_session(yNs,session) VALUES (?,?)
+            INSERT INTO sp2_parallel_session(yNs,session,sessionID) VALUES (?,?,?)
         ]]>
     </query> 
     

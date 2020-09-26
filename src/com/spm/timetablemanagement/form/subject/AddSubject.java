@@ -94,7 +94,7 @@ public class AddSubject extends javax.swing.JPanel {
                     c1++;
                 }
                 if(!lock2){
-                    semList[c2] = yNsList.get(i).substring(2);
+                    semList[c2] = yNsList.get(i).substring(3);
                     c2++;
                 }
                 

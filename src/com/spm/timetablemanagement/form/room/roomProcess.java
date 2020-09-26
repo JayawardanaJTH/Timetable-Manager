@@ -18,7 +18,7 @@ public class roomProcess extends room{
     }
     
     public void addRoom (String id, String type) throws SQLException{
-        String sql = "INSERT INTO room VALUES('"+id+"','"+type+"')";
+        String sql = "INSERT INTO room(type) VALUES('"+type+"')";
         st.executeUpdate(sql);
     }
     

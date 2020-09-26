@@ -5,22 +5,9 @@
  */
 package com.spm.timetablemanagement.location;
 
-import com.spm.timetablemanagement.form.room.*;
-import com.spm.timetablemanagement.models.tag;
-import com.spm.timetablemanagement.models.Room;
-import com.spm.timetablemanagement.util.Constant;
-import com.spm.timetablemanagement.util.CreateQuery;
-import com.spm.timetablemanagement.util.DBconnection;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,6 +29,8 @@ public class InsertBuilding extends javax.swing.JPanel {
     public InsertBuilding() {
         initComponents();
         rp = new buildingProcess();
+        id.setVisible(false);
+        jLabel2.setVisible(false);
         getBuilding();
     }
 
@@ -223,11 +212,11 @@ public class InsertBuilding extends javax.swing.JPanel {
     
     public void addBuilding(){
         
-        if (id.getText().isEmpty() || type.getText().isEmpty()){
+        if ( type.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Please enter details");
         }else{
             try {
-                ID = id.getText();
+                
                 Name = type.getText();
                 rp.addBuilding(ID, Name);
                 JOptionPane.showMessageDialog(this, "Successfully Added");
@@ -290,6 +279,7 @@ public class InsertBuilding extends javax.swing.JPanel {
             jTable1.setModel(dtm);
         } catch (SQLException ex) {
             Logger.getLogger(InsertBuilding.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, "Failed!");
         }
     }
     

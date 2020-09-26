@@ -5,21 +5,9 @@
  */
 package com.spm.timetablemanagement.form.room;
 
-import com.spm.timetablemanagement.models.tag;
-import com.spm.timetablemanagement.models.Room;
-import com.spm.timetablemanagement.util.Constant;
-import com.spm.timetablemanagement.util.CreateQuery;
-import com.spm.timetablemanagement.util.DBconnection;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,6 +29,8 @@ public class InsertRoom extends javax.swing.JPanel {
     public InsertRoom() {
         initComponents();
         rp = new roomProcess();
+        id.setVisible(false);
+        jLabel2.setVisible(false);
         getRoom();
     }
 
@@ -234,11 +224,11 @@ public class InsertRoom extends javax.swing.JPanel {
     
     public void addRoom(){
         
-        if (id.getText().isEmpty() || type.getText().isEmpty()){
+        if (type.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Please enter details");
         }else{
             try {
-                ID = id.getText();
+                
                 Type = type.getText();
                 rp.addRoom(ID, Type);
                 JOptionPane.showMessageDialog(this, "Successfully Added");

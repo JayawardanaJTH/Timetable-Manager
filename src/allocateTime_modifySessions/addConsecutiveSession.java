@@ -178,7 +178,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         btn_remove.setBackground(new java.awt.Color(255, 255, 255));
         btn_remove.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_remove.setForeground(new java.awt.Color(51, 51, 51));
-        btn_remove.setText("<Remove>");
+        btn_remove.setText("<Remove");
         btn_remove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +201,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Sub-Group ID");
+        jLabel4.setText("Group ID");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -577,7 +577,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
         try{
         connection = DBconnection.getConnection();
-        String querry = "select * from session where subgroup_id = '"+sGid+"'";
+        String querry = "select * from session where group_id = '"+sGid+"'";
         Statement st;
         ResultSet rs;
         
@@ -586,7 +586,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         sessionDetails sDetails;
         while(rs.next())
         {
-            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("subject"), rs.getString("tag"), rs.getString("subgroup_id"));
+            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("subject"), rs.getString("tag"), rs.getString("group_id"));
             list.add(sDetails);
         }
         
@@ -698,14 +698,17 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     public  void SubGroupSelection(){
         try{  
         connection = DBconnection.getConnection();
-        String query = "select * from session group by subgroup_id";
+        String query = "select * from session group by group_id";
         pst = connection.prepareStatement(query);
         rs = pst.executeQuery();
         
         while(rs.next())
         {
-            String sGid = rs.getString("subgroup_id");
-            selection_sId.addItem(sGid);
+            String Gid = rs.getString("group_id");
+            if(Gid != null){
+                selection_sId.addItem(Gid);
+//                System.out.println(Gid);
+            }
         }
         }
         catch(Exception e){

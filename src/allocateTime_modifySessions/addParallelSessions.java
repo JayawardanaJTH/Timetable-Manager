@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package allocateTime_modifySessions;
 
 import com.spm.timetablemanagement.util.Constant;
@@ -23,11 +23,12 @@ import static jdk.nashorn.internal.objects.NativeString.substring;
  * @author hvdil
  */
 public class addParallelSessions extends javax.swing.JPanel {
-
-        Connection connection;
-        PreparedStatement pst;
-        ResultSet rs;
-        String finalTags = null;
+    
+    Connection connection;
+    PreparedStatement pst;
+    ResultSet rs;
+    String finalTags = null;
+    String sessID = null;
     /**
      * Creates new form addParallelSessions
      */
@@ -39,7 +40,7 @@ public class addParallelSessions extends javax.swing.JPanel {
         txt_id.setVisible(false);
         showParallelSessionNList();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,11 +86,11 @@ public class addParallelSessions extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Academic Year", "Parallel Session"
+                "ID", "Academic Year", "Parallel Session", "Session ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -225,11 +226,11 @@ public class addParallelSessions extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Academic Year & Semester ", "Session"
+                "Session ID", "Academic Year & Semester ", "Session", "Tag"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -259,11 +260,11 @@ public class addParallelSessions extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Academic Year & Semester ", "Session"
+                "Session ID", "Academic Year & Semester ", "Session", "Tag"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -280,7 +281,7 @@ public class addParallelSessions extends javax.swing.JPanel {
         btn_remove.setBackground(new java.awt.Color(255, 255, 255));
         btn_remove.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_remove.setForeground(new java.awt.Color(51, 51, 51));
-        btn_remove.setText("<Remove>");
+        btn_remove.setText("<Remove");
         btn_remove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,10 +393,8 @@ public class addParallelSessions extends javax.swing.JPanel {
                     .addComponent(selection_y)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(txt_psSelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,7 +403,8 @@ public class addParallelSessions extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btn_select, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
@@ -424,21 +424,21 @@ public class addParallelSessions extends javax.swing.JPanel {
 
     private void btn_deletepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletepsActionPerformed
         // TODO add your handling code here:
-
+        
         String id = txt_id.getText();
-
+        
         try
         {
             DefaultTableModel model = (DefaultTableModel)tbl_ps.getModel();
             Statement smt = connection.createStatement();
-
+            
             if (txt_id.getText().equals("")){
-
-                    txt_error_cs.setText("Select First*");
-                }
-                else{
-                    txt_error_cs.setText("");
-
+                
+                txt_error_cs.setText("Select First*");
+            }
+            else{
+                txt_error_cs.setText("");
+                
                 smt.execute("DELETE FROM sp2_parallel_session WHERE id = "+id);
                 model.setRowCount(0);
                 showParallelSessionNList();
@@ -454,7 +454,7 @@ public class addParallelSessions extends javax.swing.JPanel {
 
     private void tbl_psSelectedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_psSelectedMouseClicked
         // TODO add your handling code here:
-
+        
         int i = tbl_psSelected.getSelectedRow();
         TableModel model = tbl_psSelection.getModel();
         txt_id.setText(model.getValueAt(i, 0).toString());
@@ -464,10 +464,10 @@ public class addParallelSessions extends javax.swing.JPanel {
     private void btn_selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selectActionPerformed
         // TODO add your handling code here:
         if (txt_psSelectionId.getText().equals("")){
-
-                txt_error_selection.setText("Select First*");
-            }
-            else{
+            
+            txt_error_selection.setText("Select First*");
+        }
+        else{
             txt_error_selection.setText("");
             String selected_id = txt_psSelectionId.getText();
             showSelectedSessionNList(selected_id);
@@ -484,45 +484,46 @@ public class addParallelSessions extends javax.swing.JPanel {
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
         // TODO add your handling code here:
         if (txt_psSelectedId.getText().equals("")){
-                
-                txt_error_selection.setText("Select First*");
-            }
-            else{
-                txt_error_selection.setText("");
-        DefaultTableModel model = (DefaultTableModel)tbl_psSelected.getModel();
-        model.removeRow(Integer.parseInt(txt_psSelectedId.getText())-1);
+            
+            txt_error_selection.setText("Select First*");
+        }
+        else{
+            txt_error_selection.setText("");
+            DefaultTableModel model = (DefaultTableModel)tbl_psSelected.getModel();
+            model.removeRow(Integer.parseInt(txt_psSelectedId.getText())-1);
         }
     }//GEN-LAST:event_btn_removeActionPerformed
 
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
         // TODO add your handling code here:
-
+        
         try{
             DefaultTableModel model = (DefaultTableModel)tbl_psSelected.getModel();
             DefaultTableModel model2 = (DefaultTableModel)tbl_ps.getModel();
             connection = DBconnection.getConnection();
-
+            
             if (tbl_psSelected.getRowCount() == 0){
-
+                
                 txt_error_selection.setText("Select Sessions First*");
             }
             else{
                 txt_error_selection.setText("");
-
+                
                 TagCreator();
-
+                
                 PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_PARALLEL_SESSION_TABLE));
-
+                
                 statement.setString(1, selection_y.getSelectedItem().toString());
                 statement.setString(2, finalTags);
-
+                statement.setString(3, sessID);
+                
                 statement.executeUpdate();
                 model.setRowCount(0);
                 model2.setRowCount(0);
                 showParallelSessionNList();
                 txt_id.setText("");
                 JOptionPane.showMessageDialog(null, "Inserting Successful!");
-                }
+            }
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e);
@@ -552,25 +553,29 @@ public class addParallelSessions extends javax.swing.JPanel {
     private void selection_yActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selection_yActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selection_yActionPerformed
-
+    
     public ArrayList<sessionDetails> getSessionNList(String year)
     {
         ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
         try{
-        connection = DBconnection.getConnection();
-        Statement st;
-        ResultSet rs;
-       
-        st = connection.createStatement();
-        String querry = "select * from session where substring(subgroup_id,1,2) = '"+year+"'";
-        rs= st.executeQuery(querry);
-        sessionDetails sDetails;
-        while(rs.next())
-        {
-            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("subject"), rs.getString("tag"), rs.getString("subgroup_id"));
-            list.add(sDetails);
-        }
-        
+            connection = DBconnection.getConnection();
+            Statement st;
+            ResultSet rs;
+            
+            st = connection.createStatement();
+            String querry = "select * from session where group_id LIKE '"+year+"%'";
+            
+            rs= st.executeQuery(querry);
+            sessionDetails sDetails;
+            while(rs.next())
+            {
+                sDetails = new sessionDetails(rs.getInt("id"), rs.getString("subject"), rs.getString("tag"), rs.getString("group_id"));
+                list.add(sDetails);
+//                System.out.println(sDetails.getId());
+//                System.out.println(sDetails.getsGid());
+//                System.out.println(sDetails.getSession());
+            }
+            
         }
         catch(Exception e)
         {
@@ -583,13 +588,14 @@ public class addParallelSessions extends javax.swing.JPanel {
     {
         ArrayList<sessionDetails> list = getSessionNList(year);
         DefaultTableModel model = (DefaultTableModel)tbl_psSelection.getModel();
-        Object[] row = new Object[3];
+        Object[] row = new Object[4];
         for(int i = 0; i < list.size(); i++)
         {
             row[0] = list.get(i).getId();
-            row[1] = list.get(i).getsGid().substring(0, 5);
+            row[1] = list.get(i).getsGid();
             row[2] = list.get(i).getSession();
-  
+            row[3] = list.get(i).gettag();
+            
             model.addRow(row);
         }
     }
@@ -598,20 +604,20 @@ public class addParallelSessions extends javax.swing.JPanel {
     {
         ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
         try{
-        connection = DBconnection.getConnection();
-        String querry = "select * from session where id = '"+id+"'";
-        Statement st;
-        ResultSet rs;
-        
-        st = connection.createStatement();
-        rs= st.executeQuery(querry);
-        sessionDetails sDetails;
-        while(rs.next())
-        {
-            sDetails = new sessionDetails(rs.getInt("id"), rs.getString("subject"), rs.getString("tag"), rs.getString("subgroup_id"));
-            list.add(sDetails);
-        }
-        
+            connection = DBconnection.getConnection();
+            String querry = "select * from session where id = '"+id+"'";
+            Statement st;
+            ResultSet rs;
+            
+            st = connection.createStatement();
+            rs= st.executeQuery(querry);
+            sessionDetails sDetails;
+            while(rs.next())
+            {
+                sDetails = new sessionDetails(rs.getInt("id"), rs.getString("subject"), rs.getString("tag"), rs.getString("group_id"));
+                list.add(sDetails);
+            }
+            
         }
         catch(Exception e)
         {
@@ -624,12 +630,13 @@ public class addParallelSessions extends javax.swing.JPanel {
     {
         ArrayList<sessionDetails> list = getselectedSessionNList(id);
         DefaultTableModel model = (DefaultTableModel)tbl_psSelected.getModel();
-        Object[] row = new Object[3];
+        Object[] row = new Object[4];
         for(int i = 0; i < list.size(); i++)
         {
             row[0] = list.get(i).getId();
-            row[1] = list.get(i).getsGid().substring(0, 5);
+            row[1] = list.get(i).getsGid();
             row[2] = list.get(i).getSession();
+            row[3] = list.get(i).gettag();
             
             
             model.addRow(row);
@@ -640,20 +647,20 @@ public class addParallelSessions extends javax.swing.JPanel {
     {
         ArrayList<ParallelSession> list = new ArrayList<ParallelSession>();
         try{
-        connection = DBconnection.getConnection();
-        String querry = "select * from sp2_parallel_session";
-        Statement st;
-        ResultSet rs;
-        
-        st = connection.createStatement();
-        rs= st.executeQuery(querry);
-        ParallelSession ParallelSession;
-        while(rs.next())
-        {
-            ParallelSession = new ParallelSession(rs.getInt("id"), rs.getString("yNs"), rs.getString("session"));
-            list.add(ParallelSession);
-        }
-        
+            connection = DBconnection.getConnection();
+            String querry = "select * from sp2_parallel_session";
+            Statement st;
+            ResultSet rs;
+            
+            st = connection.createStatement();
+            rs= st.executeQuery(querry);
+            ParallelSession ParallelSession;
+            while(rs.next())
+            {
+                ParallelSession = new ParallelSession(rs.getInt("id"), rs.getString("yNs"), rs.getString("session"), rs.getString("sessionID"));
+                list.add(ParallelSession);
+            }
+            
         }
         catch(Exception e)
         {
@@ -666,12 +673,13 @@ public class addParallelSessions extends javax.swing.JPanel {
     {
         ArrayList<ParallelSession> list = getParallelSessionNList();
         DefaultTableModel model = (DefaultTableModel)tbl_ps.getModel();
-        Object[] row = new Object[3];
+        Object[] row = new Object[4];
         for(int i = 0; i < list.size(); i++)
         {
             row[0] = list.get(i).getId();
             row[1] = list.get(i).getYnS();
             row[2] = list.get(i).getPSession();
+            row[3] = list.get(i).getSessionID();
             
             model.addRow(row);
         }
@@ -682,51 +690,55 @@ public class addParallelSessions extends javax.swing.JPanel {
             
             int count1 = 0,count2 = 0,count3 = 0,count4 = 0;
             connection = DBconnection.getConnection();
-            String query = "select * from session group by subgroup_id";
+            String query = "select * from session group by group_id";
             pst = connection.prepareStatement(query);
             rs = pst.executeQuery();
-
+            
             while(rs.next())
             {
-
-                String sGid = rs.getString("subgroup_id");
-                String year = substring(sGid,0,2);
-
-                if (year.equals("Y1")){
-                    year = "Year 01";
-                    count1++;
-                    if(count1 == 1){
-                        selection_y.addItem(year);
+                String sGid = rs.getString("group_id");
+                String year = null;
+                
+                if(sGid != null){
+                    
+                    year = substring(sGid,0,2);
+                    
+                    
+                    if (year.equals("Y1")){
+                        year = "Year 01";
+                        count1++;
+                        if(count1 == 1){
+                            selection_y.addItem(year);
+                        }
+                        
+                    }else if(year.equals("Y2")){
+                        year = "Year 02";
+                        count2++;
+                        if(count2 == 1){
+                            selection_y.addItem(year);
+                        }
                     }
-
-                }else if(year.equals("Y2")){
-                    year = "Year 02";
-                    count2++;
-                    if(count2 == 1){
-                        selection_y.addItem(year);
+                    else if(year.equals("Y3")){
+                        year = "Year 03";
+                        count3++;
+                        if(count3 == 1){
+                            selection_y.addItem(year);
+                        }
+                    }else{
+                        year = "Year 04";
+                        count4++;
+                        if(count4 == 1){
+                            selection_y.addItem(year);
+                        }
                     }
                 }
-                else if(year.equals("Y3")){
-                    year = "Year 03";
-                    count3++;
-                    if(count3 == 1){
-                        selection_y.addItem(year);
-                    }
-                }else{
-                    year = "Year 04";
-                    count4++;
-                    if(count4 == 1){
-                        selection_y.addItem(year);
-                    }
-                }
-
             }
-        
+            
         }
         catch(Exception e){
             
             JOptionPane.showMessageDialog(null, e);
-        } 
+        }
     }
     
     public void TagCreator(){
@@ -734,15 +746,19 @@ public class addParallelSessions extends javax.swing.JPanel {
         int x = tbl_psSelected.getRowCount();
         String[] tags = new String[x];
         String[] newtags = new String[x];
+        String[] sub = new String[x];
         
-                                
         newtags[0] = model.getValueAt(0, 2).toString();
+        tags[0] = model.getValueAt(0, 3).toString();
+        sessID = model.getValueAt(0, 0).toString();
         int i = 1;
         while (x!=i){
-
-            tags[i] = model.getValueAt(i, 2).toString();
-            newtags[i] = '('+newtags[i-1]+')'+','+'('+tags[i]+')';
+            
+            sub[i] = model.getValueAt(i, 2).toString();
+            tags[i] = model.getValueAt(i, 3).toString();
+            newtags[i] = '('+newtags[i-1]+','+tags[i-1]+')'+','+'('+sub[i]+','+tags[i]+')';
             finalTags = newtags[i];
+            sessID = sessID.concat(","+ model.getValueAt(i, 0).toString());
             i++;
         }
     }

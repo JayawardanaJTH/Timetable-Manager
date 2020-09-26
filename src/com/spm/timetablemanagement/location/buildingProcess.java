@@ -19,7 +19,8 @@ public class buildingProcess extends building{
     }
     
     public void addBuilding (String id, String type) throws SQLException{
-        String sql = "INSERT INTO building VALUES('"+id+"','"+type+"')";
+        String sql = "INSERT INTO building(name) VALUES('"+type+"')";
+//        System.out.println(sql);
         st.executeUpdate(sql);
     }
     

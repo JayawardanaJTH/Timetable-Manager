@@ -23,16 +23,17 @@ CREATE TABLE `all_details` (
 DROP TABLE IF EXISTS `building`;
 
 CREATE TABLE `building` (
-  `id` INTEGER PRIMARY KEY,
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `name` varchar(20) DEFAULT NULL
 ) ;
 
 
 
-INSERT INTO `building` VALUES (1,'New Building');
-INSERT INTO `building` VALUES (2,'Main Building');
-INSERT INTO `building` VALUES (3,'Business Building');
-INSERT INTO `building` VALUES (4,'Engineering Building');
+INSERT INTO `building` (name) VALUES ('New Building');
+INSERT INTO `building` (name) VALUES ('Main Building');
+INSERT INTO `building` (name) VALUES ('Business Building');
+INSERT INTO `building` (name) VALUES ('Engineering Building');
+INSERT INTO `building` (name) VALUES ('ans Building');
 
 DROP TABLE IF EXISTS `center`;
 
@@ -43,10 +44,10 @@ CREATE TABLE `center` (
 
 
 
-INSERT INTO `center` VALUES (1,'Kandy');
-INSERT INTO `center` VALUES (2,'Malabe');
-INSERT INTO `center` VALUES (3,'Jaffna');
-INSERT INTO `center` VALUES (4,'Metro');
+INSERT INTO `center` (name) VALUES ('Kandy');
+INSERT INTO `center` (name) VALUES ('Malabe');
+INSERT INTO `center` (name) VALUES ('Jaffna');
+INSERT INTO `center` (name) VALUES ('Metro');
 
 
 DROP TABLE IF EXISTS `degree_program`;
@@ -66,9 +67,9 @@ CREATE TABLE `faculty` (
 
 
 
-INSERT INTO `faculty` VALUES (1,'Computing');
-INSERT INTO `faculty` VALUES (2,'Business');
-INSERT INTO `faculty` VALUES (3,'Engineering');
+INSERT INTO `faculty` (name) VALUES ('Computing');
+INSERT INTO `faculty` (name) VALUES ('Business');
+INSERT INTO `faculty` (name) VALUES ('Engineering');
 
 
 DROP TABLE IF EXISTS `department`;
@@ -82,12 +83,12 @@ CREATE TABLE `department` (
 ) ;
 
 
-INSERT INTO `department` VALUES (1,'Information Technology',1);
-INSERT INTO `department` VALUES (2,'Software Engineering',1);
-INSERT INTO `department` VALUES (3,'Cyber Security',1);
-INSERT INTO `department` VALUES (4,'Business1',2);
-INSERT INTO `department` VALUES (5,'Engineering1',3);
-INSERT INTO `department` VALUES (6,'Engineering2',3);
+INSERT INTO `department` (name,faculty) VALUES ('Information Technology',1);
+INSERT INTO `department` (name,faculty) VALUES ('Software Engineering',1);
+INSERT INTO `department` (name,faculty) VALUES ('Cyber Security',1);
+INSERT INTO `department` (name,faculty) VALUES ('Business1',2);
+INSERT INTO `department` (name,faculty) VALUES ('Engineering1',3);
+INSERT INTO `department` (name,faculty) VALUES ('Engineering2',3);
 
 
 DROP TABLE IF EXISTS `generated_group_id`;
@@ -167,7 +168,7 @@ CREATE TABLE `reservedrooms` (
 DROP TABLE IF EXISTS `room`;
 
 CREATE TABLE `room` (
-  `id` INTEGER PRIMARY KEY,
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `type` varchar(20) DEFAULT NULL
 ) ;
 
@@ -297,7 +298,8 @@ DROP TABLE IF EXISTS `sp2_parallel_session`;
 CREATE TABLE `sp2_parallel_session` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `yNs` varchar(10) DEFAULT NULL,
-  `session` varchar(10) DEFAULT NULL
+  `session` varchar(10) DEFAULT NULL,
+  `sessionID` varchar(20) DEFAULT NULL
 ) ;
 
 
