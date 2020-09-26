@@ -264,7 +264,8 @@ DROP TABLE IF EXISTS `sp2_consecutive_session`;
 CREATE TABLE `sp2_consecutive_session` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `sGid` varchar(10) DEFAULT NULL,
-  `cSession` varchar(10) DEFAULT NULL
+  `cSession` varchar(10) DEFAULT NULL,
+  `sessionID` varchar(20) DEFAULT NULL
 ) ;
 
 

@@ -278,7 +278,7 @@
     
     <query id="Insert_sp2_consecutive_session_table">
         <![CDATA[
-            INSERT INTO sp2_consecutive_session(sGid,cSession) VALUES (?,?)
+            INSERT INTO sp2_consecutive_session(sGid,cSession,sessionID) VALUES (?,?,?)
         ]]>
     </query> 
     

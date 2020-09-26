@@ -5,7 +5,6 @@
  */
 package allocateTime_modifySessions;
 
-import com.spm.timetablemanagement.models.GroupNo;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
@@ -13,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import static java.time.Clock.system;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +27,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     PreparedStatement pst;
     ResultSet rs;
     String finalTags = null;
+    String sessID = null;
     /**
      * Creates new form addConsecutiveSession
      */
@@ -118,7 +117,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Session", "Tag"
+                "Session ID", "Session", "Tag"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -152,7 +151,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Session", "Tag"
+                "Session ID", "Session", "Tag"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -169,11 +168,6 @@ public class addConsecutiveSession extends javax.swing.JPanel {
             }
         });
         jScrollPane3.setViewportView(tbl_csSelection);
-        if (tbl_csSelection.getColumnModel().getColumnCount() > 0) {
-            tbl_csSelection.getColumnModel().getColumn(0).setResizable(false);
-            tbl_csSelection.getColumnModel().getColumn(1).setResizable(false);
-            tbl_csSelection.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         btn_remove.setBackground(new java.awt.Color(255, 255, 255));
         btn_remove.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -328,11 +322,11 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Sub-Group ID", "Consecutive Session"
+                "ID", "Sub-Group ID", "Consecutive Session", "Session ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -346,11 +340,8 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         });
         jScrollPane6.setViewportView(tbl_cs);
         if (tbl_cs.getColumnModel().getColumnCount() > 0) {
-            tbl_cs.getColumnModel().getColumn(0).setResizable(false);
             tbl_cs.getColumnModel().getColumn(0).setPreferredWidth(10);
-            tbl_cs.getColumnModel().getColumn(1).setResizable(false);
             tbl_cs.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tbl_cs.getColumnModel().getColumn(2).setResizable(false);
             tbl_cs.getColumnModel().getColumn(2).setPreferredWidth(250);
         }
 
@@ -503,6 +494,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
                 statement.setString(1, selection_sId.getSelectedItem().toString());
                 statement.setString(2, finalTags);
+                statement.setString(3, sessID);
 
 
                 statement.executeUpdate();
@@ -668,7 +660,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         ConsecutiveSession ConsecutiveSession;
         while(rs.next())
         {
-            ConsecutiveSession = new ConsecutiveSession(rs.getInt("id"), rs.getString("sGid"), rs.getString("cSession"));
+            ConsecutiveSession = new ConsecutiveSession(rs.getInt("id"), rs.getString("sGid"), rs.getString("cSession"), rs.getString("sessionID"));
             list.add(ConsecutiveSession);
         }
         
@@ -684,12 +676,13 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     {
         ArrayList<ConsecutiveSession> list = getConsecutiveSessionNList();
         DefaultTableModel model = (DefaultTableModel)tbl_cs.getModel();
-        Object[] row = new Object[3];
+        Object[] row = new Object[4];
         for(int i = 0; i < list.size(); i++)
         {
             row[0] = list.get(i).getId();
             row[1] = list.get(i).getSgid();
             row[2] = list.get(i).gettag();
+            row[3] = list.get(i).getSessionID();
             
             model.addRow(row);
         }
@@ -725,12 +718,14 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         
                                 
         newtags[0] = model.getValueAt(0, 2).toString()+','+model.getValueAt(0, 1).toString();
+        sessID = model.getValueAt(0, 0).toString();
         int i = 1;
         while (x!=i){
 
             tags[i] = model.getValueAt(i, 2).toString()+','+model.getValueAt(i, 1).toString();
             newtags[i] = '('+newtags[i-1]+')'+','+'('+tags[i]+')';
             finalTags = newtags[i];
+            sessID = sessID.concat(","+model.getValueAt(i, 0));
             i++;
         }
     }

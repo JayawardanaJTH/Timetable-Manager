@@ -14,12 +14,15 @@ public class ConsecutiveSession {
     private int id;
     private String sGid;
     private String cSession;
+    private String SessionID;
 
-    public ConsecutiveSession(int ID, String sGid, String cSession){
+    public ConsecutiveSession(int ID, String sGid, String cSession, String SessionID){
         this.id = ID;
         this.sGid = sGid;
         this.cSession = cSession;
+        this.SessionID = SessionID;
     } 
+    
     
     public int getId()
     {
@@ -34,6 +37,20 @@ public class ConsecutiveSession {
     public String gettag()
     {
         return cSession;
+    }
+
+    /**
+     * @return the SessionID
+     */
+    public String getSessionID() {
+        return SessionID;
+    }
+
+    /**
+     * @param SessionID the SessionID to set
+     */
+    public void setSessionID(String SessionID) {
+        this.SessionID = SessionID;
     }
 
 }
