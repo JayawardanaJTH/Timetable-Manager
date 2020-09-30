@@ -17,6 +17,9 @@ public class SubGroupNo {
         this.id = ID;
         this.SGno = sgn;
     } 
+
+    public SubGroupNo() {
+    }
     
     public int getId()
     {
@@ -26,5 +29,19 @@ public class SubGroupNo {
     public String getSGno()
     {
         return SGno;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @param SGno the SGno to set
+     */
+    public void setSGno(String SGno) {
+        this.SGno = SGno;
     }
 }

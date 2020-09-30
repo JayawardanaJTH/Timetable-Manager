@@ -12,6 +12,10 @@ package com.spm.timetablemanagement.models;
 public class GroupNo {
     private int id;
     private String gNo;
+
+    public GroupNo() {
+    }
+    
     
     public GroupNo(int ID, String gn){
         this.id = ID;
@@ -26,6 +30,27 @@ public class GroupNo {
     public String getGn()
     {
         return gNo;
+    }
+
+    /**
+     * @return the gNo
+     */
+    public String getgNo() {
+        return gNo;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @param gNo the gNo to set
+     */
+    public void setgNo(String gNo) {
+        this.gNo = gNo;
     }
     
 }

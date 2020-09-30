@@ -5,8 +5,6 @@
  */
 package allocateTime_modifySessions;
 
-import com.spm.timetablemanagement.models.GeneratedId;
-import com.spm.timetablemanagement.models.SubGroupNo;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;

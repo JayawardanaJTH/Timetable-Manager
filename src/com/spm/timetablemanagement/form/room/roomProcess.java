@@ -25,34 +25,34 @@ public class roomProcess extends room{
     
     public void addRoom (String building, String type) throws SQLException{
         String sql = "INSERT INTO room(building,type) VALUES('"+building+"','"+type+"')";
-        st.executeUpdate(sql);
+        getSt().executeUpdate(sql);
     }
     
     public void updateRoom (String id, String type, String building) throws SQLException{
         String sql = "UPDATE room SET type = '"+type+"', building = '"+building+"' WHERE id = '"+id+"'";
-        st.executeUpdate(sql);
+        getSt().executeUpdate(sql);
     }
     public void getRoom(DefaultTableModel dtm) throws SQLException{
         String sql = "SELECT * FROM room";
         
-        rs = st.executeQuery(sql);
+        setRs(getSt().executeQuery(sql));
         Object[] data = new Object[3];
         
-        while (rs.next()){
-            data[0] = rs.getString("id");
-            data[1] = rs.getString("building");
-            data[2] = rs.getString("type");
+        while (getRs().next()){
+            data[0] = getRs().getString("id");
+            data[1] = getRs().getString("building");
+            data[2] = getRs().getString("type");
             dtm.addRow(data);
         }
         
     }
     public void getBuildings(JComboBox<String> building) throws SQLException{
         String sql = "SELECT * FROM building";
-        rs = st.executeQuery(sql);
+        setRs(getSt().executeQuery(sql));
         String [] data;
         
-        while (rs.next()){
-            buildingList.add(rs.getString("name"));
+        while (getRs().next()){
+            buildingList.add(getRs().getString("name"));
         }
         
         data = new String[buildingList.size()];
@@ -64,7 +64,7 @@ public class roomProcess extends room{
     }
     public void deleteRoom (String id) throws SQLException{
         String sql = "DELETE FROM room WHERE id = '"+id+"'";
-        st.executeUpdate(sql);
+        getSt().executeUpdate(sql);
     }
     
 }

@@ -16,6 +16,9 @@ public class ParallelSession {
     private String session;
     private String sessionID;
 
+    public ParallelSession(){
+        
+    }
     public ParallelSession(int ID, String yNs, String session, String sessionID){
         this.id = ID;
         this.yNs = yNs;
@@ -50,5 +53,40 @@ public class ParallelSession {
      */
     public void setSessionID(String sessionID) {
         this.sessionID = sessionID;
+    }
+
+    /**
+     * @return the yNs
+     */
+    public String getyNs() {
+        return yNs;
+    }
+
+    /**
+     * @return the session
+     */
+    public String getSession() {
+        return session;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @param yNs the yNs to set
+     */
+    public void setyNs(String yNs) {
+        this.yNs = yNs;
+    }
+
+    /**
+     * @param session the session to set
+     */
+    public void setSession(String session) {
+        this.session = session;
     }
 }
