@@ -19,6 +19,11 @@ import com.spm.timetablemanagement.models.Working_days_hours;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,6 +34,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.metal.MetalIconFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -41,6 +47,7 @@ public class Generater {
     PreparedStatement statement;
     Connection connection;
     ResultSet resultSet;
+    TimtableMenu timtableMenu = new TimtableMenu();
     
     Lecturer lecturer = new Lecturer();
     Session session = new Session();
@@ -53,6 +60,10 @@ public class Generater {
     SubGroupId NAsubgroup = new SubGroupId();
     LecturersTime NAlecture = new LecturersTime();
     room room = new room();
+    
+    String path;
+    FileWriter writer;
+    BufferedWriter bw;
     
     public Map<Integer,Lecturer> _lecturesList = new Hashtable<>();
     public Map<Integer,Session> _sessionList = new Hashtable<>();
@@ -83,6 +94,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                lecturer = new Lecturer();
+                
                 lecturer.setId(resultSet.getInt("id"));
                 lecturer.setName(resultSet.getString("name"));
                 lecturer.setLec_id(resultSet.getString("emp_id"));
@@ -103,6 +116,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                session = new Session();
+                
                 session.setId(resultSet.getInt("id"));
                 session.setSub(resultSet.getString("subject"));
                 session.setSubc(resultSet.getString("sub_code"));
@@ -122,6 +137,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                group = new GroupNo();
+                
                 group.setId(resultSet.getInt("id"));
                 group.setgNo(resultSet.getString("gId"));
 
@@ -135,6 +152,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                subgroup = new SubGroupNo();
+                
                 subgroup.setId(resultSet.getInt("id"));
                 subgroup.setSGno(resultSet.getString("sGid"));
 
@@ -148,6 +167,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                working_days_hours = new Working_days_hours();
+                
                 working_days_hours.setId(resultSet.getString("id"));
                 working_days_hours.setNumOfDays(resultSet.getString("days_no"));
                 working_days_hours.setDays(resultSet.getString("days"));
@@ -165,6 +186,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                consecutiveSession = new ConsecutiveSession();
+                
                 consecutiveSession.setId(Integer.parseInt(resultSet.getString("id")));
                 consecutiveSession.setcSession(resultSet.getString("cSession"));
                 consecutiveSession.setSessionID(resultSet.getString("sessionID"));
@@ -180,6 +203,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                parallelSession = new ParallelSession();
+                
                 parallelSession.setId(Integer.parseInt(resultSet.getString("id")));
                 parallelSession.setSession(resultSet.getString("session"));
                 parallelSession.setSessionID(resultSet.getString("sessionID"));
@@ -195,6 +220,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                NAgroup = new GroupId();
+                
                 NAgroup.setId(Integer.parseInt(resultSet.getString("id")));
                 NAgroup.setgId(resultSet.getString("gId"));
                 NAgroup.setDay(resultSet.getString("day"));
@@ -211,6 +238,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                NAsubgroup = new SubGroupId();
+                
                 NAsubgroup.setId(Integer.parseInt(resultSet.getString("id")));
                 NAsubgroup.setsGid(resultSet.getString("sGid"));
                 NAsubgroup.setDay(resultSet.getString("day"));
@@ -227,6 +256,8 @@ public class Generater {
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+                NAlecture = new LecturersTime();
+                
                 NAlecture.setId(Integer.parseInt(resultSet.getString("id")));
                 NAlecture.setLecName(resultSet.getString("lecName"));
                 NAlecture.setLecId(Integer.parseInt(resultSet.getString("lecID")));
@@ -245,6 +276,7 @@ public class Generater {
 
             while(resultSet.next()){
                 room = new room();
+                
                 room.setId(Integer.parseInt(resultSet.getString("id")));
                 room.setRoom(resultSet.getString("room"));
                 room.setStart(resultSet.getString("stime"));
@@ -261,6 +293,7 @@ public class Generater {
 
             while(resultSet.next()){
                 room = new room();
+                
                 room.setId(Integer.parseInt(resultSet.getString("id")));
                 room.setBuilding(resultSet.getString("building"));
                 room.setType(resultSet.getString("type"));
@@ -276,6 +309,7 @@ public class Generater {
 
             while(resultSet.next()){
                 room = new room();
+                
                 room.setId(Integer.parseInt(resultSet.getString("id")));
                 room.setTag(resultSet.getString("tag"));
                 room.setRoom(resultSet.getString("room"));
@@ -291,6 +325,7 @@ public class Generater {
 
             while(resultSet.next()){
                 room = new room();
+                
                 room.setId(Integer.parseInt(resultSet.getString("id")));
                 room.setConsecutive(resultSet.getString("consSession"));
                 room.setRoom(resultSet.getString("room"));
@@ -306,6 +341,7 @@ public class Generater {
 
             while(resultSet.next()){
                 room = new room();
+                
                 room.setId(Integer.parseInt(resultSet.getString("id")));
                 room.setGroup(resultSet.getString("groups"));
                 room.setRoom(resultSet.getString("room"));
@@ -321,6 +357,7 @@ public class Generater {
 
             while(resultSet.next()){
                 room = new room();
+                
                 room.setId(Integer.parseInt(resultSet.getString("id")));
                 room.setLecture(resultSet.getString("lecturer"));
                 room.setRoom(resultSet.getString("room"));
@@ -336,6 +373,7 @@ public class Generater {
 
             while(resultSet.next()){
                 room = new room();
+                
                 room.setId(Integer.parseInt(resultSet.getString("id")));
                 room.setSession(resultSet.getString("session"));
                 room.setRoom(resultSet.getString("room"));
@@ -351,6 +389,7 @@ public class Generater {
 
             while(resultSet.next()){
                 room = new room();
+                
                 room.setId(Integer.parseInt(resultSet.getString("id")));
                 room.setTag(resultSet.getString("tag"));
                 room.setRoom(resultSet.getString("room"));
@@ -378,7 +417,71 @@ public class Generater {
         }
     }
     
-    public void generate(){
+    public void generate() throws FileNotFoundException, IOException{
+        
+        path = new File("").getAbsolutePath()+"\\Timetables";
+        File file = new File(path);
+        System.out.println(file.mkdir());
+        for(GroupNo group : _groupList.values()){
+            createGroupWiseTable(group.getgNo());
+           
+        }
+        
+    }
+    
+    public void createGroupWiseTable(String GroupID) throws FileNotFoundException, IOException{
+        
+        
+        writer = new FileWriter(new File(path+"\\"+GroupID+".html"));
+        bw = new BufferedWriter(writer);
+        
+        String days [] = _workDayList.get(1).getDays().split(",");
+        String Topic="";
+        String Data="";
+       
+        
+        int slot = Integer.parseInt(_workDayList.get(1).getTimeSlot());
+        int hours = Integer.parseInt(_workDayList.get(1).getHour());
+        int Start = Integer.parseInt(_workDayList.get(1).getMin());
+        int slotCount=0;
+       
+        if(slot == 1)
+            slotCount = hours;
+        else
+            slotCount = (hours * 60)/slot;
+        
+        
+         for(int i = 0;i<days.length;i++){
+                  Topic = Topic.concat("<th>"+days[i]+"</th>\n");
+              }
+         for(int i = 0;i <slotCount ;i++){
+             Start = Start + slot;
+             Data = Data.concat("<tr>");
+             Data = Data.concat("<td>"+(Start)+".00</td>");
+             
+             for(int j =0;j<days.length;j++){
+                 Data = Data.concat("<td>Data</td>");
+             }
+             Data = Data.concat("</tr>");
+         }
+              String HEAD = "<html>"
+                + "<head> "
+                + "<style>"
+                + "table, th, td {border: 1px solid black; padding: 0px;}\n"
+                + "table {border-spacing: 1px;}"
+                + "</style>"
+                + "</head><body>"
+                + " <table style=\"width:100%\">" +
+                "<caption>"+GroupID+"</caption>"+      
+                "  <tr>" +
+                "    <th>Time</th>" ;
+             
+              String BODY = "</table> "
+                + "</body></html>";
+        
+        String code = HEAD +""+ Topic +""+ Data +""+ BODY;
+        bw.write(code);
+        bw.close();
         
     }
 }

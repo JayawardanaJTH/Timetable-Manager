@@ -16,6 +16,7 @@ public class Working_days_hours {
     private String hour;
     private String min;
     private String timeSlot;
+    private String Stime;
 
     /**
      * @return the id
@@ -99,6 +100,20 @@ public class Working_days_hours {
      */
     public void setTimeSlot(String timeSlot) {
         this.timeSlot = timeSlot;
+    }
+
+    /**
+     * @return the Stime
+     */
+    public String getStime() {
+        return Stime;
+    }
+
+    /**
+     * @param Stime the Stime to set
+     */
+    public void setStime(String Stime) {
+        this.Stime = Stime;
     }
     
     

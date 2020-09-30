@@ -77,8 +77,6 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         chk_thu = new javax.swing.JCheckBox();
         chk_fri = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
-        txt_min = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         rdb_1hour = new javax.swing.JRadioButton();
         rdb_30min = new javax.swing.JRadioButton();
         btn_reset = new javax.swing.JButton();
@@ -87,6 +85,8 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         txt_days_error = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txt_min = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Number of working days");
@@ -163,21 +163,6 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
 
         jLabel5.setText("H");
 
-        txt_min.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_min.setToolTipText("Number of minitues");
-        txt_min.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txt_minMousePressed(evt);
-            }
-        });
-        txt_min.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_minKeyPressed(evt);
-            }
-        });
-
-        jLabel6.setText("M");
-
         rdb_1hour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rdb_1hour.setText("1 hour");
 
@@ -218,7 +203,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(312, 312, 312)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                 .addGap(337, 337, 337))
         );
         jPanel2Layout.setVerticalGroup(
@@ -229,37 +214,17 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Start Time");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(109, 109, 109)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(btn_reset)))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_save)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rdb_1hour)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rdb_30min))
-                            .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_hour, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
-                            .addComponent(txt_days_error, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -277,14 +242,33 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                                         .addComponent(chk_tue)
                                         .addGap(18, 18, 18)
                                         .addComponent(chk_wed))
-                                    .addComponent(chk_fri))))))
-                .addContainerGap(257, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(chk_fri)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(btn_reset))
+                            .addComponent(jLabel8))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_save)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(rdb_1hour)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdb_30min))
+                            .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txt_hour, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5))
+                            .addComponent(txt_days_error, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_reset, btn_save});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_hour, txt_min});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,9 +294,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -320,14 +302,16 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(rdb_1hour)
                     .addComponent(rdb_30min))
-                .addGap(67, 67, 67)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_reset)
                     .addComponent(btn_save))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txt_hour, txt_min});
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -361,11 +345,6 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         Validator.filterInt(evt, "hour", txt_error, txt_hour, txt_min);
         Validator.validateLenght("hour", txt_hour, txt_min);
     }//GEN-LAST:event_txt_hourKeyPressed
-
-    private void txt_minKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_minKeyPressed
-        Validator.filterInt(evt, "min", txt_error, txt_hour, txt_min);
-        Validator.validateLenght("min", txt_hour, txt_min);
-    }//GEN-LAST:event_txt_minKeyPressed
 
     private void cmb_num_of_daysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_num_of_daysActionPerformed
          
@@ -586,10 +565,6 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void txt_hourMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_hourMousePressed
         txt_hour.setText("");
     }//GEN-LAST:event_txt_hourMousePressed
-
-    private void txt_minMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_minMousePressed
-        txt_min.setText("");
-    }//GEN-LAST:event_txt_minMousePressed
   
     private void uncheckAll(){
         
@@ -614,8 +589,8 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
