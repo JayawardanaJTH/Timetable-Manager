@@ -5,8 +5,13 @@
  */
 package com.spm.timetablemanagement.form.lecturer.timetable;
 
+import allocateTime_modifySessions.ConsecutiveSession;
+import allocateTime_modifySessions.ParallelSession;
+import com.spm.timetablemanagement.models.GroupNo;
 import com.spm.timetablemanagement.models.Lecturer;
 import com.spm.timetablemanagement.models.Session;
+import com.spm.timetablemanagement.models.SubGroupNo;
+import com.spm.timetablemanagement.models.Working_days_hours;
 import com.spm.timetablemanagement.util.Constant;
 import com.spm.timetablemanagement.util.CreateQuery;
 import com.spm.timetablemanagement.util.DBconnection;
@@ -38,6 +43,24 @@ public class Generater {
     
     public Map<Integer,Lecturer> _lecturesList = new Hashtable<>();
     public Map<Integer,Session> _sessionList = new Hashtable<>();
+    public Map<Integer,GroupNo> _groupList = new Hashtable<>();
+    public Map<Integer,SubGroupNo> _subGroupList = new Hashtable<>();
+    public Map<Integer,Working_days_hours> _workDayList = new Hashtable<>();
+    public Map<Integer,ConsecutiveSession> _consecutiveSessionList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _parallelSessionList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _NAparalleSessionlList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _NAconsecutiveSessionList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _NAGrouplList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _NASubrouplList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _NALectureList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _NARoomList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _roomList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _roomForTagList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _roomForConsecutiveSessionList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _roomForGroupList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _roomForLectureList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _roomForSessionList = new Hashtable<>();
+    public Map<Integer,ParallelSession> _roomForSubjectAndTagList = new Hashtable<>();
     
     public void loadData() throws ParserConfigurationException, SAXException, IOException, SQLException{
         getConnection();
@@ -79,6 +102,7 @@ public class Generater {
         }
         
         System.out.println("Data loaded");
+        generate();
     }
     
     public void getConnection(){
@@ -88,5 +112,9 @@ public class Generater {
             Logger.getLogger(Generater.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void generate(){
+        
     }
 }
