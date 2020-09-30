@@ -5,6 +5,7 @@
 */
 package com.spm.timetablemanagement.util;
 
+import com.spm.timetablemanagement.home.Dialog;
 import com.spm.timetablemanagement.main.MainFrame;
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,7 +28,7 @@ public class CreateTable {
     
     static Connection connection;
     static boolean lock = false;
-   
+    static Dialog dialog = new Dialog();
     
     public static void createDatabase(String DBpath){
         StringBuffer queryList = new StringBuffer();
@@ -35,6 +36,7 @@ public class CreateTable {
         Statement statement;
         String path = new File("").getAbsolutePath();
         int counter = 0;
+        dialog.setVisible(true);
         
         JOptionPane.showMessageDialog(null , "Waite for database creating...", "Database Creating", JOptionPane.INFORMATION_MESSAGE);
         
@@ -60,6 +62,8 @@ public class CreateTable {
                             statement.executeUpdate(data[i]);
                             counter ++;
                         }
+                        
+                        dialog.jProgressBar1.setValue(i);
                     }
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(CreateTable.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,7 +86,8 @@ public class CreateTable {
         }
         
         if(!lock){
-            
+            dialog.jProgressBar1.setValue(100);
+            dialog.setVisible(false);
             JOptionPane.showMessageDialog(null , "Database Created with "+counter+" queries", "Database Ok", JOptionPane.INFORMATION_MESSAGE);
         }
     }
