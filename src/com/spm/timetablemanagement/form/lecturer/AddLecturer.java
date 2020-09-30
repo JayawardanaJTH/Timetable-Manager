@@ -156,6 +156,8 @@ public class AddLecturer extends javax.swing.JPanel {
         btn_reset = new javax.swing.JButton();
         btn_save = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
+
         jPanel4.setBackground(new java.awt.Color(90, 30, 172));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -179,39 +181,39 @@ public class AddLecturer extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Name");
-        jLabel1.setMaximumSize(null);
-        jLabel1.setMinimumSize(null);
         jLabel1.setPreferredSize(new java.awt.Dimension(60, 30));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Employee ID");
-        jLabel2.setMaximumSize(null);
-        jLabel2.setMinimumSize(null);
         jLabel2.setPreferredSize(new java.awt.Dimension(60, 30));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Faculty");
-        jLabel3.setMaximumSize(null);
-        jLabel3.setMinimumSize(null);
         jLabel3.setPreferredSize(new java.awt.Dimension(60, 30));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Department");
-        jLabel4.setMaximumSize(null);
-        jLabel4.setMinimumSize(null);
         jLabel4.setPreferredSize(new java.awt.Dimension(60, 30));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Center");
-        jLabel5.setMaximumSize(null);
-        jLabel5.setMinimumSize(null);
         jLabel5.setPreferredSize(new java.awt.Dimension(60, 30));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Building");
-        jLabel6.setMaximumSize(null);
-        jLabel6.setMinimumSize(null);
         jLabel6.setPreferredSize(new java.awt.Dimension(60, 30));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Level");
-        jLabel8.setMaximumSize(null);
-        jLabel8.setMinimumSize(null);
         jLabel8.setPreferredSize(new java.awt.Dimension(60, 30));
 
         generateRank.setText("Generate Rank");
@@ -352,7 +354,7 @@ public class AddLecturer extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_reset)
                     .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 173, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btn_reset, btn_save});

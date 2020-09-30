@@ -7,35 +7,23 @@ package com.spm.timetablemanagement.main;
 
 
 import com.spm.timetablemanagement.form.lecturer.AddLecturer;
+import com.spm.timetablemanagement.form.lecturer.ViewLecturer;
 
 import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
-import allocateTime_modifySessions.addGroup;
 import allocateTime_modifySessions.addParallelSessions;
-
-
-import com.spm.timetablemanagement.form.lecturer.ViewLecturer;
-
 import com.spm.timetablemanagement.allocateroom.allocateRoom;
-
-
-import allocateTime_modifySessions.addSubGroup;
-import allocateTime_modifySessions.lecturers_time;
-import allocateTime_modifySessions.setSessions;
 
 import com.spm.timetablemanagement.form.student_details.addDetails_Home;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
 import com.spm.timetablemanagement.form.student_details.sub_GroupId_generate;
 import com.spm.timetablemanagement.form.student_details.view_All_Details;
-
 import com.spm.timetablemanagement.form.working_hours.EditWorkingDayHours;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import com.spm.timetablemanagement.menu.MenuItem;
 
 //import com.spm.timetablemanagement.form.working_hours.InsertWorkingHours;
 import com.spm.timetablemanagement.location.InsertBuilding; 
 import com.spm.timetablemanagement.form.room.InsertRoom;
+
 import com.spm.timetablemanagement.form.session.AddSession;
 import com.spm.timetablemanagement.form.session.ViewSession;
 import com.spm.timetablemanagement.form.subject.AddSubject;
@@ -45,17 +33,22 @@ import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWE;
 import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWD;
 import com.spm.timetablemanagement.form.working_hours.ViewWorkingDayHours;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import com.spm.timetablemanagement.form.tag_details.enterTag;
+
 import com.spm.timetablemanagement.statistics.stats;
-import com.spm.timetablemanagement.util.CreateTable;
+
 import com.spm.timetablemanagement.util.DBconnection;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import com.spm.timetablemanagement.menu.MenuItem;
 
 /**
  *
@@ -78,7 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
         ImageIcon iconSubmenu = null;
         try{
          iconWorkingDay = new ImageIcon(MainFrame.class.getResource("workingTime.png"));
-         iconSubmenu = new ImageIcon(getClass().getResource("/com/spm/timetablemanagement/resource/images/next.png"));
+         iconSubmenu = new javax.swing.ImageIcon(getClass().getResource("/com/spm/timetablemanagement/resource/426430-PE93QI-643.jpg"));
         }catch(Exception e){
            
         }
@@ -319,7 +312,7 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem s2GenerateTimeTable = new MenuItem(iconSubmenu, "View Time Table", null);
         
         //main menu items
-        MenuItem menuHome = new MenuItem(iconSubmenu, "Home", null);
+//        MenuItem menuHome = new MenuItem(iconSubmenu, "Home", null);
         MenuItem menuLecturer = new MenuItem(iconWorkingDay, "Lecturer", null, s1Lecturer, s2Lecturer);
         MenuItem menuStudent = new MenuItem(iconWorkingDay, "Student", null, s1Student, s2Student, s3Student);
         MenuItem menuWorkingDay = new MenuItem(iconWorkingDay, "Working Day and Hours", null,s1WorkingDay,
@@ -333,14 +326,14 @@ public class MainFrame extends javax.swing.JFrame {
                 s2HandleSession);
         MenuItem menuAllTime = new MenuItem(iconSubmenu, "Allocate Time and Modify Sessions", null, s1AllocateTime,
                 s2AllocateTime, s3AllocateTime);
-        MenuItem menuView = new MenuItem(iconSubmenu, "View Details", null);
+//        MenuItem menuView = new MenuItem(iconSubmenu, "View Details", null);
         MenuItem menuGenerateTimetable = new MenuItem(iconSubmenu, "Generate Timetable", null, s1GenerateTimeTable, 
                 s2GenerateTimeTable);
         
         
         
-        addMenu(menuHome, menuLecturer, menuStudent, menuWorkingDay, menuSubject, menuLocation, 
-                menuTag, menuStatistics, menuAllocateRoom, menuCreateSession, menuAllTime, menuView, 
+        addMenu(menuLecturer, menuStudent, menuWorkingDay, menuSubject, menuLocation, 
+                menuTag, menuStatistics, menuAllocateRoom, menuCreateSession, menuAllTime, 
                     menuGenerateTimetable);
     }
     
@@ -376,6 +369,7 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         menus = new javax.swing.JPanel();
         panelBody = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -401,7 +395,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(jLabel2)))
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,16 +425,23 @@ public class MainFrame extends javax.swing.JFrame {
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setLayout(new java.awt.BorderLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/spm/timetablemanagement/resource/426430-PE93QI-643.jpg"))); // NOI18N
+        jLabel3.setMaximumSize(new java.awt.Dimension(500, 500));
+        jLabel3.setMinimumSize(new java.awt.Dimension(500, 500));
+        jLabel3.setPreferredSize(new java.awt.Dimension(500, 500));
+        panelBody.add(jLabel3, java.awt.BorderLayout.CENTER);
+
         getContentPane().add(panelBody, java.awt.BorderLayout.CENTER);
 
-        setBounds(0, 0, 820, 550);
+        setBounds(0, 0, 813, 536);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -489,6 +490,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel menus;
     public javax.swing.JPanel panelBody;

@@ -93,6 +93,8 @@ public class ViewLecturer extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new java.awt.BorderLayout());
 
         jPanel4.setBackground(new java.awt.Color(90, 30, 172));
@@ -120,6 +122,8 @@ public class ViewLecturer extends javax.swing.JPanel {
 
         add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
+        jPanel2.setBackground(new java.awt.Color(186, 148, 243));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -143,7 +147,6 @@ public class ViewLecturer extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,6 +166,8 @@ public class ViewLecturer extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(8).setResizable(false);
             jTable1.getColumnModel().getColumn(8).setPreferredWidth(30);
         }
+
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
 
         jButton1.setText("Refresh");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
