@@ -13,6 +13,7 @@ import allocateTime_modifySessions.addConsecutiveSession;
 import allocateTime_modifySessions.addDetails_allocationTime_Home;
 import allocateTime_modifySessions.addParallelSessions;
 import com.spm.timetablemanagement.allocateroom.allocateRoom;
+import com.spm.timetablemanagement.form.lecturer.timetable.TimtableMenu;
 
 import com.spm.timetablemanagement.form.student_details.addDetails_Home;
 import com.spm.timetablemanagement.form.student_details.groupId_generate;
@@ -315,7 +316,15 @@ public class MainFrame extends javax.swing.JFrame {
         });
         
         //Generate Timetable submenu items
-        MenuItem s1GenerateTimeTable = new MenuItem(iconSubmenu, "Generate", null);
+        MenuItem s1GenerateTimeTable = new MenuItem(iconSubmenu, "Generate", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(new TimtableMenu());
+                panelBody.repaint();
+                panelBody.revalidate();
+            }
+        });
         MenuItem s2GenerateTimeTable = new MenuItem(iconSubmenu, "View Time Table", null);
         
         //main menu items
@@ -379,6 +388,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ABC Institute");
 
         panelHeader.setBackground(new java.awt.Color(13, 125, 231));
 
