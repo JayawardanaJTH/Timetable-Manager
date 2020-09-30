@@ -34,6 +34,7 @@ import com.spm.timetablemanagement.form.working_hours.InsertWorkingHoursWD;
 import com.spm.timetablemanagement.form.working_hours.ViewWorkingDayHours;
 
 import com.spm.timetablemanagement.form.tag_details.enterTag;
+import com.spm.timetablemanagement.home.SplashScreen;
 
 import com.spm.timetablemanagement.statistics.stats;
 
@@ -64,9 +65,11 @@ public class MainFrame extends javax.swing.JFrame {
         
         this.setExtendedState(MAXIMIZED_BOTH);
         execute();
+        
     }
 
     private void execute(){
+       
         ImageIcon iconWorkingDay = null;
         ImageIcon iconSubmenu = null;
         try{
@@ -210,7 +213,11 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                panelBody.removeAll();
-               panelBody.add(new InsertRoom());
+                try {
+                    panelBody.add(new InsertRoom());
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
                panelBody.repaint();
                panelBody.revalidate();
             }
@@ -425,7 +432,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
@@ -441,7 +448,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(panelBody, java.awt.BorderLayout.CENTER);
 
-        setBounds(0, 0, 813, 536);
+        setBounds(0, 0, 813, 535);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -472,8 +479,20 @@ public class MainFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        SplashScreen screen = new SplashScreen();
+        screen.setVisible(true);
+     
+        try {
+            for(int i =0;i<=100;i++){
+                Thread.sleep(20);
+                screen.prg_bar.setValue(i);
+            }
+        } catch (Exception e) {
+        }
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                screen.setVisible(false);
                 new MainFrame().setVisible(true);
             }
         });

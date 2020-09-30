@@ -64,6 +64,7 @@ public class setSessions extends javax.swing.JPanel {
         btn_addgId = new javax.swing.JButton();
         btn_updategId = new javax.swing.JButton();
         btn_deletegId = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         select_session = new javax.swing.JComboBox<>();
         select_day = new javax.swing.JComboBox<>();
         txt_error = new javax.swing.JLabel();
@@ -248,6 +249,15 @@ public class setSessions extends javax.swing.JPanel {
         });
         jPanel3.add(btn_deletegId);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Reset");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
+            }
+        });
+        jPanel3.add(jButton1);
+
         select_session.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         select_session.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,13 +291,6 @@ public class setSessions extends javax.swing.JPanel {
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(select_day, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(select_session, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addGap(183, 183, 183)
-                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
-                            .addGap(197, 197, 197)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -299,8 +302,15 @@ public class setSessions extends javax.swing.JPanel {
                             .addComponent(txt_time_from, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(154, 154, 154)
-                        .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(199, Short.MAX_VALUE))
+                        .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
+                            .addGap(183, 183, 183)
+                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,8 +333,8 @@ public class setSessions extends javax.swing.JPanel {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(txt_time_to))
-                .addGap(10, 10, 10)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -489,8 +499,8 @@ public class setSessions extends javax.swing.JPanel {
                         + "time_to = '"+txt_time_to.getText()+"' WHERE id = "+id);
                     model.setRowCount(0);
                     showSessionList();
+                    JOptionPane.showMessageDialog(null, "Record Updated!","Update",JOptionPane.DEFAULT_OPTION);
                     setDefault();
-                    JOptionPane.showMessageDialog(this, "Record Updated!");
                 }
             }
         }
@@ -514,7 +524,7 @@ public class setSessions extends javax.swing.JPanel {
             else{
 
                 smt.execute("DELETE FROM sp2_session_wise WHERE id = "+id);
-                JOptionPane.showMessageDialog(this, "Record Deleted!");
+                JOptionPane.showMessageDialog(null, "Record Deleted!");
 
             }
             model.setRowCount(0);
@@ -542,13 +552,24 @@ public class setSessions extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = tbl_session.getSelectedRow();
         TableModel model = tbl_session.getModel();
+        
+        String time[] = model.getValueAt(i,3).toString().trim().split("-");
+        
         txt_id.setText(model.getValueAt(i, 0).toString());
+        select_session.setSelectedItem(model.getValueAt(i,1).toString());
+        select_day.setSelectedItem(model.getValueAt(i,2).toString());
+        txt_time_from.setText(time[0]);
+        txt_time_to.setText(time[1]);
 
     }//GEN-LAST:event_tbl_sessionMouseClicked
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
+
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        setDefault();
+    }//GEN-LAST:event_jButton1MousePressed
 
     public  void sessionSelection(){
         try{  
@@ -616,12 +637,14 @@ public class setSessions extends javax.swing.JPanel {
         txt_time_to.setText("");
         select_session.setSelectedIndex(0);
         select_day.setSelectedIndex(0);
+        txt_id.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addgId;
     private javax.swing.JButton btn_deletegId;
     private javax.swing.JButton btn_updategId;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

@@ -5,8 +5,7 @@
 */
 package com.spm.timetablemanagement.util;
 
-import com.mysql.jdbc.exceptions.MySQLSyntaxErrorException;
-import static com.spm.timetablemanagement.util.DBconnection.PROPERTIES;
+import com.spm.timetablemanagement.main.MainFrame;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +13,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -29,6 +27,7 @@ public class CreateTable {
     
     static Connection connection;
     static boolean lock = false;
+   
     
     public static void createDatabase(String DBpath){
         StringBuffer queryList = new StringBuffer();
@@ -40,8 +39,6 @@ public class CreateTable {
         JOptionPane.showMessageDialog(null , "Waite for database creating...", "Database Creating", JOptionPane.INFORMATION_MESSAGE);
         
         try{
-            
-            
             if(connection == null || connection.isClosed()){
                 Class.forName("org.sqlite.JDBC").newInstance();
                 connection = DriverManager.getConnection("jdbc:sqlite:"+DBpath);
@@ -60,14 +57,10 @@ public class CreateTable {
                     for(int i = 0; i < data.length;i++){
                         if(!data[i].trim().equals("")){
                             
-//                            System.out.println(data[i]);
                             statement.executeUpdate(data[i]);
                             counter ++;
-                            
                         }
                     }
-                    
-                    
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(CreateTable.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(null , "Cannot configure database"+ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);

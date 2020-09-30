@@ -29,6 +29,7 @@ public class addParallelSessions extends javax.swing.JPanel {
     ResultSet rs;
     String finalTags = null;
     String sessID = null;
+    ArrayList<ParallelSession> Parrlist = new ArrayList<>();
     /**
      * Creates new form addParallelSessions
      */
@@ -511,18 +512,39 @@ public class addParallelSessions extends javax.swing.JPanel {
                 
                 TagCreator();
                 
-                PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_PARALLEL_SESSION_TABLE));
+                String sessionList[] = sessID.split(",");
+                boolean lock = false;
+                Parrlist = getParallelSessionNList();
                 
-                statement.setString(1, selection_y.getSelectedItem().toString());
-                statement.setString(2, finalTags);
-                statement.setString(3, sessID);
-                
-                statement.executeUpdate();
-                model.setRowCount(0);
-                model2.setRowCount(0);
-                showParallelSessionNList();
-                txt_id.setText("");
-                JOptionPane.showMessageDialog(null, "Inserting Successful!");
+                for(int x=0;x<sessionList.length;x++){
+                    
+                    for(int i =0;i<Parrlist.size();i++){
+                         String sessionList2[] = Parrlist.get(i).getSessionID().split(",");
+                         
+                         for(int a=0;a<sessionList2.length;a++){
+                            if(sessionList[x].equals(sessionList2[a])){
+                                lock = true;
+                            }
+                         }
+                    }
+                }
+                if(lock){
+                    txt_error_selection.setText("This Sessions Already Exist");
+                }
+                else{
+                    PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_PARALLEL_SESSION_TABLE));
+
+                    statement.setString(1, selection_y.getSelectedItem().toString());
+                    statement.setString(2, finalTags);
+                    statement.setString(3, sessID);
+
+                    statement.executeUpdate();
+                    model.setRowCount(0);
+                    model2.setRowCount(0);
+                    showParallelSessionNList();
+                    txt_id.setText("");
+                    JOptionPane.showMessageDialog(null, "Inserting Successful!");
+                }
             }
         }catch(Exception e)
         {

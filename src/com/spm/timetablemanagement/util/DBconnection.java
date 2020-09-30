@@ -6,6 +6,7 @@
 package com.spm.timetablemanagement.util;
 
 import com.mysql.jdbc.exceptions.MySQLSyntaxErrorException;
+import com.spm.timetablemanagement.main.MainFrame;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -24,21 +25,20 @@ public class DBconnection {
     private static Connection connection;
     private static String path = "";
     private static String DBpath = "";
-    
-    
+    private static MainFrame mf = new MainFrame();
+            
     public static boolean isDatabaseExist(String dbPath){
         File file = new File(dbPath);
-//        System.out.println("isDatabaseExist => "+ file.exists());
         return file.exists();
     }
+    
     public static Connection getConnection() throws SQLException, ClassNotFoundException, IOException {
         path = new File("").getAbsolutePath();
         DBpath = path.concat("\\timetable.db");
-        
-//        System.out.println(DBpath);
+         
         if(isDatabaseExist(DBpath)){
+            
             if(connection == null || connection.isClosed()){
-//                System.out.println("connection == null || connection.isClosed() => ");
                 //get property file to acces data
                 PROPERTIES.load(Constant.class.getResourceAsStream(Constant.PROPERTIES) );
                 

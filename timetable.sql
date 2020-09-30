@@ -146,7 +146,6 @@ CREATE TABLE `level` (
 ) ;
 
 
-
 INSERT INTO `level` VALUES (1,'1');
 INSERT INTO `level` VALUES (2,'2');
 INSERT INTO `level` VALUES (3,'3');
@@ -160,8 +159,8 @@ DROP TABLE IF EXISTS `reservedrooms`;
 CREATE TABLE `reservedrooms` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `room` varchar(10) DEFAULT NULL,
-  `stime` time DEFAULT NULL,
-  `etime` time DEFAULT NULL
+  `stime` varchar(10) DEFAULT NULL,
+  `etime` varchar(10) DEFAULT NULL
 ) ;
 
 
@@ -169,6 +168,7 @@ DROP TABLE IF EXISTS `room`;
 
 CREATE TABLE `room` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+  `building` varchar(50) DEFAULT NULL,
   `type` varchar(20) DEFAULT NULL
 ) ;
 

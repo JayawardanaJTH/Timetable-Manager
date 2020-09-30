@@ -363,6 +363,7 @@ public class AddSubject extends javax.swing.JPanel {
             
             if(!lock1){
                 JOptionPane.showMessageDialog(this, "Subject Added", "Add Subject", JOptionPane.DEFAULT_OPTION);
+                resetFields();
             }
             
         }

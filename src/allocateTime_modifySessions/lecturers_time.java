@@ -90,6 +90,7 @@ public class lecturers_time extends javax.swing.JPanel {
         btn_addLecTime = new javax.swing.JButton();
         btn_updateLecTime = new javax.swing.JButton();
         btn_deleteLecTime = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         select_lec_name = new javax.swing.JComboBox<>();
         txt_error = new javax.swing.JLabel();
         select_lecDay = new javax.swing.JComboBox<>();
@@ -573,6 +574,15 @@ public class lecturers_time extends javax.swing.JPanel {
         });
         jPanel3.add(btn_deleteLecTime);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Reset");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
+            }
+        });
+        jPanel3.add(jButton1);
+
         select_lec_name.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         select_lec_name.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -652,21 +662,6 @@ public class lecturers_time extends javax.swing.JPanel {
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(select_lecDay, 0, 114, Short.MAX_VALUE)
-                            .addComponent(select_lec_name, 0, 114, Short.MAX_VALUE)
-                            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(125, 125, 125))
-                    .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGap(183, 183, 183)
                         .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel21Layout.createSequentialGroup()
@@ -679,12 +674,26 @@ public class lecturers_time extends javax.swing.JPanel {
                             .addComponent(txt_time_to, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_time_from, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_error, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(186, Short.MAX_VALUE))
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(select_lecDay, 0, 114, Short.MAX_VALUE)
+                    .addComponent(select_lec_name, 0, 114, Short.MAX_VALUE)
+                    .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -900,7 +909,7 @@ public class lecturers_time extends javax.swing.JPanel {
                     model.setRowCount(0);
                     showLecturersList();
                     setDefault();
-                    JOptionPane.showMessageDialog(this, "Record Updated!");
+                    JOptionPane.showMessageDialog(null, "Record Updated!");
                 }
             }
         }
@@ -924,7 +933,7 @@ public class lecturers_time extends javax.swing.JPanel {
             else{
 
                 smt.execute("DELETE FROM sp2_lecturers_wise WHERE id = "+id);
-                JOptionPane.showMessageDialog(this, "Record Deleted!");
+                JOptionPane.showMessageDialog(null, "Record Deleted!");
 
             }
             model.setRowCount(0);
@@ -963,7 +972,13 @@ public class lecturers_time extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = tbl_LecTime.getSelectedRow();
         TableModel model = tbl_LecTime.getModel();
+        String time[]= model.getValueAt(i,4).toString().split("-");
+        
         txt_id.setText(model.getValueAt(i, 0).toString());
+        select_lec_name.setSelectedItem(model.getValueAt(i,2).toString());
+        select_lecDay.setSelectedItem(model.getValueAt(i,3).toString());
+        txt_time_from.setText(time[0]);
+        txt_time_to.setText(time[1]);
     }//GEN-LAST:event_tbl_LecTimeMouseClicked
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
@@ -978,6 +993,10 @@ public class lecturers_time extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_select_lec_nameMouseEntered
+
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        setDefault();
+    }//GEN-LAST:event_jButton1MousePressed
 
     public  void lecNameSelection(){
         try{  
@@ -1032,8 +1051,8 @@ public class lecturers_time extends javax.swing.JPanel {
         for(int i = 0; i < list.size(); i++)
         {
             row[0] = list.get(i).getId();
-            row[1] = list.get(i).getLecName();
-            row[2] = list.get(i).getLecId();
+            row[1] = list.get(i).getLecId();
+            row[2] = list.get(i).getLecName();
             row[3] = list.get(i).getday();
             row[4] = list.get(i).gettime_from()+" - "+list.get(i).gettime_to();
             
@@ -1054,6 +1073,7 @@ public class lecturers_time extends javax.swing.JPanel {
     private javax.swing.JButton btn_addLecTime;
     private javax.swing.JButton btn_deleteLecTime;
     private javax.swing.JButton btn_updateLecTime;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

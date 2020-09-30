@@ -28,6 +28,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     ResultSet rs;
     String finalTags = null;
     String sessID = null;
+    ArrayList<ConsecutiveSession> Conseclist = new ArrayList<ConsecutiveSession>();
     /**
      * Creates new form addConsecutiveSession
      */
@@ -322,7 +323,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Sub-Group ID", "Consecutive Session", "Session ID"
+                "ID", "Group ID", "Consecutive Session", "Session ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -489,20 +490,41 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                 txt_error_selection.setText("");
 
                 TagCreator();
+                
+                String sessionList[] = sessID.split(",");
+                boolean lock = false;
+                Conseclist = getConsecutiveSessionNList();
+                
+                for(int x=0;x<sessionList.length;x++){
+                    
+                    for(int i =0;i<Conseclist.size();i++){
+                         String sessionList2[] = Conseclist.get(i).getSessionID().split(",");
+                         
+                         for(int a=0;a<sessionList2.length;a++){
+                            if(sessionList[x].equals(sessionList2[a])){
+                                lock = true;
+                            }
+                         }
+                    }
+                }
+                if(lock){
+                    txt_error_selection.setText("This Sessions Already Exist");
+                }
+                else{
+                    PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_CONSECUTIVE_SESSION_TABLE));
 
-                PreparedStatement statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_SP2_CONSECUTIVE_SESSION_TABLE));
-
-                statement.setString(1, selection_sId.getSelectedItem().toString());
-                statement.setString(2, finalTags);
-                statement.setString(3, sessID);
+                    statement.setString(1, selection_sId.getSelectedItem().toString());
+                    statement.setString(2, finalTags);
+                    statement.setString(3, sessID);
 
 
-                statement.executeUpdate();
-                model.setRowCount(0);
-                model2.setRowCount(0);
-                showConsecutiveSessionNList();
-                txt_id.setText("");
-                JOptionPane.showMessageDialog(null, "Inserting Successful!");
+                    statement.executeUpdate();
+                    model.setRowCount(0);
+                    model2.setRowCount(0);
+                    showConsecutiveSessionNList();
+                    txt_id.setText("");
+                    JOptionPane.showMessageDialog(null, "Inserting Successful!");
+                }
             }
         }catch(Exception e)
         {
@@ -648,7 +670,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     
     public ArrayList<ConsecutiveSession> getConsecutiveSessionNList()
     {
-        ArrayList<ConsecutiveSession> list = new ArrayList<ConsecutiveSession>();
+        ArrayList<ConsecutiveSession> list = new ArrayList<>();
         try{
         connection = DBconnection.getConnection();
         String querry = "select * from sp2_consecutive_session";
