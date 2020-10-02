@@ -490,15 +490,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         SplashScreen screen = new SplashScreen();
-//        screen.setVisible(true);
-//     
-//        try {
-//            for(int i =0;i<=100;i++){
-//                Thread.sleep(20);
-//                screen.prg_bar.setValue(i);
-//            }
-//        } catch (Exception e) {
-//        }
+        screen.setVisible(true);
+     
+        try {
+            for(int i =0;i<=100;i++){
+                Thread.sleep(20);
+                screen.prg_bar.setValue(i);
+            }
+        } catch (Exception e) {
+        }
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
