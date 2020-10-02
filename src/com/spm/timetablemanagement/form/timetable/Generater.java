@@ -22,19 +22,19 @@ import com.spm.timetablemanagement.util.DBconnection;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.metal.MetalIconFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -84,8 +84,11 @@ public class Generater {
     public Map<Integer,room> _roomForSessionList = new Hashtable<>();
     public Map<Integer,room> _roomForSubjectAndTagList = new Hashtable<>();
     
+    public ArrayList<Session> session_list = new ArrayList<>();
+    public Vector<Session> vec_session = new Vector<>();
+    
     public void loadData(){
-        
+
         try{
             getConnection();
 
@@ -128,6 +131,7 @@ public class Generater {
                 session.setStu_count(resultSet.getInt("stu_count"));
 
                 _sessionList.put(session.getId(),session);
+                session_list.add(session);
             }
             statement.close();
             resultSet.close();
@@ -420,6 +424,8 @@ public class Generater {
     }
     
     public void generate() throws FileNotFoundException, IOException{
+        
+        generateTimetable();
         /**
          * Here create folder named Timetables
          * then create html files according to group, lecture, room
@@ -432,19 +438,24 @@ public class Generater {
         for(GroupNo group : _groupList.values()){
             createGroupWiseTable(group.getgNo());
         }
-        
         //create lecture wise html
         for(Lecturer lecturer : _lecturesList.values()){
             createLectureWiseTable(lecturer.getLec_id());
         }
-        
         //create room wise html
         for(room r: _roomList.values()){
             createRoomWiseTable(r.getType());
         }
-        
         //create index.html
         CreateIndex();
+    }
+    
+    public void generateTimetable(){
+        String days [] = _workDayList.get(1).getDays().split(",");//get days list
+        int workingHours = Integer.parseInt(_workDayList.get(1).getHour());
+        int dayCount = days.length;
+        
+        
     }
     
     public void createGroupWiseTable(String GroupID) throws FileNotFoundException, IOException{
@@ -462,31 +473,44 @@ public class Generater {
         int workingHours = Integer.parseInt(_workDayList.get(1).getHour());
         float StartTime = Float.parseFloat(_workDayList.get(1).getMin());
         int slotCount=0;
-       
-        if(slot == 1)
-            slotCount = workingHours;
-        else
-            slotCount = (workingHours*2);
+        int temp = 3;
         
+        if(slot == 1){
+            slotCount = workingHours;
+        }
+        else{
+            slotCount = (workingHours*2);
+        }
         
          for(int i = 0;i<days.length;i++){
                   Topic = Topic.concat("<th>"+days[i]+"</th>\n");
-              }
+         }
+         
          for(int i = 0;i <slotCount ;i++){
              
              
              Data = Data.concat("<tr>");
              Data = Data.concat("<td>"+(StartTime)+"0</td>");
              
+             
              if(slot == 1){
                 StartTime = StartTime + slot;
              }
              else{
-                 StartTime = StartTime + slot;
+                 if(temp == 6){
+                     
+                     StartTime = StartTime + 0.7f;
+                     temp = 0;
+                 }
+                 else{
+                     
+                      StartTime = (float) (StartTime + 0.3);
+                 }
+                  temp = temp + 3;
              }
              
              for(int j =0;j<days.length;j++){
-                 Data = Data.concat("<td>Data</td>");
+                 Data = Data.concat("<td>- X -</td>");
              }
              Data = Data.concat("</tr>");
          }

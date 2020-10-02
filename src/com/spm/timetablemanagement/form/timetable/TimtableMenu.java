@@ -5,10 +5,12 @@
  */
 package com.spm.timetablemanagement.form.timetable;
 
+import com.spm.timetablemanagement.home.Dialog;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -114,6 +116,8 @@ public class TimtableMenu extends javax.swing.JPanel {
         
             Generater generater = new Generater();
             generater.loadData();
+            
+            JOptionPane.showMessageDialog(this, "Timetable Generated.","Timetable",JOptionPane.DEFAULT_OPTION);
     }//GEN-LAST:event_jButton1MouseClicked
 
 

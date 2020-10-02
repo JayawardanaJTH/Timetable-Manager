@@ -29,7 +29,7 @@ public class Dialog extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
+        txt_topic = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -39,10 +39,10 @@ public class Dialog extends javax.swing.JFrame {
         jProgressBar1.setStringPainted(true);
         jPanel1.add(jProgressBar1, java.awt.BorderLayout.CENTER);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Creating database....");
-        jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        txt_topic.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_topic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_topic.setText("Creating database....");
+        jPanel1.add(txt_topic, java.awt.BorderLayout.PAGE_START);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,8 +95,8 @@ public class Dialog extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JProgressBar jProgressBar1;
+    public javax.swing.JLabel txt_topic;
     // End of variables declaration//GEN-END:variables
 }

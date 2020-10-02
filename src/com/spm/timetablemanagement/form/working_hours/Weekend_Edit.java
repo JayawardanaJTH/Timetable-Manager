@@ -400,8 +400,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
     }
     
     private boolean checkTime(){
-        if(Integer.parseInt(txt_min.getText()) > 59)
-            return true;
+        
         if(Integer.parseInt(txt_hour.getText()) > 12 || Integer.parseInt(txt_hour.getText()) == 0)
             return true;
         
@@ -482,7 +481,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
                     statement1.setInt(2, numOfdays);
                     statement1.setString(3, dayList.substring(0, lenght-1));
                     statement1.setInt(4, Integer.parseInt(txt_hour.getText()));
-                    statement1.setInt(5, Integer.parseInt(txt_min.getText()));
+                    statement1.setFloat(5, Float.parseFloat(txt_min.getText()));
 
                     if(rdb_1hour.isSelected()){
                         statement1.setInt(6, 1);
