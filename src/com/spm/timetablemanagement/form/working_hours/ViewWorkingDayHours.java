@@ -132,7 +132,7 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
                 String days = model.getDays();
 
                 lbl_workDays_wd.setText(days);
-                lbl_workHours_wd.setText(model.getHour()+ " H " + model.getMin() + " Min ");
+                lbl_workHours_wd.setText(model.getHour()+ " H ");
 
                 return false;
             }
@@ -153,7 +153,7 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
                 String days = model.getDays();
 
                 lbl_workDays_we.setText(days);
-                lbl_workHours_we.setText(model.getHour()+ " H " + model.getMin() + " Min ");
+                lbl_workHours_we.setText(model.getHour()+ " H " );
 
                 return false;
             }

@@ -69,7 +69,6 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
         chk_sun = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         txt_min = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         rdb_1hour = new javax.swing.JRadioButton();
         rdb_30min = new javax.swing.JRadioButton();
         btn_reset = new javax.swing.JButton();
@@ -78,6 +77,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
         txt_days_error = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Number of working days");
@@ -143,8 +143,6 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setText("M");
-
         rdb_1hour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rdb_1hour.setText("1 hour");
 
@@ -196,6 +194,9 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Start Time");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,11 +219,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txt_hour, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))))
+                                .addComponent(jLabel5))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -236,9 +233,16 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                                 .addComponent(chk_sun))
                             .addComponent(txt_days_error, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_reset)
-                        .addGap(33, 33, 33)
-                        .addComponent(btn_save)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_reset)
+                                .addGap(33, 33, 33))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(123, 123, 123)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_save))
                         .addGap(302, 302, 302)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -261,9 +265,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel5))
                 .addGap(31, 31, 31)
                 .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,7 +273,11 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(rdb_1hour)
                     .addComponent(rdb_30min))
-                .addGap(59, 59, 59)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_reset)
                     .addComponent(btn_save))
@@ -297,7 +303,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_hourMousePressed
 
     private void txt_hourKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_hourKeyPressed
-        Validator.filterInt(evt, "hour", txt_error, txt_hour, txt_min);
+        Validator.filterInt(evt, "hour", txt_error, txt_hour);
         Validator.validateLenght("hour", txt_hour, txt_min);
     }//GEN-LAST:event_txt_hourKeyPressed
 
@@ -338,7 +344,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_minMousePressed
 
     private void txt_minKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_minKeyPressed
-        Validator.filterInt(evt, "min", txt_error, txt_hour, txt_min);
+        Validator.filterInt(evt, "min", txt_error, txt_hour);
         Validator.validateLenght("min", txt_hour, txt_min);
     }//GEN-LAST:event_txt_minKeyPressed
 
@@ -364,8 +370,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     }
     
     private boolean checkTime(){
-        if(Integer.parseInt(txt_min.getText()) > 59)
-            return true;
+        
         if(Integer.parseInt(txt_hour.getText()) > 12 || Integer.parseInt(txt_hour.getText()) == 0)
             return true;
         
@@ -448,7 +453,7 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                     statement1.setInt(2, numOfdays);
                     statement1.setString(3, dayList.substring(0, lenght-1));
                     statement1.setInt(4, Integer.parseInt(txt_hour.getText()));
-                    statement1.setInt(5, Integer.parseInt(txt_min.getText()));
+                    statement1.setFloat(5, Float.parseFloat(txt_min.getText()));
 
                     
                     if(rdb_1hour.isSelected()){
@@ -461,8 +466,8 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
                     statement1.execute();
                     
                     for(int x = 0; x < days.size(); x++){
-                        statement3.setInt(1, x+1);
-                        statement3.setString(2, days.get(x));
+//                        statement3.setInt(1, x+1);
+                        statement3.setString(1, days.get(x));
                         
                         statement3.execute();
                     }
@@ -504,8 +509,8 @@ public class InsertWorkingHoursWE extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

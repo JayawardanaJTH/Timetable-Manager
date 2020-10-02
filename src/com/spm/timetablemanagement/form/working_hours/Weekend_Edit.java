@@ -105,6 +105,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -124,6 +125,8 @@ public class Weekend_Edit extends javax.swing.JPanel {
         btn_save = new javax.swing.JButton();
         txt_error = new javax.swing.JLabel();
         txt_days_error = new javax.swing.JLabel();
+
+        jLabel7.setText("jLabel7");
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -191,7 +194,8 @@ public class Weekend_Edit extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setText("M");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Start Time");
 
         rdb_1hour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rdb_1hour.setText("1 hour");
@@ -225,7 +229,12 @@ public class Weekend_Edit extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 838, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(jLabel6)
+                .addGap(120, 120, 120)
+                .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(533, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(143, 143, 143)
@@ -244,11 +253,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txt_hour, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel6))))
+                                    .addComponent(jLabel5))))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
@@ -266,11 +271,18 @@ public class Weekend_Edit extends javax.swing.JPanel {
                             .addGap(33, 33, 33)
                             .addComponent(btn_save)
                             .addGap(302, 302, 302)))
-                    .addContainerGap(144, Short.MAX_VALUE)))
+                    .addContainerGap(199, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(358, 358, 358)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel6)))
+                .addGap(171, 171, 171))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(125, 125, 125)
@@ -288,9 +300,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(txt_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6))
+                        .addComponent(jLabel5))
                     .addGap(31, 31, 31)
                     .addComponent(txt_error, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -302,7 +312,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btn_reset)
                         .addComponent(btn_save))
-                    .addContainerGap(126, Short.MAX_VALUE)))
+                    .addContainerGap(129, Short.MAX_VALUE)))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -315,7 +325,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_hourMousePressed
 
     private void txt_hourKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_hourKeyPressed
-        Validator.filterInt(evt, "hour", txt_error, txt_hour, txt_min);
+        Validator.filterInt(evt, "hour", txt_error, txt_hour);
         Validator.validateLenght("hour", txt_hour, txt_min);
     }//GEN-LAST:event_txt_hourKeyPressed
 
@@ -356,7 +366,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_minMousePressed
 
     private void txt_minKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_minKeyPressed
-        Validator.filterInt(evt, "min", txt_error, txt_hour, txt_min);
+        Validator.filterInt(evt, "min", txt_error, txt_hour);
         Validator.validateLenght("min", txt_hour, txt_min);
     }//GEN-LAST:event_txt_minKeyPressed
 
@@ -480,8 +490,8 @@ public class Weekend_Edit extends javax.swing.JPanel {
                     }
                     
                     for(int x = 0; x < days.size(); x++){
-                        statement3.setInt(1, x+1);
-                        statement3.setString(2, days.get(x));
+//                        statement3.setInt(1, x+1);
+                        statement3.setString(1, days.get(x));
                         
                         statement3.execute();
                     }
@@ -518,6 +528,7 @@ public class Weekend_Edit extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rdb_1hour;

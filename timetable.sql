@@ -372,7 +372,7 @@ CREATE TABLE `work_day_hour` (
 DROP TABLE IF EXISTS `work_day_hour_days`;
 
 CREATE TABLE `work_day_hour_days` (
-  `id` INTEGER PRIMARY KEY,
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `parentID` INTEGER  DEFAULT '0',
   `day` varchar(20) DEFAULT NULL,
   CONSTRAINT `fk1` FOREIGN KEY (`parentID`) REFERENCES `work_day_hour` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION

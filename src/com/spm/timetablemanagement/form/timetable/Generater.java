@@ -400,7 +400,6 @@ public class Generater {
             statement.close();
             resultSet.close();
 
-            System.out.println("Data loaded");
             generate();
         }catch(ParserConfigurationException|SAXException|IOException|SQLException ex){
             Logger.getLogger(Generater.class.getName()).log(Level.SEVERE, null, ex);
@@ -408,6 +407,9 @@ public class Generater {
         }
     }
     
+    /**
+     * get database connection
+     */
     public void getConnection(){
         try {
             connection = DBconnection.getConnection();
@@ -419,14 +421,20 @@ public class Generater {
     
     public void generate() throws FileNotFoundException, IOException{
         
+        
+        /**
+         * Here create folder named Timetables
+         * then create html files according to group, lecture, room
+         */
         path = new File("").getAbsolutePath()+"\\Timetables";
         File file = new File(path);
-        System.out.println(file.mkdir());
+        file.mkdir();
         for(GroupNo group : _groupList.values()){
             createGroupWiseTable(group.getgNo());
-           
         }
         
+        //create index.html
+        CreateIndex();
     }
     
     public void createGroupWiseTable(String GroupID) throws FileNotFoundException, IOException{
@@ -435,29 +443,37 @@ public class Generater {
         writer = new FileWriter(new File(path+"\\"+GroupID+".html"));
         bw = new BufferedWriter(writer);
         
-        String days [] = _workDayList.get(1).getDays().split(",");
-        String Topic="";
-        String Data="";
+        String days [] = _workDayList.get(1).getDays().split(",");//get days list
+        String Topic="";//table headers will store
+        String Data="";//table data will store
        
         
         int slot = Integer.parseInt(_workDayList.get(1).getTimeSlot());
-        int hours = Integer.parseInt(_workDayList.get(1).getHour());
-        int Start = Integer.parseInt(_workDayList.get(1).getMin());
+        int workingHours = Integer.parseInt(_workDayList.get(1).getHour());
+        float StartTime = Float.parseFloat(_workDayList.get(1).getMin());
         int slotCount=0;
        
         if(slot == 1)
-            slotCount = hours;
+            slotCount = workingHours;
         else
-            slotCount = (hours * 60)/slot;
+            slotCount = (workingHours*2);
         
         
          for(int i = 0;i<days.length;i++){
                   Topic = Topic.concat("<th>"+days[i]+"</th>\n");
               }
          for(int i = 0;i <slotCount ;i++){
-             Start = Start + slot;
+             
+             
              Data = Data.concat("<tr>");
-             Data = Data.concat("<td>"+(Start)+".00</td>");
+             Data = Data.concat("<td>"+(StartTime)+"</td>");
+             
+             if(slot == 1){
+                StartTime = StartTime + slot;
+             }
+             else{
+                 StartTime = StartTime + slot;
+             }
              
              for(int j =0;j<days.length;j++){
                  Data = Data.concat("<td>Data</td>");
@@ -482,6 +498,40 @@ public class Generater {
         String code = HEAD +""+ Topic +""+ Data +""+ BODY;
         bw.write(code);
         bw.close();
+        writer.close();
+    }
+    
+    public void CreateIndex() throws IOException{
         
+        writer = new FileWriter(new File (path+"\\index.html"));
+        bw = new BufferedWriter(writer);
+        
+        String HEAD = "<html>"
+                + "<head> "
+                + "<style>"
+                + "table, th, td {border: 1px solid black; padding: 0px;}\n"
+                + "table {border-spacing: 1px;}"
+                + "</style>"
+                + "</head><body> <h2> Index </h2>";
+        
+        String BODY = "</body></html>";
+        bw.write(HEAD);
+        
+        for(GroupNo group : _groupList.values()){
+            createGroupWiseIndex(group.getgNo());
+        }
+        
+        bw.write(BODY);
+        bw.close();
+        writer.close();
+    }
+    
+    public void createGroupWiseIndex(String groupID) throws IOException{
+        String html = groupID+".html";
+        String link = "'"+html+"'";
+        
+        String index = "<a href="+link+">"+groupID+"</a> <br/>";
+        
+        bw.write(index);
     }
 }

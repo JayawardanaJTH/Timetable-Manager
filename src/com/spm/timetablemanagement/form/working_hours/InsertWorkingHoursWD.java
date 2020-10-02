@@ -342,7 +342,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_resetMousePressed
 
     private void txt_hourKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_hourKeyPressed
-        Validator.filterInt(evt, "hour", txt_error, txt_hour, txt_min);
+        Validator.filterInt(evt, "hour", txt_error, txt_hour);
         Validator.validateLenght("hour", txt_hour, txt_min);
     }//GEN-LAST:event_txt_hourKeyPressed
 
@@ -500,8 +500,8 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                     statement.execute();
                     
                     for(int x = 0; x < days.size(); x++){
-                        statement3.setInt(1, x+1);
-                        statement3.setString(2, days.get(x));
+//                        statement3.setInt(1, x+1);
+                        statement3.setString(1, days.get(x));
                         
                         statement3.execute();
                     }

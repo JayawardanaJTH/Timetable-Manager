@@ -309,13 +309,13 @@
     
     <query id="Insert_WE_workingdays_and_hours_days">
         <![CDATA[
-            INSERT INTO work_day_hour_days (id, parentID, day)VALUES (?, (select id from work_day_hour where id = 2), ?)
+            INSERT INTO work_day_hour_days (parentID, day)VALUES ((select id from work_day_hour where id = 2), ?)
         ]]>
     </query>
     
     <query id="Insert_WD_workingdays_and_hours_days">
         <![CDATA[
-            INSERT INTO work_day_hour_days (id, parentID, day)VALUES (?, (select id from work_day_hour where id = 1), ?)
+            INSERT INTO work_day_hour_days ( parentID, day)VALUES ((select id from work_day_hour where id = 1), ?)
         ]]>
     </query>
     

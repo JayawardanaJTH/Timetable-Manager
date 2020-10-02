@@ -21,13 +21,13 @@ public class Validator {
                 hcount.setText("");
         }else{
            
-            if(mcount.getText().length() > 1){
+            if(mcount.getText().length() > 4){
                  mcount.setText("");
             }
         }
        
     }
-    public static void filterInt(KeyEvent evt, String type, JLabel error, JTextField txt_hour, JTextField txt_min){
+    public static void filterInt(KeyEvent evt, String type, JLabel error, JTextField txt_hour){
         
         int key = evt.getKeyCode();
         
@@ -39,10 +39,7 @@ public class Validator {
                      evt.setKeyCode(1);
                       txt_hour.setText("");
                  }
-                 else{
-                     evt.setKeyCode(1);
-                     txt_min.setText("");
-                 }
+                 
             }
             else
                 error.setText("");
