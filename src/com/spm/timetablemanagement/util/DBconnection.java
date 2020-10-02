@@ -25,7 +25,6 @@ public class DBconnection {
     private static Connection connection;
     private static String path = "";
     private static String DBpath = "";
-    private static MainFrame mf = new MainFrame();
             
     public static boolean isDatabaseExist(String dbPath){
         File file = new File(dbPath);

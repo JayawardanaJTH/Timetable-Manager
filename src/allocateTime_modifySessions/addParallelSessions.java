@@ -77,6 +77,8 @@ public class addParallelSessions extends javax.swing.JPanel {
         txt_psSelectedId = new javax.swing.JTextField();
         txt_error_selection = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));

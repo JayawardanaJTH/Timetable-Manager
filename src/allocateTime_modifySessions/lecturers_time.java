@@ -399,6 +399,9 @@ public class lecturers_time extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel19.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel19.setToolTipText("");
+
         jPanel21.setBackground(new java.awt.Color(153, 153, 153));
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));

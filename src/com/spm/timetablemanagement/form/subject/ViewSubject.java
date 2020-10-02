@@ -122,6 +122,8 @@ public class ViewSubject extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new java.awt.BorderLayout());
 
         jPanel4.setBackground(new java.awt.Color(90, 30, 172));
@@ -136,7 +138,7 @@ public class ViewSubject extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(312, 312, 312)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(337, 337, 337))
         );
         jPanel4Layout.setVerticalGroup(
@@ -148,6 +150,9 @@ public class ViewSubject extends javax.swing.JPanel {
         );
 
         add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel2.setToolTipText("");
 
         btn_reset.setText("Refresh");
         btn_reset.addMouseListener(new java.awt.event.MouseAdapter() {

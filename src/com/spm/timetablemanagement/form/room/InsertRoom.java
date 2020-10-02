@@ -60,10 +60,17 @@ public class InsertRoom extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         cmb_buildings = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
+
         jLabel1.setText("Room");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ID");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Type");
 
         add.setText("Add Room");
@@ -121,6 +128,8 @@ public class InsertRoom extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Building");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

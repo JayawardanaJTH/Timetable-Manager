@@ -118,6 +118,8 @@ public class EditWorkingDayHours extends javax.swing.JPanel {
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
+        edit_body.setBackground(new java.awt.Color(186, 148, 243));
+        edit_body.setToolTipText("");
         edit_body.setLayout(new java.awt.BorderLayout());
 
         btn_weekday.setBackground(new java.awt.Color(153, 153, 0));
@@ -174,6 +176,8 @@ public class EditWorkingDayHours extends javax.swing.JPanel {
 
         edit_body.add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
+        body.setBackground(new java.awt.Color(186, 148, 243));
+        body.setToolTipText("");
         body.setLayout(new javax.swing.BoxLayout(body, javax.swing.BoxLayout.LINE_AXIS));
         edit_body.add(body, java.awt.BorderLayout.CENTER);
 

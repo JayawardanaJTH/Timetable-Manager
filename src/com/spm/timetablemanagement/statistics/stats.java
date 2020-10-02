@@ -112,6 +112,9 @@ public class stats extends javax.swing.JPanel {
         stu = new javax.swing.JLabel();
         sub = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
+
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Lecturers");
 

@@ -88,16 +88,23 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         txt_min = new javax.swing.JTextField();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel1.setToolTipText("");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Number of working days");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Working days");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Working hours per day");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Time slot");
 
         txt_hour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -161,6 +168,8 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("H");
 
         rdb_1hour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -214,8 +223,15 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Start Time");
+
+        txt_min.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_minMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -264,7 +280,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5))
                             .addComponent(txt_days_error, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_min, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -387,7 +403,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     }
     
     private boolean checkTime(){
-        if(Integer.parseInt(txt_min.getText()) > 59 ||txt_hour.getText().contains(" "))
+        if(txt_hour.getText().contains(" "))
             return true;
         if(Integer.parseInt(txt_hour.getText()) > 12 || Integer.parseInt(txt_hour.getText()) == 0 ||txt_hour.getText().contains(" ") )
             return true;
@@ -487,7 +503,7 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
                     statement.setInt(2, numOfdays);
                     statement.setString(3, dayList.substring(0,lenght-1));
                     statement.setInt(4, Integer.parseInt(txt_hour.getText()));
-                    statement.setInt(5, Integer.parseInt(txt_min.getText()));
+                    statement.setFloat(5, Float.parseFloat(txt_min.getText()));
 
                     if(rdb_1hour.isSelected()){
                         statement.setInt(6, 1);
@@ -565,6 +581,10 @@ public class InsertWorkingHoursWD extends javax.swing.JPanel {
     private void txt_hourMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_hourMousePressed
         txt_hour.setText("");
     }//GEN-LAST:event_txt_hourMousePressed
+
+    private void txt_minMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_minMouseClicked
+       txt_min.setText("");
+    }//GEN-LAST:event_txt_minMouseClicked
   
     private void uncheckAll(){
         

@@ -73,7 +73,12 @@ public class addGroup extends javax.swing.JPanel {
         tbl_gId = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel10.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel10.setToolTipText("");
 
         jPanel12.setBackground(new java.awt.Color(153, 153, 153));
 

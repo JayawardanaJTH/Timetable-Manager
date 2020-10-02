@@ -204,6 +204,8 @@ public class ViewWorkingDayHours extends javax.swing.JPanel {
         delete_weekend = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel1.setToolTipText("");
         jPanel1.setPreferredSize(new java.awt.Dimension(835, 560));
 
         jPanel2.setBackground(new java.awt.Color(90, 30, 172));

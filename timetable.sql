@@ -33,7 +33,6 @@ INSERT INTO `building` (name) VALUES ('New Building');
 INSERT INTO `building` (name) VALUES ('Main Building');
 INSERT INTO `building` (name) VALUES ('Business Building');
 INSERT INTO `building` (name) VALUES ('Engineering Building');
-INSERT INTO `building` (name) VALUES ('ans Building');
 
 DROP TABLE IF EXISTS `center`;
 

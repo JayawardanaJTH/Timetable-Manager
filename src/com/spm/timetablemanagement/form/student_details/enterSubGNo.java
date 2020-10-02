@@ -60,6 +60,11 @@ public class enterSubGNo extends javax.swing.JPanel {
         tbl_Sgn = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
+
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));

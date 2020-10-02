@@ -59,8 +59,12 @@ public class enterTag extends javax.swing.JPanel {
         tbl_tag = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
@@ -221,22 +225,30 @@ public class enterTag extends javax.swing.JPanel {
                 txt_error.setText("Enter Tag*");
             }
             else{
-                txt_error.setText("");
                 
-            statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_TAG_TABLE));
+                if(txt_tag.getText().contentEquals("Practical")||txt_tag.getText().contentEquals("Lecture")||txt_tag.getText().contentEquals("Tutorial")){
+                    txt_error.setText("");
 
-            statement.setString(1, txt_tag.getText());
+                    statement = connection.prepareStatement(CreateQuery.getQuery(Constant.INSERT_TAG_TABLE));
 
-            statement.executeUpdate();
-            model.setRowCount(0);
-            showTagList();
-            txt_tag.setText("");
-            JOptionPane.showMessageDialog(null, "inserting successful");
+                    statement.setString(1, txt_tag.getText());
+
+                    statement.executeUpdate();
+                    model.setRowCount(0);
+                    showTagList();
+                    txt_tag.setText("");
+                    JOptionPane.showMessageDialog(null, "inserting successful");
+                }else{
+                    txt_error.setText("Please follow this types Lecture/Practical/Tutorial");
+                }
             }
-        }catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
+            }catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+        
+        txt_tag.setText("Lecture/Practical/Tutorial");
     }//GEN-LAST:event_btn_addTagActionPerformed
 
     private void tbl_tagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_tagMouseClicked
@@ -260,19 +272,24 @@ public class enterTag extends javax.swing.JPanel {
                 txt_error.setText("Select Tag*");
             }
             else{
-                txt_error.setText("");
-                
-            smt.execute("UPDATE tag SET tag = '"+txt_tag.getText()+"' WHERE id = "+id); 
-            model.setRowCount(0);
-            showTagList();
-            txt_tag.setText("");
-            JOptionPane.showMessageDialog(this, "Updated");
+                if(txt_tag.getText().contentEquals("Practical")||txt_tag.getText().contentEquals("Lecture")||txt_tag.getText().contentEquals("Tutorial")){
+                    txt_error.setText("");
+
+                    smt.execute("UPDATE tag SET tag = '"+txt_tag.getText()+"' WHERE id = "+id); 
+                    model.setRowCount(0);
+                    showTagList();
+                    txt_tag.setText("");
+                    JOptionPane.showMessageDialog(this, "Updated");
+                }else{
+                    txt_error.setText("Please follow this types Lecture/Practical/Tutorial");
+                }
             }
         }
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e);
         }
+        txt_tag.setText("Lecture/Practical/Tutorial");
     }//GEN-LAST:event_btn_editTagActionPerformed
 
     private void btn_deleteTagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteTagActionPerformed
@@ -301,6 +318,7 @@ public class enterTag extends javax.swing.JPanel {
         {
             JOptionPane.showMessageDialog(null, e);
         }
+        txt_tag.setText("Lecture/Practical/Tutorial");
     }//GEN-LAST:event_btn_deleteTagActionPerformed
 
     private void txt_tagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_tagMouseClicked

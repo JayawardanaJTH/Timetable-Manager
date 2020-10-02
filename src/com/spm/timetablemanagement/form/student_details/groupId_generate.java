@@ -76,9 +76,13 @@ public class groupId_generate extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_gId = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setPreferredSize(new java.awt.Dimension(833, 737));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel9.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel9.setToolTipText("");
         jPanel9.setPreferredSize(new java.awt.Dimension(1133, 688));
 
         jPanel10.setBackground(new java.awt.Color(153, 153, 153));

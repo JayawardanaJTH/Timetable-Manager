@@ -153,6 +153,9 @@ public class AddSession extends javax.swing.JPanel {
         cmb_lec9 = new javax.swing.JComboBox<>();
         cmb_lec10 = new javax.swing.JComboBox<>();
 
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel1.setToolTipText("");
+
         jPanel4.setBackground(new java.awt.Color(90, 30, 172));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -176,31 +179,38 @@ public class AddSession extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Lecturer(s)");
         jLabel1.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Subject");
         jLabel2.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Subject code");
         jLabel3.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Tag");
         jLabel4.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Duration");
         jLabel5.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Student count");
         jLabel6.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        lbl_ID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbl_ID.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_ID.setForeground(new java.awt.Color(255, 255, 255));
         lbl_ID.setText("Group ID");
         lbl_ID.setPreferredSize(new java.awt.Dimension(100, 30));
 

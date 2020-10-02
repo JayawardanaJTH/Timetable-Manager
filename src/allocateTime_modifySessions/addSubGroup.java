@@ -74,6 +74,9 @@ public class addSubGroup extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel10.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel10.setToolTipText("");
+
         jPanel12.setBackground(new java.awt.Color(153, 153, 153));
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));

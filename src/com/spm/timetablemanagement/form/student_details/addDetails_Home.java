@@ -44,6 +44,9 @@ public class addDetails_Home extends javax.swing.JPanel {
         btn_home_Gno = new javax.swing.JButton();
         btn_home_sGno = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
+
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));

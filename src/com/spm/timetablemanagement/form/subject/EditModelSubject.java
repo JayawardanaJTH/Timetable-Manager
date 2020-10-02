@@ -86,7 +86,7 @@ public class EditModelSubject extends javax.swing.JFrame {
                 
                 for(int j = 0; j< 2;j++){
                     
-                    if(semList[j].contentEquals(yNsList.get(i).substring(2)))
+                    if(semList[j].contentEquals(yNsList.get(i).substring(3)))
                         lock2 = true;
                 }
                 
@@ -143,31 +143,49 @@ public class EditModelSubject extends javax.swing.JFrame {
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 620));
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(540, 570));
 
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel1.setToolTipText("");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Offered year");
         jLabel1.setPreferredSize(new java.awt.Dimension(150, 30));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Offered semester");
         jLabel2.setPreferredSize(new java.awt.Dimension(150, 30));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Subject Name");
         jLabel3.setPreferredSize(new java.awt.Dimension(150, 30));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Subject Code");
         jLabel4.setPreferredSize(new java.awt.Dimension(150, 30));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Number of lecture hours");
         jLabel5.setPreferredSize(new java.awt.Dimension(150, 30));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Number of tutorial hours");
         jLabel6.setPreferredSize(new java.awt.Dimension(150, 30));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Number of lab hours");
         jLabel8.setPreferredSize(new java.awt.Dimension(150, 30));
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Number of evaluation hours");
         jLabel9.setPreferredSize(new java.awt.Dimension(150, 30));
 

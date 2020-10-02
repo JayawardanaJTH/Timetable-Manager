@@ -59,7 +59,12 @@ public class enterYnS extends javax.swing.JPanel {
         tbl_yNs = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel4.setToolTipText("");
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 

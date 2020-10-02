@@ -82,6 +82,8 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         btn_deletecs = new javax.swing.JButton();
         txt_error_cs = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 580, -1, -1));
 

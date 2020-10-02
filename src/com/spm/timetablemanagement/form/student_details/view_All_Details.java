@@ -84,8 +84,12 @@ public class view_All_Details extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_viewAll = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
+        jPanel1.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbl_viewAll.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

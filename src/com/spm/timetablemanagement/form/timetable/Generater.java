@@ -420,8 +420,6 @@ public class Generater {
     }
     
     public void generate() throws FileNotFoundException, IOException{
-        
-        
         /**
          * Here create folder named Timetables
          * then create html files according to group, lecture, room
@@ -429,8 +427,20 @@ public class Generater {
         path = new File("").getAbsolutePath()+"\\Timetables";
         File file = new File(path);
         file.mkdir();
+        
+        //create group wise html
         for(GroupNo group : _groupList.values()){
             createGroupWiseTable(group.getgNo());
+        }
+        
+        //create lecture wise html
+        for(Lecturer lecturer : _lecturesList.values()){
+            createLectureWiseTable(lecturer.getLec_id());
+        }
+        
+        //create room wise html
+        for(room r: _roomList.values()){
+            createRoomWiseTable(r.getType());
         }
         
         //create index.html
@@ -466,7 +476,7 @@ public class Generater {
              
              
              Data = Data.concat("<tr>");
-             Data = Data.concat("<td>"+(StartTime)+"</td>");
+             Data = Data.concat("<td>"+(StartTime)+"0</td>");
              
              if(slot == 1){
                 StartTime = StartTime + slot;
@@ -501,6 +511,134 @@ public class Generater {
         writer.close();
     }
     
+    public void createLectureWiseTable(String lectureID) throws FileNotFoundException, IOException{
+        
+        writer = new FileWriter(new File(path+"\\"+lectureID+".html"));
+        bw = new BufferedWriter(writer);
+        
+        String days [] = _workDayList.get(1).getDays().split(",");//get days list
+        String Topic="";//table headers will store
+        String Data="";//table data will store
+       
+        
+        int slot = Integer.parseInt(_workDayList.get(1).getTimeSlot());
+        int workingHours = Integer.parseInt(_workDayList.get(1).getHour());
+        float StartTime = Float.parseFloat(_workDayList.get(1).getMin());
+        int slotCount=0;
+       
+        if(slot == 1)
+            slotCount = workingHours;
+        else
+            slotCount = (workingHours*2);
+        
+        
+         for(int i = 0;i<days.length;i++){
+                  Topic = Topic.concat("<th>"+days[i]+"</th>\n");
+              }
+         for(int i = 0;i <slotCount ;i++){
+             
+             
+             Data = Data.concat("<tr>");
+             Data = Data.concat("<td>"+(StartTime)+"0</td>");
+             
+             if(slot == 1){
+                StartTime = StartTime + slot;
+             }
+             else{
+                 StartTime = StartTime + slot;
+             }
+             
+             for(int j =0;j<days.length;j++){
+                 Data = Data.concat("<td>Data</td>");
+             }
+             Data = Data.concat("</tr>");
+         }
+              String HEAD = "<html>"
+                + "<head> "
+                + "<style>"
+                + "table, th, td {border: 1px solid black; padding: 0px;}\n"
+                + "table {border-spacing: 1px;}"
+                + "</style>"
+                + "</head><body>"
+                + " <table style=\"width:100%\">" +
+                "<caption>"+lectureID+"</caption>"+      
+                "  <tr>" +
+                "    <th>Time</th>" ;
+             
+              String BODY = "</table> "
+                + "</body></html>";
+        
+        String code = HEAD +""+ Topic +""+ Data +""+ BODY;
+        bw.write(code);
+        bw.close();
+        writer.close();
+    }
+    
+    public void createRoomWiseTable(String room) throws FileNotFoundException, IOException{
+        
+        
+        writer = new FileWriter(new File(path+"\\"+room+".html"));
+        bw = new BufferedWriter(writer);
+        
+        String days [] = _workDayList.get(1).getDays().split(",");//get days list
+        String Topic="";//table headers will store
+        String Data="";//table data will store
+       
+        
+        int slot = Integer.parseInt(_workDayList.get(1).getTimeSlot());
+        int workingHours = Integer.parseInt(_workDayList.get(1).getHour());
+        float StartTime = Float.parseFloat(_workDayList.get(1).getMin());
+        int slotCount=0;
+       
+        if(slot == 1)
+            slotCount = workingHours;
+        else
+            slotCount = (workingHours*2);
+        
+        
+         for(int i = 0;i<days.length;i++){
+                  Topic = Topic.concat("<th>"+days[i]+"</th>\n");
+              }
+         for(int i = 0;i <slotCount ;i++){
+             
+             
+             Data = Data.concat("<tr>");
+             Data = Data.concat("<td>"+(StartTime)+"0</td>");
+             
+             if(slot == 1){
+                StartTime = StartTime + slot;
+             }
+             else{
+                 StartTime = StartTime + slot;
+             }
+             
+             for(int j =0;j<days.length;j++){
+                 Data = Data.concat("<td>Data</td>");
+             }
+             Data = Data.concat("</tr>");
+         }
+              String HEAD = "<html>"
+                + "<head> "
+                + "<style>"
+                + "table, th, td {border: 1px solid black; padding: 0px;}\n"
+                + "table {border-spacing: 1px;}"
+                + "</style>"
+                + "</head><body>"
+                + " <table style=\"width:100%\">" +
+                "<caption>"+room+"</caption>"+      
+                "  <tr>" +
+                "    <th>Time</th>" ;
+             
+              String BODY = "</table> "
+                + "</body></html>";
+        
+        String code = HEAD +""+ Topic +""+ Data +""+ BODY;
+        bw.write(code);
+        bw.close();
+        writer.close();
+    }
+    
+    //create Index html
     public void CreateIndex() throws IOException{
         
         writer = new FileWriter(new File (path+"\\index.html"));
@@ -512,15 +650,31 @@ public class Generater {
                 + "table, th, td {border: 1px solid black; padding: 0px;}\n"
                 + "table {border-spacing: 1px;}"
                 + "</style>"
-                + "</head><body> <h2> Index </h2>";
+                + "</head><body> <h2> Index </h2> <br/>";
         
         String BODY = "</body></html>";
         bw.write(HEAD);
+        
+        String subTopic = "<h3>Groups</h3> <br/>";
+        bw.write(subTopic);
         
         for(GroupNo group : _groupList.values()){
             createGroupWiseIndex(group.getgNo());
         }
         
+        subTopic = "<br/> <h3>Lectures</h3> <br/>";
+        bw.write(subTopic);
+        
+        for(Lecturer lecturer : _lecturesList.values()){
+            createLectureWiseIndex(lecturer.getLec_id());
+        }
+        
+        subTopic = "<br/> <h3>Rooms</h3> <br/>";
+        bw.write(subTopic);
+        
+        for(room r : _roomList.values()){
+            createRoomWiseIndex(r.getType());
+        }
         bw.write(BODY);
         bw.close();
         writer.close();
@@ -531,6 +685,24 @@ public class Generater {
         String link = "'"+html+"'";
         
         String index = "<a href="+link+">"+groupID+"</a> <br/>";
+        
+        bw.write(index);
+    }
+    
+    public void createLectureWiseIndex(String lectureID) throws IOException{
+        String html = lectureID+".html";
+        String link = "'"+html+"'";
+        
+        String index = "<a href="+link+">"+lectureID+"</a> <br/>";
+        
+        bw.write(index);
+    }
+    
+    public void createRoomWiseIndex(String room) throws IOException{
+        String html = room+".html";
+        String link = "'"+html+"'";
+        
+        String index = "<a href="+link+">"+room+"</a> <br/>";
         
         bw.write(index);
     }

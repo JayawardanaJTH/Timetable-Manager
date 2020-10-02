@@ -204,6 +204,8 @@ public class ViewSession extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         btn_reset = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(186, 148, 243));
+        setToolTipText("");
         setLayout(new java.awt.BorderLayout());
 
         jPanel4.setBackground(new java.awt.Color(90, 30, 172));
@@ -230,6 +232,9 @@ public class ViewSession extends javax.swing.JPanel {
         );
 
         add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setBackground(new java.awt.Color(186, 148, 243));
+        jPanel2.setToolTipText("");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
